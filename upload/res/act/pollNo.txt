@@ -1,0 +1,1 @@
+﻿<a href="javascript:poll({$$tid$$},2)"><img src="{$$contextPath$$}/templates/site/default/images/egg.jpg" width="24" /> 扔鸡蛋({$$opponents$$})</a>

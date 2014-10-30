@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.lerx.vote.vo">
+	<class name="VoteSubject" table="vote_subs" dynamic-update="true">
+		<id name="id" column="id">
+			<generator class="native" />
+		</id>
+		<property name="title" length="50" not-null="true" />
+		<property name="secStr" length="32" />
+		<property name="createTime" />
+		<property name="signStartTime" />
+		<property name="signEndTime" />
+		<property name="voteStartTime" />
+		<property name="voteEndTime" />
+		<property name="upperLimit" />
+		<property name="fullUpperConstraint" />
+		<property name="ipArea" />
+		<property name="hoursAtIpRule" />
+		<property name="hoursAtMachineRule" />
+		<property name="useVerifyCode" />
+		<property name="identityRule" />
+		<property name="phoneCodeRule" />
+		<property name="posterNameCCUChk" />
+		<property name="state" />
+		<property name="openResult" />
+		<property name="netJoin" />
+		<property name="netJoinMustBeMember" />
+		<property name="netJoinAutoPassed" />
+		<property name="mesAutoPassed" />
+		<property name="salt" length="6" />
+		<property name="votePassword" />
+		<property name="orderType" />
+		<property name="percent" />
+		<many-to-one name="style" column="styleID" outer-join="true"
+			class="com.lerx.style.vote.vo.VoteStyle" />
+	</class>
+</hibernate-mapping>

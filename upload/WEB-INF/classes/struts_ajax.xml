@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+
+
+	<!-- ajax js -->
+	
+	<package name="ajax-comment" extends="struts-default">
+		<action name="ajax_comment_*" method="{1}" class="com.lerx.web.ajax.service.CommentUtilAction">
+		</action>
+	</package>
+	
+	<package name="ajax-user-check" extends="struts-default">
+		<action name="ajax_user_*" method="{1}"
+				class="com.lerx.web.ajax.service.AjaxUserCheckAction">
+		</action>
+		<action name="ajax_users_articlesNumList" method="findUsersArticlesNum" class="com.lerx.web.ajax.service.AjaxUserCheckAction">
+		</action>
+	</package>
+	
+	<package name="ajax-siteandstyle" extends="struts-default">
+		<action name="ajax_site_stat" method="stat" class="com.lerx.web.ajax.service.SiteStatAction">
+		</action>
+		<action name="ajax_site_inf" method="inf" class="com.lerx.web.ajax.service.SiteInfAction">
+		</action>
+		<action name="ajax_site_views" method="views" class="com.lerx.web.ajax.service.SiteInfAction">
+		</action>
+		<action name="ajax_style_siteCustom" method="custom" class="com.lerx.web.ajax.service.SiteStyleCustomFormatAction">
+		</action>
+		<action name="ajax_articleGroupMask_Show" method="create" class="com.lerx.web.ajax.service.UserGroupPowerMaskCodeAction">
+		</action>
+		
+	</package>
+	
+	<package name="ajax-thread-list" extends="struts-default">
+		<action name="ajax_threads_list" method="list" class="com.lerx.web.ajax.service.SiteThreadListAction">
+		</action>
+	</package>
+	
+	<package name="ajax-thread-realtime" extends="struts-default">
+		<action name="ajax_thread_*" method="{1}" class="com.lerx.web.ajax.service.SiteThreadRealTimeAction">
+		</action>
+	</package>
+	
+	<package name="ajax-poll" extends="struts-default">
+		<action name="ajax_art_poll_*" method="{1}" class="com.lerx.web.ajax.service.ArticlePollAction">
+		</action>
+		<action name="ajax_bbs_poll_*" method="{1}" class="com.lerx.web.ajax.service.BbsThemePollAction">
+		</action>
+	</package>
+	
+	<package name="ajax-artlen" extends="struts-default">
+		<action name="ajax_art_lenchk" method="chk" class="com.lerx.web.ajax.service.ArticlePostAction">
+		</action>
+		
+	</package>
+	<package name="ajax-attachment-realtime" extends="struts-default">
+		<action name="ajax_attachment_*" method="{1}" class="com.lerx.web.ajax.service.AttachmentAction">
+		</action>
+	</package>
+	
+	<package name="ajax-util" extends="struts-default">
+		<action name="ajax_util_*" method="{1}" class="com.lerx.web.ajax.service.UtilAction">
+		</action>
+		<action name="ajax_sec_*" method="{1}" class="com.lerx.web.ajax.service.SecStrAction">
+		</action>
+	</package>
+	
+	<package name="ajax-bbs-style" extends="struts-default">
+		<action name="ajax_bbs_stylecode_*" method="{1}" class="com.lerx.web.ajax.service.BbsThreadCreateCodeAction">
+		</action>
+	</package>
+	<package name="ajax-bbs" extends="struts-default">
+		<action name="ajax_bbs_*" method="{1}" class="com.lerx.web.ajax.service.AjaxForBbsAction">
+		</action>
+	</package>
+	
+	<package name="ajax-qa" extends="struts-default">
+		<action name="ajax_qa_items_*" method="{1}" class="com.lerx.web.ajax.service.QaItemShowAction">
+		</action>
+		<action name="ajax_qa_item_real_*" method="{1}" class="com.lerx.web.ajax.service.QaItemRealTimeAction">
+		</action>
+	</package>
+	
+	<package name="ajax-vote" extends="struts-default">
+		<action name="ajax_vote_findMes" method="findMes" class="com.lerx.vote.service.VoteRecAction">
+		</action>
+		
+	</package>
+	<package name="ajax-draw" extends="struts-default">
+		<action name="ajax_draw_checkPws" method="checkPws" class="com.lerx.web.ajax.service.DrawAction">
+		</action>
+		
+	</package>
+	<package name="ajax-custom_code" extends="struts-default">
+		<action name="ajax_custom_code_*" method="{1}" class="com.lerx.web.ajax.service.AiaxCustomCodeAction">
+		</action>
+		
+	</package>
+
+</struts>

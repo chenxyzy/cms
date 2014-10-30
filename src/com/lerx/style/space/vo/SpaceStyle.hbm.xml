@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.lerx.style.site.vo">
+	<class name="SiteStyle" table="site_style" dynamic-update="true">
+	<!--  
+		<cache usage="read-write"/>
+		-->
+		<id name="id" column="id">
+			<generator class="native" />
+		</id>
+
+		<property name="styleName" length="50" />
+		<property name="author" length="50" />
+		<property name="description" />
+		<property name="state" />
+		<property name="locationSplitStr" length="10" />
+		<property name="publicCode1" type="text" />
+		<property name="publicCode2" type="text" />
+		<property name="publicCode3" type="text" />
+		<property name="publicCode4" type="text" />
+		<property name="customFormatCode1" type="text" />
+		<property name="customFormatCode2" type="text" />
+		<property name="customFormatCode3" type="text" />
+		<property name="customFormatCode4" type="text" />
+		<property name="customFormatCode5" type="text" />
+		<property name="customFormatCode6" type="text" />
+		<property name="customFormatCode7" type="text" />
+		<property name="customFormatCode8" type="text" />
+		<property name="ajaxRealTimeCode" />
+		<property name="resultPageCode" type="text" />
+		<property name="selectOptionLoopCode" />
+		<property name="lastArticleForwardCode" />
+		<property name="nextArticleForwardCode" />
+		
+			
+		<!--  
+		<component name="commentStyle" class="CommentStyle">
+			<property name="commentAreaCode" type="text"></property>
+			<property name="commentLinecode" type="text"></property>
+			<property name="commentEditCode" type="text"></property>
+			<property name="commentFormCode" type="text"></property>
+		</component>
+		-->
+		<many-to-one name="publicStyle" outer-join="true" cascade="all"
+			column="pid" class="SpaceStyleSubElementInCommon" />
+			
+		<many-to-one name="indexStyle" outer-join="true" cascade="all"
+			column="iid" class="SpaceStyleSubElementInCommon" />
+			
+		<many-to-one name="navStyle" outer-join="true" cascade="all"
+			column="nid" class="SpaceStyleSubElementInCommon" />
+			
+		<many-to-one name="viewStyle" outer-join="true" cascade="all"
+			column="vid" class="SpaceStyleSubElementInCommon" />
+			
+		<many-to-one name="addBlogStyle" outer-join="true"
+			cascade="all" column="aid" class="SpaceStyleSubElementInCommon" />
+			
+		<many-to-one name="editBlogStyle" outer-join="true"
+			cascade="all" column="eid" class="SpaceStyleSubElementInCommon" />
+			
+	</class>
+
+</hibernate-mapping>

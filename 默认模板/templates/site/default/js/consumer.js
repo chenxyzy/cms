@@ -1,0 +1,1 @@
+document.write("<script language=javascript src='http://www.lerx.com/toplist.jsp?class=8&n=10&p=1&d=0&c=1'></script>");

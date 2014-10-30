@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+
+	<!-- 投票 -->
+	<package name="admin-draw" extends="struts-default">
+		<action name="admin_draw_query" method="query"
+			class="com.lerx.draw.service.DrawAction">
+			<result name="success">/${getText("lerx.default.admin.folder")}/admin_draw_list.jsp</result>
+		</action>
+		<action name="admin_draw_add" method="add"
+			class="com.lerx.draw.service.DrawAction">
+			<result name="success">/${getText("lerx.default.admin.folder")}/admin_draw_list.jsp</result>
+		</action>
+		<action name="admin_draw_modify" method="modify"
+			class="com.lerx.draw.service.DrawAction">
+			<result name="success">/${getText("lerx.default.admin.folder")}/admin_draw_list.jsp</result>
+		</action>
+		<action name="admin_draw_del" method="del"
+			class="com.lerx.draw.service.DrawAction">
+			<result name="success">/${getText("lerx.default.admin.folder")}/admin_draw_list.jsp</result>
+		</action>
+		<action name="admin_draw_changeState" method="changeState"
+			class="com.lerx.draw.service.DrawAction">
+			<result name="success">/${getText("lerx.default.admin.folder")}/admin_draw_list.jsp</result>
+		</action>
+		<action name="admin_draw_findById" method="findById"
+			class="com.lerx.draw.service.DrawAction">
+			<result name="success">/${getText("lerx.default.admin.folder")}/admin_draw_edit.jsp</result>
+		</action>
+	</package>
+	<package name="draw" extends="struts-default">
+		<action name="draw_exec" method="draw"
+			class="com.lerx.draw.service.DrawAction">
+			<result name="success" type="redirect">/draw.action?gid=${gid}</result>
+			<result name="input" type="chain">draw</result>
+		</action>
+		<action name="draw_clear" method="clear"
+			class="com.lerx.draw.service.DrawAction">
+			<result name="success" type="redirect">/draw.action?gid=${gid}</result>
+			<result name="input" type="chain">draw</result>
+		</action>
+	</package>
+
+</struts>

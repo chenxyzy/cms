@@ -1,0 +1,23 @@
+
+
+暂时没时间更新V2.6.2 build 20140919 说明书。
+
+
+V2.6.2 build 20140919 主要更新如下：
+
+1.代码结构化梳理。
+2.修复一些错误和需要改进的地方。
+3.增加速度开关。如果你的服务器内存较大，请将配置文件 resourcesApplication_zh_CN.properties 中的lerx.data.query.mod 的值改为1
+4.后台增加问答系统手工静态化功能
+
+
+一些说明在 “以前的说明”中，请查阅。
+
+请将视频看完，由于流媒体服务器硬盘坏了，临时把视频上传到了其它服务器。(包括上一版本V2的，同样要看完学完)
+
+系列视频发布在下面的帖子里
+
+http://lerx.keridacn.com/thread.action?tid=11
+
+数据库建表请用utf8
+create database lerx default character set utf8 collate utf8_general_ci;

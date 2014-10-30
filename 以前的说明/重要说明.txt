@@ -1,0 +1,31 @@
+beta2的数据库表site_style_element中，
+
+bodyCodeInLump 变更为 majorLoopCodeInLump 
+
+loopCodeInLump 变更为 minorLoopCodeInLump
+
+
+1.对于2012年9月25日以前的版本，数据库的表结构存在一个重大的变化。升级方法如下：
+	site_style_element，增加一行，记住id号。
+	site_style，增加一个字段。名称为 mid 类型为int(11)。修改里面的数据为上面说的id号。
+	lineBreakStrS  lineBreakStrE  这两个合二为一。方法，删除一个，修改保留的名称为 lineBlockFormat 。
+	columnSplitStrS columnSplitStrE 同上也合二为一。 新名称为 columnBlockFormat
+	运行成功后进网站后台，门户风格模板中，修改lineBlockFormat内容为 <li>{$$data$$}</li>
+	修改columnBlockFormat内容为 <span>{$$data$$}</span>
+
+	其它可能还有修改的，如果执行错误，可以根据错误提示在相应的表中增加相应的字段。
+
+2.请对sql文件中的说明有认真的了解。
+
+3.模板请用9月25日的演示模板。官网以前的模板等有时间统一修复一下。
+
+4.提供的模板中，用户发表文章的标题检查，参考长度是显示在首页的长度，里面有个ajax，看一下就知道了。如果你需要上级目录的限制长度，将index改为nav。如果是大于0的数字，将直接限死。
+
+5.其它说明我建了个文件夹。因为还没有时间整理说明文档。请进去参考。
+
+6.安装前最好到www.lerx.com网站看下视频教程
+
+
+
+
+

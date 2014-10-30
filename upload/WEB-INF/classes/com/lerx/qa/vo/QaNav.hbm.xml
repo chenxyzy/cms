@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.lerx.qa.vo">
+	<class name="QaNav" table="qa_nav" dynamic-update="true">
+		<id name="id" column="id">
+			<generator class="native" />
+		</id>
+
+		<property name="title" length="50" />
+		<property name="state" />
+		<property name="loginNeed" />
+		<property name="sendMail" />
+		<property name="description" />
+		<property name="powerMask" />
+		<property name="adminEmail" />
+		<property name="sendEmail" />
+		<property name="serverOfSendEmail" />
+		<property name="usernameOfSendEmail" />
+		<property name="passwordOfSendEmail" />
+		<property name="sendTemplateForAdd"  type="text" />
+		<property name="sendTemplateForReply"  type="text" />
+		<property name="sendTitle" />
+		<property name="displayOrder" />
+		<property name="numberShowOn" />
+		<property name="staticHtmlFolder" />
+		<property name="refuseStaticHtml" />
+		<many-to-one name="parentNav" column="parentId" lazy="false"
+			outer-join="true" class="QaNav" />
+		<many-to-one name="style" column="styleId" lazy="false"
+			outer-join="true" class="com.lerx.style.qa.vo.QaStyle" />
+
+	</class>
+
+
+
+</hibernate-mapping>

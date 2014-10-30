@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.lerx.site.vo">
+	<class name="SiteInfo" table="site_info" dynamic-update="true">
+		<id name="id" type="int" column="id">
+		</id>
+		<property name="fullSiteName" length="50"  />
+		<property name="shortSiteName" length="20"  />
+		<property name="state" />
+		<property name="sessionKey" length="64"  />
+		<property name="keyWords" length="255"  />
+		<property name="description" length="255"  />
+		<property name="host" length="50"  />
+		<property name="closeAnnounce" length="255"  />
+		<property name="hostVisitAllow" length="255"  />
+		<property name="welcomeStr" length="255"  />
+		<property name="spaceName" length="30"  />
+		<property name="bbsName" length="30"  />
+		<property name="bbsState" />
+		<property name="spaceState" />
+		<property name="staticHtmlMode"  />
+		<property name="mailTitleFromSite" length="50" />
+		<property type="text" name="mailBodyForReg"  />
+		<property type="text" name="mailBodyForQaAdd"  />
+		<property type="text" name="mailBodyForQaReply"  />
+		<property name="mailSmtpServer" length="30" />
+		<property name="mailSmtpUser" length="20" />
+		<property name="mailSmtpPws" length="30" />
+		<property name="mailSenderAddr" length="50" />
+		<property name="fileUploadExtName" />
+		<property name="filterWords" />
+		<property name="userRegAllow" />
+		<property name="actAfterReg" />
+		<property name="userGroupOfAutoPassed" />
+		<property name="oneMailForReg" />
+		<property name="userLoginAllow" />
+		<property name="articleAutoPass" />
+		<property name="userGroupWhenNotLoginAllow" length="255" />
+		<property name="modeOfComment" />
+		<property name="userGroupsForStat" length="255" />
+		<property name="licenseAgreement" type="text" />
+		<property name="commentsOpen" />
+		<property name="views" />
+		<property name="nviews" />
+		
+	</class>
+</hibernate-mapping>

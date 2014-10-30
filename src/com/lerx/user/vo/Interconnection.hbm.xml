@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.lerx.user.vo">
+	<class name="Interconnection" table="sys_interconnection" dynamic-update="true">
+		<id name="id" column="id">
+			<generator class="native" />
+		</id>
+		<property name="type" />
+		<property name="openID" length="64" />
+		<property name="createTimstamp" />
+			
+		<many-to-one name="user" column="uid" lazy="false"
+			outer-join="true" class="User" />
+		
+
+	</class>
+</hibernate-mapping>

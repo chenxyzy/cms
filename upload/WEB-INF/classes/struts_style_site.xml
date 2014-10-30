@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+
+
+	<!-- 网站style风格Action -->
+	
+	<package name="site-style" extends="struts-default">
+		<action name="admin_site_style_*" method="{1}"
+			class="com.lerx.style.site.service.SiteStyleAction">
+			<result name="success">/${getText("lerx.default.admin.folder")}/admin_site_style_list.jsp</result>
+			<result name="input">/${getText("lerx.default.admin.folder")}/admin_site_style_list.jsp</result>
+		</action>
+		<action name="admin_site_style_getMetaDataByID" method="findMetaData"
+			class="com.lerx.sys.service.TableMetaDataAction">
+			<result name="success">/${getText("lerx.default.admin.folder")}/admin_site_style_more.jsp</result>
+		</action>
+		<action name="admin_site_style_getStyleNameByID" method="findColData"
+			class="com.lerx.sys.service.TableMetaDataAction">
+
+		</action>
+		<action name="admin_site_style_var_find" method="find"
+			class="com.lerx.sys.service.StyleSqlAction">
+			<result name="success">/${getText("lerx.default.admin.folder")}/admin_site_style_inf_details_pop.jsp</result>
+		</action>
+		<action name="admin_site_style_findNameById" method="findNameById"
+			class="com.lerx.style.site.service.SiteStyleAction">
+			
+		</action>
+		<action name="admin_site_style_var_modify" method="modify"
+
+			class="com.lerx.sys.service.StyleSqlAction">
+			<result name="success" type="redirect">/${getText("lerx.default.admin.folder")}/admin_style_inf_details_pop_ok.jsp
+			</result>
+		</action>
+		<action name="admin_site_style_copyToFile" method="saveToFile" class="com.lerx.style.site.service.SiteStyleAction">
+		</action>
+		<action name="admin_site_style_importFromFile" method="importFromFile" class="com.lerx.style.site.service.SiteStyleAction">
+			<result name="success">/${getText("lerx.default.admin.folder")}/admin_site_style_list.jsp</result>
+		</action>
+	</package>
+
+</struts>

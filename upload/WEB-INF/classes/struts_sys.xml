@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+
+
+	<!-- 系统应用层 -->
+	
+	<package name="util" extends="struts-default">
+		<action name="createStatic" method="create" class="com.lerx.web.service.StaticHtmlAction">
+			<interceptor-ref name="completeStack" />
+	        <interceptor-ref name="execAndWait">
+	            <param name="delay">1500</param>
+	        </interceptor-ref>
+	        <result name="wait">/doing.jsp</result>
+			<result name="success">/doFinish.jsp</result>
+			<result name="error">/doFail.jsp</result>
+		</action>
+		<action name="createArtStatic" method="allArtCreate" class="com.lerx.web.service.StaticHtmlAction">
+			<interceptor-ref name="completeStack"></interceptor-ref>
+	        <interceptor-ref name="execAndWait">
+	            <param name="delay">1500</param>
+	        </interceptor-ref>
+	        <result name="wait">/doing.jsp</result>
+			<result name="success">/doFinish.jsp</result>
+			<result name="error">/doFail.jsp</result>
+		</action>
+		<action name="createQaStatic" method="allQaItemCreate" class="com.lerx.web.service.StaticHtmlAction">
+			<interceptor-ref name="completeStack"></interceptor-ref>
+	        <interceptor-ref name="execAndWait">
+	            <param name="delay">1500</param>
+	        </interceptor-ref>
+	        <result name="wait">/doing.jsp</result>
+			<result name="success">/doFinish.jsp</result>
+			<result name="error">/doFail.jsp</result>
+		</action>
+		<action name="upload" method="upload" class="com.lerx.sys.service.FileAction">
+			<interceptor-ref name="defaultStack">
+				<param name="fileUpload.maximumSize">10240000</param>
+			</interceptor-ref>	
+			<result name="success">/uploadResult.jsp</result>
+			<result name="input">/uploadResult.jsp</result>
+		</action>
+		<action name="uploadForKE" method="uploadForKE" class="com.lerx.sys.service.FileAction">
+		</action>
+		<action name="randomNum" class="com.lerx.sys.service.RandomNumAction">
+			<result type="stream">
+				<param name="contentType">image/jpeg</param>
+				<param name="inputName">inputStream</param>
+			</result>
+		</action>
+		<action name="sysUtil_*" method="{1}" class="com.lerx.sys.service.SysUtilAction">
+			
+		</action>
+		
+		
+		<!--  
+		<action name="saveSec" class="com.lerx.sys.service.Test" method="save">
+			<result name="success">/test.jsp</result>
+		</action>
+		<action name="readSec" class="com.lerx.sys.service.Test" method="read">
+			<result name="success">/test.jsp</result>
+		</action>
+		-->
+	</package>
+	
+	<package name="attachment" extends="struts-default">
+			<action name="attachment_*" method="{1}" class="com.lerx.attachment.service.AttachmentAction">
+			<result name="success">/attachmentsResult.jsp</result>
+			</action>
+	</package>
+	
+	<package name="tools" extends="struts-default">
+		<action name="tools_import_init" method="importInit" class="com.lerx.tools.service.ToolsAction">
+			<result name="success">/${getText("lerx.default.admin.folder")}/admin_tools_import_inf.jsp</result>
+			<result name="error">/${getText("lerx.default.admin.folder")}/admin_tools_import_err.jsp</result>
+		</action>
+		<action name="tools_import_exe" method="importData" class="com.lerx.tools.service.ToolsAction">
+			<interceptor-ref name="completeStack"></interceptor-ref>
+	        <interceptor-ref name="execAndWait">
+	            <param name="delay">1500</param>
+	        </interceptor-ref>
+	        <result name="wait">/${getText("lerx.default.admin.folder")}/admin_tools_import_exe.jsp</result>
+			<result name="success">/${getText("lerx.default.admin.folder")}/admin_tools_import_finish.jsp</result>
+			<result name="error">/${getText("lerx.default.admin.folder")}/admin_tools_import_err.jsp</result>
+		</action>
+		
+		<action name="tools_countArtByUser" method="countArtByUser" class="com.lerx.tools.service.ToolsAction">
+			<interceptor-ref name="completeStack"></interceptor-ref>
+	        <interceptor-ref name="execAndWait">
+	            <param name="delay">1500</param>
+	        </interceptor-ref>
+	       <result name="wait">/doing.jsp</result>
+			<result name="success">/doFinish.jsp</result>
+			<result name="error">/doFail.jsp</result>
+		</action>
+		
+		<action name="tools_countArtByUserAndOther" method="countArtByUserAndOther" class="com.lerx.tools.service.ToolsAction">
+			<!--  
+			<interceptor-ref name="completeStack"></interceptor-ref>
+	        <interceptor-ref name="execAndWait">
+	            <param name="delay">1500</param>
+	        </interceptor-ref>
+	       <result name="wait">/doing.jsp</result>
+	       -->
+			<result name="success">/${getText("lerx.default.admin.folder")}/admin_tools_countArtByUserIdAndOtherResult.jsp</result>
+			<result name="error">/doFail.jsp</result>
+		</action>
+		
+		<action name="tools_navViewsStat" method="navViewsStat" class="com.lerx.tools.service.ToolsAction">
+			
+			<result name="success">/${getText("lerx.default.admin.folder")}/admin_article_group_views.jsp</result>
+			<result name="error">/doFail.jsp</result>
+		</action>
+		
+		
+	</package>
+
+</struts>

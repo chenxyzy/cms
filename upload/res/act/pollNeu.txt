@@ -1,0 +1,1 @@
+﻿<a href="javascript:poll({$$tid$$},0)"><img src="{$$contextPath$$}/templates/site/default/images/soy.jpg" width="24" /> 打酱油({$$neutrals$$})</a>

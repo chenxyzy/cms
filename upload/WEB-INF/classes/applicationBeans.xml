@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Application context definition for PetClinic on Hibernate. -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jee="http://www.springframework.org/schema/jee" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="
+			http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+			http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd
+			http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-2.5.xsd
+			http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+			http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
+	
+	<bean id="adminDaoImp" name="adminDaoImp" class="com.lerx.admin.dao.imp.AdminDaoImp"
+		scope="prototype">
+		<property name="sessionFactory" ref="sf"></property>
+	</bean>
+	<bean id="siteInfDaoImp" name="siteInfDaoImp"
+		class="com.lerx.site.dao.imp.SiteInfoDaoImp" scope="prototype">
+		<property name="sessionFactory" ref="sf"></property>
+	</bean>
+	<bean id="userGroupDaoImp" name="userGroupDaoImp"
+		class="com.lerx.user.dao.imp.UserGroupDaoImp" scope="prototype">
+		<property name="sessionFactory" ref="sf"></property>
+	</bean>
+	<bean id="userDaoImp" name="userDaoImp" class="com.lerx.user.dao.imp.UserDaoImp"
+		scope="prototype">
+		<property name="sessionFactory" ref="sf"></property>
+	</bean>
+	<bean id="passerDaoImp" name="passerDaoImp" class="com.lerx.user.dao.imp.PasserDaoImp"
+		scope="prototype">
+		<property name="sessionFactory" ref="sf"></property>
+	</bean>
+	<bean id="interconnectionDaoImp" name="interconnectionDaoImp" class="com.lerx.user.dao.imp.InterconnectionDaoImp"
+		scope="prototype">
+		<property name="sessionFactory" ref="sf"></property>
+	</bean>
+	<bean id="userArtsCountDaoImp" name="userArtsCountDaoImp" class="com.lerx.user.dao.imp.UserArtsCountDaoImp"
+		scope="prototype">
+		<property name="sessionFactory" ref="sf"></property>
+	</bean>
+	<bean id="siteStyleDaoImp" name="siteStyleDaoImp"
+		class="com.lerx.style.site.dao.imp.SiteStyleDaoImp" scope="prototype">
+		<property name="sessionFactory" ref="sf"></property>
+	</bean>
+	<bean id="bbsInfoDaoImp" name="bbsInfoDaoImp"
+		class="com.lerx.bbs.dao.imp.BbsInfoDaoImp" scope="prototype">
+		<property name="sessionFactory" ref="sf"></property>
+	</bean>
+	<bean id="bbsStyleDaoImp" name="bbsStyleDaoImp"
+		class="com.lerx.style.bbs.dao.imp.BbsStyleDaoImp" scope="prototype">
+		<property name="sessionFactory" ref="sf"></property>
+	</bean>
+	<bean id="bbsForumDaoImp" name="bbsForumDaoImp"
+		class="com.lerx.bbs.dao.imp.BbsForumDaoImp" scope="prototype">
+		<property name="sessionFactory" ref="sf"></property>
+	</bean>
+	<bean id="bbsThemeDaoImp" name="bbsThemeDaoImp"
+		class="com.lerx.bbs.dao.imp.BbsThemeDaoImp" scope="prototype">
+		<property name="sessionFactory" ref="sf"></property>
+	</bean>
+	<bean id="bbsBMDaoImp" name="bbsBMDaoImp"
+		class="com.lerx.bbs.dao.imp.BbsBMDaoImp" scope="prototype">
+		<property name="sessionFactory" ref="sf"></property>
+	</bean>
+	<bean id="originalSqlDaoImp" name="originalSqlDaoImp"
+		class="com.lerx.sys.dao.imp.OriginalSqlDaoImp" scope="prototype">
+		<property name="sessionFactory" ref="sf"></property>
+	</bean>
+	<bean id="articleGroupDaoImp" name="articleGroupDaoImp"
+		class="com.lerx.article.dao.imp.ArticleGroupDaoImp" scope="prototype">
+		<property name="sessionFactory" ref="sf"></property>
+	</bean>
+	<bean id="articleThreadDaoImp" name="articleThreadDaoImp"
+		class="com.lerx.article.dao.imp.ArticleThreadDaoImp" scope="prototype">
+		<property name="sessionFactory" ref="sf"></property>
+	</bean>
+	<bean id="commentDaoImp" name="commentDaoImp"
+		class="com.lerx.comment.dao.imp.CommentDaoImp" scope="prototype">
+		<property name="sessionFactory" ref="sf"></property>
+	</bean>
+	<bean id="scoreSchemeDaoImp" name="scoreSchemeDaoImp"
+		class="com.lerx.bbs.dao.imp.ScoreSchemeDaoImp" scope="prototype">
+		<property name="sessionFactory" ref="sf"></property>
+	</bean>
+	<bean id="scoreGroupDaoImp" name="scoreGroupDaoImp"
+		class="com.lerx.bbs.dao.imp.ScoreGroupDaoImp" scope="prototype">
+		<property name="sessionFactory" ref="sf"></property>
+	</bean>
+	
+	<bean id="attachmentDaoImp" name="attachmentDaoImp"
+		class="com.lerx.attachment.dao.imp.AttachmentDaoImp" scope="prototype">
+		<property name="sessionFactory" ref="sf"></property>
+	</bean>
+	
+	<bean id="qaStyleDaoImp" name="qaStyleDaoImp"
+		class="com.lerx.style.qa.dao.imp.QaStyleDaoImp" scope="prototype">
+		<property name="sessionFactory" ref="sf"></property>
+	</bean>
+	
+	<bean id="qaNavDaoImp" name="qaNavDaoImp"
+		class="com.lerx.qa.dao.imp.QaNavDaoImp" scope="prototype">
+		<property name="sessionFactory" ref="sf"></property>
+	</bean>
+	<bean id="qaItemDaoImp" name="qaItemDaoImp"
+		class="com.lerx.qa.dao.imp.QaItemDaoImp" scope="prototype">
+		<property name="sessionFactory" ref="sf"></property>
+	</bean>
+	
+	
+	<bean id="voteStyleDaoImp" name="voteStyleDaoImp"
+		class="com.lerx.style.vote.dao.imp.VoteStyleDaoImp" scope="prototype">
+		<property name="sessionFactory" ref="sf"></property>
+	</bean>
+	
+	<bean id="voteSubjectDaoImp" name="voteSubjectDaoImp"
+		class="com.lerx.vote.dao.imp.VoteSubjectDaoImp" scope="prototype">
+		<property name="sessionFactory" ref="sf"></property>
+	</bean>
+	
+	<bean id="voteItemDaoImp" name="voteItemDaoImp"
+		class="com.lerx.vote.dao.imp.VoteItemDaoImp" scope="prototype">
+		<property name="sessionFactory" ref="sf"></property>
+	</bean>
+	
+	<bean id="voteRecDaoImp" name="voteRecDaoImp"
+		class="com.lerx.vote.dao.imp.VoteRecDaoImp" scope="prototype">
+		<property name="sessionFactory" ref="sf"></property>
+	</bean>
+	<bean id="drawStyleDaoImp" name="drawStyleDaoImp"
+		class="com.lerx.style.draw.dao.imp.DrawStyleDaoImp" scope="prototype">
+		<property name="sessionFactory" ref="sf"></property>
+	</bean>
+	<bean id="drawDaoImp" name="drawDaoImp"
+		class="com.lerx.draw.dao.imp.DrawDaoImp" scope="prototype">
+		<property name="sessionFactory" ref="sf"></property>
+	</bean>
+	
+	<bean id="chineseCharacterUnicodeDaoImp" name="chineseCharacterUnicodeDaoImp"
+		class="com.lerx.unicode.dao.imp.ChineseCharacterUnicodeDaoImp" scope="prototype">
+		<property name="sessionFactory" ref="sf"></property>
+	</bean>
+	
+	<bean id="codeCategoryDaoImp" name="codeCategoryDaoImp"
+		class="com.lerx.code.dao.imp.CodeCategoryDaoImp" scope="prototype">
+		<property name="sessionFactory" ref="sf"></property>
+	</bean>
+	
+	<bean id="customCodeDaoImp" name="customCodeDaoImp"
+		class="com.lerx.code.dao.imp.CustomCodeDaoImp" scope="prototype">
+		<property name="sessionFactory" ref="sf"></property>
+	</bean>
+	
+	<bean id="externalHostCharsetDaoImp" name="externalHostCharsetDaoImp"
+		class="com.lerx.sys.dao.imp.ExternalHostCharsetDaoImp" scope="prototype">
+		<property name="sessionFactory" ref="sf"></property>
+	</bean>
+	
+	<bean id="integralDaoImp" name="integralDaoImp"
+		class="com.lerx.user.dao.imp.IntegralDaoImp" scope="prototype">
+		<property name="sessionFactory" ref="sf"></property>
+	</bean>
+	
+	<bean id="integralRuleDaoImp" name="integralRuleDaoImp"
+		class="com.lerx.integral.rule.dao.imp.IntegralRuleDaoImp" scope="prototype">
+		<property name="sessionFactory" ref="sf"></property>
+	</bean>
+	
+	<bean id="sysUtilAction" name="sysUtilAction"
+		class="com.lerx.sys.service.SysUtilAction" scope="prototype">
+		
+	</bean>
+	<!--  
+	<bean id="netMsgclient" name="netMsgclient"
+		class="com.linkage.netmsg.NetMsgclient" scope="singleton" destroy-method="close">
+		
+	</bean>
+	<bean id="receive" name="receive"
+		class="com.lerx.sys.util.vo.Receive" scope="singleton"  destroy-method="close">
+		
+	</bean>
+	-->
+	
+</beans>

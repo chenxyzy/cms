@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.lerx.user.vo">
+	<class name="User" table="sys_users" dynamic-update="true">
+		<id name="id" column="id">
+			<generator class="native" />
+		</id>
+		<property name="userName" length="20" not-null="true" update="false"/>
+		<property name="remName" length="20" />
+		
+		<property name="password" length="32" not-null="true" />
+		<property name="salt" length="6" not-null="true" />
+		<property name="state" />
+		<property name="passingTime" />
+		
+		<property name="album" />
+		<property name="email" not-null="true" />
+		<property name="avatarFile" />
+		<property name="avatarFileLock" />
+		
+		<property name="lastLoginTimstamp" />
+		<property name="lastLoginIp" />
+		<property name="regTimstamp" />
+		<property name="regIp" />
+		<property name="uuid" length="32"/>
+		<property name="articleThreadsPassed" />
+		<property name="articleThreadsCount" />
+		<property name="spaceState" />	
+		
+		<many-to-one name="userGroup" column="groupID" lazy="false"
+			outer-join="true" class="UserGroup" />
+			
+		<many-to-one name="passer" column="passerID" lazy="false"
+			outer-join="true" class="User" />
+			
+		<many-to-one name="postTo" column="postToPasserID" lazy="false"
+			outer-join="true" class="Passer" />
+			
+		
+		
+		<joined-subclass name="UserInf"  table="sys_userinf">
+			<key column="userID" />
+			<property name="regTimstamp" />
+			<property name="regIp" />
+			<property name="trueName" />
+			<property name="petName" />
+			<property name="sex" not-null="false" />
+			<property name="birthday" type="date" />
+			<property name="dept" />
+			<property name="country" />
+			<property name="province" />
+			<property name="city" />
+			<property name="address" />
+			<property name="phone" />
+			<property name="mobile" />
+			<property name="qq" />
+			<property name="msn" />
+			<property name="personalSignature" />
+			<property name="question1" />
+			<property name="answer1" />
+			<property name="question2" />
+			<property name="answer2" />
+			<property name="allScore" />
+			<property name="bbsScore" />
+			<property name="priTag1" />
+			<property name="priTag2" />
+		</joined-subclass>
+
+	</class>
+</hibernate-mapping>

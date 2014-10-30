@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+
+	<!-- 网站管理员Action -->
+	
+	<package name="admin_passer" extends="struts-default">
+
+		<action name="admin_passer_*" method="{1}"
+			class="com.lerx.user.service.PasserAction">
+			<result name="success">/${getText("lerx.default.admin.folder")}/admin_passer_list.jsp</result>
+			<result name="input">/${getText("lerx.default.admin.folder")}/admin_passer_list.jsp</result>
+		</action>
+		
+		<action name="admin_passer_queryByID" method="queryByID"
+			class="com.lerx.user.service.PasserAction">
+			<result name="success">/${getText("lerx.default.admin.folder")}/admin_passer_edit.jsp</result>
+			
+		</action>
+		
+		<action name="passersList" method="queryByGid"
+			class="com.lerx.user.service.PasserAction">
+			<result name="success">/pass/passersList.jsp</result>
+			
+		</action>
+		
+		<action name="passer_send" method="send"
+			class="com.lerx.user.service.PasserAction">
+			<result name="success">/pass/passing.jsp</result>
+			
+			
+		</action>
+		<action name="passer_modifyByUser" method="modifyByUser"
+			class="com.lerx.user.service.PasserAction">
+			<result name="success" type="redirect">/pass/passerCenter.jsp</result>
+		</action>
+		
+		<action name="passer_findCur" method="findCur"
+			class="com.lerx.user.service.PasserAction">
+		</action>
+		
+
+	</package>
+	
+</struts>

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+
+	<constant name="struts.i18n.encoding" value="UTF-8" />
+	<constant name="struts.enable.DynamicMethodInvocation" value="false" />
+    <constant name="struts.devMode" value="false" />
+    <constant name="struts.i18n.reload" value="false" />
+    <constant name="struts.custom.i18n.resources" value="globalMessages" />
+
+
+<!-- 默认action -->  
+<!-- 
+<package name="struts"  namespace="" extends="struts-default">  
+  
+    <default-action-ref name="simpleViewResultAction"></default-action-ref>
+        <action name="simpleViewResultAction">  
+       <result>/err.jsp</result>     
+    </action>  
+</package> 
+ -->
+
+<!--
+<package name="default" extends="struts-default">
+		<global-results>
+			<result name="login">/login.action</result>
+			
+		</global-results>
+
+</package>
+  --> 	
+	<include file="struts_administrator.xml"/>
+	<include file="struts_site.xml"/>
+	<include file="struts_user.xml"/>
+	<include file="struts_passer.xml"/>
+	<include file="struts_style_site.xml"/>
+	<include file="struts_style_bbs.xml"/>
+	<include file="struts_style_qa.xml"/>
+	<include file="struts_style_vote.xml"/>
+	<include file="struts_style_draw.xml"/>
+	<include file="struts_article_group.xml"/>
+	<include file="struts_article_thread.xml"/>
+	<include file="struts_comment.xml"/>
+	<include file="struts_ajax.xml"/>
+	<include file="struts_sys.xml"/>
+	<include file="struts_bbs_forum.xml"/>
+	<include file="struts_qa.xml"/>
+	<include file="struts_bbs.xml"/>
+	<include file="struts_vote.xml"/>
+	<include file="struts_draw.xml"/>
+	<include file="struts_code.xml"/>
+	<include file="struts_external_host_charset.xml"/>
+	<include file="struts_integral_rule.xml"/>
+	
+	
+	
+	
+	<package name="test" extends="struts-default">
+		<action name="test_*" method="{1}" class="com.lerx.sys.service.Test">
+			<result name="success">/show.jsp</result>
+		</action>
+	</package>
+
+	
+	<!-- 前台界面层 -->
+	
+	<package name="web" extends="struts-default">
+		<!--  	
+		<action name="!*" class="com.lerx.web.service.ShowAction">
+			<result name="success">/show.jsp</result>
+			<result name="jump">/jump.jsp</result>
+			<result name="input">/jump.jsp</result>
+		</action>
+		-->
+		<action name="*" method="{1}" class="com.lerx.web.service.ShowAction">
+			<result name="success">/show.jsp</result>
+			<result name="jump">/jump.jsp</result>
+			<result name="input">/jump.jsp</result>
+		</action>
+		
+		
+	</package>
+	
+</struts>

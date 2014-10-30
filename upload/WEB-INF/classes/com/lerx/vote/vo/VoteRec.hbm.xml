@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.lerx.vote.vo">
+	<class name="VoteRec" table="vote_recs" dynamic-update="true">
+		<id name="id" column="id">
+			<generator class="native" />
+		</id>
+		<property name="name" />
+		<property name="addIp" length="64" />
+		<property name="addTime" />
+		<property name="identity" />
+		<property name="address" />
+		<property name="phone" />
+		<property name="occ" />
+		<property name="itemsRec" type="text" />
+		<property name="mes" type="text" />
+		<property name="mesState" />
+		<property name="email" />
+		<property name="state" />
+		<property name="salt" length="32" />
+		<property name="recCount" />
+		
+		<many-to-one name="sub" column="subID" outer-join="true"
+			class="com.lerx.vote.vo.VoteSubject" />
+		<many-to-one name="user" column="userID" outer-join="true"
+			class="com.lerx.user.vo.User" />
+
+	</class>
+</hibernate-mapping>

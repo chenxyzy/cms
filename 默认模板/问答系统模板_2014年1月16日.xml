@@ -1,0 +1,686 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<java version="1.6.0_10-rc2" class="java.beans.XMLDecoder"> 
+ <object class="com.lerx.style.qa.vo.QaStyle"> 
+  <void property="addAreaCode"> 
+   <string>&lt;form method=&quot;POST&quot; id=&quot;qaPut&quot; name=&quot;qaPut&quot;&gt;&#13;
+    &lt;div class=&quot;form_con&quot;&gt;&#13;
+&#13;
+    &lt;label&gt;&#13;
+      &lt;div class=&quot;form_left&quot;&gt;标题：&lt;/div&gt;&#13;
+      &lt;div class=&quot;form_rig&quot;&gt;&lt;input type=&quot;text&quot; name=&quot;qi.title&quot; id=&quot;title&quot; size=&quot;50&quot; /&gt;&lt;/div&gt;&#13;
+	  &lt;div class=&quot;cle&quot;&gt;&lt;/div&gt;&#13;
+        &#13;
+    &lt;/label&gt;&#13;
+    &lt;label&gt;&#13;
+      &lt;div class=&quot;form_left&quot;&gt;您的姓名：&lt;/div&gt;&#13;
+        &lt;div class=&quot;form_rig&quot;&gt;&lt;input type=&quot;text&quot; name=&quot;qi.author&quot; id=&quot;author&quot; /&gt;&lt;/div&gt;&#13;
+		&lt;div class=&quot;cle&quot;&gt;&lt;/div&gt;&#13;
+    &lt;/label&gt;&#13;
+&#13;
+    &lt;label&gt;&#13;
+      &lt;div class=&quot;form_left&quot;&gt;您的联系email：&lt;/div&gt;&#13;
+        &lt;div class=&quot;form_rig&quot;&gt;&lt;input type=&quot;text&quot; name=&quot;qi.email&quot; id=&quot;email&quot; /&gt;　&lt;font color=&quot;#FF0000&quot;&gt;事件处理完毕将发送邮件至该信箱&lt;/font&gt;&lt;/div&gt;&#13;
+		&lt;div class=&quot;cle&quot;&gt;&lt;/div&gt;&#13;
+    &lt;/label&gt;&#13;
+&#13;
+    &lt;label&gt;&#13;
+      &lt;div class=&quot;form_left&quot;&gt;查询密码：&lt;/div&gt;&#13;
+        &lt;div class=&quot;form_rig&quot;&gt;&lt;input type=&quot;text&quot; name=&quot;qi.password&quot; id=&quot;password&quot; /&gt;　可通过该密码查询本事件处理信息&lt;/div&gt;&#13;
+		&lt;div class=&quot;cle&quot;&gt;&lt;/div&gt;&#13;
+    &lt;/label&gt;&#13;
+&#13;
+    &lt;label&gt;&#13;
+      &lt;div class=&quot;form_left&quot;&gt;您的联系电话：&lt;/div&gt;&#13;
+        &lt;div class=&quot;form_rig&quot;&gt;&lt;input type=&quot;text&quot; name=&quot;qi.phone&quot; id=&quot;phone&quot; /&gt;&lt;/div&gt;&#13;
+		&lt;div class=&quot;cle&quot;&gt;&lt;/div&gt;&#13;
+    &lt;/label&gt;&#13;
+ &#13;
+&#13;
+ &#13;
+    &lt;label&gt;&#13;
+      &lt;div class=&quot;form_left&quot;&gt;内容详情：&lt;/div&gt;&#13;
+        &lt;div class=&quot;form_rig&quot;&gt;&lt;textarea name=&quot;qi.question&quot; id=&quot;question&quot; cols=&quot;48&quot; rows=&quot;10&quot;&gt;&lt;/textarea&gt;&lt;/div&gt;&#13;
+		&lt;div class=&quot;cle&quot;&gt;&lt;/div&gt;&#13;
+    &lt;/label&gt;&#13;
+	&#13;
+&#13;
+ &lt;div class=&quot;form_left&quot;&gt;验证码：&lt;/div&gt;&#13;
+      &lt;label&gt;&#13;
+      &lt;div class=&quot;form_rig&quot;&gt;&lt;input onfocus=&quot;showQaChooseDiv()&quot; maxlength=&quot;4&quot; name=&quot;verifyCode&quot; size=&quot;10&quot;&gt; &lt;img width=&quot;60&quot; height=&quot;18&quot; name=&quot;qaPutValid&quot; id=&quot;qaPutValid&quot;&#13;
+		style=&quot;visibility: hidden; cursor: pointer;&quot;&#13;
+		onclick=&quot;javascript:changeQaChooseDiv();&quot; /&gt;   &lt;/div&gt;&#13;
+	  &lt;div class=&quot;cle&quot;&gt;&lt;/div&gt;&#13;
+    &lt;/label&gt;&#13;
+ &#13;
+    &lt;div class=&quot;form_left&quot;&gt;&lt;/div&gt;&#13;
+	&lt;div class=&quot;form_rig&quot;&gt;&#13;
+    &lt;label&gt;&#13;
+&lt;div id=&quot;loginNeed&quot;&gt;{$$loginNeedMessage$$}&lt;/div&gt;&#13;
+     &lt;input type=&quot;submit&quot; name=&quot;sub&quot; {$$submitDisabled$$} id=&quot;sub&quot; value=&quot;提交&quot; /&gt;&#13;
+    &lt;/label&gt;&#13;
+	&lt;/div&gt;&#13;
+	&lt;div class=&quot;cle&quot;&gt;&lt;/div&gt;&#13;
+&lt;/div&gt;&#13;
+&lt;/form&gt;&#13;
+&#13;
+&lt;script type=&quot;text/javascript&quot;&gt;&#13;
+	function showQaChooseDiv() {&#13;
+		var objimg = document.getElementById(&quot;qaPutValid&quot;);&#13;
+		if (objimg.style.visibility != &quot;visible&quot;) {&#13;
+			var timeNow = new Date().getTime();&#13;
+			objimg.src = &quot;randomNum.action?time=&quot; + timeNow + &quot;&amp;from=qa&quot;;&#13;
+			objimg.style.visibility = &quot;visible&quot;;&#13;
+		}&#13;
+	}&#13;
+	function changeQaChooseDiv() {&#13;
+		var obj = document.getElementById(&quot;qaPutValid&quot;);&#13;
+		var timeNow = new Date().getTime();&#13;
+		obj.src = &quot;randomNum.action?time=&quot; + timeNow + &quot;&amp;from=qa&quot;;&#13;
+		document.qaPut.verifyCode.focus();&#13;
+	}&#13;
+&lt;/script&gt;&#13;
+&lt;script type=&quot;text/javascript&quot;&gt;&#13;
+var cols;&#13;
+secSet();&#13;
+function secGet(){&#13;
+	$.ajax({&#13;
+		url:&apos;{$$contextPath$$}/ajax_sec_send.action&apos;,&#13;
+		type: &apos;post&apos;,&#13;
+		async:false,&#13;
+		success:function(data){&#13;
+		var tmp=data;&#13;
+		cols=tmp;&#13;
+		&#13;
+		}&#13;
+	 });&#13;
+&#13;
+}&#13;
+&#13;
+function secSet(){&#13;
+	&#13;
+	secGet();&#13;
+	//alert(cols);&#13;
+	var sArray = cols.split(&quot;,&quot;);&#13;
+	&#13;
+	randKey=sArray[0];&#13;
+	secStr=sArray[1];&#13;
+	&#13;
+	var url=&quot;{$$contextPath$$}/qa_item_add.action?qi.qn.id={$$gid$$}&amp;randKey=&quot;+randKey+&quot;&amp;secStr=&quot;+secStr;  &#13;
+	//alert(url);&#13;
+	document.qaPut.action=url;&#13;
+}&#13;
+&#13;
+&lt;/script&gt;</string> 
+  </void> 
+  <void property="ajaxRealTimeCode"> 
+   <string>&lt;span class=&quot;replier&quot;&gt;回复人：{$$replier$$}&lt;/span&gt; &lt;span class=&quot;reReply&quot;&gt;{$$reply$$}&lt;/span&gt; &lt;span class=&quot;views&quot;&gt;阅读次数：{$$views$$}&lt;/span&gt; &lt;span class=&quot;ip&quot;&gt;上次ip：{$$lastIP$$}&lt;/span&gt;&#13;
+</string> 
+  </void> 
+  <void property="author"> 
+   <string></string> 
+  </void> 
+  <void property="description"> 
+   <string></string> 
+  </void> 
+  <void property="id"> 
+   <int>1</int> 
+  </void> 
+  <void property="indexStyle"> 
+   <object class="com.lerx.style.qa.vo.QaStyleSubElementInCommon"> 
+    <void property="htmlCode"> 
+     <string>{$$top$$}&#13;
+&lt;script type=&quot;text/javascript&quot; src=&quot;http://portalfiles.jysedu.com/js/json2.js&quot; &gt;&lt;/script&gt;&#13;
+&lt;!-- 主体开始--&gt;&#13;
+ &lt;div class=&quot;container&quot;&gt;&#13;
+  &lt;div class=&quot;up&quot;&gt;&#13;
+&#13;
+&#13;
+  &lt;div class=&quot;side&quot;&gt;&#13;
+&#13;
+   {$$navList$$}&#13;
+   &#13;
+  &lt;/div&gt;&#13;
+&#13;
+&#13;
+&#13;
+  &lt;div class=&quot;content&quot;&gt;&#13;
+   &lt;div class=&quot;con_top&quot;&gt;&#13;
+    &lt;div class=&quot;con_top_hl&quot;&gt;&#13;
+     &lt;div class=&quot;con_top_hl_l&quot;&gt;&lt;/div&gt;&#13;
+     &lt;div class=&quot;con_top_hl_m&quot;&gt;{$$app$$}&lt;/div&gt;&#13;
+     &lt;div class=&quot;con_top_hl_r&quot;&gt;&lt;/div&gt;&#13;
+     &lt;div class=&quot;cle&quot;&gt;&lt;/div&gt;&#13;
+    &lt;/div&gt;&#13;
+    &lt;div class=&quot;con_top_li&quot; id=&quot;qa&quot;&gt;&#13;
+&#13;
+&lt;ul&gt;&#13;
+&#13;
+&lt;/ul&gt;&#13;
+&lt;div class=&quot;showpage&quot; id=&quot;showpage&quot;&gt;&lt;/div&gt;&#13;
+&#13;
+&lt;script type=&quot;text/javascript&quot;&gt; &#13;
+qaList(1,10);&#13;
+&#13;
+function qaList(page,pageSize){&#13;
+	$(&quot;#qa ul&quot;).html(&quot;正在检测...&quot;);&#13;
+	$.ajax({&#13;
+		url:&apos;{$$contextPath$$}/ajax_qa_items_show.action?gid={$$gid$$}&amp;page=&apos;+page+&apos;&amp;url=javascript:qaList({$$pageStr$$},{$$pageSizeStr$$})&amp;n=&apos;+pageSize+&apos;&amp;mod=0&amp;showMode=1&amp;json=true&amp;l=16&amp;f=1&apos;,&#13;
+		type: &apos;post&apos;,&#13;
+		success:function(data){&#13;
+		var tmp=data;&#13;
+		obj = JSON.parse(tmp);&#13;
+		var t= obj.aaa;&#13;
+		//alert(t);&#13;
+		var body=obj.body;&#13;
+		var pageShow=obj.pageShow;&#13;
+		&#13;
+		$(&quot;#qa ul&quot;).html(body);&#13;
+		 $(&quot;#showpage&quot;).html(pageShow);&#13;
+		}&#13;
+	 });&#13;
+ &#13;
+}&#13;
+&#13;
+&lt;/script&gt;&#13;
+&#13;
+&#13;
+    &lt;/div&gt;&#13;
+    &lt;div class=&quot;con_top_ft&quot;&gt;&#13;
+     &lt;div class=&quot;con_top_ft_l&quot;&gt;&lt;/div&gt;&#13;
+     &lt;div class=&quot;con_top_ft_m&quot;&gt;&lt;/div&gt;&#13;
+     &lt;div class=&quot;con_top_ft_r&quot;&gt;&lt;/div&gt;&#13;
+     &lt;div class=&quot;cle&quot;&gt;&lt;/div&gt;&#13;
+    &lt;/div&gt;&#13;
+&#13;
+&#13;
+   &lt;/div&gt;&#13;
+&lt;div class=&quot;tips&quot;&gt;--&gt;提示：请在左侧选择相应的提问区域！&lt;/a&gt;&lt;/div&gt;&#13;
+  &lt;/div&gt;&#13;
+  &#13;
+  &lt;div class=&quot;cle&quot;&gt;&lt;/div&gt;&#13;
+  &lt;/div&gt;&#13;
+  &#13;
+ &lt;/div&gt;&#13;
+&lt;!-- 主体结束--&gt;&#13;
+&#13;
+{$$footer$$}&#13;
+</string> 
+    </void> 
+    <void property="id"> 
+     <int>2</int> 
+    </void> 
+   </object> 
+  </void> 
+  <void property="itemStyle"> 
+   <object class="com.lerx.style.qa.vo.QaStyleSubElementInCommon"> 
+    <void property="htmlCode"> 
+     <string>{$$top$$}&#13;
+&lt;!-- 主体开始--&gt;&#13;
+&lt;div class=&quot;container&quot;&gt;&#13;
+	&lt;div class=&quot;up&quot;&gt;&#13;
+		&lt;div class=&quot;side&quot;&gt;&#13;
+		 {$$navList$$}&#13;
+		&lt;/div&gt;&#13;
+&#13;
+		&lt;div class=&quot;content&quot;&gt;&#13;
+			&lt;div class=&quot;con_top&quot;&gt;&#13;
+				&lt;div class=&quot;con_top_hl&quot;&gt;&#13;
+					&lt;div class=&quot;con_top_hl_l&quot;&gt;&lt;/div&gt;&#13;
+					&lt;div class=&quot;con_top_hl_m&quot;&gt;正文&lt;/div&gt;&#13;
+					&lt;div class=&quot;con_top_hl_r&quot;&gt;&lt;/div&gt;&#13;
+					&lt;div class=&quot;cle&quot;&gt;&lt;/div&gt;&#13;
+				&lt;/div&gt;&#13;
+				&lt;div class=&quot;con_top_li&quot;&gt;&#13;
+					&lt;div class=&quot;qi_con&quot;&gt;&#13;
+						&lt;div class=&quot;mtbt&quot;&gt;&lt;/div&gt;&#13;
+						&lt;div class=&quot;zbt&quot;&gt;{$$title$$}&lt;/div&gt;&#13;
+						&lt;div class=&quot;fbt&quot;&gt;&lt;/div&gt;&#13;
+						&lt;div class=&quot;datetime&quot;&gt;{$$addTime$$}&lt;/div&gt;&#13;
+						&lt;div class=&quot;listline&quot;&gt;&lt;/div&gt;&#13;
+						&lt;div class=&quot;unitnamemail&quot;&gt;发表：{$$author$$}&lt;/div&gt;&#13;
+						&lt;div class=&quot;PassStr&quot;&gt;&lt;/div&gt;&#13;
+						&lt;div class=&quot;zhengwen&quot;&gt;{$$question$$}&lt;/div&gt;&#13;
+  						&lt;div class=&quot;listline&quot;&gt;&lt;/div&gt;&#13;
+						&lt;div class=&quot;ipother&quot; id=&quot;realTime&quot;&gt;&lt;/div&gt;&#13;
+&#13;
+						&lt;div class=&quot;reply&quot;&gt;&lt;p&gt;回复：&lt;/p&gt;&#13;
+							&lt;p&gt;&lt;p&gt; {$$answer$$} &lt;/p&gt;&lt;/p&gt;&lt;/div&gt;&#13;
+&#13;
+						{$$replyArea$$}&#13;
+&#13;
+					&lt;/div&gt;&#13;
+				&lt;/div&gt;&#13;
+				&lt;div class=&quot;con_top_ft&quot;&gt;&#13;
+					&lt;div class=&quot;con_top_ft_l&quot;&gt;&lt;/div&gt;&#13;
+					&lt;div class=&quot;con_top_ft_m&quot;&gt;&lt;/div&gt;&#13;
+					&lt;div class=&quot;con_top_ft_r&quot;&gt;&lt;/div&gt;&#13;
+					&lt;div class=&quot;cle&quot;&gt;&lt;/div&gt;&#13;
+				&lt;/div&gt;&#13;
+			&lt;/div&gt;&#13;
+&#13;
+		&lt;/div&gt;&#13;
+		&lt;div class=&quot;cle&quot;&gt;&lt;/div&gt;&#13;
+	&lt;/div&gt;&#13;
+  &#13;
+&lt;/div&gt;&#13;
+&#13;
+ &lt;script type=&quot;text/javascript&quot;&gt; &#13;
+realTime();&#13;
+function realTime(){&#13;
+	$(&quot;#realTime&quot;).html(&quot;正在提取...&quot;);&#13;
+	$.ajax({&#13;
+		url:&apos;{$$contextPath$$}/ajax_qa_item_real_someInf.action?tid={$$id$$}&apos;,&#13;
+		type: &apos;post&apos;,&#13;
+		success:function(data){&#13;
+		 $(&quot;#realTime&quot;).html(data);&#13;
+		}&#13;
+	 });&#13;
+ &#13;
+}&#13;
+&lt;/script&gt;&#13;
+&lt;!-- 主体结束--&gt;&#13;
+&#13;
+{$$footer$$}</string> 
+    </void> 
+    <void property="id"> 
+     <int>4</int> 
+    </void> 
+   </object> 
+  </void> 
+  <void property="navStyle"> 
+   <object class="com.lerx.style.qa.vo.QaStyleSubElementInCommon"> 
+    <void property="htmlCode"> 
+     <string>{$$top$$}&#13;
+&lt;script type=&quot;text/javascript&quot; src=&quot;http://portalfiles.jysedu.com/js/json2.js&quot; &gt;&lt;/script&gt;&#13;
+&lt;!-- 主体开始--&gt;&#13;
+&lt;div class=&quot;container&quot;&gt;&#13;
+	&lt;div class=&quot;up&quot;&gt;&#13;
+		&lt;div class=&quot;side&quot;&gt;&#13;
+			{$$navList$$}&#13;
+		&lt;/div&gt;&#13;
+		&lt;div class=&quot;content&quot;&gt;&#13;
+			&lt;div class=&quot;con_top&quot;&gt;&#13;
+				&lt;div class=&quot;con_top_hl&quot;&gt;&#13;
+					&lt;div class=&quot;con_top_hl_l&quot;&gt;&lt;/div&gt;&#13;
+					&lt;div class=&quot;con_top_hl_m&quot;&gt;{$$app$$}&lt;/div&gt;&#13;
+					&lt;div class=&quot;con_top_hl_r&quot;&gt;&lt;/div&gt;&#13;
+					&lt;div class=&quot;cle&quot;&gt;&lt;/div&gt;&#13;
+				&lt;/div&gt;&#13;
+				&lt;div class=&quot;con_top_li&quot; id=&quot;qa&quot;&gt;&lt;ul&gt;&lt;/ul&gt;&#13;
+				&#13;
+				&lt;div class=&quot;showpage&quot; id=&quot;showpage&quot;&gt;&lt;/div&gt;&#13;
+				&lt;/div&gt;&#13;
+&lt;script type=&quot;text/javascript&quot;&gt; &#13;
+qaList(1,10);&#13;
+&#13;
+function qaList(page,pageSize){&#13;
+	$(&quot;#qa ul&quot;).html(&quot;正在检测...&quot;);&#13;
+	$.ajax({&#13;
+		url:&apos;{$$contextPath$$}/ajax_qa_items_show.action?gid={$$gid$$}&amp;page=&apos;+page+&apos;&amp;url=javascript:qaList({$$pageStr$$},{$$pageSizeStr$$})&amp;n=&apos;+pageSize+&apos;&amp;mod=0&amp;showMode=1&amp;json=true&amp;l=16&amp;f=1&apos;,&#13;
+		type: &apos;post&apos;,&#13;
+		success:function(data){&#13;
+		var tmp=data;&#13;
+		obj = JSON.parse(tmp);&#13;
+		var t= obj.aaa;&#13;
+		//alert(t);&#13;
+		var body=obj.body;&#13;
+		var pageShow=obj.pageShow;&#13;
+		&#13;
+		$(&quot;#qa ul&quot;).html(body);&#13;
+		 $(&quot;#showpage&quot;).html(pageShow);&#13;
+		}&#13;
+	 });&#13;
+ &#13;
+}&#13;
+&#13;
+&lt;/script&gt;&#13;
+				&#13;
+				&lt;div class=&quot;con_top_ft&quot;&gt;&#13;
+					&lt;div class=&quot;con_top_ft_l&quot;&gt;&lt;/div&gt;&#13;
+					&lt;div class=&quot;con_top_ft_m&quot;&gt;&lt;/div&gt;&#13;
+					&lt;div class=&quot;con_top_ft_r&quot;&gt;&lt;/div&gt;&#13;
+					&lt;div class=&quot;cle&quot;&gt;&lt;/div&gt;&#13;
+				&lt;/div&gt;&#13;
+&#13;
+&#13;
+				&lt;div class=&quot;form_con&quot;&gt;&#13;
+					{$$addArea$$}&#13;
+				&lt;/div&gt;&#13;
+&#13;
+&#13;
+			&lt;/div&gt;&#13;
+&#13;
+		&lt;/div&gt;&#13;
+		&lt;div class=&quot;cle&quot;&gt;&lt;/div&gt;&#13;
+	&lt;/div&gt;&#13;
+&lt;/div&gt;&#13;
+&lt;!-- 主体结束--&gt;&#13;
+&#13;
+{$$footer$$}&#13;
+</string> 
+    </void> 
+    <void property="id"> 
+     <int>3</int> 
+    </void> 
+   </object> 
+  </void> 
+  <void property="noOpenStr"> 
+   <string>&lt;font color=&quot;#FF0000&quot;&gt;未公开&lt;/font&gt;</string> 
+  </void> 
+  <void property="noProcessedStr"> 
+   <string>&lt;font color=&quot;#FF0000&quot;&gt;未处理&lt;/font&gt;</string> 
+  </void> 
+  <void property="openStr"> 
+   <string>已公开</string> 
+  </void> 
+  <void property="processedStr"> 
+   <string>已处理</string> 
+  </void> 
+  <void property="publicStyle"> 
+   <object class="com.lerx.style.qa.vo.QaStyleSubElementInCommon"> 
+    <void property="cssCode"> 
+     <string>&lt;style  type=&quot;text/css&quot;&gt;&#13;
+/*全局s*/&#13;
+body,ul,ol,li,p,form,table,td,img,div,dl,pre,dt,dd{margin:0;padding:0;border:0;}&#13;
+pre {&#13;
+width:680px;&#13;
+display: block;&#13;
+overflow: auto;&#13;
+background: #f4f4f4;&#13;
+padding: 5px 10px;&#13;
+border: 1px solid #eee;&#13;
+word-wrap:break-word; /* Internet Explorer 5.5+ */ &#13;
+white-space: pre-wrap; /* Firefox */&#13;
+}&#13;
+body{background:#fff;color:#333;font-size:12px;font-family: &quot;微软雅黑&quot;, &quot;宋体&quot;;}&#13;
+ul,ol,li{list-style-type:none;}&#13;
+li{list-style-type:none;background:url({$$contextPath$$}/templates/site/default/images/libg.gif) no-repeat;line-height:1.5em; padding-left:1em; color:#aaa;}&#13;
+a:link{text-decoration : none ;color : #333 ;} &#13;
+a:visited{text-decoration : none ;color : #333 ;} &#13;
+a:hover{text-decoration : none ;color : #f00 ;} &#13;
+a:active{text-decoration : none ;color : #333 ;}&#13;
+.cle{ clear:both; font-size:0px;}&#13;
+/*全局o*/&#13;
+/*顶部s*/&#13;
+.top{ height:53px; background:url({$$contextPath$$}/templates/site/default/images/bgxr.jpg);}&#13;
+.topcontainer{ margin:0 auto; width:910px; padding:5px 0 0 50px;}&#13;
+.toplogo{ height:38px; width:111px; background:url({$$contextPath$$}/templates/site/default/images/bg.jpg) no-repeat 0 0; float:left;}&#13;
+.toplogin{ float:right; width:124px; height:37px; background:url({$$contextPath$$}/templates/site/default/images/bg.jpg) no-repeat -111px 0px; margin:2px 60px 0 0; display:inline; padding:4px 0 0 8px;}&#13;
+.toplogining{float:right; width:180px; height:37px; margin:2px 60px 0 0; display:inline; padding:17px 0 0 8px;}&#13;
+.toplogining a:link{text-decoration : none ;color : #fc0 ;} &#13;
+.toplogining a:visited{text-decoration : none ;color : #fc0 ;} &#13;
+.toplogining a:hover{text-decoration : none ;color : #f00 ;} &#13;
+.toplogining a:active{text-decoration : none ;color : #fc0 ;}&#13;
+&#13;
+.main{width:960px; margin:0 auto;}&#13;
+.header{ margin-top:3px;}&#13;
+.banner{ height:217px; background:url({$$contextPath$$}/templates/site/default/images/banner.jpg);}&#13;
+.nav{}&#13;
+.nav_l{ float:left; width:9px; font-size:0px; background:url({$$contextPath$$}/templates/site/default/images/bg.jpg) no-repeat -243px 0px; height:41px;}&#13;
+.nav_m{ float:left; width:928px; height:41px; background:url({$$contextPath$$}/templates/site/default/images/bgxr.jpg) repeat-x 0px -53px; text-align:center;padding-left:14px;}&#13;
+.nav_m a{display:inline-block;width:83px; height:41px;float:left;}&#13;
+.nav_a1{ background:url({$$contextPath$$}/templates/site/default/images/bg.jpg) no-repeat 0px -41px; }&#13;
+.nav_a1:hover{ background:url({$$contextPath$$}/templates/site/default/images/bg.jpg) no-repeat -83px -41px;}&#13;
+.nav_a2{ background:url({$$contextPath$$}/templates/site/default/images/bg.jpg) no-repeat 0px -82px; }&#13;
+.nav_a2:hover{ background:url({$$contextPath$$}/templates/site/default/images/bg.jpg) no-repeat -83px -82px;}&#13;
+.nav_a3{ background:url({$$contextPath$$}/templates/site/default/images/bg.jpg) no-repeat 0px -123px; }&#13;
+.nav_a3:hover{ background:url({$$contextPath$$}/templates/site/default/images/bg.jpg) no-repeat -83px -123px;}&#13;
+.nav_a4{ background:url({$$contextPath$$}/templates/site/default/images/bg.jpg) no-repeat 0px -164px; }&#13;
+.nav_a4:hover{ background:url({$$contextPath$$}/templates/site/default/images/bg.jpg) no-repeat -83px -164px;}&#13;
+.nav_a5{ background:url({$$contextPath$$}/templates/site/default/images/bg.jpg) no-repeat 0px -205px; }&#13;
+.nav_a5:hover{ background:url({$$contextPath$$}/templates/site/default/images/bg.jpg) no-repeat -83px -205px;}&#13;
+.nav_a6{ background:url({$$contextPath$$}/templates/site/default/images/bg.jpg) no-repeat 0px -246px; }&#13;
+.nav_a6:hover{ background:url({$$contextPath$$}/templates/site/default/images/bg.jpg) no-repeat -83px -246px;}&#13;
+.nav_a7{ background:url({$$contextPath$$}/templates/site/default/images/bg.jpg) no-repeat 0px -287px; }&#13;
+.nav_a7:hover{ background:url({$$contextPath$$}/templates/site/default/images/bg.jpg) no-repeat -83px -287px;}&#13;
+.nav_a8{ background:url({$$contextPath$$}/templates/site/default/images/bg.jpg) no-repeat 0px -328px; }&#13;
+.nav_a8:hover{ background:url({$$contextPath$$}/templates/site/default/images/bg.jpg) no-repeat -83px -328px;}&#13;
+.nav_a9{ background:url({$$contextPath$$}/templates/site/default/images/bg.jpg) no-repeat 0px -369px; }&#13;
+.nav_a9:hover{ background:url({$$contextPath$$}/templates/site/default/images/bg.jpg) no-repeat -83px -369px;}&#13;
+&#13;
+.nav_a10{ background:url({$$contextPath$$}/templates/site/default/images/bg.jpg) no-repeat 0px -410px; }&#13;
+.nav_a10:hover{ background:url({$$contextPath$$}/templates/site/default/images/bg.jpg) no-repeat -83px -410px;}&#13;
+&#13;
+.nav_a11{ background:url({$$contextPath$$}/templates/site/default/images/bg.jpg) no-repeat 0px -451px; }&#13;
+.nav_a11:hover{ background:url({$$contextPath$$}/templates/site/default/images/bg.jpg) no-repeat -83px -451px;}&#13;
+.nav_r{ float:right;width:9px; font-size:0px; background:url({$$contextPath$$}/templates/site/default/images/bg.jpg) no-repeat -252px 0px; height:41px;}&#13;
+.place{ padding:5px 10px;}/*当前位置*/&#13;
+.place_l{ float:left;}&#13;
+.place_r{ float:right;}&#13;
+/*顶部o*/&#13;
+/*主体s*/&#13;
+.container{}/*主体盒子*/&#13;
+.content{ width:698px; float:right;}&#13;
+.list_con {margin-top:10px;margin-bottom:10px;padding:10px 20px;}&#13;
+&#13;
+.list_con li {display:inline-block;}&#13;
+&#13;
+.form_con{ width:602px;}&#13;
+&#13;
+.form_left{ float:left; width:170px; text-align:right; padding-top:10px;}&#13;
+.form_rig{ float:right; width:430px; text-align:left; padding-top:5px;}&#13;
+.pagefooter{ margin-top:20px;}&#13;
+.footer_l{ width:9px; height:86px; background:url({$$contextPath$$}/templates/site/default/images/bg.jpg) no-repeat -293px -288px; float:left;}&#13;
+.footer_m{ float:left; width:942px; height:86px; background:#666; font-family:Arial;}&#13;
+.footer_m_l{ float:left; height:17px; width:240px; margin:20px 0 0 40px; display:inline; background:url({$$contextPath$$}/templates/site/default/images/bg.jpg) no-repeat -320px 0px; padding:22px 0 0 110px; color:#fff;}&#13;
+.footer_m_r{ float:right;height:50px; width:400px; margin:25px 20px 0 0; display:inline; color:#fff;}&#13;
+.footer_m_r a:link{text-decoration : none ;color : #fff ;} &#13;
+.footer_m_r a:visited{text-decoration : none ;color : #fff ;} &#13;
+.footer_m_r a:hover{text-decoration : none ;color : #c00 ;} &#13;
+.footer_m_r a:active{text-decoration : none ;color : #fff ;}&#13;
+.footer_r{width:9px; height:86px; background:url({$$contextPath$$}/templates/site/default/images/bg.jpg) no-repeat -303px -288px; float:right;}&#13;
+/*主体o*/&#13;
+.up{}/*主体上部盒子*/&#13;
+.side{ width:252px; float:left;}&#13;
+.side_1,.side_2,.side_3{ margin-bottom:5px;}&#13;
+.side_1hl{ width:252px; height:26px; background:url({$$contextPath$$}/templates/site/default/images/bg.jpg) no-repeat -166px -42px; padding:7px 0 0 0;font-size:14px; font-weight:bold; text-align:center;}&#13;
+.side_1hllink{ display:inline-block; background:url({$$contextPath$$}/templates/site/default/images/bg.jpg) no-repeat -166px -76px; width:83px; height:17px;}&#13;
+.side_1hllink:hover{background:url({$$contextPath$$}/templates/site/default/images/bg.jpg) no-repeat -250px -76px;}&#13;
+.side_1li{ padding:10px 10px 10px 20px;}&#13;
+.side_2 {text-align:left;}&#13;
+.con_top{}&#13;
+.con_top_hl{}&#13;
+.con_top_hl_l{ float:left; width:7px; height:37px; background:url({$$contextPath$$}/templates/site/default/images/bg.jpg) no-repeat -334px -77px; font-size:0px;}&#13;
+.con_top_hl_m{float:left; height:26px; width:654px; border-top:1px solid #e8e8e8; background:url({$$contextPath$$}/templates/site/default/images/bg.jpg) no-repeat -405px -435px; font-size:14px; font-weight:bold; padding:10px 0 0 30px;}&#13;
+&#13;
+.con_top_hl_r{ float:right; width:7px;height:37px; background:url({$$contextPath$$}/templates/site/default/images/bg.jpg) no-repeat -341px -77px; font-size:0px;}&#13;
+.con_top_li{ border:1px solid #e8e8e8; border-bottom:none; padding:10px 20px;}&#13;
+.con_top_li li{ display:inline-block;}&#13;
+.con_top_li li span{ display:inline-block;}&#13;
+.con_top_li li .span1{ width:500px; float:left; overflow:hidden; text-align:left; }&#13;
+.con_top_li li .span2{ width:140px; float:right; text-align:right; }&#13;
+.showpage{ text-align:center;}&#13;
+&#13;
+.con_top_ft{ font-size:0px;}&#13;
+.con_top_ft_l{float:left; width:7px;height:7px; background:url({$$contextPath$$}/templates/site/default/images/bg.jpg) no-repeat -334px -114px; font-size:0px;}&#13;
+.con_top_ft_m{float:left; height:7px; width:684px; border-bottom:1px solid #e8e8e8; font-size:0px;}&#13;
+.con_top_ft_r{ float:right; width:7px;height:7px; background:url({$$contextPath$$}/templates/site/default/images/bg.jpg) no-repeat -341px -114px; font-size:0px;}&#13;
+&#13;
+.one{ width:380px; float:left; overflow:hidden;}&#13;
+.two{ width:100px; float:left;}&#13;
+.three{ width:150px; float:right;}&#13;
+.class_submit{ text-align:center; }&#13;
+.tips{ margin-top:10px; text-align:center; font-weight:bold; }&#13;
+/*主体o*/&#13;
+.zbt{ font-size:20px; font-weight:bold; margin:10px 30px;}&#13;
+.datetime,.zhidao,.ipother{font-size:12px; text-align:right; margin-right:20px;}&#13;
+.listline{ font-size:0px; height:4px; border-bottom:#999 dotted 1px;}&#13;
+.unitnamemail{ font-size:12px; margin:5px;}&#13;
+.zhengwen{ margin:20px;text-indent:2em; text-align:left; line-height:150%; font-size:14px; color:#000;}&#13;
+.zhengwen p{ margin:10px 0;}&#13;
+.reply{margin:20px;text-indent:2em; text-align:left; line-height:150%; font-size:12px; color:#333;}&#13;
+.reply p{ margin:10px 0;}&#13;
+.ipother{ margin-bottom:5px;}&#13;
+.ipother span {display:inline-block;}&#13;
+.reReply a:link {text-decoration : none ;color : #f00 ;}&#13;
+.reReply a:visited {text-decoration : none ;color : #f00 ;}&#13;
+.qi_con{ text-align:center;}&#13;
+&lt;/style&gt;&#13;
+&lt;style&gt; &#13;
+form {&#13;
+margin: 0;&#13;
+}&#13;
+textarea {&#13;
+display: block;&#13;
+}&#13;
+&lt;/style&gt;</string> 
+    </void> 
+    <void property="footerCode"> 
+     <string>&lt;!-- 底部开始--&gt;&#13;
+&lt;script type=&quot;text/javascript&quot;&gt;&#13;
+year();&#13;
+function year(){&#13;
+	$(&quot;#year&quot;).html(&quot;正在检测...&quot;);&#13;
+	$.ajax({&#13;
+		url:&apos;{$$contextPath$$}/ajax_util_year.action&apos;,&#13;
+		type: &apos;post&apos;,&#13;
+		success:function(data){&#13;
+		 $(&quot;#year&quot;).html(data);&#13;
+		}&#13;
+	 });&#13;
+ &#13;
+}&#13;
+&lt;/script&gt;&#13;
+ &lt;div class=&quot;pagefooter&quot;&gt;&#13;
+  &lt;div class=&quot;footer_l&quot;&gt;&lt;/div&gt;&#13;
+  &lt;div class=&quot;footer_m&quot;&gt;&#13;
+   &lt;div class=&quot;footer_m_l&quot;&gt;? Copyright 2006-&lt;span id=&quot;year&quot;&gt;&lt;/span&gt;  All Rights Reserved&lt;/div&gt;&#13;
+   &lt;div class=&quot;footer_m_r&quot;&gt;Powered by&lt;a href=&quot;/&quot;&gt; lerx {$$lerxCmsCurrentVersionNumber$$} {$$lerxCmsCurrentVersionBuild$$}&lt;/a&gt;　　　QQ 交流群:27112574&lt;br/&gt;&#13;
+&lt;a href=&quot;http://www.miibeian.gov.cn&quot;&gt;苏ICP备08018501-2号&lt;/a&gt;　来访统计：&lt;script type=&quot;text/javascript&quot; src=&quot;http://www.lerx.com/stat/stat.jsp?id=lerx&amp;graph=0&amp;type=1&quot;&gt;&lt;/script&gt;&lt;/div&gt;&#13;
+  &lt;/div&gt;&#13;
+  &lt;div class=&quot;footer_r&quot;&gt;&lt;/div&gt;&#13;
+  &lt;div class=&quot;cle&quot;&gt;&lt;/div&gt;&#13;
+ &lt;/div&gt;&#13;
+&lt;!-- 底部结束--&gt;</string> 
+    </void> 
+    <void property="htmlTemplate"> 
+     <string>&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot; &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&gt;&#13;
+&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;&#13;
+&lt;head&gt;&#13;
+&lt;title&gt;{$$app$$}-{$$siteName$$}&lt;/title&gt;&#13;
+&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=UTF-8&quot;/&gt;&#13;
+&lt;meta name=&quot;keywords&quot; content=&quot;{$$keyWord$$}&quot;/&gt;&#13;
+&lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=EmulateIE7&quot; /&gt;&#13;
+&lt;meta name=&quot;Description&quot; content=&quot;{$$description$$}&quot;/&gt;&#13;
+&lt;meta expire=&quot;-1&quot; /&gt;&#13;
+{$$cssStyle$$}&#13;
+&lt;script type=&quot;text/javascript&quot; src=&quot;{$$contextPath$$}/js/jquery/1.7.2/jquery-1.7.2.min.js&quot;&gt;&lt;/script&gt;&#13;
+&lt;/head&gt;&#13;
+&lt;body&gt;&#13;
+&lt;div class=&quot;con&quot;&gt;&#13;
+{$$htmlBody$$}&#13;
+&lt;/div&gt;&#13;
+&lt;/body&gt;&#13;
+&lt;/html&gt;</string> 
+    </void> 
+    <void property="id"> 
+     <int>1</int> 
+    </void> 
+    <void property="itemsLoopFormat"> 
+     <string>&lt;li&gt;&lt;span class=&quot;one&quot;&gt;&lt;a  target=&quot;_blank&quot; href=&quot;{$$href$$}&quot;&gt;{$$title$$}&lt;/a&gt; {$$addTime$$}&lt;/span&gt;&lt;span class=&quot;two&quot;&gt;{$$openStr$$} {$$processedStr$$}&lt;/span&gt;&lt;/li&gt;&#13;
+</string> 
+    </void> 
+    <void property="itemsLoopFormatNoStateInf"> 
+     <string>&lt;li&gt;&lt;a  target=&quot;_blank&quot; href=&quot;{$$href$$}&quot;&gt;{$$title$$}&lt;/a&gt; {$$addTime@MM/dd$$}&lt;/li&gt;</string> 
+    </void> 
+    <void property="memberPanelCodeForLogIn"> 
+     <string>&lt;div class=&apos;toplogining&apos;&gt;&lt;a href=&quot;{$$contextPath$$}/myArticles.action&quot;&gt;文集&lt;/a&gt;　&lt;a href=&quot;{$$contextPath$$}/ucenter.action&quot;&gt;设定&lt;/a&gt;　&lt;a href=&quot;{$$contextPath$$}/user_logout.action&quot;&gt;退出&lt;/a&gt;&lt;/div&gt;&#13;
+&#13;
+</string> 
+    </void> 
+    <void property="memberPanelCodeForLogOut"> 
+     <string>&lt;div class=&quot;toplogin&quot;&gt;&lt;a href=&quot;{$$contextPath$$}/login.action&quot;&gt;登　录&lt;/a&gt;　　　   &lt;a href=&quot;{$$contextPath$$}/reg.action&quot;&gt;注　册&lt;/a&gt;&lt;/div&gt;</string> 
+    </void> 
+    <void property="navsLoopFormat"> 
+     <string>&lt;div class=&quot;side_1&quot;&gt;&#13;
+    &lt;div class=&quot;side_1hl&quot;&gt;&#13;
+     &lt;a href=&quot;{$$href$$}&quot;&gt;{$$title$$}&lt;/a&gt; &#13;
+    &lt;/div&gt;&#13;
+&lt;/div&gt;</string> 
+    </void> 
+    <void property="titleFormat"> 
+     <string>{$$app$$}-{$$shortSiteName$$}</string> 
+    </void> 
+    <void property="topCode"> 
+     <string>&lt;!--顶部代码开始222--&gt;&#13;
+&lt;div class=&quot;top&quot;&gt;&#13;
+ &lt;div class=&quot;topcontainer&quot;&gt;&#13;
+  &lt;div class=&quot;toplogo&quot;&gt;&lt;/div&gt;&#13;
+&lt;div id=&quot;userarea&quot;&gt;&lt;/div&gt;&#13;
+  &lt;script type=&quot;text/javascript&quot;&gt;&#13;
+userArea();&#13;
+dateAndWeek();&#13;
+function userArea(){&#13;
+	$(&quot;#userarea&quot;).html(&quot;正在检测...&quot;);&#13;
+	$.ajax({&#13;
+		url:&apos;{$$contextPath$$}/ajax_user_area.action?local=2&apos;,&#13;
+		type: &apos;post&apos;,&#13;
+		success:function(data){&#13;
+		 $(&quot;#userarea&quot;).html(data);&#13;
+		}&#13;
+	 });&#13;
+ &#13;
+}&#13;
+function dateAndWeek(){&#13;
+	$(&quot;#dateAndWeek&quot;).html(&quot;正在检测...&quot;);&#13;
+	$.ajax({&#13;
+		url:&apos;{$$contextPath$$}/ajax_util_dateAndWeek.action&apos;,&#13;
+		type: &apos;post&apos;,&#13;
+		success:function(data){&#13;
+		 $(&quot;#dateAndWeek&quot;).html(data);&#13;
+		}&#13;
+	 });&#13;
+ &#13;
+}&#13;
+&lt;/script&gt;&#13;
+  &lt;div class=&quot;cle&quot;&gt;&lt;/div&gt;&#13;
+ &lt;/div&gt;&#13;
+&lt;/div&gt;&#13;
+&lt;div class=&quot;main&quot;&gt;&#13;
+ &lt;div class=&quot;header&quot;&gt;&#13;
+  &lt;div class=&quot;banner&quot;&gt;&lt;/div&gt;&#13;
+  &lt;div class=&quot;nav&quot;&gt;&#13;
+   &lt;div class=&quot;nav_l&quot;&gt;&lt;/div&gt;&#13;
+   &lt;div class=&quot;nav_m&quot;&gt;&#13;
+    &lt;a class=&quot;nav_a1&quot; href=&quot;{$$contextPath$$}/&quot;&gt;&lt;/a&gt;&#13;
+    &lt;a class=&quot;nav_a2&quot; href=&quot;{$$contextPath$$}/{$$htmlRoot$$}/news&quot;&gt;&lt;/a&gt;&#13;
+    &lt;a class=&quot;nav_a4&quot; href=&quot;{$$contextPath$$}/{$$htmlRoot$$}/technical&quot;&gt;&lt;/a&gt;&#13;
+    &lt;a class=&quot;nav_a5&quot; href=&quot;{$$contextPath$$}/{$$htmlRoot$$}/platform&quot;&gt;&lt;/a&gt;&#13;
+    &lt;a class=&quot;nav_a6&quot; href=&quot;{$$contextPath$$}/{$$htmlRoot$$}/download&quot;&gt;&lt;/a&gt;&#13;
+    &lt;a class=&quot;nav_a7&quot; href=&quot;{$$contextPath$$}/{$$htmlRoot$$}/faq&quot;&gt;&lt;/a&gt;&#13;
+    &lt;a class=&quot;nav_a8&quot; href=&quot;{$$contextPath$$}/{$$htmlRoot$$}/template&quot;&gt;&lt;/a&gt;&#13;
+    &lt;a class=&quot;nav_a9&quot; href=&quot;{$$contextPath$$}/{$$htmlRoot$$}/technology&quot;&gt;&lt;/a&gt;&#13;
+    &lt;a class=&quot;nav_a3&quot; href=&quot;{$$contextPath$$}/{$$htmlRoot$$}/family&quot;&gt;&lt;/a&gt;&#13;
+    &lt;a class=&quot;nav_a10&quot; href=&quot;{$$contextPath$$}/{$$htmlRoot$$}/help&quot;&gt;&lt;/a&gt;&#13;
+    &lt;a class=&quot;nav_a11&quot; href=&quot;{$$contextPath$$}/bindex.action&quot;&gt;&lt;/a&gt;&#13;
+   &lt;/div&gt;&#13;
+   &lt;div class=&quot;nav_r&quot;&gt;&lt;/div&gt;&#13;
+   &lt;div class=&quot;cle&quot;&gt;&lt;/div&gt;&#13;
+  &lt;/div&gt;&#13;
+  &lt;div class=&quot;place&quot;&gt;&#13;
+    &lt;div class=&quot;place_l&quot;&gt;您当前位置：&lt;a href=&quot;{$$contextPath$$}/&quot;&gt;{$$shortSiteName$$}&lt;/a&gt;{$$locationSplitStr$$}{$$location$$}&lt;/div&gt;&#13;
+    &lt;div class=&quot;place_r&quot; id=&quot;dateAndWeek&quot;&gt;&lt;/div&gt;&#13;
+    &lt;div class=&quot;cle&quot;&gt;&lt;/div&gt;&#13;
+  &lt;/div&gt;&#13;
+ &lt;/div&gt;&#13;
+&lt;!--顶部代码结束--&gt;&#13;
+</string> 
+    </void> 
+   </object> 
+  </void> 
+  <void property="replyAreaCode"> 
+   <string>&lt;form id=&quot;form_reply&quot; name=&quot;form_reply&quot; method=&quot;post&quot; action=&quot;qa_item_reply.action?qi.id={$$id$$}&quot;&gt;&#13;
+&lt;p&gt;&lt;textarea name=&quot;qi.answer&quot; id=&quot;answer&quot; cols=&quot;60&quot; rows=&quot;8&quot;&gt;{$$answer$$}&lt;/textarea&gt;&lt;/p&gt;&#13;
+&lt;p&gt;&lt;input type=&quot;checkbox&quot; name=&quot;qi.open&quot; {$$openChecked$$} id=&quot;open&quot; value=&quot;true&quot; /&gt;是否公开&lt;/p&gt;&#13;
+&lt;p&gt;处理人：&lt;input type=&quot;text&quot; name=&quot;qi.replier&quot; id=&quot;replier&quot; value=&quot;{$$remName$$}&quot; /&gt;&lt;input type=&quot;checkbox&quot; name=&quot;rem&quot; checked id=&quot;rem&quot; value=&quot;true&quot; /&gt;记住我&lt;/p&gt;&#13;
+&lt;p style=&quot;text-align:center;&quot;&gt;&lt;input type=&quot;submit&quot; name=&quot;sub&quot; id=&quot;sub&quot; value=&quot;提交&quot; /&gt;&lt;/p&gt;&#13;
+&lt;/form&gt;</string> 
+  </void> 
+  <void property="state"> 
+   <boolean>true</boolean> 
+  </void> 
+  <void property="styleName"> 
+   <string>新导入的问答系统风格模板_2014_01_15_08_23_22</string> 
+  </void> 
+ </object> 
+</java> 

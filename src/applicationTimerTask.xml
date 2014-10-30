@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Application context definition for PetClinic on Hibernate. -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jee="http://www.springframework.org/schema/jee" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="
+			http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+			http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd
+			http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-2.5.xsd
+			http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+			http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
+	<!-- 定时任务配置开始 -->
+	<!--注册定时执行任务实体 -->
+	<bean id="myTimerTask" name="myTimerTask" class="com.lerx.sys.util.MyTimerTask">
+		<property name="taskUrl">
+			<value>http://localhost:8080/lerx/createStatic.action?ss=lerx8888</value>
+		</property>
+	</bean>
+	<!-- 调度定时任务，把声明的任务注入进来，并设置定时参数 -->
+	<bean id="scheduledClock" class="org.springframework.scheduling.timer.ScheduledTimerTask">
+		<property name="timerTask">
+			<ref bean="myTimerTask"></ref>
+		</property>
+		<property name="period">
+			<value>1800000</value>
+			<!-- 这里是每隔多长时间就进行一次计时任务,单位ms -->
+		</property>
+		<property name="delay">
+			<value>5000</value>
+			<!-- 这里是服务启动后延时多少时间,开始计时任务,单位ms -->
+		</property>
+	</bean>
+	<!-- 启动定时任务 -->
+	<bean class="org.springframework.scheduling.timer.TimerFactoryBean">
+		<property name="scheduledTimerTasks">
+			<list>
+				<ref bean="scheduledClock"></ref>
+			</list>
+		</property>
+	</bean>
+	<!-- 定时任务配置结束 -->
+</beans>

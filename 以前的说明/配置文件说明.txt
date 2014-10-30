@@ -1,0 +1,51 @@
+lerx.charset						字符集
+lerx.currentVersion					系统版本
+lerx.serverPort						服务器web端口
+lerx.uploadPath						上传目录
+lerx.htmlPath						静态文件主目录
+lerx.defaultHtml					静态主文件名
+lerx.hostSecFile					密钥文件名
+lerx.domain.current					当前域名键值
+lerx.adminFolder					后台管理目录
+lerx.default.admin.username				后台管理初始用户名
+lerx.default.admin.password				后台管理初始用户密码
+lerx.verificationCodeMode				默认验证码模式 1 为数字 2 为字符加数字
+lerx.pageSize.result.default				默认返回记录数
+lerx.defaultReturnUrl					默认返回页
+lerx.waitingTimeForPageJumpLong				长等待时间
+lerx.waitingTimeForPageJumpShort			短等待时间
+lerx.sessionPrefixOfAdminAuthentication			后台管理帐号登录session键
+lerx.sessionPrefixOfUserAuthentication			前台用户登录session键
+lerx.prefixOfCookieForLogin				Cookie键
+lerx.userNameLength					用户名注册最小长度
+lerx.userDefaultPassword				用户默认密码(后台增加用户时使用)
+lerx.userDefaultState					用户默认状态(后台增加用户时使用)
+lerx.userDefaultEmail					用户默认Email(后台增加用户时使用)
+lerx.ipFilter						IP屏蔽(从左边起，多余的被屏蔽)
+lerx.defaultDateTimeFormat				默认时间格式
+lerx.defaultDateFormat					默认日期格式
+lerx.defaultDateShortFormat				默认短日期格式
+lerx.articleModifySaftMode				文章编辑模式，true将置文章回未审核状态，并删除静态。false不变并重新生成静态
+lerx.articleRealTimeByAjax				是否采用文章实时信息
+lerx.filterReplace					敏感词处理方式，true将用*号替换，false将拒绝发布
+lerx.userDeleteCascadeThread				删除用户模式，true将删除用户所发文章，false不删除。
+lerx.administratorSafeIP				后台登录IP列表，all为全部，其它将进行判断
+lerx.uploadMaximumSize					上传文件最大长度(目前未使用)
+lerx.searchMustBeMember					搜索文章是否需要登录
+lerx.verifyOnFront					前台是否使用验证码
+lerx.viewsUpdateByIp					文章阅读量是否进行IP检查
+lerx.changeArticleAddTimeMustBeAdmin			修改文章发布时间是否需要管理员权限
+lerx.threadSynopsisLength				文章简介长度
+lerx.threadSynopsisHtmlFilter				文章简介是否进行html过滤
+lerx.siteNameDefaultByShort				网站名是否默认使用简称
+lerx.pageJumpMode					跳转模式，0为直接显示跳转后的页面，不计数。1相反	lerx.articleViewPageFileName				文章页的action名，下相同，修改需要改struts.xml文章
+lerx.articleGroupPageFileName
+lerx.bbsThreadPageFileName
+lerx.bbsForumPageFileName
+lerx.bbsThreadSortMod					论坛主题帖子排序方式
+lerx.bbsThemeSortMod					论坛帖子排序方式
+lerx.bbsHotThreadAtPercent
+lerx.bbsNewThreadAtTime
+lerx.noAvatarSmall=					没有头像时默认显示图片URL
+lerx.noImageShow					没有图片时默认显示图片URL
+lerx.imgFileEtcStr					图像文件的后缀

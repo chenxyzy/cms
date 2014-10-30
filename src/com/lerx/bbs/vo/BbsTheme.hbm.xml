@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.lerx.bbs.vo">
+	<class name="BbsTheme" table="bbs_theme" dynamic-update="true">
+		<id name="id" type="long" column="id">
+			<generator class="native" />
+		</id>
+		<property name="title" length="100" />
+		<property name="state" />
+		
+		<property name="pollAllow" />
+		
+		<property name="proponents" />
+		<property name="opponents" />
+		<property name="neutrals" />
+		
+		<property name="top" />
+		<property name="shield" />
+		<property name="soul" />
+		<property name="views" />
+		<property name="topMod" />
+		<property name="addTime" />
+		<property name="addTimeUnix" />
+		<property name="chgTime" />
+		
+		<property name="lastEditTime" />
+		<property name="lastViewIp" length="64" />
+		<property name="quote" length="255" />
+		
+		<property name="lastViewTime" />
+		<property name="body" type="text" />
+		<property name="secCode" />
+		<property name="exoticActors" />
+		<property name="reps" />
+		<property name="sink" />
+		<property name="addIp" />
+		<property name="lastEditIp" />
+		<property name="seeAfterReply" />
+		
+		<many-to-one name="rootTheme" column="rootThemeID"
+			outer-join="true" class="com.lerx.bbs.vo.BbsTheme" />
+		<many-to-one name="forum" column="forumID"
+			outer-join="true" class="com.lerx.bbs.vo.BbsForum" />	
+		<many-to-one name="user" column="userID" outer-join="true"
+			class="com.lerx.user.vo.User" />
+		<many-to-one name="passer" column="passerID" outer-join="true"
+			class="com.lerx.user.vo.User" />
+		<many-to-one name="lastEditUser" column="lastEditUserID" outer-join="true"
+			class="com.lerx.user.vo.User" />
+
+	</class>
+</hibernate-mapping>

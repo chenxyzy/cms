@@ -1,0 +1,13 @@
+﻿<p>您好</p>
+
+<p>首先恭喜您成为{$$site$$}网站的正式用户！</p>
+
+<p>为了防止恶意注册，本网站需要您点击下面的链接进行注册确认！谢谢您的配合！</p>
+
+<p><a target="_blank" href="{$$userPassingUrl$$}">{$$userPassingUrl$$}</a></p>
+
+<p> <br><br><br></p>
+
+<p><a href="http://{$$siteUrl$$}">{$$site$$}</p>
+
+<p>http://{$$siteUrl$$}</p>

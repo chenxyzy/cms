@@ -1,0 +1,3030 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<java version="1.6.0_10-rc2" class="java.beans.XMLDecoder"> 
+ <object class="com.lerx.style.site.vo.SiteStyle"> 
+  <void property="ajaxOfArtPoll"> 
+   <string>{$$pollYes$$}　{$$pollNeu$$}　{$$pollNo$$} 　{$$pollFunction$$}</string> 
+  </void> 
+  <void property="ajaxOfArticlePrice"> 
+   <string>&lt;script type=&quot;text/javascript&quot;&gt;&#13;
+showBody();&#13;
+function showBody()&#13;
+{&#13;
+	$(&quot;#body&quot;).html(&quot;正在提取...&quot;);&#13;
+	$.ajax({&#13;
+		url:&apos;{$$contextPath$$}/ajax_thread_showBodyByPrice.action?tid={$$tid$$}&apos;,&#13;
+		type: &apos;post&apos;,&#13;
+		success:function(data){&#13;
+&#13;
+		 $(&quot;#body&quot;).html(data);&#13;
+		}&#13;
+	 });&#13;
+}&#13;
+&lt;/script&gt;</string> 
+  </void> 
+  <void property="ajaxOfBeforeView"> 
+   <string>阅读本文将扣除您的积分 {$$price$$} 点，您现在的积分余额为：{$$remainder$$}。&lt;input type=&quot;submit&quot; name=&quot;button&quot; id=&quot;button&quot; onclick=&quot;{if(confirm(&apos;确定消费您的积分进行阅读吗?该操作将不可撤消！&apos;)){view();}return false;}&quot;  value=&quot;确定浏览&quot; /&gt;</string> 
+  </void> 
+  <void property="ajaxStrFormat"> 
+   <string>{$$resultIcoUrl$$} {$$resultMsg$$}</string> 
+  </void> 
+  <void property="articleAddStyle"> 
+   <object class="com.lerx.style.site.vo.SiteStyleSubElementInCommon"> 
+    <void property="cssCode"> 
+     <string></string> 
+    </void> 
+    <void property="editAreaCode"> 
+     <string></string> 
+    </void> 
+    <void property="htmlCode"> 
+     <string>&lt;script type=&quot;text/javascript&quot; src=&quot;{$$contextPath$$}/js/ajaxupload.3.6.js&quot;&gt;&lt;/script&gt;&#13;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;{$$contextPath$$}/kindeditor-4.1.1/themes/default/default.css&quot; /&gt;&#13;
+	&lt;link rel=&quot;stylesheet&quot; href=&quot;{$$contextPath$$}/kindeditor-4.1.1/plugins/code/prettify.css&quot; /&gt;&#13;
+	&lt;script charset=&quot;utf-8&quot; src=&quot;{$$contextPath$$}/kindeditor-4.1.1/kindeditor.js&quot;&gt;&lt;/script&gt;&#13;
+	&lt;script charset=&quot;utf-8&quot; src=&quot;{$$contextPath$$}/kindeditor-4.1.1/lang/zh_CN.js&quot;&gt;&lt;/script&gt;&#13;
+	&lt;script charset=&quot;utf-8&quot; src=&quot;{$$contextPath$$}/kindeditor-4.1.1/plugins/code/prettify.js&quot;&gt;&lt;/script&gt;&#13;
+&lt;script&gt;&#13;
+&#13;
+		KindEditor.ready(function(K) {&#13;
+			var editor1 = K.create(&apos;textarea[name=&quot;thread.body&quot;]&apos;, {&#13;
+				cssPath : &apos;{$$contextPath$$}/kindeditor-4.1.1/plugins/code/prettify.css&apos;,&#13;
+				uploadJson : &apos;{$$contextPath$$}/uploadForKE.action&apos;,&#13;
+				fileManagerJson : &apos;{$$contextPath$$}/kindeditor-4.1.1/jsp/file_manager_json.jsp&apos;,&#13;
+				allowFileManager : true,&#13;
+				afterCreate : function() {&#13;
+					var self = this;&#13;
+					K.ctrl(document, 13, function() {&#13;
+						self.sync();&#13;
+						document.forms[&apos;example&apos;].submit();&#13;
+					});&#13;
+					K.ctrl(self.edit.doc, 13, function() {&#13;
+						self.sync();&#13;
+						document.forms[&apos;example&apos;].submit();&#13;
+					});&#13;
+				}&#13;
+			});&#13;
+			prettyPrint();&#13;
+		});&#13;
+&#13;
+&#13;
+&#13;
+&#13;
+&#13;
+	&#13;
+function showUpLoadDiv(col)&#13;
+{&#13;
+	$(document).ready(function(){&#13;
+&#13;
+	$(&quot;#UpLoadIframe&quot;).attr(&quot;src&quot;,&quot;{$$contextPath$$}/upload.jsp?col=&quot;+col);&#13;
+	//$(&quot;UpLoadIframe&quot;).src=&quot;upload.jsp&quot;;&#13;
+		$(&quot;#popUpLoadDiv&quot;).show();&#13;
+		$(&quot;#PopUpLoadIframe&quot;).show();&#13;
+		$(&quot;#bg&quot;).show();&#13;
+	});&#13;
+}&#13;
+&#13;
+function closeUpLoadDiv()&#13;
+{&#13;
+	$(document).ready(function(){&#13;
+		$(&quot;#popUpLoadDiv&quot;).hide();&#13;
+		$(&quot;#PopUpLoadIframe&quot;).hide();&#13;
+		$(&quot;#bg&quot;).hide();&#13;
+	});&#13;
+}&#13;
+&#13;
+function getByteLen(val) { &#13;
+&#13;
+	var len = 0; &#13;
+	for (var i = 0; i &lt; val.length; i++) { &#13;
+		if (val.charAt(i).match(/[^x00-xff]/ig) != null){ //全角 &#13;
+			len += 2; &#13;
+		}else{&#13;
+			len += 1; &#13;
+		}&#13;
+	} &#13;
+	return len; &#13;
+} &#13;
+&#13;
+function checkform(){&#13;
+	var r;&#13;
+	r=chk();&#13;
+	&#13;
+	c=parseInt(r);&#13;
+	&#13;
+	if (c&gt;0){&#13;
+	var mainLen,shortLen;&#13;
+	&#13;
+	mainLen=getByteLen($(&apos;#title&apos;).val());&#13;
+	shortLen=getByteLen($(&apos;#shortTitle&apos;).val());&#13;
+	//mainLen=$(&apos;#title&apos;).val().length;&#13;
+	//shortLen=$(&apos;#shortTitle&apos;).val().length;&#13;
+	//alert(&quot;mainLen:&quot;+mainLen);&#13;
+	//alert(&quot;shortLen:&quot;+shortLen);&#13;
+		if  (shortLen &gt;c || (mainLen&gt;c &amp;&amp; (shortLen==0 || (shortLen&gt;0 &amp;&amp; shortLen&gt;c)))){&#13;
+			alert(&apos;您选择的栏目设定了标题长度，如果您确定不修改主标题，请在精简标题中输入不超过&apos;+c+&apos;个字符的标题！提示：中文算两个字符！&apos;);&#13;
+			return false;&#13;
+		}else{&#13;
+			return true;&#13;
+		}&#13;
+&#13;
+	}&#13;
+	return true;&#13;
+}&#13;
+&#13;
+&#13;
+function chk(){&#13;
+	var v;&#13;
+	$.ajax({&#13;
+		url : &apos;{$$contextPath$$}/ajax_art_lenchk.action?len=index&apos;,&#13;
+		type: &apos;post&apos;,&#13;
+		//dataType : &apos;text&apos;,&#13;
+		data : $(&apos;#artForm&apos;).serialize(),&#13;
+		async:false,&#13;
+		success:function(data){&#13;
+			var tmp=data;&#13;
+			v=tmp;&#13;
+		}&#13;
+	 });&#13;
+&#13;
+	 return v;&#13;
+}&#13;
+&#13;
+&#13;
+function gb2utf8(data){&#13;
+var glbEncode = [];&#13;
+gb2utf8_data = data;&#13;
+execScript(&quot;gb2utf8_data = MidB(gb2utf8_data, 1)&quot;, &quot;VBScript&quot;);&#13;
+var t=escape(gb2utf8_data).replace(/%u/g,&quot;&quot;).replace(/(.{2})(.{2})/g,&quot;%$2%$1&quot;).replace(/%([A-Z].)%(.{2})/g,&quot;@$1$2&quot;);&#13;
+t=t.split(&quot;@&quot;);&#13;
+var i=0,j=t.length,k;&#13;
+while(++i&lt;j) {&#13;
+k=t.substring(0,4);&#13;
+if(!glbEncode[k]) {&#13;
+gb2utf8_char = eval(&quot;0x&quot;+k);&#13;
+execScript(&quot;gb2utf8_char = Chr(gb2utf8_char)&quot;, &quot;VBScript&quot;);&#13;
+glbEncode[k]=escape(gb2utf8_char).substring(1,6);&#13;
+}&#13;
+t=glbEncode[k]+t.substring(4);&#13;
+}&#13;
+gb2utf8_data = gb2utf8_char = null;&#13;
+return unescape(t.join(&quot;%&quot;));&#13;
+}&#13;
+&#13;
+&lt;/script&gt;&#13;
+{$$top$$}&#13;
+&lt;!-- 主体开始--&gt;&#13;
+&lt;div id=&quot;popUpLoadDiv&quot; class=&quot;myPopUpLoadDiv&quot; style=&quot;display:none;&quot;&gt;&#13;
+&lt;div class=&quot;myPopUpLoadDiv_top&quot;&gt;&lt;div class=&quot;myPopUpLoadDiv_top_left&quot;&gt;文件上传！&lt;/div&gt;&lt;div class=&quot;myPopUpLoadDiv_top_rig&quot;&gt;&lt;a href=&quot;javascript:closeUpLoadDiv();&quot;&gt;关闭&lt;/a&gt;&lt;/div&gt;&lt;/div&gt;&#13;
+&lt;div class=&quot;myPopAgreementDiv_input&quot;&gt;&#13;
+&lt;iframe id=&quot;UpLoadIframe&quot; src=&quot;upload.jsp&quot; width=&quot;100%&quot; height=&quot;100%&quot;  class=&quot;UpLoadIframe&quot; frameborder=&quot;0&quot; &gt;&#13;
+&lt;/iframe&gt;&#13;
+&#13;
+&lt;div id=&quot;uploadState&quot;&gt;&lt;/div&gt;&#13;
+&lt;/div&gt;&#13;
+&lt;/div&gt;&#13;
+&lt;div id=&quot;bg&quot; class=&quot;bg&quot; style=&quot;display:none;&quot;&gt;&lt;/div&gt;&#13;
+&lt;iframe id=&quot;PopUpLoadIframe&quot; class=&quot;PopUpLoadIframe&quot; frameborder=&quot;0&quot; &gt;&lt;/iframe&gt;&#13;
+&#13;
+&#13;
+ &lt;div class=&quot;container&quot;&gt;&#13;
+&lt;form method=&quot;post&quot; onsubmit=&quot;return checkform()&quot; id=&quot;artForm&quot; name=&quot;myform&quot; action=&quot;article_add.action&quot;&gt;&#13;
+  &lt;div class=&quot;rel_top&quot;&gt;欢迎 {$$loginUser$$} 发布文章 [注：*为必填项] &lt;/div&gt;&#13;
+  &lt;div class=&quot;rel_mid&quot;&gt;&#13;
+   &lt;div class=&quot;puby&quot;&gt;&#13;
+    &lt;div class=&quot;pubx_1&quot;&gt;选择栏目*:&lt;/div&gt;&#13;
+    &lt;div class=&quot;pubx_2&quot;&gt;&#13;
+&lt;select size=&quot;1&quot; name=&quot;thread.articleGroup.id&quot;&gt;&#13;
+     {$$articleGroupSelect$$}&#13;
+&lt;/select&gt;&#13;
+    &lt;/div&gt;&#13;
+    &lt;div class=&quot;cle&quot;&gt;&lt;/div&gt;&#13;
+   &lt;/div&gt;&#13;
+   &lt;div class=&quot;puby&quot;&gt;&#13;
+    &lt;div class=&quot;pubx_1&quot;&gt;文章标题*:&lt;/div&gt;&#13;
+    &lt;div class=&quot;pubx_2&quot;&gt;&#13;
+      &lt;input type=&quot;text&quot; id=&quot;title&quot; name=&quot;thread.title&quot; size=&quot;60&quot;&gt;&lt;input type=&quot;checkbox&quot; name=&quot;C_RedTitle&quot; value=&quot;ON&quot;&gt;红色(只有超级管理员才能生效)&#13;
+    &lt;/div&gt;&#13;
+    &lt;div class=&quot;cle&quot;&gt;&lt;/div&gt;&#13;
+   &lt;/div&gt;&#13;
+&#13;
+&#13;
+&lt;div class=&quot;puby&quot;&gt;&#13;
+    &lt;div class=&quot;pubx_1&quot;&gt;所需价格:&lt;/div&gt;&#13;
+    &lt;div class=&quot;pubx_2&quot;&gt;&#13;
+      &lt;input type=&quot;text&quot;  name=&quot;thread.price&quot; size=&quot;60&quot;&gt;&#13;
+    &lt;/div&gt;&#13;
+    &lt;div class=&quot;cle&quot;&gt;&lt;/div&gt;&#13;
+   &lt;/div&gt;&#13;
+&#13;
+ &lt;div class=&quot;puby&quot;&gt;&#13;
+    &lt;div class=&quot;pubx_1&quot;&gt;精简标题:&lt;/div&gt;&#13;
+    &lt;div class=&quot;pubx_2&quot;&gt;&#13;
+      &lt;input type=&quot;text&quot; id=&quot;shortTitle&quot; name=&quot;thread.shortTitle&quot; size=&quot;60&quot;&gt;&#13;
+    &lt;/div&gt;&#13;
+    &lt;div class=&quot;cle&quot;&gt;&lt;/div&gt;&#13;
+   &lt;/div&gt;&#13;
+  &lt;div class=&quot;puby&quot;&gt;&#13;
+    &lt;div class=&quot;pubx_1&quot;&gt;图像文件URL:&lt;/div&gt;&#13;
+    &lt;div class=&quot;pubx_2&quot;&gt;&#13;
+      &lt;input type=&quot;text&quot; id=&quot;mainImg&quot; name=&quot;thread.mainImg&quot; size=&quot;60&quot;&gt; &lt;a href=&quot;javascript:showUpLoadDiv(&apos;mainImg&apos;);&quot;&gt;上传&lt;/a&gt;&#13;
+    &lt;/div&gt;&#13;
+    &lt;div class=&quot;cle&quot;&gt;&lt;/div&gt;&#13;
+   &lt;/div&gt;&#13;
+    &lt;div class=&quot;puby&quot;&gt;&#13;
+    &lt;div class=&quot;pubx_1&quot;&gt;缩略图文件URL:&lt;/div&gt;&#13;
+    &lt;div class=&quot;pubx_2&quot;&gt;&#13;
+     &lt;input type=&quot;text&quot; id=&quot;thumbnail&quot; name=&quot;thread.thumbnail&quot; size=&quot;60&quot;&gt; &lt;a href=&quot;javascript:showUpLoadDiv(&apos;thumbnail&apos;);&quot;&gt;上传&lt;/a&gt;&#13;
+    &lt;/div&gt;&#13;
+    &lt;div class=&quot;cle&quot;&gt;&lt;/div&gt;&#13;
+   &lt;/div&gt;&#13;
+&#13;
+   &lt;div class=&quot;puby&quot;&gt;&#13;
+    &lt;div class=&quot;pubx_1&quot;&gt;作者*:&lt;/div&gt;&#13;
+    &lt;div class=&quot;pubx_2&quot;&gt;&#13;
+        &lt;input type=&quot;text&quot; name=&quot;thread.author&quot; size=&quot;60&quot;&gt;&#13;
+    &lt;/div&gt;&#13;
+    &lt;div class=&quot;cle&quot;&gt;&lt;/div&gt;&#13;
+   &lt;/div&gt;&#13;
+&#13;
+   &lt;div class=&quot;puby&quot;&gt;&#13;
+    &lt;div id=&quot;bodyLeft&quot; class=&quot;pubx_1&quot; style=&quot;height: auto;vertical-align:middle;&quot;&gt;文章正文:&lt;/div&gt;&#13;
+    &lt;div id=&quot;bodyRight&quot; class=&quot;pubx_2&quot; style=&quot;height: auto;&quot;&gt;&#13;
+      &lt;textarea name=&quot;thread.body&quot; id=&quot;Body&quot; cols=&quot;88&quot; rows=&quot;18&quot;&gt; &lt;/textarea&gt;&#13;
+    &lt;/div&gt;&#13;
+    &lt;div class=&quot;cle&quot;&gt;&lt;/div&gt;&#13;
+   &lt;/div&gt;&#13;
+   &#13;
+   &lt;div class=&quot;puby&quot;  style=&quot;border-bottom:#666 solid 1px;height: auto;margin-bottom:10px;&quot;&gt;&#13;
+    &lt;div class=&quot;pubx_1&quot; id=&quot;attaLeft&quot; style=&quot;border-bottom:none;border-right:#aaa solid 1px;&quot;&gt;附件:&lt;/div&gt;&#13;
+    &lt;div class=&quot;pubx_2&quot; id=&quot;attaRight&quot; style=&quot;height: auto;border:none;&quot; &gt;&lt;input type=&quot;button&quot; value=&quot;增加&quot; name=&quot;B_add&quot; onClick=&quot;javascript:addAtta();&quot;&gt;  　标题格式：&lt;input type=&quot;text&quot; name=&quot;thread.attaLineOrderFormatStr&quot; size=&quot;30&quot;&gt;　默认媒体文件：&lt;select size=&quot;1&quot; name=&quot;thread.defaultAttaMediaFormat&quot;&gt;&lt;option  value=&quot;0&quot;&gt;不采用&lt;/option&gt;&lt;option  value=&quot;1&quot;&gt;{$$mediaCodeFormat1$$}&lt;/option&gt;&lt;option  value=&quot;2&quot;&gt;{$$mediaCodeFormat2$$}&lt;/option&gt;&lt;option  value=&quot;3&quot;&gt;{$$mediaCodeFormat3$$}&lt;/option&gt;&lt;/select&gt;&#13;
+	&lt;div id=&quot;atta&quot;&gt;&lt;/div&gt;&#13;
+    &lt;/div&gt;&#13;
+    &lt;div class=&quot;cle&quot;&gt;&lt;/div&gt;&#13;
+   &lt;/div&gt;&#13;
+&#13;
+   &lt;script type=&quot;text/javascript&quot;&gt; &#13;
+   $(&quot;#bodyLeft&quot;).height($(&quot;#bodyRight&quot;).height()+2);&#13;
+   $(&quot;#attaLeft&quot;).height($(&quot;#attaRight&quot;).height()-1);&#13;
+   var step=0;&#13;
+   function delAtta(n) {&#13;
+      $(&quot;#attaP&quot;+n).remove();&#13;
+      $(&quot;#attaLeft&quot;).height($(&quot;#attaRight&quot;).height()-1);&#13;
+   }&#13;
+   function addAtta() {&#13;
+      step++;&#13;
+      $(&quot;&lt;p id=&apos;attaP&quot;+step+&quot;&apos;&gt;地址(URL)&lt;font color=&apos;#FF0000&apos;&gt;*&lt;/font&gt;:&lt;input type=&apos;text&apos; name=&apos;attaUrl&apos; id=&apos;attaUrl&quot;+step+&quot;&apos; size=&apos;15&apos;&gt; &lt;a href=javascript:showUpLoadDiv(&apos;attaUrl&quot;+step+&quot;&apos;);&gt;上传&lt;/a&gt; 　标题(可选):&lt;input type=&apos;text&apos; name=&apos;attaTitle&apos; size=&apos;20&apos;&gt; 作为媒体：&lt;select size=&apos;1&apos; name=&apos;attaMediaFormat&apos;&gt;&lt;option  value=&apos;0&apos;&gt;默认&lt;/option&gt;&lt;option  value=&apos;1&apos;&gt;{$$mediaCodeFormat1$$}&lt;/option&gt;&lt;option  value=&apos;2&apos;&gt;{$$mediaCodeFormat2$$}&lt;/option&gt;&lt;option  value=&apos;3&apos;&gt;{$$mediaCodeFormat3$$}&lt;/option&gt;&lt;/select&gt; &lt;a href=javascript:delAtta(&quot;+step+&quot;);&gt;删除&lt;/a&gt;&lt;/p&gt;&quot;).appendTo(&quot;#atta&quot;);&#13;
+      $(&quot;#attaLeft&quot;).height($(&quot;#attaRight&quot;).height()-1);&#13;
+}&#13;
+&#13;
+function showDiv(objId){&#13;
+   var objDiv=document.getElementById(objId);   &#13;
+   if(objDiv.style.display==&quot;none&quot;){&#13;
+      objDiv.style.display=&quot;&quot;;&#13;
+   }else{&#13;
+   objDiv.style.display=&quot;none&quot;;&#13;
+   }&#13;
+}&#13;
+&#13;
+&#13;
+&lt;/script&gt;&#13;
+  &#13;
+&#13;
+  &lt;div class=&quot;rel_down&quot;&gt;&#13;
+   &#13;
+&#13;
+&#13;
+&#13;
+   &lt;div class=&quot;rel_top&quot;&gt;&lt;a href=&quot;javascript:showDiv(&apos;Q1&apos;);&quot;&gt;更多选项&lt;/a&gt;&lt;/div&gt;&#13;
+   &lt;div id=&quot;Q1&quot; style=&quot;display:none&quot; &gt;&#13;
+    &#13;
+    &lt;div class=&quot;puby&quot;&gt;&#13;
+    &lt;div class=&quot;pubx_1&quot;&gt;允许在公告区滚动:&lt;/div&gt;&#13;
+    &lt;div class=&quot;pubx_2&quot;&gt;&#13;
+     &lt;input type=&quot;radio&quot; name=&quot;thread.notice&quot; value=&quot;false&quot; checked&gt;禁止公告  &#13;
+  &lt;input type=&quot;radio&quot; name=&quot;thread.notice&quot; value=&quot;true&quot;&gt;发布到公告 说明：只有拥有公告发布权限才能操作此项&lt;/font&gt;&#13;
+    &lt;/div&gt;&#13;
+    &lt;div class=&quot;cle&quot;&gt;&lt;/div&gt;&#13;
+   &lt;/div&gt;&#13;
+   &#13;
+   &#13;
+    &lt;div class=&quot;puby&quot;&gt;&#13;
+    &lt;div class=&quot;pubx_1&quot;&gt;内容简介:&lt;/div&gt;&#13;
+    &lt;div class=&quot;pubx_2&quot;&gt;&#13;
+      &lt;input type=&quot;text&quot; name=&quot;thread.synopsis&quot; size=&quot;60&quot;&gt;&#13;
+    &lt;/div&gt;&#13;
+    &lt;div class=&quot;cle&quot;&gt;&lt;/div&gt;&#13;
+   &lt;/div&gt;&#13;
+    &#13;
+    &lt;div class=&quot;puby&quot;&gt;&#13;
+    &lt;div class=&quot;pubx_1&quot;&gt;图片文字说明:&lt;/div&gt;&#13;
+    &lt;div class=&quot;pubx_2&quot;&gt;&#13;
+      &lt;input type=&quot;text&quot; name=&quot;thread.mainImgExplain&quot; size=&quot;60&quot;&gt;&#13;
+    &lt;/div&gt;&#13;
+    &lt;div class=&quot;cle&quot;&gt;&lt;/div&gt;&#13;
+   &lt;/div&gt;&#13;
+    &#13;
+    &lt;div class=&quot;puby&quot;&gt;&#13;
+    &lt;div class=&quot;pubx_1&quot;&gt;附加标题:&lt;/div&gt;&#13;
+    &lt;div class=&quot;pubx_2&quot;&gt;&#13;
+     &lt;input type=&quot;text&quot; name=&quot;thread.accessionalTitle&quot; size=&quot;60&quot;&gt;&#13;
+    &lt;/div&gt;&#13;
+    &lt;div class=&quot;cle&quot;&gt;&lt;/div&gt;&#13;
+   &lt;/div&gt;&#13;
+    &lt;div class=&quot;puby&quot;&gt;&#13;
+    &lt;div class=&quot;pubx_1&quot;&gt;眉头标题:&lt;/div&gt;&#13;
+    &lt;div class=&quot;pubx_2&quot;&gt;&#13;
+      &lt;input type=&quot;text&quot; name=&quot;thread.pensileTitle&quot; size=&quot;60&quot;&gt;&#13;
+    &lt;/div&gt;&#13;
+    &lt;div class=&quot;cle&quot;&gt;&lt;/div&gt;&#13;
+   &lt;/div&gt;&#13;
+    &lt;div class=&quot;puby&quot;&gt;&#13;
+    &lt;div class=&quot;pubx_1&quot;&gt;作者单位:&lt;/div&gt;&#13;
+    &lt;div class=&quot;pubx_2&quot;&gt;&#13;
+      &lt;input type=&quot;text&quot; name=&quot;thread.authorDept&quot; size=&quot;60&quot;&gt;&#13;
+    &lt;/div&gt;&#13;
+    &lt;div class=&quot;cle&quot;&gt;&lt;/div&gt;&#13;
+   &lt;/div&gt;&#13;
+    &lt;div class=&quot;puby&quot;&gt;&#13;
+    &lt;div class=&quot;pubx_1&quot;&gt;作者Email:&lt;/div&gt;&#13;
+    &lt;div class=&quot;pubx_2&quot;&gt;&#13;
+      &lt;input type=&quot;text&quot; name=&quot;thread.authorEmail&quot; size=&quot;60&quot;&gt;&#13;
+    &lt;/div&gt;&#13;
+    &lt;div class=&quot;cle&quot;&gt;&lt;/div&gt;&#13;
+   &lt;/div&gt;&#13;
+    &lt;div class=&quot;puby&quot;&gt;&#13;
+    &lt;div class=&quot;pubx_1&quot;&gt;已发表在:&lt;/div&gt;&#13;
+    &lt;div class=&quot;pubx_2&quot;&gt;&#13;
+      &lt;input type=&quot;text&quot; name=&quot;thread.journal&quot; size=&quot;60&quot;&gt;&#13;
+    &lt;/div&gt;&#13;
+    &lt;div class=&quot;cle&quot;&gt;&lt;/div&gt;&#13;
+   &lt;/div&gt;&#13;
+&#13;
+    &lt;div class=&quot;puby&quot;&gt;&#13;
+    &lt;div class=&quot;pubx_1&quot;&gt;其它可引用网络链接名:&lt;/div&gt;&#13;
+    &lt;div class=&quot;pubx_2&quot;&gt;&#13;
+      &lt;input type=&quot;text&quot; name=&quot;thread.linkTitle&quot; size=&quot;60&quot;&gt;&#13;
+    &lt;/div&gt;&#13;
+    &lt;div class=&quot;cle&quot;&gt;&lt;/div&gt;&#13;
+   &lt;/div&gt;&#13;
+&#13;
+    &lt;div class=&quot;puby&quot;&gt;&#13;
+    &lt;div class=&quot;pubx_1&quot;&gt;其它可引用网络链接地址:&lt;/div&gt;&#13;
+    &lt;div class=&quot;pubx_2&quot;&gt;&#13;
+     &lt;input type=&quot;text&quot; id=&quot;linkUrl&quot; name=&quot;thread.linkUrl&quot; size=&quot;60&quot;&gt; &lt;a href=&quot;javascript:showUpLoadDiv(&apos;linkUrl&apos;);&quot;&gt;上传&lt;/a&gt; &lt;input type=&quot;checkbox&quot; name=&quot;thread.linkJump&quot; value=&quot;true&quot;&gt;强制跳转 作为媒体：&lt;select size=&quot;1&quot; name=&quot;mediaFormat&quot;&gt;&lt;option  value=&quot;0&quot;&gt;不采用&lt;/option&gt;&lt;option  value=&quot;1&quot;&gt;{$$mediaCodeFormat1$$}&lt;/option&gt;&lt;option  value=&quot;2&quot;&gt;{$$mediaCodeFormat2$$}&lt;/option&gt;&lt;option  value=&quot;3&quot;&gt;{$$mediaCodeFormat3$$}&lt;/option&gt;&lt;/select&gt;&#13;
+    &lt;/div&gt;&#13;
+    &lt;div class=&quot;cle&quot;&gt;&lt;/div&gt;&#13;
+   &lt;/div&gt;&#13;
+&#13;
+    &lt;div class=&quot;puby&quot; style=&quot;border-bottom:#666 solid 1px;&quot;&gt;&#13;
+    &lt;div class=&quot;pubx_1&quot; style=&quot;border-bottom:none;border-right:#aaa solid 1px;&quot;&gt;指导者:&lt;/div&gt;&#13;
+    &lt;div class=&quot;pubx_2&quot; style=&quot;border:none;&quot;&gt;&#13;
+     &lt;input type=&quot;text&quot; name=&quot;thread.mentor&quot; size=&quot;60&quot;&gt;&#13;
+    &lt;/div&gt;&#13;
+    &lt;div class=&quot;cle&quot;&gt;&lt;/div&gt;&#13;
+   &lt;/div&gt;&#13;
+   &#13;
+   &lt;/div&gt;&#13;
+  &lt;/div&gt;&#13;
+  &lt;div class=&quot;rel_form&quot;&gt;&lt;input type=&quot;submit&quot; value=&quot;提交&quot;&gt;&lt;/div&gt;&#13;
+&lt;/form&gt;&#13;
+ &lt;/div&gt;&#13;
+&lt;!-- 主体结束--&gt;&#13;
+{$$footer$$}&#13;
+</string> 
+    </void> 
+    <void property="id"> 
+     <int>55</int> 
+    </void> 
+    <void property="specialCode1"> 
+     <string>.rel_top{ height:30px; text-align:center; padding-top:12px; background:#999; border-bottom:#666 solid 1px; border-right:#666 solid 1px; color:#000;}&#13;
+.rel_mid{}&#13;
+.rel_down{}&#13;
+.puby{}&#13;
+.pubx_1{ float:left; width:179px; height:24px; background:#CCC; padding:8px 0 0 20px;border-bottom:#666 dotted 1px;border-right:#aaa solid 1px;}&#13;
+.pubx_2{ float:right; width:740px; height:26px;background:#eee;  padding:6px 0 0 20px;border-bottom:#666 dotted 1px;}&#13;
+.rel_form{ height:30px; text-align:center; padding-top:12px; background:#999; border-bottom:#666 solid 1px; border-right:#666 solid 1px; margin-top:10px;}&#13;
+&#13;
+/*增加pop*/&#13;
+.myPopUpLoadDiv {&#13;
+background: #fff;border: 2px solid #666;text-align: center;z-index:999;width: 600px;height: 300px;left:50%;top:40%;border-left:2px solid #eee;border-top:2px solid #eee;&#13;
+margin-left:-300px!important;/*FF IE7 该值为本身宽的一半 */&#13;
+margin-top:-150px!important;/*FF IE7 该值为本身高的一半*/&#13;
+margin-top:0px;&#13;
+position:fixed!important;/* FF IE7*/&#13;
+position:absolute;/*IE6*/&#13;
+_top:       expression(eval(document.compatMode &amp;&amp;&#13;
+            document.compatMode==&apos;CSS1Compat&apos;) ?&#13;
+            documentElement.scrollTop + (document.documentElement.clientHeight-this.offsetHeight)/2 :/*IE6*/&#13;
+            document.body.scrollTop + (document.body.clientHeight - this.clientHeight)/2);/*IE5 IE5.5*/&#13;
+}&#13;
+.myPopUpLoadDiv_top{ background:#3CC; height:30px;}&#13;
+.myPopUpLoadDiv_top_left{ float:left; padding:7px 0 0 20px;}&#13;
+.myPopUpLoadDiv_top_rig{ float:right; padding:7px 10px 0 0;}&#13;
+ &#13;
+.bg,.PopUpLoadIframe {&#13;
+background-color: #666; display:none;width: 100%;height: 100%;left:0;top:0;/*FF IE7*/&#13;
+filter:alpha(opacity=50);/*IE*/&#13;
+opacity:0.5;/*FF*/&#13;
+z-index:1;&#13;
+position:fixed!important;/*FF IE7*/&#13;
+position:absolute;/*IE6*/&#13;
+_top:       expression(eval(document.compatMode &amp;&amp;&#13;
+            document.compatMode==&apos;CSS1Compat&apos;) ?&#13;
+            documentElement.scrollTop + (document.documentElement.clientHeight-this.offsetHeight)/2 :/*IE6*/&#13;
+            document.body.scrollTop + (document.body.clientHeight - this.clientHeight)/2);/* www.codefans.net IE5 IE5.5*/&#13;
+}&#13;
+.PopUpLoadIframe {&#13;
+filter:alpha(opacity=0);/*IE*/&#13;
+opacity:0;/*FF*/&#13;
+}</string> 
+    </void> 
+   </object> 
+  </void> 
+  <void property="articleEditStyle"> 
+   <object class="com.lerx.style.site.vo.SiteStyleSubElementInCommon"> 
+    <void property="editAreaCode"> 
+     <string></string> 
+    </void> 
+    <void property="htmlCode"> 
+     <string>&lt;script type=&quot;text/javascript&quot; src=&quot;{$$contextPath$$}/js/ajaxupload.3.6.js&quot;&gt;&lt;/script&gt;&#13;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;{$$contextPath$$}/kindeditor-4.1.1/themes/default/default.css&quot; /&gt;&#13;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;{$$contextPath$$}/kindeditor-4.1.1/plugins/code/prettify.css&quot; /&gt;&#13;
+&lt;script charset=&quot;utf-8&quot; src=&quot;{$$contextPath$$}/kindeditor-4.1.1/kindeditor.js&quot;&gt;&lt;/script&gt;&#13;
+&lt;script charset=&quot;utf-8&quot; src=&quot;{$$contextPath$$}/kindeditor-4.1.1/lang/zh_CN.js&quot;&gt;&lt;/script&gt;&#13;
+&lt;script charset=&quot;utf-8&quot; src=&quot;{$$contextPath$$}/kindeditor-4.1.1/plugins/code/prettify.js&quot;&gt;&lt;/script&gt;&#13;
+&lt;script&gt;&#13;
+			KindEditor.ready(function(K) {&#13;
+			var editor1 = K.create(&apos;textarea[name=&quot;thread.body&quot;]&apos;, {&#13;
+				cssPath : &apos;{$$contextPath$$}/kindeditor-4.1.1/plugins/code/prettify.css&apos;,&#13;
+				uploadJson : &apos;{$$contextPath$$}/uploadForKE.action&apos;,&#13;
+				fileManagerJson : &apos;{$$contextPath$$}/kindeditor-4.1.1/jsp/file_manager_json.jsp&apos;,&#13;
+				allowFileManager : true,&#13;
+				afterCreate : function() {&#13;
+					var self = this;&#13;
+					K.ctrl(document, 13, function() {&#13;
+						self.sync();&#13;
+						document.forms[&apos;example&apos;].submit();&#13;
+					});&#13;
+					K.ctrl(self.edit.doc, 13, function() {&#13;
+						self.sync();&#13;
+						document.forms[&apos;example&apos;].submit();&#13;
+					});&#13;
+				}&#13;
+			});&#13;
+			prettyPrint();&#13;
+		});&#13;
+	&#13;
+function showUpLoadDiv(col)&#13;
+{&#13;
+	$(document).ready(function(){&#13;
+&#13;
+	$(&quot;#UpLoadIframe&quot;).attr(&quot;src&quot;,&quot;{$$contextPath$$}/upload.jsp?col=&quot;+col);&#13;
+	$(&quot;#myPopUpLoadDiv_top_left&quot;).html(&quot;文件上传！&quot;);&#13;
+	//$(&quot;UpLoadIframe&quot;).src=&quot;upload.jsp&quot;;&#13;
+		$(&quot;#popUpLoadDiv&quot;).show();&#13;
+		$(&quot;#PopUpLoadIframe&quot;).show();&#13;
+		$(&quot;#bg&quot;).show();&#13;
+	});&#13;
+}&#13;
+&#13;
+function showAttachmentDiv(tid)&#13;
+{&#13;
+	$(document).ready(function(){&#13;
+	$(&quot;#myPopUpLoadDiv_top_left&quot;).html(&quot;附件详情！&quot;);&#13;
+	$(&quot;#UpLoadIframe&quot;).attr(&quot;src&quot;,&quot;{$$contextPath$$}/attachments.jsp?tid=&quot;+tid);&#13;
+	//$(&quot;UpLoadIframe&quot;).src=&quot;upload.jsp&quot;;&#13;
+		$(&quot;#popUpLoadDiv&quot;).show();&#13;
+		$(&quot;#PopUpLoadIframe&quot;).show();&#13;
+		$(&quot;#bg&quot;).show();&#13;
+	});&#13;
+}&#13;
+&#13;
+function closeUpLoadDiv()&#13;
+{&#13;
+	$(document).ready(function(){&#13;
+		$(&quot;#popUpLoadDiv&quot;).hide();&#13;
+		$(&quot;#PopUpLoadIframe&quot;).hide();&#13;
+		$(&quot;#bg&quot;).hide();&#13;
+	});&#13;
+}&#13;
+&lt;/script&gt;&#13;
+{$$top$$}&#13;
+&lt;!-- 主体开始--&gt;&#13;
+&lt;div id=&quot;popUpLoadDiv&quot; class=&quot;myPopUpLoadDiv&quot; style=&quot;display:none;&quot;&gt;&#13;
+&lt;div class=&quot;myPopUpLoadDiv_top&quot;&gt;&lt;div id=&quot;myPopUpLoadDiv_top_left&quot; class=&quot;myPopUpLoadDiv_top_left&quot;&gt;文件上传！&lt;/div&gt;&lt;div class=&quot;myPopUpLoadDiv_top_rig&quot;&gt;&lt;a href=&quot;javascript:closeUpLoadDiv();&quot;&gt;关闭&lt;/a&gt;&lt;/div&gt;&lt;/div&gt;&#13;
+&lt;div class=&quot;myPopAgreementDiv_input&quot;&gt;&#13;
+&lt;iframe id=&quot;UpLoadIframe&quot; src=&quot;upload.jsp&quot; width=&quot;100%&quot; height=&quot;100%&quot;  class=&quot;UpLoadIframe&quot; frameborder=&quot;0&quot; &gt;&#13;
+&lt;/iframe&gt;&#13;
+&#13;
+&lt;div id=&quot;uploadState&quot;&gt;&lt;/div&gt;&#13;
+&lt;/div&gt;&#13;
+&lt;/div&gt;&#13;
+&lt;div id=&quot;bg&quot; class=&quot;bg&quot; style=&quot;display:none;&quot;&gt;&lt;/div&gt;&#13;
+&lt;iframe id=&quot;PopUpLoadIframe&quot; class=&quot;PopUpLoadIframe&quot; frameborder=&quot;0&quot; &gt;&lt;/iframe&gt;&#13;
+&#13;
+ &lt;div class=&quot;container&quot;&gt;&#13;
+&lt;form method=&quot;post&quot; name=&quot;myform&quot; action=&quot;article_modify.action?thread.id={$$tid$$}&quot;&gt;&#13;
+  &lt;div class=&quot;rel_top&quot;&gt;欢迎  &lt;b&gt;{$$loginUser$$}&lt;/b&gt;  修改文章 [注：&lt;font color=&quot;#FF0000&quot;&gt;*&lt;/font&gt;为必填项] &lt;/div&gt;&#13;
+  &lt;div class=&quot;rel_mid&quot;&gt;&#13;
+   &lt;div class=&quot;puby&quot;&gt;&#13;
+    &lt;div class=&quot;pubx_1&quot;&gt;选择栏目*:&lt;/div&gt;&#13;
+    &lt;div class=&quot;pubx_2&quot;&gt;&#13;
+&lt;select size=&quot;1&quot; name=&quot;thread.articleGroup.id&quot;&gt;&#13;
+     {$$articleGroupSelect$$}&#13;
+&lt;/select&gt;&#13;
+&#13;
+    &lt;/div&gt;&#13;
+    &lt;div class=&quot;cle&quot;&gt;&lt;/div&gt;&#13;
+   &lt;/div&gt;&#13;
+   &lt;div class=&quot;puby&quot;&gt;&#13;
+    &lt;div class=&quot;pubx_1&quot;&gt;文章标题*:&lt;/div&gt;&#13;
+    &lt;div class=&quot;pubx_2&quot;&gt;&#13;
+     &lt;input type=&quot;text&quot; name=&quot;thread.title&quot; size=&quot;60&quot;  value=&quot;{$$articleTitle$$}&quot;&gt; &lt;input type=&quot;checkbox&quot; {$$eyeCatching$$} name=&quot;thread.eyeCatching&quot; value=&quot;true&quot;&gt;醒目标题(只有超级管理员才能生效)&#13;
+    &lt;/div&gt;&#13;
+    &lt;div class=&quot;cle&quot;&gt;&lt;/div&gt;&#13;
+   &lt;/div&gt;&#13;
+   &lt;div class=&quot;puby&quot;&gt;&#13;
+    &lt;div class=&quot;pubx_1&quot;&gt;精简标题:&lt;/div&gt;&#13;
+    &lt;div class=&quot;pubx_2&quot;&gt;&#13;
+      &lt;input type=&quot;text&quot; name=&quot;thread.shortTitle&quot; size=&quot;60&quot;  value=&quot;{$$shortTitle$$}&quot;&gt;&#13;
+    &lt;/div&gt;&#13;
+    &lt;div class=&quot;cle&quot;&gt;&lt;/div&gt;&#13;
+   &lt;/div&gt;&#13;
+&#13;
+    &lt;div class=&quot;puby&quot;&gt;&#13;
+    &lt;div class=&quot;pubx_1&quot;&gt;所需积分:&lt;/div&gt;&#13;
+    &lt;div class=&quot;pubx_2&quot;&gt;&#13;
+      &lt;input type=&quot;text&quot; name=&quot;thread.price&quot; size=&quot;60&quot;  value=&quot;{$$price$$}&quot;&gt;&#13;
+    &lt;/div&gt;&#13;
+    &lt;div class=&quot;cle&quot;&gt;&lt;/div&gt;&#13;
+   &lt;/div&gt;&#13;
+&#13;
+   &lt;div class=&quot;puby&quot;&gt;&#13;
+    &lt;div class=&quot;pubx_1&quot;&gt;图像文件URL:&lt;/div&gt;&#13;
+    &lt;div class=&quot;pubx_2&quot;&gt;&#13;
+      &lt;input type=&quot;text&quot; name=&quot;thread.mainImg&quot; id=&quot;mainImg&quot; size=&quot;60&quot; value=&quot;{$$image$$}&quot;&gt;  &lt;a href=&quot;javascript:showUpLoadDiv(&apos;mainImg&apos;);&quot;&gt;上传&lt;/a&gt;&lt;/div&gt;&#13;
+    &lt;div class=&quot;cle&quot;&gt;&lt;/div&gt;&#13;
+   &lt;/div&gt;&#13;
+    &lt;div class=&quot;puby&quot;&gt;&#13;
+    &lt;div class=&quot;pubx_1&quot;&gt;缩略图文件URL:&lt;/div&gt;&#13;
+    &lt;div class=&quot;pubx_2&quot;&gt;&#13;
+     &lt;input type=&quot;text&quot; name=&quot;thread.thumbnail&quot; id=&quot;thumbnail&quot; size=&quot;60&quot; value=&quot;{$$smallImage$$}&quot;&gt;  &lt;a href=&quot;javascript:showUpLoadDiv(&apos;thumbnail&apos;);&quot;&gt;上传&lt;/a&gt;&#13;
+    &lt;/div&gt;&#13;
+    &lt;div class=&quot;cle&quot;&gt;&lt;/div&gt;&#13;
+   &lt;/div&gt;&#13;
+   &lt;div class=&quot;puby&quot;&gt;&#13;
+    &lt;div class=&quot;pubx_1&quot;&gt;审核状态:&lt;/div&gt;&#13;
+    &lt;div class=&quot;pubx_2&quot;&gt;&#13;
+       &lt;input type=&quot;radio&quot; value=&quot;true&quot; {$$statePassed$$} name=&quot;thread.state&quot;&gt;通过  &lt;input type=&quot;radio&quot; {$$stateNoPassed$$} name=&quot;thread.state&quot; value=&quot;false&quot;&gt;未通过 说明：只有拥有审核权限才能更改此项成功&#13;
+    &lt;/div&gt;&#13;
+    &lt;div class=&quot;cle&quot;&gt;&lt;/div&gt;&#13;
+   &lt;/div&gt;&#13;
+   &lt;div class=&quot;puby&quot;&gt;&#13;
+    &lt;div class=&quot;pubx_1&quot;&gt;作者*:&lt;/div&gt;&#13;
+    &lt;div class=&quot;pubx_2&quot;&gt;&#13;
+        &lt;input type=&quot;text&quot; name=&quot;thread.author&quot; size=&quot;60&quot; value=&quot;{$$author$$}&quot;&gt;&#13;
+    &lt;/div&gt;&#13;
+    &lt;div class=&quot;cle&quot;&gt;&lt;/div&gt;&#13;
+   &lt;/div&gt;&#13;
+   &lt;div class=&quot;puby&quot;&gt;&#13;
+    &lt;div id=&quot;bodyLeft&quot; class=&quot;pubx_1&quot; style=&quot;height: auto;vertical-align:middle;&quot;&gt;文章正文:&lt;/div&gt;&#13;
+    &lt;div id=&quot;bodyRight&quot; class=&quot;pubx_2&quot; style=&quot;height: auto;&quot;&gt;&#13;
+    &#13;
+    &lt;textarea name=&quot;thread.body&quot; id=&quot;Body&quot; cols=&quot;88&quot; rows=&quot;18&quot;&gt;{$$body$$}&lt;/textarea&gt;&#13;
+    &#13;
+    &lt;/div&gt;&#13;
+    &lt;div class=&quot;cle&quot;&gt;&lt;/div&gt;&#13;
+   &lt;/div&gt;&#13;
+   &#13;
+   &lt;div class=&quot;puby&quot;  style=&quot;border-bottom:#666 solid 1px;height: auto;margin-bottom:10px;&quot;&gt;&#13;
+    &lt;div class=&quot;pubx_1&quot; id=&quot;attaLeft&quot; style=&quot;border-bottom:none;border-right:#aaa solid 1px;&quot;&gt;附件:&lt;/div&gt;&#13;
+    &lt;div class=&quot;pubx_2&quot; id=&quot;attaRight&quot; style=&quot;height: auto;border:none;&quot; &gt;&#13;
+    &#13;
+    &lt;div class=&quot;attachments&quot; id=&quot;attachments&quot;&gt;&lt;ul&gt;{$$attachments$$}&lt;/ul&gt;&lt;/div&gt;&#13;
+&#13;
+	&#13;
+	&lt;div id=&quot;attaDo&quot;&gt;&#13;
+	&lt;input type=&quot;button&quot; value=&quot;增加&quot; name=&quot;B_add&quot; onClick=&quot;javascript:addAtta();&quot;&gt; &lt;input type=&quot;button&quot; value=&quot;修改&quot; name=&quot;B_setup&quot; onClick=&quot;javascript:showAttachmentDiv({$$tid$$});&quot;&gt; 标题格式：&lt;input type=&quot;text&quot; name=&quot;thread.attaLineOrderFormatStr&quot; value=&quot;{$$attaLineOrderFormatStr$$}&quot; size=&quot;30&quot;&gt;　　默认媒体文件：&lt;select size=&quot;1&quot; name=&quot;thread.defaultAttaMediaFormat&quot;&gt;&lt;option  value=&quot;0&quot; {$$defaultAttaMediaFormat0$$}&gt;不采用&lt;/option&gt;&lt;option  value=&quot;1&quot; {$$defaultAttaMediaFormat1$$}&gt;{$$mediaCodeFormat1$$}&lt;/option&gt;&lt;option  value=&quot;2&quot; {$$defaultAttaMediaFormat2$$}&gt;{$$mediaCodeFormat2$$}&lt;/option&gt;&lt;option  value=&quot;3&quot; {$$defaultAttaMediaFormat3$$}&gt;{$$mediaCodeFormat3$$}&lt;/option&gt;&lt;/select&gt;&#13;
+	&lt;/div&gt;&#13;
+	&lt;div class=&quot;atta&quot; id=&quot;atta&quot;&gt;&lt;/div&gt;&#13;
+    &lt;/div&gt;&#13;
+    &lt;div class=&quot;cle&quot;&gt;&lt;/div&gt;&#13;
+   &lt;/div&gt;&#13;
+   &#13;
+&#13;
+  &lt;div class=&quot;rel_down&quot;&gt;&#13;
+   &lt;script type=&quot;text/javascript&quot;&gt; &#13;
+   $(&quot;#bodyLeft&quot;).height($(&quot;#bodyRight&quot;).height()+2);&#13;
+   $(&quot;#attaLeft&quot;).height($(&quot;#attaRight&quot;).height()-1);&#13;
+   var step=0;&#13;
+   function delAtta(n) {&#13;
+&#13;
+      $(&quot;#attaP&quot;+n).remove();&#13;
+      $(&quot;#attaLeft&quot;).height($(&quot;#attaRight&quot;).height()-1);&#13;
+   }&#13;
+   function addAtta() {&#13;
+      step++;&#13;
+      $(&quot;&lt;p id=&apos;attaP&quot;+step+&quot;&apos;&gt;地址(URL)&lt;font color=&apos;#FF0000&apos;&gt;*&lt;/font&gt;:&lt;input type=&apos;text&apos; name=&apos;attaUrl&apos; id=&apos;attaUrl&quot;+step+&quot;&apos; size=&apos;15&apos;&gt; &lt;a href=javascript:showUpLoadDiv(&apos;attaUrl&quot;+step+&quot;&apos;);&gt;上传&lt;/a&gt; 　标题(可选):&lt;input type=&apos;text&apos; name=&apos;attaTitle&apos; size=&apos;20&apos;&gt; 作为媒体：&lt;select size=&apos;1&apos; name=&apos;attaMediaFormat&apos;&gt;&lt;option  value=&apos;0&apos;&gt;默认&lt;/option&gt;&lt;option  value=&apos;1&apos;&gt;{$$mediaCodeFormat1$$}&lt;/option&gt;&lt;option  value=&apos;2&apos;&gt;{$$mediaCodeFormat2$$}&lt;/option&gt;&lt;option  value=&apos;3&apos;&gt;{$$mediaCodeFormat3$$}&lt;/option&gt;&lt;/select&gt; &lt;a href=javascript:delAtta(&quot;+step+&quot;);&gt;删除&lt;/a&gt;&lt;/p&gt;&quot;).appendTo(&quot;#atta&quot;);&#13;
+      $(&quot;#attaLeft&quot;).height($(&quot;#attaRight&quot;).height());&#13;
+      $(&quot;#attaLeft&quot;).height($(&quot;#attaRight&quot;).height()-1);&#13;
+   }&#13;
+&#13;
+   function showDiv(objId){&#13;
+      var objDiv=document.getElementById(objId);   &#13;
+      if(objDiv.style.display==&quot;none&quot;){&#13;
+         objDiv.style.display=&quot;&quot;;&#13;
+      }else{&#13;
+         objDiv.style.display=&quot;none&quot;;&#13;
+      }&#13;
+   }&#13;
+&lt;/script&gt;&#13;
+   &lt;div class=&quot;rel_top&quot;&gt;&lt;a href=&quot;javascript:showDiv(&apos;Q1&apos;);&quot;&gt;更多选项&lt;/a&gt;&lt;/div&gt;&#13;
+   &lt;div id=&quot;Q1&quot; style=&quot;display:none&quot; &gt;&#13;
+   &#13;
+&#13;
+    &lt;div class=&quot;puby&quot;&gt;&#13;
+    &lt;div class=&quot;pubx_1&quot;&gt;公告选项:&lt;/div&gt;&#13;
+    &lt;div class=&quot;pubx_2&quot;&gt;&#13;
+&#13;
+&lt;input type=&quot;checkbox&quot; {$$notice$$} name=&quot;thread.notice&quot; value=&quot;true&quot;&gt;同布发布至公告 &lt;input type=&quot;checkbox&quot; {$$noticeShowBody$$} name=&quot;thread.noticeShowBody&quot; value=&quot;true&quot;&gt;公告时显示正文(只有拥有公告发布权限才能操作此项)&#13;
+&#13;
+    &lt;/div&gt;&#13;
+    &lt;div class=&quot;cle&quot;&gt;&lt;/div&gt;&#13;
+   &lt;/div&gt;&#13;
+    &#13;
+&#13;
+    &lt;div class=&quot;puby&quot;&gt;&#13;
+    &lt;div class=&quot;pubx_1&quot;&gt;内容简介:&lt;/div&gt;&#13;
+    &lt;div class=&quot;pubx_2&quot;&gt;&#13;
+      &lt;input type=&quot;text&quot; name=&quot;thread.synopsis&quot; size=&quot;60&quot;  value=&quot;{$$synopsis$$}&quot;&gt;&#13;
+    &lt;/div&gt;&#13;
+    &lt;div class=&quot;cle&quot;&gt;&lt;/div&gt;&#13;
+   &lt;/div&gt;&#13;
+    &#13;
+    &lt;div class=&quot;puby&quot;&gt;&#13;
+    &lt;div class=&quot;pubx_1&quot;&gt;图片文字说明:&lt;/div&gt;&#13;
+    &lt;div class=&quot;pubx_2&quot;&gt;&#13;
+      &lt;input type=&quot;text&quot; name=&quot;thread.mainImgExplain&quot; size=&quot;60&quot; value=&quot;{$$imageExplain$$}&quot;&gt;&#13;
+    &lt;/div&gt;&#13;
+    &lt;div class=&quot;cle&quot;&gt;&lt;/div&gt;&#13;
+   &lt;/div&gt;&#13;
+   &#13;
+    &lt;div class=&quot;puby&quot;&gt;&#13;
+    &lt;div class=&quot;pubx_1&quot;&gt;附加标题:&lt;/div&gt;&#13;
+    &lt;div class=&quot;pubx_2&quot;&gt;&#13;
+     &lt;input type=&quot;text&quot; name=&quot;thread.accessionalTitle&quot; size=&quot;60&quot; value=&quot;{$$accessionalTitle$$}&quot;&gt;&#13;
+    &lt;/div&gt;&#13;
+    &lt;div class=&quot;cle&quot;&gt;&lt;/div&gt;&#13;
+   &lt;/div&gt;&#13;
+    &lt;div class=&quot;puby&quot;&gt;&#13;
+    &lt;div class=&quot;pubx_1&quot;&gt;眉头标题:&lt;/div&gt;&#13;
+    &lt;div class=&quot;pubx_2&quot;&gt;&#13;
+     &lt;input type=&quot;text&quot; name=&quot;thread.pensileTitle&quot; size=&quot;60&quot; value=&quot;{$$pensileTitle$$}&quot;&gt;&#13;
+    &lt;/div&gt;&#13;
+    &lt;div class=&quot;cle&quot;&gt;&lt;/div&gt;&#13;
+   &lt;/div&gt;&#13;
+    &lt;div class=&quot;puby&quot;&gt;&#13;
+    &lt;div class=&quot;pubx_1&quot;&gt;作者单位:&lt;/div&gt;&#13;
+    &lt;div class=&quot;pubx_2&quot;&gt;&#13;
+      &lt;input type=&quot;text&quot; name=&quot;thread.authorDept&quot; size=&quot;60&quot; value=&quot;{$$authorDept$$}&quot;&gt;&#13;
+    &lt;/div&gt;&#13;
+    &lt;div class=&quot;cle&quot;&gt;&lt;/div&gt;&#13;
+   &lt;/div&gt;&#13;
+    &lt;div class=&quot;puby&quot;&gt;&#13;
+    &lt;div class=&quot;pubx_1&quot;&gt;作者Email:&lt;/div&gt;&#13;
+    &lt;div class=&quot;pubx_2&quot;&gt;&#13;
+      &lt;input type=&quot;text&quot; name=&quot;thread.authorEmail&quot; size=&quot;60&quot; value=&quot;{$$authorEmail$$}&quot;&gt;&#13;
+    &lt;/div&gt;&#13;
+    &lt;div class=&quot;cle&quot;&gt;&lt;/div&gt;&#13;
+   &lt;/div&gt;&#13;
+    &lt;div class=&quot;puby&quot;&gt;&#13;
+    &lt;div class=&quot;pubx_1&quot;&gt;已发表在:&lt;/div&gt;&#13;
+    &lt;div class=&quot;pubx_2&quot;&gt;&#13;
+      &lt;input type=&quot;text&quot; name=&quot;thread.journal&quot; size=&quot;60&quot; value=&quot;{$$journal$$}&quot;&gt;&#13;
+    &lt;/div&gt;&#13;
+    &lt;div class=&quot;cle&quot;&gt;&lt;/div&gt;&#13;
+   &lt;/div&gt;&#13;
+    &#13;
+    &lt;div class=&quot;puby&quot;&gt;&#13;
+    &lt;div class=&quot;pubx_1&quot;&gt;其它可引用网络链接名:&lt;/div&gt;&#13;
+    &lt;div class=&quot;pubx_2&quot;&gt;&#13;
+      &lt;input type=&quot;text&quot; name=&quot;thread.linkTitle&quot; size=&quot;60&quot; value=&quot;{$$linkTitle$$}&quot;&gt;&#13;
+    &lt;/div&gt;&#13;
+    &lt;div class=&quot;cle&quot;&gt;&lt;/div&gt;&#13;
+   &lt;/div&gt;&#13;
+    &lt;div class=&quot;puby&quot;&gt;&#13;
+    &lt;div class=&quot;pubx_1&quot;&gt;其它可引用网络链接地址:&lt;/div&gt;&#13;
+    &lt;div class=&quot;pubx_2&quot;&gt;&#13;
+    &lt;input type=&quot;text&quot; name=&quot;thread.linkUrl&quot; id=&quot;linkUrl&quot; size=&quot;60&quot; value=&quot;{$$linkUrl$$}&quot;&gt;  &lt;a href=&quot;javascript:showUpLoadDiv(&apos;linkUrl&apos;);&quot;&gt;上传&lt;/a&gt;  &lt;input type=&quot;checkbox&quot; {$$linkJumpTurning$$} name=&quot;thread.linkJump&quot; value=&quot;true&quot;&gt;强制跳转 作为媒体：&lt;select size=&quot;1&quot; name=&quot;mediaFormat&quot;&gt;&lt;option {$$mediaFormat0Select$$} value=&quot;0&quot;&gt;不采用&lt;/option&gt;&lt;option {$$mediaFormat1Select$$} value=&quot;1&quot;&gt;{$$mediaCodeFormat1$$}&lt;/option&gt;&lt;option {$$mediaFormat2Select$$} value=&quot;2&quot;&gt;{$$mediaCodeFormat2$$}&lt;/option&gt;&lt;option {$$mediaFormat3Select$$} value=&quot;3&quot;&gt;{$$mediaCodeFormat3$$}&lt;/option&gt;&lt;/select&gt;&#13;
+    &lt;/div&gt;&#13;
+    &lt;div class=&quot;cle&quot;&gt;&lt;/div&gt;&#13;
+   &lt;/div&gt;&#13;
+    &lt;div class=&quot;puby&quot;&gt;&#13;
+    &lt;div class=&quot;pubx_1&quot;&gt;指导者:&lt;/div&gt;&#13;
+    &lt;div class=&quot;pubx_2&quot;&gt;&#13;
+     &lt;input type=&quot;text&quot; name=&quot;thread.mentor&quot; size=&quot;60&quot; value=&quot;{$$mentor$$}&quot;&gt;&#13;
+    &lt;/div&gt;&#13;
+    &lt;div class=&quot;cle&quot;&gt;&lt;/div&gt;&#13;
+   &lt;/div&gt;&#13;
+    &lt;div class=&quot;puby&quot;&gt;&#13;
+    &lt;div class=&quot;pubx_1&quot;&gt;发布者:&lt;/div&gt;&#13;
+    &lt;div class=&quot;pubx_2&quot;&gt;&#13;
+     &lt;input type=&quot;text&quot; name=&quot;thread.member&quot; size=&quot;60&quot; value=&quot;{$$member$$}&quot;&gt;&#13;
+    &lt;/div&gt;&#13;
+    &lt;div class=&quot;cle&quot;&gt;&lt;/div&gt;&#13;
+   &lt;/div&gt;&#13;
+    &lt;div class=&quot;puby&quot;&gt;&#13;
+    &lt;div class=&quot;pubx_1&quot;&gt;发布日期:&lt;/div&gt;&#13;
+    &lt;div class=&quot;pubx_2&quot;&gt;&#13;
+     &lt;input type=&quot;text&quot; name=&quot;addTime&quot; size=&quot;60&quot; value=&quot;{$$addTime$$}&quot;&gt;&#13;
+    &lt;/div&gt;&#13;
+    &lt;div class=&quot;cle&quot;&gt;&lt;/div&gt;&#13;
+   &lt;/div&gt;&#13;
+   &#13;
+   &lt;/div&gt;&#13;
+  &lt;/div&gt;&#13;
+  &lt;div class=&quot;rel_form&quot;&gt;&lt;input type=&quot;submit&quot; value=&quot;提交&quot;&gt;&lt;/div&gt;&#13;
+&lt;/form&gt;&#13;
+&lt;form name=preview action=&quot;./upload.jsp&quot; method=post target=preview_page&gt;&#13;
+&lt;/form&gt;&#13;
+ &lt;/div&gt;&#13;
+&lt;!-- 主体结束--&gt;&#13;
+{$$footer$$}&#13;
+&lt;script language=&quot;javascript&quot;&gt;&#13;
+&lt;!--&#13;
+function isTime(str)    //判断文本输入是不是时间格式,如13:25&#13;
+   { &#13;
+    var a = str.match(/^(d{1,4})(-)?(d{1,2})(-)?(d{1,2}) (d{1,2})(:)?(d{1,2})(:)?(d{1,2})$/); &#13;
+   &#13;
+&#13;
+    if ( a == null) &#13;
+    {&#13;
+     alert(&apos;输入的参数不是时间格式!&apos;); &#13;
+     return false;&#13;
+    } &#13;
+    if (a[1]&gt;24 || a[3]&gt;60 ) &#13;
+    { &#13;
+     alert(&quot;时间格式不对!&quot;); &#13;
+     return false &#13;
+    } &#13;
+    return true; &#13;
+   } &#13;
+--&gt;&#13;
+&lt;/SCRIPT&gt;</string> 
+    </void> 
+    <void property="id"> 
+     <int>56</int> 
+    </void> 
+    <void property="specialCode1"> 
+     <string>.rel_top{ height:30px; text-align:center; padding-top:12px; background:#999; border-bottom:#666 solid 1px; border-right:#666 solid 1px; color:#000;}&#13;
+.rel_mid{}&#13;
+.rel_down{}&#13;
+.puby{}&#13;
+.pubx_1{ float:left; width:179px; height:24px; background:#CCC; padding:8px 0 0 20px;border-bottom:#666 dotted 1px;border-right:#aaa solid 1px;}&#13;
+.pubx_2{ float:right; width:740px; height:26px;background:#eee;  padding:6px 0 0 20px;border-bottom:#666 dotted 1px;}&#13;
+.rel_form{ height:30px; text-align:center; padding-top:12px; background:#999; border-bottom:#666 solid 1px; border-right:#666 solid 1px; margin-top:10px;}&#13;
+.attachments li{background:none;}&#13;
+/*增加pop*/&#13;
+.myPopUpLoadDiv {&#13;
+background: #fff;border: 2px solid #666;text-align: center;z-index:999;width: 600px;height: 300px;left:50%;top:40%;border-left:2px solid #eee;border-top:2px solid #eee;&#13;
+margin-left:-300px!important;/*FF IE7 该值为本身宽的一半 */&#13;
+margin-top:-150px!important;/*FF IE7 该值为本身高的一半*/&#13;
+margin-top:0px;&#13;
+position:fixed!important;/* FF IE7*/&#13;
+position:absolute;/*IE6*/&#13;
+_top:       expression(eval(document.compatMode &amp;&amp;&#13;
+            document.compatMode==&apos;CSS1Compat&apos;) ?&#13;
+            documentElement.scrollTop + (document.documentElement.clientHeight-this.offsetHeight)/2 :/*IE6*/&#13;
+            document.body.scrollTop + (document.body.clientHeight - this.clientHeight)/2);/*IE5 IE5.5*/&#13;
+}&#13;
+.myPopUpLoadDiv_top{ background:#3CC; height:30px;}&#13;
+.myPopUpLoadDiv_top_left{ float:left; padding:7px 0 0 20px;}&#13;
+.myPopUpLoadDiv_top_rig{ float:right; padding:7px 10px 0 0;}&#13;
+ &#13;
+.bg,.PopUpLoadIframe {&#13;
+background-color: #666; display:none;width: 100%;height: 100%;left:0;top:0;/*FF IE7*/&#13;
+filter:alpha(opacity=50);/*IE*/&#13;
+opacity:0.5;/*FF*/&#13;
+z-index:1;&#13;
+position:fixed!important;/*FF IE7*/&#13;
+position:absolute;/*IE6*/&#13;
+_top:       expression(eval(document.compatMode &amp;&amp;&#13;
+            document.compatMode==&apos;CSS1Compat&apos;) ?&#13;
+            documentElement.scrollTop + (document.documentElement.clientHeight-this.offsetHeight)/2 :/*IE6*/&#13;
+            document.body.scrollTop + (document.body.clientHeight - this.clientHeight)/2);/* www.codefans.net IE5 IE5.5*/&#13;
+}&#13;
+.PopUpLoadIframe {&#13;
+filter:alpha(opacity=0);/*IE*/&#13;
+opacity:0;/*FF*/&#13;
+}</string> 
+    </void> 
+   </object> 
+  </void> 
+  <void property="attachmentLineShowForDownload"> 
+   <string>&lt;li&gt;&lt;a href=&quot;{$$attaURL$$}&quot;&gt;{$$title$$}&lt;/a&gt;&lt;/li&gt;</string> 
+  </void> 
+  <void property="attachmentLineShowForImg"> 
+   <string>&lt;li&gt;&lt;a href=&quot;{$$attaURL$$}&quot; target=&quot;_blank&quot;&gt;&lt;img alt=&quot;{$$attaTitle$$}&quot; width=&quot;120&quot; src=&quot;{$$attaURL$$}&quot;&gt;&lt;/a&gt;&lt;/li&gt;</string> 
+  </void> 
+  <void property="attachmentLineShowForPlay"> 
+   <string>&lt;li&gt;点击播放：&lt;a href=&quot;javascript:showPlay({$$attaId$$});&quot;&gt;{$$title$$}&lt;/a&gt;&lt;/li&gt;</string> 
+  </void> 
+  <void property="author"> 
+   <string></string> 
+  </void> 
+  <void property="classStyle"> 
+   <object class="com.lerx.style.site.vo.SiteStyleSubElementInCommon"> 
+    <void property="cssCode"> 
+     <string></string> 
+    </void> 
+    <void property="editAreaCode"> 
+     <string>&lt;input {$$state$$} type=&quot;checkbox&quot; name=&quot;C_state&quot; value=&quot;{$$id$$}&quot;&gt; [&lt;a href=&quot;{$$editFileURL$$}&quot;&gt;编辑&lt;/a&gt; &lt;a href=&quot;{$$deleteFileURL$$}&quot; onclick=&quot;{if(confirm(&apos;确定删除文章 {$$originalTitle$$} 吗?该删除将不可撤消！&apos;)){return true;}return false;}&quot;&gt;删除&lt;/a&gt;]</string> 
+    </void> 
+    <void property="formTemplate"> 
+     <string>&lt;form id=&quot;threadRows&quot; method=&quot;POST&quot; onsubmit=&quot;return checkList(this)&quot;&gt;&#13;
+{$$data$$}&#13;
+&lt;li style=&quot;background:none&quot;&gt;&lt;span class=&quot;one&quot;&gt;&lt;/span&gt;&lt;span class=&quot;two&quot;&gt;&lt;/span&gt;&lt;span class=&quot;three&quot;&gt;&lt;input type=&quot;button&quot; value=&quot;全选&quot; id=&quot;selectAll&quot; /&gt; &lt;input type=&quot;button&quot; value=&quot;全不选&quot; id=&quot;unSelect&quot; /&gt;  &lt;input type=&quot;button&quot; value=&quot;反选&quot; id=&quot;reverse&quot; /&gt;&lt;/span&gt;&lt;/li&gt;&#13;
+&lt;div class=&quot;class_submit&quot;&gt;&lt;input type=&quot;submit&quot; value=&quot;提交&quot; name=&quot;B1&quot;&gt;&lt;/div&gt;&#13;
+&lt;/form&gt;&#13;
+&lt;script language=&quot;javascript&quot; type=&quot;text/javascript&quot;&gt;  &#13;
+       $(function () {  &#13;
+            $(&quot;#selectAll&quot;).click(function () {//全选  &#13;
+                $(&quot;#threadRows :checkbox&quot;).attr(&quot;checked&quot;, true);  &#13;
+           });  &#13;
+  &#13;
+           $(&quot;#unSelect&quot;).click(function () {//全不选  &#13;
+               $(&quot;#threadRows :checkbox&quot;).attr(&quot;checked&quot;, false);  &#13;
+           });  &#13;
+  &#13;
+            $(&quot;#reverse&quot;).click(function () {//反选  &#13;
+                $(&quot;#threadRows :checkbox&quot;).each(function () {  &#13;
+                   $(this).attr(&quot;checked&quot;, !$(this).attr(&quot;checked&quot;));  &#13;
+                });  &#13;
+           });  &#13;
+       });  &#13;
+&#13;
+function checkList(){&#13;
+&#13;
+	var trueList=&quot;&quot;,falseList=&quot;&quot;;&#13;
+	var check_obj = $(&quot;input[name=&apos;C_state&apos;]&quot;);&#13;
+	var trueStep=0,falseStep=0;&#13;
+	for ( var i = 0; i &lt; check_obj.length; i++) {&#13;
+		if (check_obj.get(i).checked == true) {&#13;
+			trueStep++;&#13;
+			if (trueStep==1){&#13;
+				trueList += check_obj.get(i).value;&#13;
+			}else{&#13;
+				trueList += &quot;_&quot;+check_obj.get(i).value ;&#13;
+			}&#13;
+		&#13;
+		}else{&#13;
+			falseStep++;&#13;
+			if (falseStep==1){&#13;
+				falseList += check_obj.get(i).value;&#13;
+			}else{&#13;
+				falseList += &quot;_&quot;+check_obj.get(i).value ;&#13;
+			}&#13;
+		}&#13;
+	}&#13;
+	&#13;
+	$(&quot;#threadRows&quot;).attr(&quot;action&quot;, &quot;article_batchPassed.action?trueListStr=&quot;+trueList+&quot;&amp;falseListStr=&quot;+falseList+&quot;&amp;gid={$$gid$$}&quot;);&#13;
+&#13;
+	//alert(trueList);&#13;
+	//alert(falseList);&#13;
+return true;&#13;
+}&#13;
+ &lt;/script&gt;</string> 
+    </void> 
+    <void property="hrefLineFormat"> 
+     <string>&lt;li&gt;&lt;span class=&quot;one&quot;&gt;&lt;a target=&quot;_blank&quot;  href=&quot;{$$href$$}&quot;&gt;{$$title$$}&lt;/a&gt;&lt;/span&gt;&lt;span class=&quot;two&quot;&gt; {$$addTime@MM/dd$$}({$$views$$}){$$member$$}&lt;/span&gt;&lt;span class=&quot;three&quot;&gt;{$$editCode$$}&lt;/span&gt;&lt;/li&gt;</string> 
+    </void> 
+    <void property="htmlCode"> 
+     <string>{$$top$$}&#13;
+&#13;
+&lt;!-- 主体开始--&gt;&#13;
+ &lt;div class=&quot;container&quot;&gt;&#13;
+  &lt;div class=&quot;up&quot;&gt;&#13;
+  &lt;div class=&quot;side&quot;&gt;&#13;
+&lt;script type=&quot;text/javascript&quot;&gt; &#13;
+hotArticle();&#13;
+soulArticle();&#13;
+function hotArticle(){&#13;
+	$(&quot;#hotArticle ul&quot;).html(&quot;正在检测...&quot;);&#13;
+	$.ajax({&#13;
+		url:&apos;{$$contextPath$$}/ajax_threads_list.action?n=10&amp;mod=2&amp;gid={$$gid$$}&amp;nt=false&amp;stateMode=1&amp;l=16&apos;,&#13;
+		type: &apos;post&apos;,&#13;
+		success:function(data){&#13;
+		 $(&quot;#hotArticle ul&quot;).html(data);&#13;
+		}&#13;
+	 });&#13;
+ &#13;
+}&#13;
+function soulArticle(){&#13;
+	$(&quot;#soulArticle ul&quot;).html(&quot;正在检测...&quot;);&#13;
+	$.ajax({&#13;
+		url:&apos;{$$contextPath$$}/ajax_threads_list.action?n=10&amp;mod=2&amp;gid={$$gid$$}&amp;nt=false&amp;stateMode=1&amp;l=16&amp;soul=1&apos;,&#13;
+		type: &apos;post&apos;,&#13;
+		success:function(data){&#13;
+		 $(&quot;#soulArticle ul&quot;).html(data);&#13;
+		}&#13;
+	 });&#13;
+ &#13;
+}&#13;
+&lt;/script&gt;&#13;
+   &lt;div class=&quot;side_1&quot;&gt;&#13;
+    &lt;div class=&quot;side_1hl&quot;&gt;&#13;
+     本类热点&#13;
+    &lt;/div&gt;&#13;
+&#13;
+    &lt;div class=&quot;side_1li&quot; id=&quot;hotArticle&quot;&gt;&lt;ul&gt;&#13;
+&#13;
+&lt;/ul&gt;&lt;/div&gt;&#13;
+   &lt;/div&gt;&#13;
+   &lt;div class=&quot;side_2&quot;&gt;&#13;
+&#13;
+ &lt;div class=&quot;side_1hl&quot;&gt;&#13;
+     推荐阅读    &lt;/div&gt;&#13;
+    &lt;div class=&quot;side_1li&quot; id=&quot;soulArticle&quot;&gt;&lt;ul&gt;&#13;
+&#13;
+&lt;/ul&gt;&lt;/div&gt;&#13;
+&#13;
+   &lt;/div&gt;&#13;
+   &#13;
+    &lt;div class=&quot;side_2&quot;&gt;&#13;
+&#13;
+ &lt;div class=&quot;side_1hl&quot;&gt;&#13;
+     栏目导航    &lt;/div&gt;&#13;
+    &lt;div class=&quot;side_1li&quot;&gt;&lt;ul&gt;&#13;
+{$$navList$$}&#13;
+&lt;/ul&gt;&lt;/div&gt;&#13;
+&#13;
+   &lt;/div&gt;&#13;
+  &lt;/div&gt;&#13;
+  &lt;div class=&quot;content&quot;&gt;&#13;
+   &lt;div class=&quot;con_top&quot;&gt;&#13;
+    &lt;div class=&quot;con_top_hl&quot;&gt;&#13;
+     &lt;div class=&quot;con_top_hl_l&quot;&gt;&lt;/div&gt;&#13;
+     &lt;div class=&quot;con_top_hl_m&quot;&gt;{$$classTitle$$}&lt;/div&gt;&#13;
+     &lt;div class=&quot;con_top_hl_r&quot;&gt;&lt;/div&gt;&#13;
+     &lt;div class=&quot;cle&quot;&gt;&lt;/div&gt;&#13;
+    &lt;/div&gt;&#13;
+    &lt;div class=&quot;con_top_li&quot;&gt;&#13;
+&#13;
+&lt;ul&gt;&#13;
+{$$curClassDataCode$$}&#13;
+&lt;/ul&gt;&#13;
+&#13;
+&lt;div class=&quot;showpage&quot;&gt;{$$pageShowStr$$}&lt;/div&gt;&#13;
+&lt;!--子分类循环 start --&gt;&#13;
+   {$$allSubList$$}&#13;
+    &lt;!--子分类循环 end --&gt;&#13;
+&lt;script type=&quot;text/javascript&quot;&gt; &#13;
+function checkList(){&#13;
+&#13;
+	var trueList=&quot;&quot;,falseList=&quot;&quot;;&#13;
+	var check_obj = $(&quot;input[name=&apos;C_state&apos;]&quot;);&#13;
+	var trueStep=0,falseStep=0;&#13;
+	for ( var i = 0; i &lt; check_obj.length; i++) {&#13;
+		if (check_obj.get(i).checked == true) {&#13;
+			trueStep++;&#13;
+			if (trueStep==1){&#13;
+				trueList += check_obj.get(i).value;&#13;
+			}else{&#13;
+				trueList += &quot;_&quot;+check_obj.get(i).value ;&#13;
+			}&#13;
+		&#13;
+		}else{&#13;
+			falseStep++;&#13;
+			if (falseStep==1){&#13;
+				falseList += check_obj.get(i).value;&#13;
+			}else{&#13;
+				falseList += &quot;_&quot;+check_obj.get(i).value ;&#13;
+			}&#13;
+		}&#13;
+	}&#13;
+	&#13;
+	$(&quot;#threadRows&quot;).attr(&quot;action&quot;, &quot;article_batchPassed.action?trueListStr=&quot;+trueList+&quot;&amp;falseListStr=&quot;+falseList+&quot;&amp;gid={$$gid$$}&quot;);&#13;
+&#13;
+	//alert(trueList);&#13;
+	//alert(falseList);&#13;
+return true;&#13;
+}&#13;
+&lt;/script&gt;&#13;
+    &lt;/div&gt;&#13;
+    &lt;div class=&quot;con_top_ft&quot;&gt;&#13;
+     &lt;div class=&quot;con_top_ft_l&quot;&gt;&lt;/div&gt;&#13;
+     &lt;div class=&quot;con_top_ft_m&quot;&gt;&lt;/div&gt;&#13;
+     &lt;div class=&quot;con_top_ft_r&quot;&gt;&lt;/div&gt;&#13;
+     &lt;div class=&quot;cle&quot;&gt;&lt;/div&gt;&#13;
+    &lt;/div&gt;&#13;
+   &lt;/div&gt;&#13;
+&#13;
+  &lt;/div&gt;&#13;
+  &lt;div class=&quot;cle&quot;&gt;&lt;/div&gt;&#13;
+  &lt;/div&gt;&#13;
+  &#13;
+ &lt;/div&gt;&#13;
+&lt;!-- 主体结束--&gt;&#13;
+&#13;
+{$$footer$$}&#13;
+</string> 
+    </void> 
+    <void property="id"> 
+     <int>51</int> 
+    </void> 
+    <void property="minorLoopCodeInLump"> 
+     <string>&lt;!-- 循环--&gt;&#13;
+     &lt;div class=&quot;small_hl&quot;&gt;{$$classTitleWithHref$$}&lt;/div&gt;&#13;
+     &lt;div class=&quot;small_li&quot;&gt;&#13;
+      &lt;ul&gt;&#13;
+      {$$subGroupThreadList$$}&#13;
+      &lt;/ul&gt;&#13;
+     &lt;/div&gt;&#13;
+ &lt;!--循环 --&gt;</string> 
+    </void> 
+    <void property="specialCode1"> 
+     <string>.up{}/*主体上部盒子*/&#13;
+.side{ width:252px; float:left;}&#13;
+.side_1,.side_2,.side_3{ margin-bottom:5px;}&#13;
+.side_1hl{ width:252px; height:26px; background:url({$$contextPath$$}/templates/site/default/images/bg.jpg) no-repeat -166px -42px; padding:7px 0 0 0;font-size:14px; font-weight:bold; text-align:center;}&#13;
+.side_1hllink{ display:inline-block; background:url({$$contextPath$$}/templates/site/default/images/bg.jpg) no-repeat -166px -76px; width:83px; height:17px;}&#13;
+.side_1hllink:hover{background:url({$$contextPath$$}/templates/site/default/images/bg.jpg) no-repeat -250px -76px;}&#13;
+.side_1li{ padding:10px 10px 10px 20px;}&#13;
+.side_2 {text-align:left;}&#13;
+.con_top{}&#13;
+.con_top_hl{}&#13;
+.con_top_hl_l{ float:left; width:7px; height:37px; background:url({$$contextPath$$}/templates/site/default/images/bg.jpg) no-repeat -334px -77px; font-size:0px;}&#13;
+.con_top_hl_m{float:left; height:26px; width:654px; border-top:1px solid #e8e8e8; background:url({$$contextPath$$}/templates/site/default/images/bg.jpg) no-repeat -405px -435px; font-size:14px; font-weight:bold; padding:10px 0 0 30px;}&#13;
+&#13;
+.con_top_hl_r{ float:right; width:7px;height:37px; background:url({$$contextPath$$}/templates/site/default/images/bg.jpg) no-repeat -341px -77px; font-size:0px;}&#13;
+.con_top_li{ border:1px solid #e8e8e8; border-bottom:none; padding:10px 20px;}&#13;
+.con_top_li li{ display:inline-block;}&#13;
+.con_top_li li span{ display:inline-block;}&#13;
+.con_top_li li .span1{ width:500px; float:left; overflow:hidden; text-align:left; }&#13;
+.con_top_li li .span2{ width:140px; float:right; text-align:right; }&#13;
+.showpage{ text-align:center;}&#13;
+&#13;
+.con_top_ft{ font-size:0px;}&#13;
+.con_top_ft_l{float:left; width:7px;height:7px; background:url({$$contextPath$$}/templates/site/default/images/bg.jpg) no-repeat -334px -114px; font-size:0px;}&#13;
+.con_top_ft_m{float:left; height:7px; width:684px; border-bottom:1px solid #e8e8e8; font-size:0px;}&#13;
+.con_top_ft_r{ float:right; width:7px;height:7px; background:url({$$contextPath$$}/templates/site/default/images/bg.jpg) no-repeat -341px -114px; font-size:0px;}&#13;
+.small_hl{background: url({$$contextPath$$}/templates/site/default/images/small_hlbg.jpg) no-repeat; width:637px; height:15px; margin:5px 0 0 8px; padding:12px 0 0 20px; font-weight:bold;}&#13;
+.small_hl a:link{text-decoration : none ;color : #666 ;} &#13;
+.small_hl a:visited{text-decoration : none ;color : #666 ;} &#13;
+.small_hl a:hover{text-decoration : none ;color : #fc0 ;} &#13;
+.small_hl a:active{text-decoration : none ;color : #666 ;}&#13;
+.small_li{ padding:10px;}&#13;
+.small_li li{ padding-left:2em; line-height:1.8em; background:url({$$contextPath$$}/templates/site/default/images/libg.gif) no-repeat 10px 0; border-bottom:1px dotted #eee;}&#13;
+&#13;
+.one{ width:380px; float:left; overflow:hidden;}&#13;
+.two{ width:100px; float:left;}&#13;
+.three{ width:150px; float:right;}&#13;
+.class_submit{ text-align:center; }&#13;
+&#13;
+/*主体o*/</string> 
+    </void> 
+   </object> 
+  </void> 
+  <void property="columnBlockFormat"> 
+   <string>&lt;span&gt;{$$data$$}&lt;/span&gt;</string> 
+  </void> 
+  <void property="commentStyle"> 
+   <object class="com.lerx.style.site.vo.SiteStyleSubElementInCommon"> 
+    <void property="editAreaCode"> 
+     <string>&lt;a href=&quot;javascript:delComment({$$cid$$},{$$page$$})&quot; onclick=&quot;{if(confirm(&apos;确定删除该评论吗?该删除将不可撤消！&apos;)){return true;}return false;}&quot;&gt;删除&lt;/a&gt; &lt;a href=&quot;javascript:changeCommentState({$$cid$$},{$$page$$})&quot;&gt;状态&lt;/a&gt;</string> 
+    </void> 
+    <void property="formTemplate"> 
+     <string>&lt;form method=&quot;post&quot; name=&quot;comment&quot; id=&quot;comment&quot; action=&quot;{$$contextPath$$}/comment_add.action?tid={$$tid$$}&quot;&gt;&#13;
+&lt;center&gt;&#13;
+&lt;table border=&quot;1&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot; width=&quot;80%&quot;&#13;
+	bordercolordark=&quot;#FFFFFF&quot;&gt;&#13;
+	&lt;tr&gt;&#13;
+		&lt;td width=&quot;100%&quot;&gt;&#13;
+&#13;
+		&lt;div align=&quot;center&quot;&gt;&#13;
+		&lt;table border=&quot;0&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot; width=&quot;100%&quot;&#13;
+			bordercolordark=&quot;#FFFFFF&quot;&gt;&#13;
+			&lt;tr&gt;&#13;
+				&lt;td width=&quot;100%&quot; colspan=&quot;2&quot; style=&quot;font-size: 14px;&quot;&gt;发表评论 &lt;a href=&quot;javascript:changeArticleCommentState({$$tid$$},{$$page$$})&quot; onclick=&quot;{if(confirm(&apos;确定关闭本文章的评论功能吗?该操作将不可撤消！&apos;)){return true;}return false;}&quot;&gt;{$$closeCommentStr$$}&lt;/a&gt;&lt;/td&gt;&#13;
+&#13;
+&#13;
+			&lt;/tr&gt;&#13;
+			&lt;/center&gt;&#13;
+			&lt;tr&gt;&#13;
+				&lt;td width=&quot;30%&quot;&gt;&#13;
+				&lt;p align=&quot;right&quot;&gt;姓名：&#13;
+				&lt;/td&gt;&#13;
+				&lt;center&gt;&#13;
+&#13;
+				&lt;td width=&quot;70%&quot; align=&quot;left&quot;&gt;&lt;input type=&quot;text&quot;&#13;
+					name=&quot;comment.publisher&quot; id=&quot;commentPublisher&quot; size=&quot;60&quot; value=&quot;&quot;&gt;&#13;
+				&lt;/td&gt;&#13;
+			&lt;/tr&gt;&#13;
+			&lt;/center&gt;&#13;
+			&lt;tr&gt;&#13;
+				&lt;td width=&quot;30%&quot;&gt;&#13;
+				&lt;p align=&quot;right&quot;&gt;Email：&#13;
+				&lt;/td&gt;&#13;
+				&lt;center&gt;&#13;
+				&lt;td align=&quot;left&quot; width=&quot;70%&quot;&gt;&lt;input type=&quot;text&quot; name=&quot;comment.email&quot;&#13;
+					id=&quot;commentEmail&quot; size=&quot;60&quot; value=&quot;&quot;&gt;&lt;/td&gt;&#13;
+			&lt;/tr&gt;&#13;
+			&lt;/center&gt;&#13;
+			&lt;tr&gt;&#13;
+				&lt;td width=&quot;30%&quot;&gt;&#13;
+				&lt;p align=&quot;right&quot;&gt;来自：&#13;
+				&lt;/td&gt;&#13;
+				&lt;center&gt;&#13;
+				&lt;td width=&quot;70%&quot; align=&quot;left&quot;&gt;&lt;input type=&quot;text&quot;&#13;
+					name=&quot;comment.publisherFrom&quot; id=&quot;commentPublisherFrom&quot; size=&quot;60&quot;&gt;&lt;/td&gt;&#13;
+			&lt;/tr&gt;&#13;
+			&lt;/center&gt;&#13;
+&#13;
+			&lt;tr&gt;&#13;
+				&lt;td width=&quot;30%&quot;&gt;&#13;
+				&lt;p align=&quot;right&quot;&gt;评论内容：&#13;
+				&lt;/td&gt;&#13;
+				&lt;center&gt;&#13;
+				&lt;td width=&quot;70%&quot; align=&quot;left&quot;&gt;&lt;textarea rows=&quot;8&quot;&#13;
+					name=&quot;comment.body&quot; id=&quot;commentBody&quot; cols=&quot;46&quot;&gt;&lt;/textarea&gt;&lt;/td&gt;&#13;
+			&lt;/tr&gt;&#13;
+			&lt;tr&gt;&#13;
+				&lt;td width=&quot;30%&quot;&gt;&#13;
+				&lt;p align=&quot;right&quot;&gt;验证码：&#13;
+				&lt;/td&gt;&#13;
+				&lt;center&gt;&#13;
+				&lt;td width=&quot;70%&quot; align=&quot;left&quot;&gt;&lt;input&#13;
+					onfocus=&quot;showCommentChooseDiv()&quot; autocomplete=&quot;off&quot;&#13;
+					name=&quot;verifyCode&quot; size=&quot;10&quot;&gt; &lt;img width=&quot;60&quot; height=&quot;18&quot;&#13;
+					name=&quot;imgCommentValid&quot; id=&quot;imgCommentValid&quot;&#13;
+					style=&quot;visibility: hidden; cursor: pointer;&quot;&#13;
+					onclick=&quot;javascript:changeCommentChooseDiv();&quot; /&gt;&lt;/td&gt;&#13;
+			&lt;/tr&gt;&#13;
+&#13;
+&#13;
+		&lt;/table&gt;&#13;
+		&lt;/div&gt;&#13;
+		&lt;p&gt;&lt;input type=&quot;submit&quot; &#13;
+			value=&quot;发表&quot; name=&quot;B1&quot;&gt;&lt;input type=&quot;reset&quot; value=&quot;重写&quot; name=&quot;B2&quot;&gt;&lt;/p&gt;&#13;
+&#13;
+		&lt;/td&gt;&#13;
+	&lt;/tr&gt;&#13;
+&lt;/table&gt;&#13;
+&lt;/center&gt;&#13;
+&lt;/form&gt;&#13;
+&#13;
+&lt;script type=&quot;text/javascript&quot;&gt; &#13;
+&#13;
+var msg=&apos;{$$msg$$}&apos;;&#13;
+if ($.trim(msg)!=&apos;&apos;){&#13;
+	alert(msg);&#13;
+}&#13;
+	function showCommentChooseDiv() {&#13;
+		var objimg = document.getElementById(&quot;imgCommentValid&quot;);&#13;
+		if (objimg.style.visibility != &quot;visible&quot;) {&#13;
+			var timeNow = new Date().getTime();&#13;
+			objimg.src = &quot;randomNum.action?time=&quot; + timeNow + &quot;&amp;from=comment&quot;;&#13;
+			objimg.style.visibility = &quot;visible&quot;;&#13;
+		}&#13;
+	}&#13;
+	function changeCommentChooseDiv() {&#13;
+		var obj = document.getElementById(&quot;imgCommentValid&quot;);&#13;
+		var timeNow = new Date().getTime();&#13;
+		obj.src = &quot;randomNum.action?time=&quot; + timeNow + &quot;&amp;from=comment&quot;;&#13;
+		document.comment.verifyCode.focus();&#13;
+	}&#13;
+&#13;
+&#13;
+&#13;
+&#13;
+function commentPost(){&#13;
+	var formData=$(&quot;#comment&quot;).serializeArray(); &#13;
+	$.ajax({&#13;
+		url:&apos;{$$contextPath$$}/ajax_comment_add.action?tid={$$tid$$}&apos;,&#13;
+		type: &apos;post&apos;,&#13;
+		data:formData,&#13;
+		success:function(data){&#13;
+		 $(&quot;#commentbox&quot;).html(data);&#13;
+		}&#13;
+	 });&#13;
+}&#13;
+&#13;
+function delComment(cid,page){&#13;
+	$.ajax({&#13;
+		url:&apos;{$$contextPath$$}/ajax_comment_del.action?tid={$$tid$$}&amp;cid=&apos;+cid+&apos;&amp;page=&apos;+page,&#13;
+		type: &apos;post&apos;,&#13;
+		success:function(data){&#13;
+		 $(&quot;#commentbox&quot;).html(data);&#13;
+		}&#13;
+	 });&#13;
+}&#13;
+&#13;
+function changeCommentState(cid,page){&#13;
+	$.ajax({&#13;
+		url:&apos;{$$contextPath$$}/ajax_comment_changeState.action?tid={$$tid$$}&amp;cid=&apos;+cid+&apos;&amp;page=&apos;+page,&#13;
+		type: &apos;post&apos;,&#13;
+		success:function(data){&#13;
+		 $(&quot;#commentbox&quot;).html(data);&#13;
+		}&#13;
+	 });&#13;
+}&#13;
+function changeArticleCommentState(tid,page){&#13;
+	$.ajax({&#13;
+		url:&apos;{$$contextPath$$}/ajax_comment_changeArticleState.action?tid={$$tid$$}&amp;page=&apos;+page,&#13;
+		type: &apos;post&apos;,&#13;
+		success:function(data){&#13;
+		 $(&quot;#commentbox&quot;).html(data);&#13;
+		}&#13;
+	 });&#13;
+}&#13;
+&lt;/script&gt;</string> 
+    </void> 
+    <void property="hrefLineFormat"> 
+     <string>&lt;div class=&quot;plip&quot;&gt;&lt;p&gt;来自:{$$from$$}(IP:{$$ip$$})的{$$name$$}在{$$addTime$$}留下评论：{$$state$$}  {$$commentEditCode$$}&lt;/p&gt;&lt;/div&gt;&#13;
+&lt;div class=&quot;pllist&quot;&gt;{$$body$$}&lt;/div&gt;&#13;
+&lt;div class=&quot;commentsplit&quot;&gt;&lt;/div&gt;</string> 
+    </void> 
+    <void property="htmlCode"> 
+     <string>{$$top$$}&#13;
+&lt;div id=&quot;commentbox&quot;&gt;&#13;
+{$$commentData$$}&#13;
+{$$pageShowStr$$}&#13;
+&lt;/div&gt;&#13;
+&#13;
+{$$commentFormCode$$}&#13;
+{$$footer$$}</string> 
+    </void> 
+    <void property="htmlTemplate"> 
+     <string></string> 
+    </void> 
+    <void property="id"> 
+     <int>60</int> 
+    </void> 
+    <void property="searchAreaCode"> 
+     <string>&lt;a href=&quot;javascript:delComment({$$cid$$},{$$page$$})&quot; onclick=&quot;{if(confirm(&apos;确定删除该评论吗?该删除将不可撤消！&apos;)){return true;}return false;}&quot;&gt;删除&lt;/a&gt; &lt;a href=&quot;javascript:changeCommentState({$$cid$$},{$$page$$})&quot;&gt;状态&lt;/a&gt;</string> 
+    </void> 
+   </object> 
+  </void> 
+  <void property="customFormatCode1"> 
+   <string>&lt;li&gt;&lt;a target=&quot;_blank&quot; {$$alt$$} href=&quot;{$$href$$}&quot;&gt;{$$title$$}&lt;/a&gt;hehe&lt;/li&gt;</string> 
+  </void> 
+  <void property="customFormatCode2"> 
+   <string>&lt;div class=&quot;siteli&quot;&gt;&#13;
+      &lt;div class=&quot;siteimg&quot;&gt;&lt;a target=&quot;_blank&quot;  href=&quot;{$$href$$}&quot;&gt;&lt;img src=&quot;{$$thumbnail$$}&quot; {$$title$$} /&gt;&lt;/a&gt;&lt;/div&gt;&#13;
+      &lt;div class=&quot;sitetest&quot;&gt;&lt;a target=&quot;_blank&quot;  {$$alt$$} href=&quot;{$$href$$}&quot;&gt;{$$title$$}&lt;/a&gt;&lt;/div&gt;&#13;
+     &lt;/div&gt;</string> 
+  </void> 
+  <void property="customFormatCode3"> 
+   <string></string> 
+  </void> 
+  <void property="def"> 
+   <boolean>true</boolean> 
+  </void> 
+  <void property="description"> 
+   <string></string> 
+  </void> 
+  <void property="eyeCatchingCode"> 
+   <string>&lt;font color=&quot;#FF0000&quot;&gt;{$$title$$}&lt;/font&gt;</string> 
+  </void> 
+  <void property="genericStyle"> 
+   <object class="com.lerx.style.site.vo.SiteStyleSubElementInCommon"> 
+    <void property="editAreaCode"> 
+     <string></string> 
+    </void> 
+    <void property="hrefLineFormat"> 
+     <string>&lt;li&gt;&lt;span class=&quot;sn&quot;&gt;{$$sn$$}&lt;/span&gt;&lt;span class=&quot;one&quot;&gt;&lt;a href=&quot;{$$href$$}&quot;&gt;{$$title$$}&lt;/a&gt;&lt;/span&gt;&lt;span class=&quot;two&quot;&gt;{$$member$$} {$$addTime$$}&lt;/span&gt;&lt;span class=&quot;three&quot;&gt;{$$passStateStr$$} {$$editCode$$}&lt;/span&gt;&lt;/li&gt;</string> 
+    </void> 
+    <void property="htmlCode"> 
+     <string>{$$top$$}&#13;
+&lt;div&gt;&#13;
+&lt;div class=&quot;{$$mainDiv$$}&quot;&gt;&#13;
+{$$genericDataBody$$}&#13;
+&lt;/div&gt;&#13;
+&lt;div class=&quot;showpage&quot;&gt;&#13;
+{$$pageShowStr$$}&#13;
+&lt;/div&gt;&#13;
+&lt;/div&gt;&#13;
+&#13;
+{$$footer$$}</string> 
+    </void> 
+    <void property="htmlTemplate"> 
+     <string></string> 
+    </void> 
+    <void property="id"> 
+     <int>58</int> 
+    </void> 
+    <void property="specialCode1"> 
+     <string>/*文集CSS*/&#13;
+.myArticlesMain{width:960px; margin:10px auto;}&#13;
+.myArticlesMain li{ line-height:2em; font-size:14px; border-bottom: 1px #F60 dotted; background:none;}&#13;
+.listMain{margin:10px auto;}&#13;
+.listMain li{ line-height:2em; font-size:14px; border-bottom: 1px #F60 dotted; background:none;}&#13;
+.myArticlesMain span{display:block;}&#13;
+.sn{ width:20px; float:left; overflow:hidden;}&#13;
+.one{ width:560px; float:left;}&#13;
+.two{ width:240px; float:left;}&#13;
+.three{ width:120px; float:right; text-align:right;}&#13;
+.showpage{ text-align:center;}&#13;
+</string> 
+    </void> 
+   </object> 
+  </void> 
+  <void property="hrefLineFormatStrOverAll"> 
+   <string>&lt;li&gt;&lt;a target=&quot;_blank&quot; {$$alt$$} href=&quot;{$$href$$}&quot;&gt;{$$title$$}&lt;/a&gt;&lt;/li&gt;</string> 
+  </void> 
+  <void property="hrefLineFormatWithSnStrOverAll"> 
+   <string>&lt;li&gt;&lt;span class=&quot;sn&quot;&gt;{$$sn$$}&lt;/span&gt;&lt;span class=&quot;data&quot;&gt;&lt;a target=&quot;_blank&quot; {$$alt$$} href=&quot;{$$href$$}&quot;&gt;{$$title$$}&lt;/a&gt;&lt;/span&gt;&lt;span class=&quot;other&quot;&gt;{$$other$$}&lt;/span&gt;&lt;/li&gt;</string> 
+  </void> 
+  <void property="id"> 
+   <int>3</int> 
+  </void> 
+  <void property="indexStyle"> 
+   <object class="com.lerx.style.site.vo.SiteStyleSubElementInCommon"> 
+    <void property="cssCode"> 
+     <string></string> 
+    </void> 
+    <void property="dateFormatOnLine"> 
+     <string>MM/dd</string> 
+    </void> 
+    <void property="editAreaCode"> 
+     <string></string> 
+    </void> 
+    <void property="hrefLineFormat"> 
+     <string>&lt;li&gt;&lt;a target=&quot;_blank&quot; {$$alt$$} href=&quot;{$$href$$}&quot;&gt;{$$title$$}&lt;/a&gt; {$$addTime$$}&lt;/li&gt;</string> 
+    </void> 
+    <void property="htmlCode"> 
+     <string>{$$top$$}&#13;
+&lt;!-- 主体开始--&gt;&#13;
+ &lt;div class=&quot;container&quot;&gt;&#13;
+  &lt;div class=&quot;up&quot;&gt;&#13;
+  &lt;div class=&quot;side&quot;&gt;&#13;
+   &lt;div class=&quot;side_1&quot;&gt;&#13;
+    &lt;div class=&quot;side_1hl&quot;&gt;&#13;
+     &lt;a class=&quot;side_1hllink&quot; href=&quot;/newlist.jsp?for=1&amp;type=0&quot;&gt;&lt;img src=&quot;{$$contextPath$$}/templates/site/default/images/none.gif&quot; width=&quot;83&quot; height=&quot;17&quot; /&gt;&lt;/a&gt;&#13;
+    &lt;/div&gt;&#13;
+    &lt;div class=&quot;side_1li&quot;&gt;&lt;ul&gt;&#13;
+&lt;!-- 更新公告开始--&gt;&#13;
+{$$staticAfficheCode$$}&#13;
+&lt;!-- 更新公告结束--&gt;&#13;
+&lt;/ul&gt;&lt;/div&gt;&#13;
+   &lt;/div&gt;&#13;
+   &lt;div class=&quot;side_2&quot;&gt;&#13;
+    &lt;div class=&quot;side_2hl&quot;&gt;&#13;
+     &lt;a class=&quot;side_2hllink&quot; href=&quot;/class.jsp?id=3&quot;&gt;&lt;img src=&quot;{$$contextPath$$}/templates/site/default/images/none.gif&quot; width=&quot;83&quot; height=&quot;17&quot; /&gt;&lt;/a&gt;&#13;
+    &lt;/div&gt;&#13;
+    &lt;div class=&quot;side_1li&quot;&gt;&lt;ul&gt;&#13;
+&lt;!-- 技术交流开始--&gt;&#13;
+{$$navIndexTopList,3$$}&#13;
+&lt;!-- 技术交流结束--&gt;&#13;
+&lt;/ul&gt;&lt;/div&gt;&#13;
+   &lt;/div&gt;&#13;
+   &lt;div class=&quot;side_3&quot;&gt;&#13;
+    &lt;div class=&quot;side_3hl&quot;&gt;&#13;
+     &lt;a class=&quot;side_3hllink&quot; href=&quot;/class.jsp?id=2&quot;&gt;&lt;img src=&quot;{$$contextPath$$}/templates/site/default/images/none.gif&quot; width=&quot;83&quot; height=&quot;17&quot; /&gt;&lt;/a&gt;&#13;
+    &lt;/div&gt;&#13;
+    &lt;div class=&quot;side_1li&quot;&gt;&lt;ul&gt;&#13;
+&lt;!-- Lerx家族开始--&gt;&#13;
+&lt;script language=‘javascript’ src=‘/templates/default/js/lerx_family.js’&gt;&lt;/script&gt;&#13;
+&lt;!-- Lerx家族结束--&gt;&#13;
+&lt;/ul&gt;&lt;/div&gt;&#13;
+   &lt;/div&gt;&#13;
+  &lt;/div&gt;&#13;
+  &lt;div class=&quot;content&quot;&gt;&#13;
+   &lt;div class=&quot;con_top&quot;&gt;&#13;
+    &lt;div class=&quot;con_top_hl&quot;&gt;&#13;
+     &lt;div class=&quot;con_top_hl_l&quot;&gt;&lt;/div&gt;&#13;
+     &lt;div class=&quot;con_top_hl_m&quot;&gt;&lt;div class=&quot;con_top_hl_m_hm&quot;&gt;&lt;a class=&quot;con_top_more&quot; href=&quot;/download/doc/readme.htm&quot; target=&quot;_blank&quot;&gt;&lt;/a&gt;&lt;/div&gt;&lt;/div&gt;&#13;
+     &lt;div class=&quot;con_top_hl_r&quot;&gt;&lt;/div&gt;&#13;
+     &lt;div class=&quot;cle&quot;&gt;&lt;/div&gt;&#13;
+    &lt;/div&gt;&#13;
+    &lt;div class=&quot;con_top_li&quot;&gt;&lt;div class=&quot;jianjie&quot;&gt;&lt;a class=&quot;download&quot; href=&quot;/download/LerxCode/lerx_GBK_v1.0_20110420.rar&quot;&gt;&lt;/a&gt;&lt;/div&gt;&lt;/div&gt;&#13;
+    &lt;div class=&quot;con_top_ft&quot;&gt;&#13;
+     &lt;div class=&quot;con_top_ft_l&quot;&gt;&lt;/div&gt;&#13;
+     &lt;div class=&quot;con_top_ft_m&quot;&gt;&lt;/div&gt;&#13;
+     &lt;div class=&quot;con_top_ft_r&quot;&gt;&lt;/div&gt;&#13;
+     &lt;div class=&quot;cle&quot;&gt;&lt;/div&gt;&#13;
+    &lt;/div&gt;&#13;
+   &lt;/div&gt;&#13;
+   &lt;div class=&quot;con_mid&quot;&gt;&#13;
+    &lt;div class=&quot;con_l&quot;&gt;&#13;
+     &lt;div class=&quot;con_l_hl&quot;&gt;&#13;
+     &lt;div class=&quot;con_top_hl_l&quot;&gt;&lt;/div&gt;&#13;
+     &lt;div class=&quot;con_l_hl_m&quot;&gt;&lt;div class=&quot;con_l_hl_m_hm&quot;&gt;&lt;a class=&quot;con_l_more&quot; href=&quot;/class.jsp?id=1&quot;&gt;&lt;/a&gt;&lt;/div&gt;&lt;/div&gt;&#13;
+     &lt;div class=&quot;con_top_hl_r&quot;&gt;&lt;/div&gt;&#13;
+     &lt;div class=&quot;cle&quot;&gt;&lt;/div&gt;&#13;
+    &lt;/div&gt;&#13;
+    &lt;div class=&quot;con_l_li&quot;&gt;&lt;ul&gt;&#13;
+&lt;!-- Lerx新闻开始--&gt;&#13;
+{$$navIndexTopList,1$$}&#13;
+&lt;!-- Lerx新闻结束--&gt;&#13;
+&lt;/ul&gt;&lt;/div&gt;&#13;
+    &lt;div class=&quot;con_top_ft&quot;&gt;&#13;
+     &lt;div class=&quot;con_top_ft_l&quot;&gt;&lt;/div&gt;&#13;
+     &lt;div class=&quot;con_l_ft_m&quot;&gt;&lt;/div&gt;&#13;
+     &lt;div class=&quot;con_top_ft_r&quot;&gt;&lt;/div&gt;&#13;
+     &lt;div class=&quot;cle&quot;&gt;&lt;/div&gt;&#13;
+    &lt;/div&gt;&#13;
+    &lt;/div&gt;&#13;
+    &lt;div class=&quot;con_r&quot;&gt;&#13;
+     &lt;div class=&quot;con_r_hl&quot;&gt;&#13;
+     &lt;div class=&quot;con_top_hl_l&quot;&gt;&lt;/div&gt;&#13;
+     &lt;div class=&quot;con_r_hl_m&quot;&gt;&lt;div class=&quot;con_r_hl_m_hm&quot;&gt;&lt;a class=&quot;con_r_more&quot; href=&quot;/class.jsp?id=4&quot;&gt;&lt;/a&gt;&lt;/div&gt;&lt;/div&gt;&#13;
+     &lt;div class=&quot;con_top_hl_r&quot;&gt;&lt;/div&gt;&#13;
+     &lt;div class=&quot;cle&quot;&gt;&lt;/div&gt;&#13;
+    &lt;/div&gt;&#13;
+    &lt;div class=&quot;con_r_li&quot;&gt;&lt;ul&gt;&#13;
+&lt;!-- 平台搭建开始--&gt;&#13;
+{$$navIndexTopList,4$$}&#13;
+&lt;!-- 平台搭建结束--&gt;&#13;
+&lt;/ul&gt;&lt;/div&gt;&#13;
+&#13;
+&#13;
+    &lt;div class=&quot;con_top_ft&quot;&gt;&#13;
+     &lt;div class=&quot;con_top_ft_l&quot;&gt;&lt;/div&gt;&#13;
+     &lt;div class=&quot;con_r_ft_m&quot;&gt;&lt;/div&gt;&#13;
+     &lt;div class=&quot;con_top_ft_r&quot;&gt;&lt;/div&gt;&#13;
+     &lt;div class=&quot;cle&quot;&gt;&lt;/div&gt;&#13;
+    &lt;/div&gt;&#13;
+    &lt;/div&gt;&#13;
+    &lt;div class=&quot;cle&quot;&gt;&lt;/div&gt;&#13;
+   &lt;/div&gt;&#13;
+   &lt;div class=&quot;con_down&quot;&gt;&#13;
+    &lt;div class=&quot;con_down_l&quot;&gt;&lt;/div&gt;&#13;
+    &lt;div class=&quot;con_down_m&quot;&gt;&#13;
+     {$$customFormatIndex,1,2$$}&#13;
+     &lt;div class=&quot;cle&quot;&gt;&lt;/div&gt;&#13;
+    &lt;/div&gt;&#13;
+    &lt;div class=&quot;con_down_r&quot;&gt;&lt;a class=&quot;site_more&quot; href=&quot;/class.jsp?id=7&quot;&gt;&lt;/a&gt;&lt;/div&gt;&#13;
+    &lt;div class=&quot;cle&quot;&gt;&lt;/div&gt;&#13;
+   &lt;/div&gt;&#13;
+  &lt;/div&gt;&#13;
+  &lt;div class=&quot;cle&quot;&gt;&lt;/div&gt;&#13;
+  &lt;/div&gt;&#13;
+  &lt;div class=&quot;down&quot;&gt;&#13;
+   &lt;div class=&quot;down_s1&quot;&gt;&lt;/div&gt;&#13;
+   &lt;div class=&quot;down_1&quot;&gt;&#13;
+    &lt;div class=&quot;down_1_hl&quot;&gt;&lt;a class=&quot;down_hl_1&quot; href=&quot;#&quot;&gt;&lt;img src=&quot;{$$contextPath$$}/templates/site/default/images/none.gif&quot; /&gt;&lt;/a&gt;&lt;/div&gt;&#13;
+    &lt;div class=&quot;down_li&quot; id=&quot;commentAll&quot;&gt;&lt;ul&gt;&#13;
+&lt;!-- 评论跟踪开始--&gt;&#13;
+&#13;
+&lt;!-- 评论跟踪结束--&gt;&#13;
+&lt;/ul&gt;&lt;/div&gt;&#13;
+&lt;script type=&quot;text/javascript&quot;&gt;&#13;
+commentList();&#13;
+function commentList(page,pageSize){&#13;
+	$(&quot;#commentAll ul&quot;).html(&quot;正在提取...&quot;);&#13;
+	$.ajax({&#13;
+		url:&apos;{$$contextPath$$}/ajax_comment_listAll.action?gid=0&amp;page=1&amp;n=10&amp;l=13&apos;,&#13;
+		type: &apos;post&apos;,&#13;
+		success:function(data){&#13;
+		 $(&quot;#commentAll ul&quot;).html(data);&#13;
+		}&#13;
+	 });&#13;
+ &#13;
+}&#13;
+&lt;/script&gt;&#13;
+   &lt;/div&gt;&#13;
+   &lt;div class=&quot;down_s2&quot;&gt;&lt;/div&gt;&#13;
+   &lt;div class=&quot;down_2&quot;&gt;&#13;
+    &lt;div class=&quot;down_2_hl&quot;&gt;&lt;a class=&quot;down_hl_2&quot; href=&quot;/class.jsp?id=6&quot;&gt;&lt;img src=&quot;{$$contextPath$$}/templates/site/default/images/none.gif&quot; /&gt;&lt;/a&gt;&lt;/div&gt;&#13;
+    &lt;div class=&quot;down_li&quot;&gt;&lt;ul&gt;&#13;
+&lt;!-- 答疑解惑开始--&gt;&#13;
+{$$navIndexTopList,6$$}&#13;
+&lt;!-- 答疑解惑结束--&gt;&#13;
+&lt;/ul&gt;&lt;/div&gt;&#13;
+   &lt;/div&gt;&#13;
+   &lt;div class=&quot;down_s3&quot;&gt;&lt;/div&gt;&#13;
+   &lt;div class=&quot;down_3&quot;&gt;&#13;
+    &lt;div class=&quot;down_3_hl&quot;&gt;&lt;a class=&quot;down_hl_3&quot; href=&quot;/class.jsp?id=10&quot;&gt;&lt;img src=&quot;{$$contextPath$$}/templates/site/default/images/none.gif&quot; /&gt;&lt;/a&gt;&lt;/div&gt;&#13;
+    &lt;div class=&quot;down_li&quot;&gt;&lt;ul&gt;&#13;
+&lt;!-- 客户案例开始--&gt;&#13;
+{$$navIndexTopList,10$$}&#13;
+&lt;!-- 客户案例结束--&gt;&#13;
+&lt;/ul&gt;&lt;/div&gt;&#13;
+   &lt;/div&gt;&#13;
+   &lt;div class=&quot;down_s4&quot;&gt;&lt;/div&gt;&#13;
+   &lt;div class=&quot;down_4&quot;&gt;&#13;
+    &lt;div class=&quot;down_4_hl&quot;&gt;&lt;a class=&quot;down_hl_4&quot; href=&quot;/class.jsp?id=9&quot;&gt;&lt;img src=&quot;{$$contextPath$$}/templates/site/default/images/none.gif&quot; /&gt;&lt;/a&gt;&lt;/div&gt;&#13;
+    &lt;div class=&quot;down_li&quot;&gt;&lt;ul&gt;&#13;
+&lt;!-- 帮助中心开始--&gt;&#13;
+{$$navIndexTopList,9$$}&#13;
+&lt;!-- 帮助中心结束--&gt;&#13;
+&lt;/ul&gt;&lt;/div&gt;&#13;
+   &lt;/div&gt;&#13;
+   &lt;div class=&quot;down_s5&quot;&gt;&lt;/div&gt;&#13;
+   &lt;div class=&quot;cle&quot;&gt;&lt;/div&gt;&#13;
+  &lt;/div&gt;&#13;
+ &lt;/div&gt;&#13;
+&lt;!-- 主体结束--&gt;&#13;
+{$$footer$$}</string> 
+    </void> 
+    <void property="htmlTemplate"> 
+     <string></string> 
+    </void> 
+    <void property="id"> 
+     <int>50</int> 
+    </void> 
+    <void property="specialCode1"> 
+     <string>.up{}/*主体上部盒子*/&#13;
+.side{ width:252px; float:left;}&#13;
+.side_1,.side_2,.side_3{ margin-bottom:5px;}&#13;
+.side_1hl{ width:229px; height:24px; background:url({$$contextPath$$}/templates/site/default/images/bg.jpg) no-repeat -166px -42px; padding:9px 0 0 23px;}&#13;
+.side_1hllink{ display:inline-block; background:url({$$contextPath$$}/templates/site/default/images/bg.jpg) no-repeat -166px -76px; width:83px; height:17px;}&#13;
+.side_1hllink:hover{background:url({$$contextPath$$}/templates/site/default/images/bg.jpg) no-repeat -250px -76px;}&#13;
+.side_1li{ padding:10px 10px 10px 20px;height:175px;overflow:hidden;}&#13;
+.side_2hl{ width:229px; height:24px; background:url({$$contextPath$$}/templates/site/default/images/bg.jpg) no-repeat -166px -42px; padding:9px 0 0 23px;}&#13;
+.side_2hllink{ display:inline-block; background:url({$$contextPath$$}/templates/site/default/images/bg.jpg) no-repeat -166px -93px; width:83px; height:17px;}&#13;
+.side_2hllink:hover{background:url({$$contextPath$$}/templates/site/default/images/bg.jpg) no-repeat -250px -93px;}&#13;
+.side_2li{ height:172px;overflow:hidden;}&#13;
+.side_3hl{ width:229px; height:24px; background:url({$$contextPath$$}/templates/site/default/images/bg.jpg) no-repeat -166px -42px; padding:9px 0 0 23px;}&#13;
+.side_3hllink{ display:inline-block; background:url({$$contextPath$$}/templates/site/default/images/bg.jpg) no-repeat -166px -110px; width:83px; height:17px;}&#13;
+.side_3hllink:hover{background:url({$$contextPath$$}/templates/site/default/images/bg.jpg) no-repeat -250px -110px;}&#13;
+.side_3li{ height:172px;overflow:hidden;}&#13;
+.con_top{ height:258px;}&#13;
+.con_top_hl{}&#13;
+.con_top_hl_l{ float:left; width:7px; height:37px; background:url({$$contextPath$$}/templates/site/default/images/bg.jpg) no-repeat -334px -77px; font-size:0px;}&#13;
+.con_top_hl_m{float:left; height:36px; width:684px; border-top:1px solid #e8e8e8;}&#13;
+.con_top_hl_m_hm{ height:5px; width:650px; margin:10px 0 0 15px; background:url({$$contextPath$$}/templates/site/default/images/bg.jpg) no-repeat -166px -127px; text-align:right; padding-top:14px;}&#13;
+.con_top_more{ display:inline-block; width:36px; height:5px; font-size:0px; background:url({$$contextPath$$}/templates/site/default/images/bg.jpg) no-repeat -357px -80px;}&#13;
+.con_top_more:hover{background:url({$$contextPath$$}/templates/site/default/images/bg.jpg) no-repeat -357px -93px;}&#13;
+.con_top_hl_r{ float:right; width:7px;height:37px; background:url({$$contextPath$$}/templates/site/default/images/bg.jpg) no-repeat -341px -77px; font-size:0px;}&#13;
+.con_top_li{ height:214px; background:url({$$contextPath$$}/templates/site/default/images/bgxr.jpg) repeat-x 0 -96px; border:1px solid #e8e8e8; border-bottom:none;}&#13;
+.jianjie{ width:375px; height:54px; background:url({$$contextPath$$}/templates/site/default/images/jieshao.jpg) no-repeat; margin:10px 0 0 15px; padding:150px 0 0 280px;}&#13;
+.download{ display:inline-block; width:157px; height:52px; background:url({$$contextPath$$}/templates/site/default/images/bg.jpg) no-repeat -166px -184px;}&#13;
+.download:hover{ background:url({$$contextPath$$}/templates/site/default/images/bg.jpg) no-repeat -166px -236px;}&#13;
+.con_top_ft{ font-size:0px;}&#13;
+.con_top_ft_l{float:left; width:7px;height:7px; background:url({$$contextPath$$}/templates/site/default/images/bg.jpg) no-repeat -334px -114px; font-size:0px;}&#13;
+.con_top_ft_m{float:left; height:7px; width:684px; border-bottom:1px solid #e8e8e8; font-size:0px;}&#13;
+.con_top_ft_r{ float:right; width:7px;height:7px; background:url({$$contextPath$$}/templates/site/default/images/bg.jpg) no-repeat -341px -114px; font-size:0px;}&#13;
+&#13;
+.con_mid{ margin-top:10px;}&#13;
+.con_l{ float:left; width:344px;}&#13;
+.con_l_hl_m{float:left; height:36px; width:330px; border-top:1px solid #e8e8e8;}&#13;
+.con_l_ft_m{float:left; height:7px; width:330px; border-bottom:1px solid #e8e8e8; font-size:0px;}&#13;
+.con_l_hl_m_hm{height:5px; width:295px; margin:10px 0 0 15px; background:url({$$contextPath$$}/templates/site/default/images/bg.jpg) no-repeat -166px -146px; text-align:right; padding-top:14px;}&#13;
+.con_l_more{ display:inline-block; width:36px; height:5px; font-size:0px; background:url({$$contextPath$$}/templates/site/default/images/bg.jpg) no-repeat -357px -80px;}&#13;
+.con_l_more:hover{background:url({$$contextPath$$}/templates/site/default/images/bg.jpg) no-repeat -357px -93px;}&#13;
+.con_l_li,.con_r_li{ height:184px; background:url({$$contextPath$$}/templates/site/default/images/bgxr.jpg) repeat-x 0 -96px; border:1px solid #e8e8e8; border-bottom:none; padding:15px 10px 0 20px;}&#13;
+&#13;
+.con_r{float:right; width:344px;}&#13;
+.con_r_hl_m{float:left; height:36px; width:330px; border-top:1px solid #e8e8e8;}&#13;
+.con_r_ft_m{float:left; height:7px; width:330px; border-bottom:1px solid #e8e8e8; font-size:0px;}&#13;
+.con_r_hl_m_hm{height:5px; width:295px; margin:10px 0 0 15px; background:url({$$contextPath$$}/templates/site/default/images/bg.jpg) no-repeat -166px -165px; text-align:right; padding-top:14px;}&#13;
+.con_r_more{ display:inline-block; width:36px; height:5px; font-size:0px; background:url({$$contextPath$$}/templates/site/default/images/bg.jpg) no-repeat -357px -80px;}&#13;
+.con_r_more:hover{background:url({$$contextPath$$}/templates/site/default/images/bg.jpg) no-repeat -357px -93px;}&#13;
+&#13;
+.con_down{ margin-top:10px;}&#13;
+.con_down_l{ float:left; width:76px; height:176px; background:url({$$contextPath$$}/templates/site/default/images/bg.jpg) no-repeat -166px -288px;}&#13;
+.con_down_m{ float:left;width:585px; height:158px; background:url({$$contextPath$$}/templates/site/default/images/bgxr.jpg) repeat-x 0 -405px; padding-top:18px;}&#13;
+.siteli{ float:left; width:130px; padding:0 8px}&#13;
+.siteimg img{ border:1px solid #666;}&#13;
+.sitetest{text-align:center; padding-top:5px;}&#13;
+.con_down_r{ float:right; width:17px; height:66px; background:url({$$contextPath$$}/templates/site/default/images/bg.jpg) no-repeat -243px -288px; padding:110px 0 0 20px}&#13;
+.site_more{ display:inline-block; height:44px; width:5px; background:url({$$contextPath$$}/templates/site/default/images/bg.jpg) no-repeat -281px -288px;}&#13;
+.site_more:hover{background:url({$$contextPath$$}/templates/site/default/images/bg.jpg) no-repeat -287px -288px;}&#13;
+/*主体下部盒子*/&#13;
+.down{}&#13;
+.down_s1,.down_s2,.down_s3,.down_s4,.down_1,.down_2,.down_3,.down_4{float:left;}&#13;
+.down_s1{ width:9px; height:240px; background:url({$$contextPath$$}/templates/site/default/images/bg.jpg) no-repeat -324px -184px; font-size:0px;}&#13;
+.down_s2,.down_s3,.down_s4{width:20px; height:240px; background:url({$$contextPath$$}/templates/site/default/images/bg.jpg) no-repeat -344px -184px;}&#13;
+.down_s5{ float:right;width:9px; height:240px; background:url({$$contextPath$$}/templates/site/default/images/bg.jpg) no-repeat -334px -184px; font-size:0px;}&#13;
+.down_1{ width:221px;}&#13;
+.down_2{ width:220px;}&#13;
+.down_3{ width:220px;}&#13;
+.down_4{ width:221px;}&#13;
+.down_1_hl,.down_2_hl,.down_3_hl,.down_4_hl{ height:28px; background:url({$$contextPath$$}/templates/site/default/images/bgxr.jpg) repeat-x 0 -581px; text-align:center; padding-top:8px;}&#13;
+.down_2_hl{}&#13;
+.down_3_hl{}&#13;
+.down_4_hl{}&#13;
+.down_hl_1{ display:inline-block; height:17px; width:59px; background:url({$$contextPath$$}/templates/site/default/images/bg.jpg) no-repeat -368px -184px;}&#13;
+.down_hl_2{ display:inline-block; height:17px; width:59px; background:url({$$contextPath$$}/templates/site/default/images/bg.jpg) no-repeat -368px -201px;}&#13;
+.down_hl_3{ display:inline-block; height:17px; width:59px; background:url({$$contextPath$$}/templates/site/default/images/bg.jpg) no-repeat -368px -218px;}&#13;
+.down_hl_4{ display:inline-block; height:17px; width:59px; background:url({$$contextPath$$}/templates/site/default/images/bg.jpg) no-repeat -368px -235px;}&#13;
+.down_hl_1:hover{background:url({$$contextPath$$}/templates/site/default/images/bg.jpg) no-repeat -368px -252px;}&#13;
+.down_hl_2:hover{background:url({$$contextPath$$}/templates/site/default/images/bg.jpg) no-repeat -368px -269px;}&#13;
+.down_hl_3:hover{background:url({$$contextPath$$}/templates/site/default/images/bg.jpg) no-repeat -368px -286px;}&#13;
+.down_hl_4:hover{background:url({$$contextPath$$}/templates/site/default/images/bg.jpg) no-repeat -368px -303px;}&#13;
+.down_li{ padding:10px 5px;height:172px;overflow:hidden;}&#13;
+&#13;
+/*主体o*/</string> 
+    </void> 
+   </object> 
+  </void> 
+  <void property="lastArticleForwardCode"> 
+   <string>上一条：&lt;a href=&quot;{$$href$$}&quot;&gt;{$$title$$}&lt;/a&gt;</string> 
+  </void> 
+  <void property="lineBlockFormat"> 
+   <string>&lt;li&gt;{$$data$$}&lt;/li&gt;</string> 
+  </void> 
+  <void property="loginStyle"> 
+   <object class="com.lerx.style.site.vo.SiteStyleSubElementInCommon"> 
+    <void property="editAreaCode"> 
+     <string></string> 
+    </void> 
+    <void property="htmlCode"> 
+     <string>{$$top$$}&#13;
+&lt;script type=&quot;text/javascript&quot; src=&quot;http://qzonestyle.gtimg.cn/qzone/openapi/qc_loader.js&quot; data-appid=&quot;100568415&quot; data-redirecturi=&quot;http://login.lerx.com/lerx/qq_login.action&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;&#13;
+&#13;
+&lt;div class=&quot;userlogintopimg&quot;&gt;&lt;/div&gt;&#13;
+&#13;
+&lt;div class=&quot;w&quot;&gt;&#13;
+&lt;div class=&quot;regw&quot;&gt;&#13;
+&lt;form name=&quot;login&quot; method=&quot;post&quot; action=&quot;user_login.action&quot;&gt;&#13;
+&lt;div class=&quot;rel_top&quot;&gt;&#13;
+用户登录&lt;/div&gt;&#13;
+&#13;
+&lt;div class=&quot;puby&quot;&gt;&#13;
+&lt;div class=&quot;pubx_1&quot;&gt;用户名:&lt;/div&gt;&#13;
+&lt;div class=&quot;pubx_2&quot;&gt;&lt;input id=&quot;username&quot; type=&quot;text&quot; name=&quot;user.userName&quot; size=&quot;25&quot; maxlength=&quot;25&quot;&gt; &lt;a href=&quot;{$$contextPath$$}/qq_send.action&quot;&gt;&lt;img alt=&quot;用QQ帐号登录&quot; src=&quot;{$$contextPath$$}/templates/site/default/images/qq_logo.png&quot; /&gt;&lt;/a&gt;&#13;
+&lt;/div&gt;&#13;
+&lt;/div&gt;&#13;
+&lt;div class=&quot;puby&quot;&gt;&#13;
+&lt;div class=&quot;pubx_1&quot;&gt;密码:&lt;/div&gt;&#13;
+&lt;div class=&quot;pubx_2&quot;&gt;&lt;input id=&quot;password&quot; type=&quot;password&quot; name=&quot;user.password&quot; size=&quot;25&quot; maxlength=&quot;25&quot;&gt; &lt;a href=&quot;{$$contextPath$$}/pwsRetakeCodeGet.jsp&quot;&gt;忘记密码&lt;/a&gt;&lt;/div&gt;&#13;
+&lt;/div&gt;&#13;
+&lt;script type=&quot;text/javascript&quot;&gt;&#13;
+$(&quot;#password&quot;).width($(&quot;#username&quot;).width());&#13;
+&lt;/script&gt;&#13;
+&#13;
+&lt;div class=&quot;puby&quot;&gt;&#13;
+&lt;div class=&quot;pubx_1&quot;&gt;附加码:&lt;/div&gt;&#13;
+&lt;div class=&quot;pubx_2&quot;&gt;&lt;input onfocus=&quot;showLoginChooseDiv()&quot; name=&quot;verifyCode&quot; size=&quot;10&quot;&gt; &lt;img width=&quot;60&quot; height=&quot;18&quot; name=&quot;imgLoginValid&quot; id=&quot;imgLoginValid&quot;&#13;
+		style=&quot;visibility: hidden; cursor: pointer;&quot;&#13;
+		onclick=&quot;javascript:changeLoginChooseDiv();&quot; /&gt;&lt;/div&gt;&lt;/div&gt;&#13;
+&#13;
+&lt;div class=&quot;puby&quot;&gt;&lt;div class=&quot;pubx_1&quot;&gt;选项： &lt;/div&gt;&lt;div class=&quot;pubx_2&quot;&gt;&lt;select name=cookietime&gt;&lt;option selected value=&quot;0&quot;&gt;不保存&lt;/option&gt;&lt;option value=&quot;1&quot;&gt;保存一个小时&lt;/option&gt;&lt;option value=&quot;2&quot;&gt;保存一天&lt;/option&gt;&#13;
+&lt;option value=&quot;3&quot;&gt;保存一个星期&lt;/option&gt;&#13;
+&lt;option value=&quot;4&quot;&gt;保存一个月&lt;/option&gt;&#13;
+&lt;option value=&quot;5&quot;&gt;保存一年&lt;/option&gt;&#13;
+&lt;/select&gt; &lt;/div&gt;&lt;/div&gt;&#13;
+&lt;div class=&quot;rel_form&quot;&gt;&#13;
+&#13;
+ &lt;input type=&quot;submit&quot; value=&quot;提交&quot;&gt; &#13;
+&lt;/div&gt;&#13;
+&lt;/form&gt;&#13;
+&lt;/div&gt;&#13;
+&lt;/div&gt;&#13;
+&lt;script type=&quot;text/javascript&quot;&gt;&#13;
+	function showLoginChooseDiv() {&#13;
+		var objimg = document.getElementById(&quot;imgLoginValid&quot;);&#13;
+		if (objimg.style.visibility != &quot;visible&quot;) {&#13;
+			var timeNow = new Date().getTime();&#13;
+			objimg.src = &quot;randomNum.action?time=&quot; + timeNow + &quot;&amp;from=user&quot;;&#13;
+			objimg.style.visibility = &quot;visible&quot;;&#13;
+		}&#13;
+	}&#13;
+	function changeLoginChooseDiv() {&#13;
+		var obj = document.getElementById(&quot;imgLoginValid&quot;);&#13;
+		var timeNow = new Date().getTime();&#13;
+		obj.src = &quot;randomNum.action?time=&quot; + timeNow + &quot;&amp;from=user&quot;;&#13;
+		document.login.verifyCode.focus();&#13;
+	}&#13;
+&lt;/script&gt;&#13;
+&lt;/br&gt;&#13;
+{$$footer$$}</string> 
+    </void> 
+    <void property="id"> 
+     <int>54</int> 
+    </void> 
+    <void property="specialCode1"> 
+     <string>.rel_top{ height:30px; text-align:center; padding-top:12px; background:#999; border-bottom:#666 solid 1px; border-right:#666 solid 1px; color:#000;}&#13;
+.rel_mid{}&#13;
+.rel_down{}&#13;
+.puby{}&#13;
+.pubx_1{ float:left; width:179px; height:24px; background:#CCC; padding:8px 0 0 20px;border-bottom:#666 dotted 1px;border-right:#aaa solid 1px;}&#13;
+.pubx_2{ float:right; width:740px; height:26px;background:#eee;  padding:6px 0 0 20px;border-bottom:#666 dotted 1px;}&#13;
+.rel_form{ height:30px; text-align:center; padding-top:12px; background:#999; border-bottom:#666 solid 1px; border-right:#666 solid 1px; margin-top:10px;}</string> 
+    </void> 
+   </object> 
+  </void> 
+  <void property="mediaPlayCode1"> 
+   <string>&lt;script type=&apos;text/javascript&apos; src=&apos;{$$contextPath$$}/templates/site/default/js/jwplayer.js&apos;&gt;&lt;/script&gt;&#13;
+&lt;div id=&apos;mediaspace&apos;&gt;This text will be replaced&lt;/div&gt; &#13;
+&lt;script type=&apos;text/javascript&apos;&gt; &#13;
+jwplayer(&apos;mediaspace&apos;).setup({&apos;flashplayer&apos;: &apos;{$$contextPath$$}/templates/site/default/swf/player.swf&apos;,&apos;file&apos;: purl,&apos;image&apos;: &apos;{$$contextPath$$}/templates/site/default/images/lerx_flash_bg.jpg&apos;,&apos;controlbar&apos;: &apos;bottom&apos;,&apos;width&apos;: &apos;620&apos;,&apos;height&apos;: &apos;465&apos;});&#13;
+&lt;/script&gt;</string> 
+  </void> 
+  <void property="mediaPlayOuterLayerCodeForArtPage"> 
+   <string>&lt;script type=&apos;text/javascript&apos;&gt; &#13;
+var purl,encryptedParmStr;&#13;
+encryptedParmStr();&#13;
+mediaUrl();&#13;
+function encryptedParmStr(){&#13;
+	$.ajax({&#13;
+		url:&apos;{$$contextPath$$}/ajax_thread_encryptedParmStr.action?tid={$$tid$$}&apos;,&#13;
+		type: &apos;post&apos;,&#13;
+		async:false,&#13;
+		success:function(data){&#13;
+		var response = data;&#13;
+		encryptedParmStr=response;&#13;
+		}&#13;
+	 });&#13;
+ &#13;
+}&#13;
+function mediaUrl(){&#13;
+	$.ajax({&#13;
+		url:&apos;{$$contextPath$$}/ajax_thread_mediaUrl.action?tid={$$tid$$}&amp;encryptedParmStr=&apos;+encryptedParmStr,&#13;
+		type: &apos;post&apos;,&#13;
+		async:false,&#13;
+		success:function(data){&#13;
+		var response = data;&#13;
+		purl=response;&#13;
+		}&#13;
+	 });&#13;
+ &#13;
+}&#13;
+&lt;/script&gt;&#13;
+{$$playerMainBody$$}</string> 
+  </void> 
+  <void property="mediaPlayOuterLayerCodeForAttaPage"> 
+   <string>&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot; &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&gt;&#13;
+&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;&#13;
+&lt;head&gt;&#13;
+&lt;title&gt;{$$attaTitle$$}_{$$parentTitle$$}&lt;/title&gt;&#13;
+&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=UTF-8&quot;/&gt;&#13;
+&lt;meta name=&quot;keywords&quot; content=&quot;{$$keyWord$$}&quot;/&gt;&#13;
+&lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=EmulateIE7&quot; /&gt;&#13;
+&lt;meta name=&quot;Description&quot; content=&quot;{$$description$$}&quot;/&gt;&#13;
+&lt;meta expire=&quot;-1&quot; /&gt;&#13;
+&lt;script type=&quot;text/javascript&quot; src=&quot;{$$contextPath$$}/js/jquery/1.7.2/jquery-1.7.2.min.js&quot;&gt;&lt;/script&gt;&#13;
+&lt;style type=&quot;text/css&quot;&gt;&#13;
+body,ul,ol,li,p,form,img,div,dl,dt,dd{margin:0;padding:0;border:0;}&#13;
+body,html{ height:100%; font-size:12px; font-family:&quot;宋体&quot;,Arial, Helvetica, sans-serif;}&#13;
+body{ background:#fff;}&#13;
+&lt;/style&gt;&#13;
+&lt;/head&gt;&#13;
+&lt;body&gt;&#13;
+&lt;script type=&apos;text/javascript&apos;&gt; &#13;
+var purl,encryptedParmStr;&#13;
+encryptedParmStr();&#13;
+mediaUrl();&#13;
+function encryptedParmStr(){&#13;
+	$.ajax({&#13;
+		url:&apos;{$$contextPath$$}/ajax_attachment_encryptedParmStr.action?id={$$attaId$$}&apos;,&#13;
+		type: &apos;post&apos;,&#13;
+		async:false,&#13;
+		success:function(data){&#13;
+		var response = data;&#13;
+		encryptedParmStr=response;&#13;
+		}&#13;
+	 });&#13;
+ &#13;
+}&#13;
+function mediaUrl(){&#13;
+	$.ajax({&#13;
+		url:&apos;{$$contextPath$$}/ajax_attachment_mediaUrl.action?id={$$attaId$$}&amp;encryptedParmStr=&apos;+encryptedParmStr,&#13;
+		type: &apos;post&apos;,&#13;
+		async:false,&#13;
+		success:function(data){&#13;
+		var response = data;&#13;
+		purl=response;&#13;
+		}&#13;
+	 });&#13;
+ &#13;
+}&#13;
+&lt;/script&gt;&#13;
+{$$playerMainBody$$}&#13;
+&lt;/body&gt;&#13;
+&lt;/html&gt;&#13;
+</string> 
+  </void> 
+  <void property="nextArticleForwardCode"> 
+   <string>下一条：&lt;a href=&quot;{$$href$$}&quot;&gt;{$$title$$}&lt;/a&gt;</string> 
+  </void> 
+  <void property="noPassedAltStr"> 
+   <string>&lt;font color=&quot;#FF0000&quot;&gt;本文尚未审核！&lt;/font&gt;</string> 
+  </void> 
+  <void property="noPassedStr"> 
+   <string>&lt;font color=&quot;#FF0000&quot;&gt;本文尚未审核！&lt;/font&gt;请&lt;a href=&quot;{$$contextPath$$}/article_singlePassed.action?tid={$$tid$$}&quot;&gt;&lt;font color=&quot;#008080&quot;&gt; 审核 &lt;/font&gt;&lt;/a&gt;或&lt;a href=&quot;{$$contextPath$$}/articleEdit.action?tid={$$tid$$}&quot;&gt;&lt;font color=&quot;#008080&quot;&gt; 编辑 &lt;/font&gt;&lt;/a&gt;</string> 
+  </void> 
+  <void property="passedStr"> 
+   <string>&lt;a href=&quot;{$$contextPath$$}/articleEdit.action?tid={$$tid$$}&quot;&gt;&lt;font color=&quot;#008080&quot;&gt; 编辑 &lt;/font&gt;&lt;/a&gt; &lt;a href=&quot;{$$contextPath$$}/article_soul.action?tid={$$tid$$}&amp;soul={$$soul$$}&quot;&gt;&lt;font color=&quot;#008080&quot;&gt; {$$soulStr$$} &lt;/font&gt;&lt;/a&gt; &lt;a href=&quot;{$$contextPath$$}/article_topOne.action?tid={$$tid$$}&amp;topOne={$$topOne$$}&quot;&gt;&lt;font color=&quot;#008080&quot;&gt; {$$topOneStr$$} &lt;/font&gt;&lt;/a&gt;</string> 
+  </void> 
+  <void property="publicStyle"> 
+   <object class="com.lerx.style.site.vo.SiteStyleSubElementInCommon"> 
+    <void property="cssCode"> 
+     <string>&lt;style  type=&quot;text/css&quot;&gt;&#13;
+/*全局s*/&#13;
+body,ul,ol,li,p,form,table,td,img,div,dl,dt,dd{margin:0;padding:0;border:0;}&#13;
+body{background:#fff;color:#333;font-size:12px;font-family: &quot;微软雅黑&quot;, &quot;宋体&quot;;}&#13;
+pre {&#13;
+width:680px;&#13;
+display: block;&#13;
+overflow: auto;&#13;
+background: #f4f4f4;&#13;
+padding: 5px 10px;&#13;
+border: 1px solid #eee;&#13;
+word-wrap:break-word; /* Internet Explorer 5.5+ */ &#13;
+white-space: pre-wrap; /* Firefox */&#13;
+}&#13;
+ul,ol,li{list-style-type:none;}&#13;
+li{list-style-type:none;background:url({$$contextPath$$}/templates/site/default/images/libg.gif) no-repeat;line-height:1.5em; padding-left:1em; color:#aaa;}&#13;
+a:link{text-decoration : none ;color : #333 ;} &#13;
+a:visited{text-decoration : none ;color : #333 ;} &#13;
+a:hover{text-decoration : none ;color : #f00 ;} &#13;
+a:active{text-decoration : none ;color : #333 ;}&#13;
+.cle{ clear:both; font-size:0px;}&#13;
+/*全局o*/&#13;
+/*顶部s*/&#13;
+.top{ height:53px; background:url({$$contextPath$$}/templates/site/default/images/bgxr.jpg);}&#13;
+.topcontainer{ margin:0 auto; width:910px; padding:5px 0 0 50px;}&#13;
+.toplogo{ height:38px; width:111px; background:url({$$contextPath$$}/templates/site/default/images/bg.jpg) no-repeat 0 0; float:left;}&#13;
+.toplogin{ float:right; width:124px; height:37px; background:url({$$contextPath$$}/templates/site/default/images/bg.jpg) no-repeat -111px 0px; margin:2px 60px 0 0; display:inline; padding:4px 0 0 8px;}&#13;
+.toplogining{float:right; width:180px; height:37px; margin:2px 60px 0 0; display:inline; padding:17px 0 0 8px;}&#13;
+.toplogining a:link{text-decoration : none ;color : #fc0 ;} &#13;
+.toplogining a:visited{text-decoration : none ;color : #fc0 ;} &#13;
+.toplogining a:hover{text-decoration : none ;color : #f00 ;} &#13;
+.toplogining a:active{text-decoration : none ;color : #fc0 ;}&#13;
+&#13;
+.main{width:960px; margin:0 auto;}&#13;
+.header{ margin-top:3px;}&#13;
+.banner{ height:217px; background:url({$$contextPath$$}/templates/site/default/images/banner.jpg);}&#13;
+.nav{}&#13;
+.nav_l{ float:left; width:9px; font-size:0px; background:url({$$contextPath$$}/templates/site/default/images/bg.jpg) no-repeat -243px 0px; height:41px;}&#13;
+.nav_m{ float:left; width:928px; height:41px; background:url({$$contextPath$$}/templates/site/default/images/bgxr.jpg) repeat-x 0px -53px; text-align:center;padding-left:14px;}&#13;
+.nav_m a{display:inline-block;width:83px; height:41px;float:left;}&#13;
+.nav_a1{ background:url({$$contextPath$$}/templates/site/default/images/bg.jpg) no-repeat 0px -41px; }&#13;
+.nav_a1:hover{ background:url({$$contextPath$$}/templates/site/default/images/bg.jpg) no-repeat -83px -41px;}&#13;
+.nav_a2{ background:url({$$contextPath$$}/templates/site/default/images/bg.jpg) no-repeat 0px -82px; }&#13;
+.nav_a2:hover{ background:url({$$contextPath$$}/templates/site/default/images/bg.jpg) no-repeat -83px -82px;}&#13;
+.nav_a3{ background:url({$$contextPath$$}/templates/site/default/images/bg.jpg) no-repeat 0px -123px; }&#13;
+.nav_a3:hover{ background:url({$$contextPath$$}/templates/site/default/images/bg.jpg) no-repeat -83px -123px;}&#13;
+.nav_a4{ background:url({$$contextPath$$}/templates/site/default/images/bg.jpg) no-repeat 0px -164px; }&#13;
+.nav_a4:hover{ background:url({$$contextPath$$}/templates/site/default/images/bg.jpg) no-repeat -83px -164px;}&#13;
+.nav_a5{ background:url({$$contextPath$$}/templates/site/default/images/bg.jpg) no-repeat 0px -205px; }&#13;
+.nav_a5:hover{ background:url({$$contextPath$$}/templates/site/default/images/bg.jpg) no-repeat -83px -205px;}&#13;
+.nav_a6{ background:url({$$contextPath$$}/templates/site/default/images/bg.jpg) no-repeat 0px -246px; }&#13;
+.nav_a6:hover{ background:url({$$contextPath$$}/templates/site/default/images/bg.jpg) no-repeat -83px -246px;}&#13;
+.nav_a7{ background:url({$$contextPath$$}/templates/site/default/images/bg.jpg) no-repeat 0px -287px; }&#13;
+.nav_a7:hover{ background:url({$$contextPath$$}/templates/site/default/images/bg.jpg) no-repeat -83px -287px;}&#13;
+.nav_a8{ background:url({$$contextPath$$}/templates/site/default/images/bg.jpg) no-repeat 0px -328px; }&#13;
+.nav_a8:hover{ background:url({$$contextPath$$}/templates/site/default/images/bg.jpg) no-repeat -83px -328px;}&#13;
+.nav_a9{ background:url({$$contextPath$$}/templates/site/default/images/bg.jpg) no-repeat 0px -369px; }&#13;
+.nav_a9:hover{ background:url({$$contextPath$$}/templates/site/default/images/bg.jpg) no-repeat -83px -369px;}&#13;
+&#13;
+.nav_a10{ background:url({$$contextPath$$}/templates/site/default/images/bg.jpg) no-repeat 0px -410px; }&#13;
+.nav_a10:hover{ background:url({$$contextPath$$}/templates/site/default/images/bg.jpg) no-repeat -83px -410px;}&#13;
+&#13;
+.nav_a11{ background:url({$$contextPath$$}/templates/site/default/images/bg.jpg) no-repeat 0px -451px; }&#13;
+.nav_a11:hover{ background:url({$$contextPath$$}/templates/site/default/images/bg.jpg) no-repeat -83px -451px;}&#13;
+.nav_r{ float:right;width:9px; font-size:0px; background:url({$$contextPath$$}/templates/site/default/images/bg.jpg) no-repeat -252px 0px; height:41px;}&#13;
+.place{ padding:5px 10px;}/*当前位置*/&#13;
+.place_l{ float:left;}&#13;
+.place_r{ float:right;}&#13;
+/*顶部o*/&#13;
+/*主体s*/&#13;
+.container{}/*主体盒子*/&#13;
+.content{ width:698px; float:right;}&#13;
+&#13;
+{$$specialCode1$$}&#13;
+&#13;
+.pagefooter{ margin-top:20px;}&#13;
+.footer_l{ width:9px; height:86px; background:url({$$contextPath$$}/templates/site/default/images/bg.jpg) no-repeat -293px -288px; float:left;}&#13;
+.footer_m{ float:left; width:942px; height:86px; background:#666; font-family:Arial;}&#13;
+.footer_m_l{ float:left; height:17px; width:240px; margin:20px 0 0 40px; display:inline; background:url({$$contextPath$$}/templates/site/default/images/bg.jpg) no-repeat -320px 0px; padding:22px 0 0 110px; color:#fff;}&#13;
+.footer_m_r{ float:right;height:50px; width:400px; margin:25px 20px 0 0; display:inline; color:#fff;}&#13;
+.footer_m_r a:link{text-decoration : none ;color : #fff ;} &#13;
+.footer_m_r a:visited{text-decoration : none ;color : #fff ;} &#13;
+.footer_m_r a:hover{text-decoration : none ;color : #c00 ;} &#13;
+.footer_m_r a:active{text-decoration : none ;color : #fff ;}&#13;
+.footer_r{width:9px; height:86px; background:url({$$contextPath$$}/templates/site/default/images/bg.jpg) no-repeat -303px -288px; float:right;}&#13;
+/*主体o*/&#13;
+&lt;/style&gt;&#13;
+&lt;style&gt; &#13;
+form {&#13;
+margin: 0;&#13;
+}&#13;
+textarea {&#13;
+display: block;&#13;
+}&#13;
+&lt;/style&gt;</string> 
+    </void> 
+    <void property="editAreaCode"> 
+     <string>[&lt;a href=&quot;{$$editFileURL$$}&quot;&gt;编辑&lt;/a&gt; &lt;a href=&quot;{$$deleteFileURL$$}&quot; onclick=&quot;{if(confirm(&apos;确定删除文章 {$$title$$} 吗?该删除将不可撤消！&apos;)){return true;}return false;}&quot;&gt;删除&lt;/a&gt;]</string> 
+    </void> 
+    <void property="footerCode"> 
+     <string>&lt;!-- 底部开始--&gt;&#13;
+&lt;script type=&quot;text/javascript&quot;&gt;&#13;
+year();&#13;
+function year(){&#13;
+	$(&quot;#year&quot;).html(&quot;正在检测...&quot;);&#13;
+	$.ajax({&#13;
+		url:&apos;{$$contextPath$$}/ajax_util_year.action&apos;,&#13;
+		type: &apos;post&apos;,&#13;
+		success:function(data){&#13;
+		 $(&quot;#year&quot;).html(data);&#13;
+		}&#13;
+	 });&#13;
+ &#13;
+}&#13;
+&lt;/script&gt;&#13;
+ &lt;div class=&quot;pagefooter&quot;&gt;&#13;
+  &lt;div class=&quot;footer_l&quot;&gt;&lt;/div&gt;&#13;
+  &lt;div class=&quot;footer_m&quot;&gt;&#13;
+  &#13;
+   &lt;div class=&quot;footer_m_l&quot;&gt;? Copyright 2006-&lt;span id=&quot;year&quot;&gt;&lt;/span&gt;  All Rights Reserved&lt;/div&gt;&#13;
+   &lt;div class=&quot;footer_m_r&quot;&gt;Powered by&lt;a href=&quot;/&quot;&gt; lerx 1.0&lt;/a&gt;　　　QQ 交流群:27112574&lt;br/&gt;&#13;
+&lt;a href=&quot;http://www.miibeian.gov.cn&quot;&gt;苏ICP备08018501-2号&lt;/a&gt;　来访统计：&lt;script type=&quot;text/javascript&quot; src=&quot;http://util.jysedu.com/stat/stat.jsp?id=lerx&amp;graph=0&amp;type=1&quot;&gt;&lt;/script&gt;　页面执行时间：约{$$executeTime$$}毫秒&lt;/div&gt;&#13;
+  &lt;/div&gt;&#13;
+  &lt;div class=&quot;footer_r&quot;&gt;&lt;/div&gt;&#13;
+  &lt;div class=&quot;cle&quot;&gt;&lt;/div&gt;&#13;
+  &#13;
+ &lt;/div&gt;&#13;
+ &#13;
+&#13;
+&lt;!-- 底部结束--&gt;&#13;
+</string> 
+    </void> 
+    <void property="hrefLineFormat"> 
+     <string>&lt;li&gt;&lt;span class=&quot;one&quot;&gt;{$$sn$$}&lt;/span&gt;&lt;span class=&quot;two&quot;&gt;&lt;a href=&quot;{$$href$$}&quot;&gt;{$$title$$}&lt;/a&gt; {$$member$$} {$$addTime$$}&lt;/span&gt;{$$editCode$$}&lt;/li&gt;</string> 
+    </void> 
+    <void property="htmlTemplate"> 
+     <string>&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot; &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&gt;&#13;
+&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;&#13;
+&lt;head&gt;&#13;
+&#13;
+&lt;meta property=&quot;qc:admins&quot; content=&quot;216206455762135456375&quot; /&gt;&#13;
+&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=UTF-8&quot;/&gt;&#13;
+&lt;meta name=&quot;keywords&quot; content=&quot;{$$keyWord$$}&quot;/&gt;&#13;
+&lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=EmulateIE7&quot; /&gt;&#13;
+&lt;meta name=&quot;Description&quot; content=&quot;{$$description$$}&quot;/&gt;&#13;
+&lt;meta expire=&quot;-1&quot; /&gt;&#13;
+&lt;title&gt;{$$siteTitle$$}&lt;/title&gt;&#13;
+{$$cssStyle$$}&#13;
+&lt;script type=&quot;text/javascript&quot; src=&quot;{$$contextPath$$}/js/jquery/1.7.2/jquery-1.7.2.min.js&quot;&gt;&lt;/script&gt;&#13;
+&lt;/head&gt;&#13;
+&lt;body&gt;&#13;
+{$$htmlBody$$}&#13;
+&lt;/body&gt;&#13;
+&lt;/html&gt;&#13;
+</string> 
+    </void> 
+    <void property="id"> 
+     <int>49</int> 
+    </void> 
+    <void property="memberPanelCodeForLogIn"> 
+     <string>&lt;div class=&apos;toplogining&apos;&gt;&lt;a href=&quot;{$$contextPath$$}/articleAdd.action?gid={$$gid$$}&quot;&gt;发布&lt;/a&gt;　&lt;a href=&quot;{$$contextPath$$}/myArticles.action&quot;&gt;文集&lt;/a&gt;　&lt;a href=&quot;/space.jsp?uid={$$loginUserID$$}&quot;&gt;空间&lt;/a&gt;　&lt;a href=&quot;{$$contextPath$$}/ucenter.action&quot;&gt;设定&lt;/a&gt;　&lt;a href=&quot;{$$contextPath$$}/user_logout.action&quot;&gt;退出&lt;/a&gt; {$$task$}&lt;/div&gt;</string> 
+    </void> 
+    <void property="memberPanelCodeForLogOut"> 
+     <string>&lt;div class=&quot;toplogin&quot;&gt;&lt;a href=&quot;{$$contextPath$$}/login.action&quot;&gt;登　录&lt;/a&gt;　　　   &lt;a href=&quot;{$$contextPath$$}/reg.action&quot;&gt;注　册&lt;/a&gt;&lt;/div&gt;</string> 
+    </void> 
+    <void property="searchAreaCode"> 
+     <string>&lt;div class=&quot;searchForm&quot;&gt;&#13;
+&lt;form method=&quot;post&quot; action=&quot;search.action&quot;&gt;&#13;
+搜索：&lt;input type=&quot;text&quot; name=&quot;key&quot; value=&quot;{$$key$$}&quot; /&gt;&lt;input type=&quot;submit&quot; value=&quot;提交&quot; name=&quot;B1&quot;&gt;&#13;
+&lt;/form&gt;&#13;
+&lt;/div&gt;</string> 
+    </void> 
+    <void property="titleFormat"> 
+     <string>{$$app$$}-{$$shortSiteName$$}</string> 
+    </void> 
+    <void property="topCode"> 
+     <string>&lt;!--顶部代码开始--&gt;&#13;
+&lt;div class=&quot;top&quot;&gt;&#13;
+ &lt;div class=&quot;topcontainer&quot;&gt;&#13;
+  &lt;div class=&quot;toplogo&quot;&gt;&lt;/div&gt;&#13;
+&lt;div id=&quot;userarea&quot;&gt;&lt;/div&gt;&#13;
+  &lt;script type=&quot;text/javascript&quot;&gt;&#13;
+userArea();&#13;
+dateAndWeek();&#13;
+function userArea(){&#13;
+	$(&quot;#userarea&quot;).html(&quot;正在检测...&quot;);&#13;
+	$.ajax({&#13;
+		url:&apos;{$$contextPath$$}/ajax_user_area.action?gid={$$gid$$}&apos;,&#13;
+		type: &apos;post&apos;,&#13;
+		success:function(data){&#13;
+		 $(&quot;#userarea&quot;).html(data);&#13;
+		}&#13;
+	 });&#13;
+ &#13;
+}&#13;
+function dateAndWeek(){&#13;
+	$(&quot;#dateAndWeek&quot;).html(&quot;正在检测...&quot;);&#13;
+	$.ajax({&#13;
+		url:&apos;{$$contextPath$$}/ajax_util_dateAndWeek.action&apos;,&#13;
+		type: &apos;post&apos;,&#13;
+		success:function(data){&#13;
+		 $(&quot;#dateAndWeek&quot;).html(data);&#13;
+		}&#13;
+	 });&#13;
+ &#13;
+}&#13;
+&lt;/script&gt;&#13;
+  &lt;div class=&quot;cle&quot;&gt;&lt;/div&gt;&#13;
+ &lt;/div&gt;&#13;
+&lt;/div&gt;&#13;
+&lt;div class=&quot;main&quot;&gt;&#13;
+ &lt;div class=&quot;header&quot;&gt;&#13;
+  &lt;div class=&quot;banner&quot;&gt;&lt;/div&gt;&#13;
+  &lt;div class=&quot;nav&quot;&gt;&#13;
+   &lt;div class=&quot;nav_l&quot;&gt;&lt;/div&gt;&#13;
+   &lt;div class=&quot;nav_m&quot;&gt;&#13;
+    &lt;a class=&quot;nav_a1&quot; href=&quot;{$$contextPath$$}/index.action&quot;&gt;&lt;/a&gt;&#13;
+    &lt;a class=&quot;nav_a2&quot; href=&quot;{$$contextPath$$}/nav.action?gid=1&quot;&gt;&lt;/a&gt;&#13;
+    &lt;a class=&quot;nav_a4&quot; href=&quot;{$$contextPath$$}/nav.action?gid=3&quot;&gt;&lt;/a&gt;&#13;
+    &lt;a class=&quot;nav_a5&quot; href=&quot;{$$contextPath$$}/nav.action?gid=4&quot;&gt;&lt;/a&gt;&#13;
+    &lt;a class=&quot;nav_a6&quot; href=&quot;{$$contextPath$$}/nav.action?gid=5&quot;&gt;&lt;/a&gt;&#13;
+    &lt;a class=&quot;nav_a7&quot; href=&quot;{$$contextPath$$}/nav.action?gid=6&quot;&gt;&lt;/a&gt;&#13;
+    &lt;a class=&quot;nav_a8&quot; href=&quot;{$$contextPath$$}/nav.action?gid=7&quot;&gt;&lt;/a&gt;&#13;
+    &lt;a class=&quot;nav_a9&quot; href=&quot;{$$contextPath$$}/nav.action?gid=10&quot;&gt;&lt;/a&gt;&#13;
+    &lt;a class=&quot;nav_a3&quot; href=&quot;{$$contextPath$$}/nav.action?gid=2&quot;&gt;&lt;/a&gt;&#13;
+    &lt;a class=&quot;nav_a10&quot; href=&quot;{$$contextPath$$}/nav.action?gid=9&quot;&gt;&lt;/a&gt;&#13;
+    &lt;a class=&quot;nav_a11&quot; href=&quot;{$$contextPath$$}/bindex.action&quot;&gt;&lt;/a&gt;&#13;
+   &lt;/div&gt;&#13;
+   &lt;div class=&quot;nav_r&quot;&gt;&lt;/div&gt;&#13;
+   &lt;div class=&quot;cle&quot;&gt;&lt;/div&gt;&#13;
+  &lt;/div&gt;&#13;
+  &lt;div class=&quot;place&quot;&gt;&#13;
+    &lt;div class=&quot;place_l&quot;&gt;您当前位置：&lt;a href=&quot;{$$contextPath$$}/&quot;&gt;{$$shortSiteName$$}&lt;/a&gt;{$$locationSplitStr$$}{$$location$$}&lt;/div&gt;&#13;
+    &lt;div class=&quot;place_r&quot; id=&quot;dateAndWeek&quot;&gt;&lt;/div&gt;&#13;
+    &lt;div class=&quot;cle&quot;&gt;&lt;/div&gt;&#13;
+  &lt;/div&gt;&#13;
+ &lt;/div&gt;&#13;
+&lt;!--顶部代码结束--&gt;&#13;
+</string> 
+    </void> 
+   </object> 
+  </void> 
+  <void property="regStyle"> 
+   <object class="com.lerx.style.site.vo.SiteStyleSubElementInCommon"> 
+    <void property="editAreaCode"> 
+     <string></string> 
+    </void> 
+    <void property="htmlCode"> 
+     <string>&lt;SCRIPT LANGUAGE=javascript&gt;&#13;
+&lt;!--&#13;
+var ok=&quot; &lt;img src={$$contextPath$$}/templates/site/default/images/ok.gif /&gt;&quot;;&#13;
+var fail=&quot; &lt;img src={$$contextPath$$}/templates/site/default/images/err.gif /&gt;&quot;;&#13;
+&#13;
+function gook() {&#13;
+&#13;
+	if(!$(&quot;#agreement&quot;).attr(&quot;checked&quot;))&#13;
+&#13;
+	{&#13;
+	alert(&quot;必须同意注册协议才可完成注册！&quot;);&#13;
+	 $(&apos;#agreement&apos;).focus();&#13;
+	return ;&#13;
+	}&#13;
+&#13;
+	var pw1=$.trim($(&apos;#pw1&apos;).val());&#13;
+	var pw2=$.trim($(&apos;#pw2&apos;).val());&#13;
+	if (pw1!=pw2){&#13;
+		alert(&quot;两次密码不相同！&quot;);&#13;
+		return;&#13;
+	}else{&#13;
+		//$(&apos;#password&apos;).value=pw1;&#13;
+		f.submit();&#13;
+	}&#13;
+}&#13;
+function checkName(){&#13;
+	$(&quot;#testname&quot;).html(&quot;正在检测...&quot;);&#13;
+	$.ajax({&#13;
+		url: &apos;{$$contextPath$$}/ajax_user_findByName.action?username=&apos;+$(&apos;#username&apos;).val(),&#13;
+		type: &apos;post&apos;,&#13;
+		success:function(data){&#13;
+		data=data.replace(&quot;{$$okIcoUrl$$}&quot;, ok);&#13;
+		data=data.replace(&quot;{$$failIcoUrl$$}&quot;, fail);&#13;
+		 $(&quot;#testname&quot;).html(data);&#13;
+		}&#13;
+	 });&#13;
+&#13;
+}&#13;
+&#13;
+function checkEmail(){&#13;
+	$(&quot;#testemail&quot;).html(&quot;正在检测...&quot;);&#13;
+	$.ajax({&#13;
+		url: &apos;{$$contextPath$$}/ajax_user_findByEmail.action?email=&apos;+$(&apos;#email&apos;).val(),&#13;
+		type: &apos;post&apos;,&#13;
+		success:function(data){&#13;
+		data=data.replace(&quot;{$$okIcoUrl$$}&quot;, ok);&#13;
+		data=data.replace(&quot;{$$failIcoUrl$$}&quot;, fail);&#13;
+		 $(&quot;#testemail&quot;).html(data);&#13;
+		}&#13;
+	 });&#13;
+&#13;
+}&#13;
+&#13;
+function checkpwd1(){&#13;
+	$(&quot;#testpwd1&quot;).html(&quot;正在检测...&quot;);&#13;
+	var pw1=$.trim($(&apos;#pw1&apos;).val());&#13;
+	var pw2=$.trim($(&apos;#pw2&apos;).val());&#13;
+	if (pw1==(&quot;&quot;)){&#13;
+		$(&quot;#testpwd1&quot;).html(fail+&quot; 密码不能为空！&quot;);&#13;
+	}else if (pw2!=&quot;&quot; &amp;&amp; pw1!=pw2){&#13;
+		$(&quot;#testpwd1&quot;).html(fail+&quot; 两次密码不相同！&quot;);&#13;
+	}else if(pw2!=&quot;&quot; &amp;&amp; pw1==pw2){&#13;
+		$(&quot;#testpwd1&quot;).html(ok);&#13;
+		$(&quot;#testpwd2&quot;).html(ok);&#13;
+	}else{&#13;
+		$(&quot;#testpwd1&quot;).html(ok);&#13;
+	}&#13;
+}&#13;
+&#13;
+function checkpwd2(){&#13;
+	$(&quot;#testpwd2&quot;).html(&quot;正在检测...&quot;);&#13;
+	var pw1=$.trim($(&apos;#pw1&apos;).val());&#13;
+	var pw2=$.trim($(&apos;#pw2&apos;).val());&#13;
+	if (pw2==(&quot;&quot;)){&#13;
+		$(&quot;#testpwd2&quot;).html(fail+&quot; 密码不能为空！&quot;);&#13;
+	}else if (pw1!=pw2){&#13;
+		$(&quot;#testpwd2&quot;).html(fail+&quot; 两次密码不相同！&quot;);&#13;
+	}else if(pw2!=&quot;&quot; &amp;&amp; pw1==pw2){&#13;
+		$(&quot;#testpwd1&quot;).html(ok);&#13;
+		$(&quot;#testpwd2&quot;).html(ok);&#13;
+	}else{&#13;
+		$(&quot;#testpwd2&quot;).html(ok);&#13;
+	}&#13;
+}&#13;
+&#13;
+&#13;
+function showDivAgreementDiv()&#13;
+{&#13;
+	$(document).ready(function(){&#13;
+&#13;
+		$(&quot;#popAgreementDiv&quot;).show();&#13;
+		$(&quot;#PopAgreementIframe&quot;).show();&#13;
+		$(&quot;#bg&quot;).show();&#13;
+	&#13;
+		$.get(&apos;{$$contextPath$$}/agreement.txt&apos;, function(result){&#13;
+&#13;
+	  	  $(&quot;#agreementBody&quot;).val(result);&#13;
+		});&#13;
+&#13;
+	});&#13;
+}&#13;
+&#13;
+function closeDivAgreementDiv()&#13;
+{&#13;
+$(document).ready(function(){&#13;
+	$(&quot;#popAgreementDiv&quot;).hide();&#13;
+	$(&quot;#PopAgreementIframe&quot;).hide();&#13;
+	$(&quot;#bg&quot;).hide();&#13;
+});&#13;
+}&#13;
+//&#13;
+--&gt;&#13;
+&lt;/SCRIPT&gt;&#13;
+&#13;
+{$$top$$}&#13;
+&lt;div id=&quot;popAgreementDiv&quot; class=&quot;myPopAgreementDiv&quot; style=&quot;display:none;&quot;&gt;&#13;
+&lt;div class=&quot;myPopAgreementDiv_top&quot;&gt;&lt;div class=&quot;myPopAgreementDiv_top_left&quot;&gt;Lerx官方网站通行证服务协议！&lt;/div&gt;&lt;div class=&quot;myPopAgreementDiv_top_rig&quot;&gt;&lt;a href=&quot;javascript:closeDivAgreementDiv();&quot;&gt;关闭&lt;/a&gt;&lt;/div&gt;&lt;/div&gt;&#13;
+&lt;div class=&quot;myPopAgreementDiv_input&quot;&gt;&#13;
+&lt;textarea readonly rows=&quot;15&quot; id=&quot;agreementBody&quot; name=&quot;agreementBody&quot; cols=&quot;70&quot;&gt;{$$regLicenseAgreement$$}&lt;/textarea&gt;&#13;
+&lt;/div&gt;&#13;
+&lt;/div&gt;&#13;
+&lt;div id=&quot;bg&quot; class=&quot;bg&quot; style=&quot;display:none;&quot;&gt;&lt;/div&gt;&#13;
+&lt;iframe id=&quot;PopAgreementIframe&quot; class=&quot;PopAgreementIframe&quot; frameborder=&quot;0&quot; &gt;&lt;/iframe&gt;&#13;
+ &lt;div class=&quot;userregtopimg&quot;&gt;&lt;/div&gt;&#13;
+&#13;
+&lt;form name=&quot;f&quot; id=&quot;f&quot; method=&quot;post&quot; action=&quot;{$$contextPath$$}/user_reg.action?randKey={$$randKey$$}&amp;secStr={$$secStr$$}&quot;&gt;&#13;
+&lt;div class=&quot;regw&quot;&gt;&#13;
+&#13;
+&lt;div class=&quot;rel_top&quot;&gt;用户注册 - 必填内容&lt;/div&gt;&#13;
+&#13;
+&#13;
+&lt;div class=&quot;puby&quot;&gt;&#13;
+&lt;div class=&quot;pubx_1&quot;&gt;用户名&lt;/div&gt;&#13;
+&lt;div class=&quot;pubx_2&quot;&gt;&lt;input type=&quot;text&quot; id=&quot;username&quot; name=&quot;userInf.userName&quot; size=&quot;25&quot; maxlength=&quot;25&quot;  onChange=&quot;checkName();&quot;&gt;&lt;span id=&quot;testname&quot;&gt;&lt;/span&gt;&lt;a href=&quot;{$$contextPath$$}/qq_send.action&quot;&gt;&lt;img alt=&quot;用QQ帐号登录&quot; src=&quot;{$$contextPath$$}/templates/site/default/images/qq_logo.png&quot; /&gt;&lt;/a&gt;&lt;/div&gt;&#13;
+&lt;/div&gt;&#13;
+&#13;
+&#13;
+&lt;div class=&quot;puby&quot;&gt;&#13;
+&lt;div class=&quot;pubx_1&quot;&gt;密码:&lt;/div&gt;&#13;
+&lt;div class=&quot;pubx_2&quot;&gt;&lt;input type=&quot;password&quot; id=&quot;pw1&quot; name=&quot;pw1&quot; size=&quot;25&quot; maxlength=&quot;25&quot; onblur=&quot;checkpwd1();&quot;&gt;&lt;span id=&quot;testpwd1&quot;&gt;&lt;/span&gt;&lt;/div&gt;&#13;
+&lt;/div&gt;&#13;
+&#13;
+&lt;div class=&quot;puby&quot;&gt;&#13;
+&lt;div class=&quot;pubx_1&quot;&gt;密码确认:&lt;/div&gt;&#13;
+&lt;div class=&quot;pubx_2&quot;&gt;&lt;input type=&quot;password&quot; id=&quot;pw2&quot; name=&quot;pw2&quot; size=&quot;25&quot; maxlength=&quot;25&quot;  onblur=&quot;checkpwd2();&quot;&gt;&lt;span id=&quot;testpwd2&quot;&gt;&lt;/span&gt;&lt;/div&gt;&#13;
+&lt;/div&gt;&#13;
+&#13;
+&#13;
+&lt;div class=&quot;puby&quot;&gt;&#13;
+&lt;div class=&quot;pubx_1&quot;&gt;邮箱地址:&lt;/div&gt;&#13;
+&lt;div class=&quot;pubx_2&quot;&gt;&lt;input type=&quot;text&quot; id=&quot;email&quot; name=&quot;userInf.email&quot; size=&quot;25&quot; maxlength=&quot;25&quot;  onChange=&quot;checkEmail();&quot;&gt;&lt;span id=&quot;testemail&quot;&gt;&lt;/span&gt;（请如实填写，本网站注册用户需进行邮件确认！）&lt;/div&gt;&#13;
+&lt;div class=&quot;cle&quot;&gt;&lt;/div&gt;&#13;
+&lt;/div&gt;&#13;
+&lt;script type=&quot;text/javascript&quot;&gt;&#13;
+$(&quot;#pw1&quot;).width($(&quot;#username&quot;).width());&#13;
+$(&quot;#pw2&quot;).width($(&quot;#username&quot;).width());&#13;
+&lt;/script&gt;&#13;
+&lt;div class=&quot;rel_top&quot;&gt;用户注册 - 选填内容&lt;/div&gt;&#13;
+&#13;
+&lt;div class=&quot;puby&quot;&gt;&#13;
+&lt;div class=&quot;pubx_1&quot;&gt;真实姓名:&lt;/div&gt;&#13;
+&lt;div class=&quot;pubx_2&quot;&gt;&lt;input type=&quot;text&quot; name=&quot;userInf.trueName&quot; size=&quot;25&quot; maxlength=&quot;25&quot;&gt;&lt;/div&gt;&#13;
+&lt;/div&gt;&#13;
+&#13;
+&lt;div class=&quot;puby&quot;&gt;&#13;
+&lt;div class=&quot;pubx_1&quot;&gt;性别:&lt;/div&gt;&#13;
+&lt;div class=&quot;pubx_2&quot;&gt;&lt;input type=&quot;radio&quot; value=&quot;1&quot; checked name=&quot;sex&quot;&gt;男 &lt;input type=&quot;radio&quot; name=&quot;sex&quot; value=&quot;2&quot;&gt;女 &lt;input type=&quot;radio&quot; name=&quot;sex&quot; value=&quot;0&quot;&gt;秘密&lt;/div&gt;&#13;
+&lt;/div&gt;&#13;
+&#13;
+&lt;div class=&quot;puby&quot;&gt;&#13;
+&lt;div class=&quot;pubx_1&quot;&gt;出生年月:&lt;/div&gt;&#13;
+&lt;div class=&quot;pubx_2&quot;&gt;&lt;input type=&quot;text&quot; name=&quot;birthdayYear&quot; size=&quot;4&quot; maxlength=&quot;4&quot;&gt;年&lt;input type=&quot;text&quot; name=&quot;birthdayMonth&quot; size=&quot;2&quot; maxlength=&quot;2&quot;&gt;月&lt;input type=&quot;text&quot; name=&quot;birthdayDay&quot; size=&quot;2&quot; maxlength=&quot;2&quot;&gt;日&lt;/div&gt;&#13;
+&lt;/div&gt;&#13;
+&#13;
+&#13;
+&lt;div class=&quot;puby&quot;&gt;&#13;
+&lt;div class=&quot;pubx_1&quot;&gt;国家:&lt;/div&gt;&#13;
+&lt;div class=&quot;pubx_2&quot;&gt;&lt;input type=&quot;text&quot; name=&quot;userInf.country&quot; size=&quot;25&quot; maxlength=&quot;25&quot;  value=&quot;中国&quot;&gt;&lt;/div&gt;&#13;
+&lt;/div&gt;&#13;
+&#13;
+&lt;div class=&quot;puby&quot;&gt;&#13;
+&lt;div class=&quot;pubx_1&quot;&gt;省份:&lt;/div&gt;&#13;
+&lt;div class=&quot;pubx_2&quot;&gt;&lt;input type=&quot;text&quot; name=&quot;userInf.province&quot; size=&quot;25&quot; maxlength=&quot;25&quot;&gt;&lt;/div&gt;&#13;
+&lt;/div&gt;&#13;
+&#13;
+&lt;div class=&quot;puby&quot;&gt;&#13;
+&lt;div class=&quot;pubx_1&quot;&gt;城市:&lt;/div&gt;&#13;
+&lt;div class=&quot;pubx_2&quot;&gt;&lt;input type=&quot;text&quot; name=&quot;userInf.city&quot; size=&quot;25&quot; maxlength=&quot;25&quot;&gt;&lt;/div&gt;&#13;
+&lt;/div&gt;&#13;
+&#13;
+&lt;div class=&quot;puby&quot;&gt;&#13;
+&lt;div class=&quot;pubx_1&quot;&gt;工作单位:&lt;/div&gt;&#13;
+&lt;div class=&quot;pubx_2&quot;&gt;&lt;input type=&quot;text&quot; name=&quot;userInf.dept&quot; size=&quot;25&quot; maxlength=&quot;25&quot;&gt;&lt;/div&gt;&#13;
+&lt;/div&gt;&#13;
+&#13;
+&lt;div class=&quot;puby&quot;&gt;&#13;
+&lt;div class=&quot;pubx_1&quot;&gt;住址:&lt;/div&gt;&#13;
+&lt;div class=&quot;pubx_2&quot;&gt;&lt;input type=&quot;text&quot; name=&quot;userInf.address&quot; size=&quot;25&quot; maxlength=&quot;25&quot;&gt;&lt;/div&gt;&#13;
+&lt;/div&gt;&#13;
+&#13;
+&lt;div class=&quot;puby&quot;&gt;&#13;
+&lt;div class=&quot;pubx_1&quot;&gt;联系电话:&lt;/div&gt;&#13;
+&lt;div class=&quot;pubx_2&quot;&gt;&lt;input type=&quot;text&quot; name=&quot;userInf.phone&quot; size=&quot;25&quot; maxlength=&quot;25&quot;&gt;&lt;/div&gt;&#13;
+&lt;/div&gt;&#13;
+&#13;
+&lt;div class=&quot;puby&quot;&gt;&#13;
+&lt;div class=&quot;pubx_1&quot;&gt;手机:&lt;/div&gt;&#13;
+&lt;div class=&quot;pubx_2&quot;&gt;&lt;input type=&quot;text&quot; name=&quot;userInf.mobile&quot; size=&quot;25&quot; maxlength=&quot;25&quot;&gt;&lt;/div&gt;&#13;
+&lt;/div&gt;&#13;
+&#13;
+&#13;
+&lt;div class=&quot;puby&quot;&gt;&#13;
+&lt;div class=&quot;pubx_1&quot;&gt;QQ:&lt;/div&gt;&#13;
+&lt;div class=&quot;pubx_2&quot;&gt;&lt;input type=&quot;text&quot; name=&quot;userInf.qq&quot; size=&quot;25&quot; maxlength=&quot;25&quot;&gt;&lt;/div&gt;&#13;
+&lt;/div&gt;&#13;
+&#13;
+&lt;div class=&quot;puby&quot;&gt;&#13;
+&lt;div class=&quot;pubx_1&quot;&gt;MSN:&lt;/div&gt;&#13;
+&lt;div class=&quot;pubx_2&quot;&gt;&lt;input type=&quot;text&quot; name=&quot;userInf.msn&quot; size=&quot;25&quot; maxlength=&quot;25&quot;&gt;&lt;/div&gt;&#13;
+&lt;div class=&quot;cle&quot;&gt;&lt;/div&gt;&#13;
+&lt;/div&gt;&#13;
+&lt;div class=&quot;rel_top&quot;&gt;&lt;input type=&quot;checkbox&quot; name=&quot;Agreement&quot; id=&quot;agreement&quot; value=&quot;ON&quot;&gt; 我已阅读接受 &lt;a href=&quot;javascript:showDivAgreementDiv();&quot;&gt;&lt;b&gt;Lerx官方网站通行证服务协议&lt;/b&gt; ！&lt;/a&gt;&lt;/div&gt;&#13;
+&#13;
+&#13;
+&lt;/form&gt;&#13;
+&lt;div class=&quot;rel_form&quot;&gt;&#13;
+&lt;input type=&quot;submit&quot; value=&quot;提　交&quot; onclick=&quot;javascript:gook();&quot; size=&quot;25&quot;&gt;&#13;
+    &lt;/div&gt;&#13;
+{$$footer$$}</string> 
+    </void> 
+    <void property="id"> 
+     <int>53</int> 
+    </void> 
+    <void property="specialCode1"> 
+     <string>/*增加pop*/&#13;
+.myPopAgreementDiv {&#13;
+background: #fff;border: 2px solid #666;text-align: center;z-index:999;width: 600px;height: 300px;left:50%;top:40%;border-left:2px solid #eee;border-top:2px solid #eee;&#13;
+margin-left:-300px!important;/*FF IE7 该值为本身宽的一半 */&#13;
+margin-top:-150px!important;/*FF IE7 该值为本身高的一半*/&#13;
+margin-top:0px;&#13;
+position:fixed!important;/* FF IE7*/&#13;
+position:absolute;/*IE6*/&#13;
+_top:       expression(eval(document.compatMode &amp;&amp;&#13;
+            document.compatMode==&apos;CSS1Compat&apos;) ?&#13;
+            documentElement.scrollTop + (document.documentElement.clientHeight-this.offsetHeight)/2 :/*IE6*/&#13;
+            document.body.scrollTop + (document.body.clientHeight - this.clientHeight)/2);/*IE5 IE5.5*/&#13;
+}&#13;
+.myPopAgreementDiv_top{ background:#3CC; height:30px;}&#13;
+.myPopAgreementDiv_top_left{ float:left; padding:7px 0 0 20px;}&#13;
+.myPopAgreementDiv_top_rig{ float:right; padding:7px 10px 0 0;}&#13;
+&#13;
+.bg,.PopAgreementIframe {&#13;
+background-color: #666; display:none;width: 100%;height: 100%;left:0;top:0;/*FF IE7*/&#13;
+filter:alpha(opacity=50);/*IE*/&#13;
+opacity:0.5;/*FF*/&#13;
+z-index:1;&#13;
+position:fixed!important;/*FF IE7*/&#13;
+position:absolute;/*IE6*/&#13;
+_top:       expression(eval(document.compatMode &amp;&amp;&#13;
+            document.compatMode==&apos;CSS1Compat&apos;) ?&#13;
+            documentElement.scrollTop + (document.documentElement.clientHeight-this.offsetHeight)/2 :/*IE6*/&#13;
+            document.body.scrollTop + (document.body.clientHeight - this.clientHeight)/2);/* www.codefans.net IE5 IE5.5*/&#13;
+}&#13;
+.PopAgreementIframe {&#13;
+filter:alpha(opacity=0);/*IE*/&#13;
+opacity:0;/*FF*/&#13;
+}&#13;
+&#13;
+.rel_top{ height:30px; text-align:center; padding-top:12px; background:#999; border-bottom:#666 solid 1px; border-right:#666 solid 1px; color:#000;}&#13;
+.rel_mid{}&#13;
+.rel_down{}&#13;
+.puby{}&#13;
+.pubx_1{ float:left; width:179px; height:24px; background:#CCC; padding:8px 0 0 20px;border-bottom:#666 dotted 1px;border-right:#aaa solid 1px;}&#13;
+.pubx_2{ float:right; width:740px; height:26px;background:#eee;  padding:6px 0 0 20px;border-bottom:#666 dotted 1px;}&#13;
+.rel_form{ height:30px; text-align:center; padding-top:12px; background:#999; border-bottom:#666 solid 1px; border-right:#666 solid 1px; margin-top:10px;}</string> 
+    </void> 
+   </object> 
+  </void> 
+  <void property="resultPageCode"> 
+   <string>&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot; &quot;http://www.w3.org/TR/html4/loose.dtd&quot;&gt;&#13;
+&lt;html&gt;&#13;
+&lt;head&gt;&#13;
+&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=UTF-8&quot;&gt;&#13;
+&lt;meta http-equiv=refresh content={$$waitingTime$$};url={$$returnUrl$$} &gt;&#13;
+&lt;style type=&quot;text/css&quot;&gt;&#13;
+body{ background:#ccc; font-size:14px; font-family:Arial, Helvetica, sans-serif;}&#13;
+.con{ border:5px solid #aaa; width:560px; height:80px; margin:50px auto; padding:20px 10px; background:#eee;}&#13;
+a:link{text-decoration:none;color:#C30;} &#13;
+a:visited{text-decoration:none;color:#C30;} &#13;
+a:hover{text-decoration:none;color:#f00;} &#13;
+a:active{text-decoration:none;color:#C30;}&#13;
+&lt;/style&gt;&#13;
+&lt;title&gt;操作提示&lt;/title&gt;&#13;
+&lt;/head&gt;&#13;
+&lt;body&gt;&#13;
+&lt;div id=&quot;con&quot; class=&quot;con&quot;&gt;&#13;
+&lt;div id=&quot;msg&quot;&gt;{$$resultMsg$$} &lt;/div&gt;&#13;
+&lt;div id=&quot;cond&quot;&gt;{$$waitingTime$$}秒后将返回，如果没有响应，请这里进行&lt;a href=&quot;{$$returnUrl$$}&quot;&gt;手动返回&lt;/a&gt;。&#13;
+&lt;/div&gt;&#13;
+&lt;/div&gt;&#13;
+&lt;/body&gt;&#13;
+&lt;/html&gt;&#13;
+</string> 
+  </void> 
+  <void property="rootResFolder"> 
+   <string>{$$contextPath$$}/res</string> 
+  </void> 
+  <void property="searchStyle"> 
+   <object class="com.lerx.style.site.vo.SiteStyleSubElementInCommon"> 
+    <void property="editAreaCode"> 
+     <string></string> 
+    </void> 
+    <void property="hrefLineFormat"> 
+     <string>&lt;li&gt;&lt;span class=&quot;ArticlesLineID&quot;&gt;{$$sn$$}&lt;/span&gt;&lt;span class=&quot;ArticlesHrefList&quot;&gt;&lt;a href=&quot;{$$hrefLine$$}&quot;&gt;{$$title$$}&lt;/a&gt; &lt;/span&gt;&lt;span&gt;{$$passStateStr$$}&lt;/span&gt;{$$editCode$$}&lt;/li&gt;</string> 
+    </void> 
+    <void property="htmlCode"> 
+     <string>{$$top$$}&#13;
+&lt;div&gt;&#13;
+{$$searchAreaCode$$}&#13;
+&lt;div class=&quot;searchMain&quot;&gt;&#13;
+{$$searchDataBody$$}&#13;
+&lt;/div&gt;&#13;
+&lt;div class=&quot;showpage&quot;&gt;&#13;
+{$$pageShowStr$$}&#13;
+&lt;/div&gt;&#13;
+&lt;/div&gt;&#13;
+{$$footer$$}</string> 
+    </void> 
+    <void property="id"> 
+     <int>57</int> 
+    </void> 
+    <void property="specialCode1"> 
+     <string>/*文集CSS*/&#13;
+.mylist{width:960px; margin:10px auto;}&#13;
+.mylist li{ line-height:2em; font-size:14px; border-bottom: 1px #F60 dotted; background:none;}&#13;
+.mylist span{ display:inline-block; float:left;}&#13;
+.ArticlesLineID{width:50px;}&#13;
+.ArticlesHrefList{width:710px;}&#13;
+.ArticlePassState{width:80px;}&#13;
+.Articlesedit{ width:120px; float:right;}&#13;
+&#13;
+.showpage{ text-align:center;}</string> 
+    </void> 
+   </object> 
+  </void> 
+  <void property="statCode"> 
+   <string>&lt;li&gt;&lt;strong&gt;文章&lt;/strong&gt; 已审：{$$articlesPassed$$} 待审：{$$articlesNoPassed$$}&lt;/li&gt;&#13;
+&lt;li&gt;&lt;strong&gt;会员&lt;/strong&gt; 已审：{$$usersPassed$$} 待审：{$$usersNoPassed$$}&lt;/li&gt;&#13;
+&lt;li&gt;&lt;strong&gt;会员发布排行&lt;/strong&gt;&lt;/li&gt;</string> 
+  </void> 
+  <void property="state"> 
+   <boolean>true</boolean> 
+  </void> 
+  <void property="styleName"> 
+   <string>新导入的门户风格模板_2014_09_19_10_08_27</string> 
+  </void> 
+  <void property="threadAjaxShowStr"> 
+   <string>发布：{$$member$$}   审核：{$$passer$$}   {$$passStr$$} 被浏览数：{$$views$$}  上次浏览IP：{$$lastIP$$}　　共有 {$$commentsAllCount$$} 人参与评论</string> 
+  </void> 
+  <void property="threadStyle"> 
+   <object class="com.lerx.style.site.vo.SiteStyleSubElementInCommon"> 
+    <void property="cssCode"> 
+     <string></string> 
+    </void> 
+    <void property="editAreaCode"> 
+     <string></string> 
+    </void> 
+    <void property="htmlCode"> 
+     <string>{$$top$$}&#13;
+&lt;!-- 主体开始--&gt;&#13;
+&lt;div id=&quot;popPlayDiv&quot; class=&quot;myPopPlayDiv&quot; style=&quot;display:none;&quot;&gt;&#13;
+	&#13;
+	&lt;div class=&quot;myPopPlayDiv_top&quot;&gt;&#13;
+		&lt;div class=&quot;myPopPlayDiv_top_left&quot;&gt;Lerx视频播放器&lt;/div&gt;&#13;
+		&lt;div class=&quot;myPopPlayDiv_top_rig&quot;&gt;&lt;a href=&quot;javascript:closePlay();&quot;&gt;关闭&lt;/a&gt;&lt;/div&gt;&#13;
+	&lt;/div&gt;&#13;
+&#13;
+	&lt;div class=&quot;myPopPlayDiv_input&quot;&gt;&#13;
+		&lt;iframe id=&quot;playIframe&quot; src=&quot;&quot; width=&quot;620&quot; height=&quot;465&quot;  class=&quot;playIframe&quot; frameborder=&quot;0&quot; &gt;&lt;/iframe&gt;&#13;
+	&lt;/div&gt;&#13;
+&lt;/div&gt;&#13;
+&#13;
+&lt;div id=&quot;bg&quot; class=&quot;bg&quot; style=&quot;display:none;&quot;&gt;&lt;/div&gt;&#13;
+&lt;iframe id=&quot;popPlayIframe&quot; class=&quot;popPlayIframe&quot; frameborder=&quot;0&quot; &gt;&lt;/iframe&gt;&#13;
+&lt;div class=&quot;cle&quot;&gt;&lt;/div&gt;&#13;
+ &lt;div class=&quot;container&quot;&gt;&#13;
+  &lt;div class=&quot;up&quot;&gt;&#13;
+  &lt;div class=&quot;side&quot;&gt;&#13;
+&lt;script type=&quot;text/javascript&quot;&gt; &#13;
+var commentPageSize=10;&#13;
+hotArticle();&#13;
+soulArticle();&#13;
+realTime();&#13;
+&#13;
+comment(1,commentPageSize);&#13;
+&#13;
+function comment(page,pageSize){&#13;
+	$(&quot;#commentbox&quot;).html(&quot;正在提取...&quot;);&#13;
+	$.ajax({&#13;
+		url:&apos;{$$contextPath$$}/ajax_comment_writeAreaCode.action?tid={$$tid$$}&amp;page=&apos;+page+&apos;&amp;pageSize=&apos;+pageSize,&#13;
+		type: &apos;post&apos;,&#13;
+		success:function(data){&#13;
+		 $(&quot;#commentbox&quot;).html(data);&#13;
+		}&#13;
+	 });&#13;
+ &#13;
+}&#13;
+&#13;
+function hotArticle(){&#13;
+	$(&quot;#hotArticle ul&quot;).html(&quot;正在提取...&quot;);&#13;
+	$.ajax({&#13;
+		url:&apos;{$$contextPath$$}/ajax_threads_list.action?n=10&amp;mod=2&amp;gid={$$gid$$}&amp;nt=false&amp;stateMode=1&amp;l=16&apos;,&#13;
+		type: &apos;post&apos;,&#13;
+		success:function(data){&#13;
+		 $(&quot;#hotArticle ul&quot;).html(data);&#13;
+		}&#13;
+	 });&#13;
+ &#13;
+}&#13;
+function soulArticle(){&#13;
+	$(&quot;#soulArticle ul&quot;).html(&quot;正在提取...&quot;);&#13;
+	$.ajax({&#13;
+		url:&apos;{$$contextPath$$}/ajax_threads_list.action?n=10&amp;mod=2&amp;gid={$$gid$$}&amp;nt=false&amp;stateMode=1&amp;l=16&amp;soul=1&apos;,&#13;
+		type: &apos;post&apos;,&#13;
+		success:function(data){&#13;
+		 $(&quot;#soulArticle ul&quot;).html(data);&#13;
+		}&#13;
+	 });&#13;
+ &#13;
+}&#13;
+function realTime(){&#13;
+	$(&quot;#realTime&quot;).html(&quot;正在提取...&quot;);&#13;
+	$.ajax({&#13;
+		url:&apos;{$$contextPath$$}/ajax_thread_someInf.action?tid={$$tid$$}&apos;,&#13;
+		type: &apos;post&apos;,&#13;
+		success:function(data){&#13;
+		 $(&quot;#realTime&quot;).html(data);&#13;
+		}&#13;
+	 });&#13;
+ &#13;
+}&#13;
+function showPlay(attaId)&#13;
+{&#13;
+	$(document).ready(function(){&#13;
+popPlayDiv&#13;
+		$(&quot;#playIframe&quot;).attr(&quot;src&quot;,&quot;{$$contextPath$$}/play.action?id=&quot;+attaId);&#13;
+		$(&quot;#popPlayDiv&quot;).show();&#13;
+		$(&quot;#popPlayIframe&quot;).show();&#13;
+		$(&quot;#bg&quot;).show();&#13;
+	});&#13;
+}&#13;
+&#13;
+function view(tid)&#13;
+{&#13;
+	$(&quot;#body&quot;).html(&quot;正在检测...&quot;);&#13;
+	$.ajax({&#13;
+		url:&apos;{$$contextPath$$}/ajax_thread_priceView.action?tid={$$tid$$}&apos;,&#13;
+		type: &apos;post&apos;,&#13;
+		success:function(data){&#13;
+		 $(&quot;#body&quot;).html(data);&#13;
+		}&#13;
+	 });&#13;
+&#13;
+	&#13;
+}&#13;
+&#13;
+function closePlay()&#13;
+{&#13;
+	$(document).ready(function(){&#13;
+		$(&quot;#playIframe&quot;).attr(&quot;src&quot;,&quot;&quot;);&#13;
+		$(&quot;#popPlayDiv&quot;).hide();&#13;
+		$(&quot;#popPlayIframe&quot;).hide();&#13;
+		$(&quot;#bg&quot;).hide();&#13;
+	});&#13;
+}&#13;
+&#13;
+function pollChg(tid,st){&#13;
+	$.ajax({&#13;
+		url:&apos;{$$contextPath$$}/ajax_art_poll_chg.action?tid=&apos;+tid+&apos;&amp;st=&apos;+st,&#13;
+		type: &apos;post&apos;,&#13;
+		success:function(data){&#13;
+		&#13;
+			var re=data;&#13;
+			if (re==&apos;success&apos;){&#13;
+				&#13;
+				pollWrite(tid);&#13;
+			}&#13;
+			&#13;
+		}&#13;
+	 });&#13;
+}&#13;
+&#13;
+function poll(tid,sp){&#13;
+	&#13;
+	$.ajax({&#13;
+		url:&apos;{$$contextPath$$}/ajax_art_poll_v.action?tid=&apos;+tid+&apos;&amp;sp=&apos;+sp,&#13;
+		type: &apos;post&apos;,&#13;
+		success:function(data){&#13;
+		&#13;
+			var re=data;&#13;
+			if (re==&apos;success&apos;){&#13;
+				&#13;
+				pollWrite(tid);&#13;
+			}else if (re==&apos;exists_true&apos;){&#13;
+				alert(&apos;你忘了你称赞过他了？&apos;);&#13;
+			}else if (re==&apos;exists_false&apos;){&#13;
+				alert(&apos;你上次把他扔得满脸蛋汤，别再折磨他了！&apos;);&#13;
+			}else if (re==&apos;exists_neu&apos;){&#13;
+				alert(&apos;酱油店没关门呢！&apos;);&#13;
+			}else if (re==&apos;noLogin&apos;){&#13;
+				alert(&apos;您需要登录才能进行操作！&apos;);&#13;
+			}else if (re==&apos;timeOut&apos;){&#13;
+				alert(&apos;过时了，下次再来吧！&apos;);&#13;
+			}else{&#13;
+				alert(&apos;系统或参数错误！&apos;);&#13;
+			}&#13;
+			&#13;
+		}&#13;
+	 });&#13;
+ &#13;
+}&#13;
+&#13;
+function pollWrite(tid){&#13;
+	$(&quot;#poll&quot;).html(&quot;正在提取...&quot;);&#13;
+	$.ajax({&#13;
+		url:&apos;{$$contextPath$$}/ajax_art_poll_w.action?tid=&apos;+tid,&#13;
+		type: &apos;post&apos;,&#13;
+		success:function(data){&#13;
+&#13;
+		 $(&quot;#poll&quot;).html(data);&#13;
+		}&#13;
+	 });&#13;
+}&#13;
+&#13;
+&#13;
+&#13;
+&lt;/script&gt;&#13;
+&#13;
+   &lt;div class=&quot;side_1&quot;&gt;&#13;
+    &lt;div class=&quot;side_1hl&quot;&gt;&#13;
+     本类热点&#13;
+    &lt;/div&gt;&#13;
+    &lt;div class=&quot;side_1li&quot; id=&quot;hotArticle&quot;&gt;&lt;ul&gt;&#13;
+&#13;
+&lt;/ul&gt;&lt;/div&gt;&#13;
+   &lt;/div&gt;&#13;
+   &lt;div class=&quot;side_1&quot;&gt;&#13;
+&lt;div class=&quot;side_1hl&quot;&gt;&#13;
+     推荐阅读    &lt;/div&gt;&#13;
+    &lt;div class=&quot;side_1li&quot; id=&quot;soulArticle&quot;&gt;&lt;ul&gt;&#13;
+&lt;/ul&gt;&lt;/div&gt;&#13;
+&#13;
+&#13;
+   &lt;/div&gt;&#13;
+   &#13;
+  &lt;/div&gt;&#13;
+  &lt;div class=&quot;content&quot;&gt;&#13;
+   &lt;div class=&quot;con_top&quot;&gt;&#13;
+    &lt;div class=&quot;con_top_hl&quot;&gt;&#13;
+     &lt;div class=&quot;con_top_hl_l&quot;&gt;&lt;/div&gt;&#13;
+     &lt;div class=&quot;con_top_hl_m&quot;&gt;文章正文&lt;/div&gt;&#13;
+     &lt;div class=&quot;con_top_hl_r&quot;&gt;&lt;/div&gt;&#13;
+     &lt;div class=&quot;cle&quot;&gt;&lt;/div&gt;&#13;
+    &lt;/div&gt;&#13;
+    &lt;div class=&quot;con_top_li&quot;&gt;&#13;
+     &lt;div class=&quot;zhengwenw&quot;&gt;&#13;
+    &lt;div class=&quot;mtbt&quot;&gt;{$$pensileTitle$$}&lt;/div&gt;&#13;
+    &lt;div class=&quot;zbt&quot;&gt;{$$articleTitle$$}&lt;/div&gt;&#13;
+    &lt;div class=&quot;fbt&quot;&gt;{$$accessionalTitle$$}&lt;/div&gt;&#13;
+    &lt;div class=&quot;datetime&quot;&gt;{$$addTime$$}&lt;/div&gt;&#13;
+    &lt;div class=&quot;listline&quot;&gt;&lt;/div&gt;&#13;
+    &lt;div class=&quot;unitnamemail&quot;&gt;{$$authorDept$$}  {$$authorWithMail$$} &lt;/div&gt;&#13;
+    &lt;div class=&quot;PassStr&quot;&gt;&lt;/div&gt;&#13;
+&#13;
+&#13;
+    &lt;div class=&quot;biaotimg&quot;&gt;{$$image$$}&lt;/div&gt;&#13;
+    &lt;div class=&quot;imgnote&quot;&gt;{$$imageExplain$$}&lt;/div&gt;&#13;
+    &lt;div class=&quot;zhengwen&quot; id=&quot;body&quot;&gt;{$$body$$}&lt;/div&gt;&#13;
+&lt;div class=&quot;poll&quot; id=&quot;poll&quot;&gt;&lt;/div&gt;&#13;
+	&lt;div class=&quot;attachments&quot;&gt;&lt;ul&gt;{$$attachments$$}&lt;/ul&gt;&lt;/div&gt;&#13;
+    &lt;div class=&quot;zhidao&quot;&gt;{$$mentor$$}&lt;/div&gt;&#13;
+    &lt;div class=&quot;yifabiao&quot;&gt;{$$journal$$}&lt;/div&gt;&#13;
+    &lt;div class=&quot;listline&quot;&gt;&lt;/div&gt;&#13;
+    &lt;div class=&quot;cotlink&quot;&gt;{$$link$$}&lt;/div&gt;&#13;
+    &lt;div class=&quot;ipother&quot; id=&quot;realTime&quot;&gt;&lt;/div&gt;&#13;
+&lt;div class=&quot;articlelink&quot;&gt; {$$lastArticle$$}&lt;br /&gt;{$$nextArticle$$}&lt;/div&gt;&#13;
+{$$titleImg$$}&#13;
+&#13;
+&#13;
+&#13;
+	&lt;div class=&quot;commentbox&quot; id=&quot;commentbox&quot;&gt;&lt;/div&gt;&#13;
+&#13;
+	&#13;
+   &lt;/div&gt;&#13;
+    &lt;/div&gt;&#13;
+    &lt;div class=&quot;con_top_ft&quot;&gt;&#13;
+     &lt;div class=&quot;con_top_ft_l&quot;&gt;&lt;/div&gt;&#13;
+     &lt;div class=&quot;con_top_ft_m&quot;&gt;&lt;/div&gt;&#13;
+     &lt;div class=&quot;con_top_ft_r&quot;&gt;&lt;/div&gt;&#13;
+     &lt;div class=&quot;cle&quot;&gt;&lt;/div&gt;&#13;
+    &lt;/div&gt;&#13;
+   &lt;/div&gt;&#13;
+&#13;
+  &lt;/div&gt;&#13;
+  &lt;div class=&quot;cle&quot;&gt;&lt;/div&gt;&#13;
+  &lt;/div&gt;&#13;
+  &#13;
+ &lt;/div&gt;&#13;
+&lt;!-- 主体结束--&gt;&#13;
+&lt;script type=&quot;text/javascript&quot;&gt; &#13;
+ pollWrite({$$tid$$});&#13;
+ &lt;/script&gt; &#13;
+{$$footer$$}&#13;
+&lt;/div&gt;</string> 
+    </void> 
+    <void property="id"> 
+     <int>52</int> 
+    </void> 
+    <void property="specialCode1"> 
+     <string>/*主体上部盒子*/&#13;
+.up{}&#13;
+.side{ width:252px; float:left;}&#13;
+.side_1,.side_2,.side_3{ margin-bottom:5px;}&#13;
+.side_1hl{ width:252px; height:26px; background:url({$$contextPath$$}/templates/site/default/images/bg.jpg) no-repeat -166px -42px; padding:7px 0 0 0;font-size:14px; font-weight:bold; text-align:center;}&#13;
+.side_1hllink{ display:inline-block; background:url({$$contextPath$$}/templates/site/default/images/bg.jpg) no-repeat -166px -76px; width:83px; height:17px;}&#13;
+.side_1hllink:hover{background:url({$$contextPath$$}/templates/site/default/images/bg.jpg) no-repeat -250px -76px;}&#13;
+.side_1li{ padding:10px 10px 10px 20px;}&#13;
+.side_2 {text-align:left;}&#13;
+&#13;
+.content{ width:698px; float:right;}&#13;
+.con_top{}&#13;
+.con_top_hl{}&#13;
+.con_top_hl_l{ float:left; width:7px; height:37px; background:url({$$contextPath$$}/templates/site/default/images/bg.jpg) no-repeat -334px -77px; font-size:0px;}&#13;
+.con_top_hl_m{float:left; height:26px; width:654px; border-top:1px solid #e8e8e8; background:url({$$contextPath$$}/templates/site/default/images/bg.jpg) no-repeat -405px -435px; font-size:14px; font-weight:bold; padding:10px 0 0 30px;}&#13;
+&#13;
+.con_top_hl_r{ float:right; width:7px;height:37px; background:url({$$contextPath$$}/templates/site/default/images/bg.jpg) no-repeat -341px -77px; font-size:0px;}&#13;
+.con_top_li{ border:1px solid #e8e8e8; border-bottom:none; padding:10px 20px;}&#13;
+.mtbt{ font-style:italic; padding:5px 20px; text-align:left;overflow:hidden;}&#13;
+.zhengwenw{ text-align:center;}&#13;
+.zbt{ font-size:20px; font-weight:bold; margin:10px 30px;}&#13;
+.fbt{ font-size:12px;}&#13;
+.datetime,.zhidao,.ipother{font-size:12px; text-align:right; margin-right:20px;}&#13;
+.listline{ font-size:0px; height:4px; border-bottom:#999 dotted 1px; width:655px;}&#13;
+.unitnamemail{ font-size:12px; margin:5px;}&#13;
+.PassStr{ font-size:12px; margin:5px;}&#13;
+.btimg{ margin:5px;}&#13;
+.btimg img{border:1px #000 solid;}&#13;
+.imgnote{ font-size:12px; color:#666;}&#13;
+.biaotimg img{text-align:center; border:1px #000 solid; margin:0; padding:0; max-width:625px; width:expression(this.width&gt;500 ? 500 : true);}&#13;
+.zhengwen{text-indent:2em; text-align:left; line-height:150%;font-family:&quot;宋体&quot;; font-size:14px; color:#000;overflow:hidden;}&#13;
+.zhengwen p{ margin:10px 0;}&#13;
+.zhengwen img{text-align:center; border:1px #000 solid; margin:0; padding:0; max-width:500px; width:expression(this.width&gt;500 ? 500 : true);}&#13;
+.attachments li{background:none;text-align:left;}&#13;
+.zhidao{}&#13;
+.yifabiao{ font-size:12px; font-weight:bold; text-align:left; margin-left:20px;}&#13;
+.cotlink{font-size:12px; text-align:left; margin:5px 20px;}&#13;
+.ipother{ margin-bottom:5px;}&#13;
+.articlelink{ font-size:12px; font-weight:bold; text-align:left; margin-left:20px;margin-top:5px;}&#13;
+.commentbox{ text-align:left;margin-left:20px;margin-top:10px;}&#13;
+&#13;
+&#13;
+.con_top_ft{ font-size:0px;}&#13;
+.con_top_ft_l{float:left; width:7px;height:7px; background:url({$$contextPath$$}/templates/site/default/images/bg.jpg) no-repeat -334px -114px; font-size:0px;}&#13;
+.con_top_ft_m{float:left; height:7px; width:684px; border-bottom:1px solid #e8e8e8; font-size:0px;}&#13;
+.con_top_ft_r{ float:right; width:7px;height:7px; background:url({$$contextPath$$}/templates/site/default/images/bg.jpg) no-repeat -341px -114px; font-size:0px;}&#13;
+/*留言s*/&#13;
+.plip{ margin-top:10px; color:#699;}&#13;
+.pllist{ text-indent:2em; margin-top:5px; border-bottom:1px dashed #ccc; padding-bottom:5px;}&#13;
+.commentsplit{}&#13;
+&#13;
+/*留言o*/&#13;
+/*增加播放器pop*/&#13;
+.myPopPlayDiv {&#13;
+background: #fff;border: 2px solid #666;text-align: center;z-index:999;width: 620px;height: 495px;left:50%;top:40%;border-left:2px solid #eee;border-top:2px solid #eee;&#13;
+margin-left:-311px!important;/*FF IE7 该值为本身宽的一半 */&#13;
+margin-top:-234px!important;/*FF IE7 该值为本身高的一半*/&#13;
+margin-top:0px;&#13;
+position:fixed!important;/* FF IE7*/&#13;
+position:absolute;/*IE6*/&#13;
+_top:       expression(eval(document.compatMode &amp;&amp;&#13;
+            document.compatMode==&apos;CSS1Compat&apos;) ?&#13;
+            documentElement.scrollTop + (document.documentElement.clientHeight-this.offsetHeight)/2 :/*IE6*/&#13;
+            document.body.scrollTop + (document.body.clientHeight - this.clientHeight)/2);/*IE5 IE5.5*/&#13;
+}&#13;
+.myPopPlayDiv_top{ background:#3CC; height:30px;}&#13;
+.myPopPlayDiv_top_left{ float:left; padding:7px 0 0 20px;}&#13;
+.myPopPlayDiv_top_rig{ float:right; padding:7px 10px 0 0;}&#13;
+&#13;
+.bg,.popPlayIframe {&#13;
+background-color: #666; display:none;width: 620;height: 465;left:0;top:0;/*FF IE7*/&#13;
+filter:alpha(opacity=50);/*IE*/&#13;
+opacity:0.5;/*FF*/&#13;
+z-index:1;&#13;
+position:fixed!important;/*FF IE7*/&#13;
+position:absolute;/*IE6*/&#13;
+_top:       expression(eval(document.compatMode &amp;&amp;&#13;
+            document.compatMode==&apos;CSS1Compat&apos;) ?&#13;
+            documentElement.scrollTop + (document.documentElement.clientHeight-this.offsetHeight)/2 :/*IE6*/&#13;
+            document.body.scrollTop + (document.body.clientHeight - this.clientHeight)/2);/* www.codefans.net IE5 IE5.5*/&#13;
+}&#13;
+.popPlayIframe {&#13;
+filter:alpha(opacity=0);/*IE*/&#13;
+opacity:0;/*FF*/&#13;
+}</string> 
+    </void> 
+   </object> 
+  </void> 
+  <void property="userCenterStyle"> 
+   <object class="com.lerx.style.site.vo.SiteStyleSubElementInCommon"> 
+    <void property="editAreaCode"> 
+     <string></string> 
+    </void> 
+    <void property="htmlCode"> 
+     <string>&lt;SCRIPT LANGUAGE=javascript&gt;&#13;
+&lt;!--&#13;
+var ok=&quot; &lt;img src={$$contextPath$$}/templates/site/default/images/ok.gif /&gt;&quot;;&#13;
+var fail=&quot; &lt;img src={$$contextPath$$}/templates/site/default/images/err.gif /&gt;&quot;;&#13;
+&#13;
+function gook() {&#13;
+&#13;
+	&#13;
+&#13;
+	var pw1=$.trim($(&apos;#pw1&apos;).val());&#13;
+	var pw2=$.trim($(&apos;#pw2&apos;).val());&#13;
+	if (pw1!=pw2){&#13;
+		alert(&quot;两次密码不相同！&quot;);&#13;
+		return;&#13;
+	}else{&#13;
+		//$(&apos;#password&apos;).value=pw1;&#13;
+		f.submit();&#13;
+	}&#13;
+}&#13;
+&#13;
+&#13;
+function checkEmail(){&#13;
+	$(&quot;#testemail&quot;).html(&quot;正在检测...&quot;);&#13;
+	$.ajax({&#13;
+		url: &apos;{$$contextPath$$}/user_findByEmail.action?email=&apos;+$(&apos;#email&apos;).val(),&#13;
+		type: &apos;post&apos;,&#13;
+		success:function(data){&#13;
+		data=data.replace(&quot;{$$okIcoUrl$$}&quot;, ok);&#13;
+		data=data.replace(&quot;{$$failIcoUrl$$}&quot;, fail);&#13;
+		 $(&quot;#testemail&quot;).html(data);&#13;
+		}&#13;
+	 });&#13;
+&#13;
+}&#13;
+&#13;
+function checkpwd1(){&#13;
+	$(&quot;#testpwd1&quot;).html(&quot;正在检测...&quot;);&#13;
+	var pw1=$.trim($(&apos;#pw1&apos;).val());&#13;
+	var pw2=$.trim($(&apos;#pw2&apos;).val());&#13;
+	if (pw2!=&quot;&quot; &amp;&amp; pw1!=pw2){&#13;
+		$(&quot;#testpwd1&quot;).html(fail+&quot; 两次密码不相同！&quot;);&#13;
+	}else if(pw2!=&quot;&quot; &amp;&amp; pw1==pw2){&#13;
+		$(&quot;#testpwd1&quot;).html(ok);&#13;
+		$(&quot;#testpwd2&quot;).html(ok);&#13;
+	}else{&#13;
+		$(&quot;#testpwd1&quot;).html(ok);&#13;
+	}&#13;
+}&#13;
+&#13;
+function checkpwd2(){&#13;
+	$(&quot;#testpwd2&quot;).html(&quot;正在检测...&quot;);&#13;
+	var pw1=$.trim($(&apos;#pw1&apos;).val());&#13;
+	var pw2=$.trim($(&apos;#pw2&apos;).val());&#13;
+	if (pw1!=pw2){&#13;
+		$(&quot;#testpwd2&quot;).html(fail+&quot; 两次密码不相同！&quot;);&#13;
+	}else if(pw2!=&quot;&quot; &amp;&amp; pw1==pw2){&#13;
+		$(&quot;#testpwd1&quot;).html(ok);&#13;
+		$(&quot;#testpwd2&quot;).html(ok);&#13;
+	}else{&#13;
+		$(&quot;#testpwd2&quot;).html(ok);&#13;
+	}&#13;
+}&#13;
+&#13;
+&#13;
+&#13;
+//&#13;
+--&gt;&#13;
+&lt;/SCRIPT&gt;&#13;
+&#13;
+{$$top$$}&#13;
+&lt;script type=&quot;text/javascript&quot;&gt;&#13;
+function showUpLoadDiv(col)&#13;
+{&#13;
+	$(document).ready(function(){&#13;
+&#13;
+	$(&quot;#UpLoadIframe&quot;).attr(&quot;src&quot;,&quot;{$$contextPath$$}/upload.jsp?col=&quot;+col);&#13;
+	//$(&quot;UpLoadIframe&quot;).src=&quot;upload.jsp&quot;;&#13;
+		$(&quot;#popUpLoadDiv&quot;).show();&#13;
+		$(&quot;#PopUpLoadIframe&quot;).show();&#13;
+		$(&quot;#bg&quot;).show();&#13;
+	});&#13;
+}&#13;
+&#13;
+function closeUpLoadDiv()&#13;
+{&#13;
+	$(document).ready(function(){&#13;
+		$(&quot;#popUpLoadDiv&quot;).hide();&#13;
+		$(&quot;#PopUpLoadIframe&quot;).hide();&#13;
+		$(&quot;#bg&quot;).hide();&#13;
+	});&#13;
+}&#13;
+&lt;/script&gt;&#13;
+&lt;div id=&quot;popUpLoadDiv&quot; class=&quot;myPopUpLoadDiv&quot; style=&quot;display:none;&quot;&gt;&#13;
+&lt;div class=&quot;myPopUpLoadDiv_top&quot;&gt;&lt;div class=&quot;myPopUpLoadDiv_top_left&quot;&gt;文件上传！&lt;/div&gt;&lt;div class=&quot;myPopUpLoadDiv_top_rig&quot;&gt;&lt;a href=&quot;javascript:closeUpLoadDiv();&quot;&gt;关闭&lt;/a&gt;&lt;/div&gt;&lt;/div&gt;&#13;
+&lt;div class=&quot;myPopAgreementDiv_input&quot;&gt;&#13;
+&lt;iframe id=&quot;UpLoadIframe&quot; src=&quot;upload.jsp&quot; width=&quot;100%&quot; height=&quot;100%&quot;  class=&quot;UpLoadIframe&quot; frameborder=&quot;0&quot; &gt;&#13;
+&lt;/iframe&gt;&#13;
+&#13;
+&lt;div id=&quot;uploadState&quot;&gt;&lt;/div&gt;&#13;
+&lt;/div&gt;&#13;
+&lt;/div&gt;&#13;
+&lt;div id=&quot;bg&quot; class=&quot;bg&quot; style=&quot;display:none;&quot;&gt;&lt;/div&gt;&#13;
+&lt;iframe id=&quot;PopUpLoadIframe&quot; class=&quot;PopUpLoadIframe&quot; frameborder=&quot;0&quot; &gt;&lt;/iframe&gt;&#13;
+&#13;
+ &lt;div class=&quot;userregtopimg&quot;&gt;&lt;/div&gt;&#13;
+&#13;
+&lt;form name=&quot;f&quot; id=&quot;f&quot; method=&quot;post&quot; action=&quot;{$$contextPath$$}/user_userModify.action?userInf.id={$$uid$$}&quot;&gt;&#13;
+&lt;div class=&quot;regw&quot;&gt;&#13;
+&#13;
+&lt;div class=&quot;rel_top&quot;&gt; {$$username$$} {$$icClear$$} 用户资料 修改 - 必填内容 &lt;/div&gt;&#13;
+&#13;
+&#13;
+&#13;
+&#13;
+&#13;
+&lt;div class=&quot;puby&quot;&gt;&#13;
+&lt;div class=&quot;pubx_1&quot;&gt;密码:&lt;/div&gt;&#13;
+&lt;div class=&quot;pubx_2&quot;&gt;&lt;input type=&quot;password&quot; id=&quot;pw1&quot; name=&quot;pw1&quot; size=&quot;25&quot; maxlength=&quot;25&quot; onblur=&quot;checkpwd1();&quot;&gt;&lt;span id=&quot;testpwd1&quot;&gt;&lt;/span&gt;&lt;/div&gt;&#13;
+&lt;/div&gt;&#13;
+&#13;
+&lt;div class=&quot;puby&quot;&gt;&#13;
+&lt;div class=&quot;pubx_1&quot;&gt;密码确认:&lt;/div&gt;&#13;
+&lt;div class=&quot;pubx_2&quot;&gt;&lt;input type=&quot;password&quot; id=&quot;pw2&quot; name=&quot;pw2&quot; size=&quot;25&quot; maxlength=&quot;25&quot;  onblur=&quot;checkpwd2();&quot;&gt;&lt;span id=&quot;testpwd2&quot;&gt;&lt;/span&gt;&lt;/div&gt;&#13;
+&lt;/div&gt;&#13;
+&#13;
+&#13;
+&lt;div class=&quot;puby&quot;&gt;&#13;
+&lt;div class=&quot;pubx_1&quot;&gt;邮箱地址:&lt;/div&gt;&#13;
+&lt;div class=&quot;pubx_2&quot;&gt;&lt;input type=&quot;text&quot; id=&quot;email&quot; name=&quot;userInf.email&quot; size=&quot;25&quot; maxlength=&quot;25&quot; value=&quot;{$$email$$}&quot; &gt;&lt;/div&gt;&#13;
+&lt;div class=&quot;cle&quot;&gt;&lt;/div&gt;&#13;
+&lt;/div&gt;&#13;
+&lt;script type=&quot;text/javascript&quot;&gt;&#13;
+$(&quot;#pw1&quot;).width($(&quot;#email&quot;).width());&#13;
+$(&quot;#pw2&quot;).width($(&quot;#email&quot;).width());&#13;
+&lt;/script&gt;&#13;
+&lt;div class=&quot;rel_top&quot;&gt;用户注册 - 选填内容&lt;/div&gt;&#13;
+&#13;
+&lt;div class=&quot;puby&quot;&gt;&#13;
+&lt;div class=&quot;pubx_3&quot;&gt;用户头像:&lt;/div&gt;&#13;
+&lt;div class=&quot;pubx_4&quot;&gt;&lt;img src=&quot;{$$avatarFile$$}&quot; id=&quot;photoImg&quot; width=&quot;120&quot; height=&quot;120&quot; /&gt; 当前头像地址(URL)：&lt;input id=&quot;photoFile&quot; type=&quot;text&quot; name=&quot;userInf.avatarFile&quot; size=&quot;25&quot; maxlength=&quot;25&quot; value=&quot;{$$avatarFile$$}&quot;&gt; &lt;a href=&quot;javascript:showUpLoadDiv(&apos;photoFile,photoImg&apos;);&quot;&gt; &lt;b&gt;点此上传头像&lt;/b&gt;&lt;/a&gt; (120*120像素) &lt;input name=&quot;userInf.avatarFileLock&quot; type=&quot;checkbox&quot; value=&quot;true&quot; {$$avatarFileLock$$} /&gt;锁定&lt;/div&gt;&#13;
+&lt;/div&gt;&#13;
+&#13;
+&#13;
+&lt;div class=&quot;puby&quot;&gt;&#13;
+&lt;div class=&quot;pubx_1&quot;&gt;真实姓名:&lt;/div&gt;&#13;
+&lt;div class=&quot;pubx_2&quot;&gt;&lt;input type=&quot;text&quot; name=&quot;userInf.trueName&quot; size=&quot;25&quot; maxlength=&quot;25&quot; value=&quot;{$$trueName$$}&quot;&gt;&lt;/div&gt;&#13;
+&lt;/div&gt;&#13;
+&#13;
+&lt;div class=&quot;puby&quot;&gt;&#13;
+&lt;div class=&quot;pubx_1&quot;&gt;性别:&lt;/div&gt;&#13;
+&lt;div class=&quot;pubx_2&quot;&gt;&lt;input type=&quot;radio&quot; value=&quot;1&quot; {$$male$$} name=&quot;sex&quot;&gt;男 &lt;input type=&quot;radio&quot; {$$female$$} name=&quot;sex&quot; value=&quot;2&quot;&gt;女 &lt;input type=&quot;radio&quot; name=&quot;sex&quot; {$$secret$$} value=&quot;0&quot;&gt;秘密&lt;/div&gt;&#13;
+&lt;/div&gt;&#13;
+&#13;
+&lt;div class=&quot;puby&quot;&gt;&#13;
+&lt;div class=&quot;pubx_1&quot;&gt;出生年月:&lt;/div&gt;&#13;
+&lt;div class=&quot;pubx_2&quot;&gt;&lt;input type=&quot;text&quot; name=&quot;birthdayYear&quot; size=&quot;4&quot; maxlength=&quot;4&quot; value=&quot;{$$birthdayYear$$}&quot;&gt;年&lt;input type=&quot;text&quot; name=&quot;birthdayMonth&quot; size=&quot;2&quot; maxlength=&quot;2&quot; value=&quot;{$$birthdayMonth$$}&quot;&gt;月&lt;input type=&quot;text&quot; name=&quot;birthdayDay&quot; size=&quot;2&quot; maxlength=&quot;2&quot;  value=&quot;{$$birthdayDay$$}&quot;&gt;日&lt;/div&gt;&#13;
+&lt;/div&gt;&#13;
+&#13;
+&#13;
+&lt;div class=&quot;puby&quot;&gt;&#13;
+&lt;div class=&quot;pubx_1&quot;&gt;国家:&lt;/div&gt;&#13;
+&lt;div class=&quot;pubx_2&quot;&gt;&lt;input type=&quot;text&quot; name=&quot;userInf.country&quot; size=&quot;25&quot; maxlength=&quot;25&quot;  value=&quot;{$$country$$}&quot;&gt;&lt;/div&gt;&#13;
+&lt;/div&gt;&#13;
+&#13;
+&lt;div class=&quot;puby&quot;&gt;&#13;
+&lt;div class=&quot;pubx_1&quot;&gt;省份:&lt;/div&gt;&#13;
+&lt;div class=&quot;pubx_2&quot;&gt;&lt;input type=&quot;text&quot; name=&quot;userInf.province&quot; size=&quot;25&quot; maxlength=&quot;25&quot; value=&quot;{$$province$$}&quot;&gt;&lt;/div&gt;&#13;
+&lt;/div&gt;&#13;
+&#13;
+&lt;div class=&quot;puby&quot;&gt;&#13;
+&lt;div class=&quot;pubx_1&quot;&gt;城市:&lt;/div&gt;&#13;
+&lt;div class=&quot;pubx_2&quot;&gt;&lt;input type=&quot;text&quot; name=&quot;userInf.city&quot; size=&quot;25&quot; maxlength=&quot;25&quot; value=&quot;{$$city$$}&quot;&gt;&lt;/div&gt;&#13;
+&lt;/div&gt;&#13;
+&#13;
+&lt;div class=&quot;puby&quot;&gt;&#13;
+&lt;div class=&quot;pubx_1&quot;&gt;工作单位:&lt;/div&gt;&#13;
+&lt;div class=&quot;pubx_2&quot;&gt;&lt;input type=&quot;text&quot; name=&quot;userInf.dept&quot; size=&quot;25&quot; maxlength=&quot;25&quot; value=&quot;{$$dept$$}&quot;&gt;&lt;/div&gt;&#13;
+&lt;/div&gt;&#13;
+&#13;
+&lt;div class=&quot;puby&quot;&gt;&#13;
+&lt;div class=&quot;pubx_1&quot;&gt;住址:&lt;/div&gt;&#13;
+&lt;div class=&quot;pubx_2&quot;&gt;&lt;input type=&quot;text&quot; name=&quot;userInf.address&quot; size=&quot;25&quot; maxlength=&quot;25&quot; value=&quot;{$$address$$}&quot;&gt;&lt;/div&gt;&#13;
+&lt;/div&gt;&#13;
+&#13;
+&lt;div class=&quot;puby&quot;&gt;&#13;
+&lt;div class=&quot;pubx_1&quot;&gt;联系电话:&lt;/div&gt;&#13;
+&lt;div class=&quot;pubx_2&quot;&gt;&lt;input type=&quot;text&quot; name=&quot;userInf.phone&quot; size=&quot;25&quot; maxlength=&quot;25&quot; value=&quot;{$$phone$$}&quot;&gt;&lt;/div&gt;&#13;
+&lt;/div&gt;&#13;
+&#13;
+&lt;div class=&quot;puby&quot;&gt;&#13;
+&lt;div class=&quot;pubx_1&quot;&gt;手机:&lt;/div&gt;&#13;
+&lt;div class=&quot;pubx_2&quot;&gt;&lt;input type=&quot;text&quot; name=&quot;userInf.mobile&quot; size=&quot;25&quot; maxlength=&quot;25&quot; value=&quot;{$$mobile$$}&quot;&gt;&lt;/div&gt;&#13;
+&lt;/div&gt;&#13;
+&#13;
+&#13;
+&lt;div class=&quot;puby&quot;&gt;&#13;
+&lt;div class=&quot;pubx_1&quot;&gt;QQ:&lt;/div&gt;&#13;
+&lt;div class=&quot;pubx_2&quot;&gt;&lt;input type=&quot;text&quot; name=&quot;userInf.qq&quot; size=&quot;25&quot; maxlength=&quot;25&quot; value=&quot;{$$qq$$}&quot;&gt;&lt;/div&gt;&#13;
+&lt;/div&gt;&#13;
+&#13;
+&lt;div class=&quot;puby&quot;&gt;&#13;
+&lt;div class=&quot;pubx_1&quot;&gt;MSN:&lt;/div&gt;&#13;
+&lt;div class=&quot;pubx_2&quot;&gt;&lt;input type=&quot;text&quot; name=&quot;userInf.msn&quot; size=&quot;25&quot; maxlength=&quot;25&quot; value=&quot;{$$msn$$}&quot;&gt;&lt;/div&gt;&#13;
+&lt;div class=&quot;cle&quot;&gt;&lt;/div&gt;&#13;
+&lt;/div&gt;&#13;
+&#13;
+&lt;/form&gt;&#13;
+&lt;div class=&quot;rel_form&quot;&gt;&#13;
+&lt;input type=&quot;submit&quot; value=&quot;提　交&quot; onclick=&quot;javascript:gook();&quot; size=&quot;25&quot;&gt;&#13;
+    &lt;/div&gt;&#13;
+{$$footer$$}&#13;
+</string> 
+    </void> 
+    <void property="id"> 
+     <int>59</int> 
+    </void> 
+    <void property="specialCode1"> 
+     <string>.rel_top{ height:30px; text-align:center; padding-top:12px; background:#999; border-bottom:#666 solid 1px; border-right:#666 solid 1px; color:#000;}&#13;
+.rel_mid{}&#13;
+.rel_down{}&#13;
+.puby{}&#13;
+.pubx_1{ float:left; width:179px; height:24px; background:#CCC; padding:8px 0 0 20px;border-bottom:#666 dotted 1px;border-right:#aaa solid 1px;}&#13;
+.pubx_2{ float:right; width:740px; height:26px;background:#eee;  padding:6px 0 0 20px;border-bottom:#666 dotted 1px;}&#13;
+.pubx_3{ float:left; width:179px; height:124px; background:#CCC; padding:8px 0 0 20px;border-bottom:#666 dotted 1px;border-right:#aaa solid 1px;}&#13;
+.pubx_4{ float:right; width:740px; height:126px;background:#eee;  padding:6px 0 0 20px;border-bottom:#666 dotted 1px;}&#13;
+&#13;
+.rel_form{ height:30px; text-align:center; padding-top:12px; background:#999; border-bottom:#666 solid 1px; border-right:#666 solid 1px; margin-top:10px;}&#13;
+/*增加pop*/&#13;
+.myPopUpLoadDiv {&#13;
+background: #fff;border: 2px solid #666;text-align: center;z-index:999;width: 600px;height: 300px;left:50%;top:40%;border-left:2px solid #eee;border-top:2px solid #eee;&#13;
+margin-left:-300px!important;/*FF IE7 该值为本身宽的一半 */&#13;
+margin-top:-150px!important;/*FF IE7 该值为本身高的一半*/&#13;
+margin-top:0px;&#13;
+position:fixed!important;/* FF IE7*/&#13;
+position:absolute;/*IE6*/&#13;
+_top:       expression(eval(document.compatMode &amp;&amp;&#13;
+            document.compatMode==&apos;CSS1Compat&apos;) ?&#13;
+            documentElement.scrollTop + (document.documentElement.clientHeight-this.offsetHeight)/2 :/*IE6*/&#13;
+            document.body.scrollTop + (document.body.clientHeight - this.clientHeight)/2);/*IE5 IE5.5*/&#13;
+}&#13;
+.myPopUpLoadDiv_top{ background:#3CC; height:30px;}&#13;
+.myPopUpLoadDiv_top_left{ float:left; padding:7px 0 0 20px;}&#13;
+.myPopUpLoadDiv_top_rig{ float:right; padding:7px 10px 0 0;}&#13;
+ &#13;
+.bg,.PopUpLoadIframe {&#13;
+background-color: #666; display:none;width: 100%;height: 100%;left:0;top:0;/*FF IE7*/&#13;
+filter:alpha(opacity=50);/*IE*/&#13;
+opacity:0.5;/*FF*/&#13;
+z-index:1;&#13;
+position:fixed!important;/*FF IE7*/&#13;
+position:absolute;/*IE6*/&#13;
+_top:       expression(eval(document.compatMode &amp;&amp;&#13;
+            document.compatMode==&apos;CSS1Compat&apos;) ?&#13;
+            documentElement.scrollTop + (document.documentElement.clientHeight-this.offsetHeight)/2 :/*IE6*/&#13;
+            document.body.scrollTop + (document.body.clientHeight - this.clientHeight)/2);/* www.codefans.net IE5 IE5.5*/&#13;
+}&#13;
+.PopUpLoadIframe {&#13;
+filter:alpha(opacity=0);/*IE*/&#13;
+opacity:0;/*FF*/&#13;
+}</string> 
+    </void> 
+   </object> 
+  </void> 
+ </object> 
+</java> 

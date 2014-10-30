@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+
+
+	<!-- 论坛版块设置 -->
+	
+	<package name="forum-group" extends="struts-default">
+		<action name="admin_bbs_forum_*" method="{1}"
+
+			class="com.lerx.bbs.service.BbsForumAction">
+			<result type="redirect" name="success">/${getText("lerx.default.admin.folder")}/admin_bbs_forum_list.jsp</result>
+		</action>
+				
+		<action name="admin_bbs_forum_findAllByParent" method="findAllByParent"
+
+			class="com.lerx.bbs.service.BbsForumAction">
+			<result name="success">/${getText("lerx.default.admin.folder")}/admin_bbs_forum_order.jsp</result>
+		</action>
+		
+		
+		<action name="admin_bbs_forum_findById" method="findById"
+
+			class="com.lerx.bbs.service.BbsForumAction">
+			<result name="success">/${getText("lerx.default.admin.folder")}/admin_bbs_forum_edit.jsp</result>
+		</action>
+		
+		<action name="admin_bbs_forum_swap" method="swap"
+			class="com.lerx.bbs.service.BbsForumAction">
+			<result name="success">/${getText("lerx.default.admin.folder")}/admin_bbs_forum_order.jsp?parentGroupID=${parentGroupID}</result>
+		</action>
+		
+	</package>
+
+</struts>

@@ -1,0 +1,418 @@
+ajax 提取帮助文档
+
+
+Lerx V2建议您采用ajax来处理局部数据，当然很多ajax也可以写成javascript脚本。
+
+全局说明：
+本文中的示例全部基于Jquery框架，如不采用该框架，请自行修改
+{$$contextPath$$}	为当前应用目录。在模板中使用该标签能自动识别当前应用目录。
+			如：网站安装在 http://www.yourdomain.com/myapp 下，该标签将输出“myapp”。
+
+
+1.用户面板
+
+	常用范围：top(顶部代码)
+	本脚本会输出用户面板。
+
+	<script type="text/javascript">
+	userArea();
+	function userArea(){
+		$("#userarea").html("正在检测...");
+		$.ajax({
+			url:'{$$contextPath$$}/ajax_user_area.action?articleGroupId={$$articleGroupId$$}',
+			type: 'post',
+			success:function(data){
+			 $("#userarea").html(data);
+			}
+		 });
+	 
+	}
+	</script>
+
+	#userarea 为div的id号
+		例：<div class="areaStyle" id="userarea"></div>
+
+	{$$articleGroupId$$}为自动识别的当前页的频道号，为0则表示不在任何栏目频道。
+
+2.日期显示
+
+	常用范围：top(顶部代码)
+	本脚本会输出一个如 2011年9月5日 星期一 格式的字符串
+
+	<script type="text/javascript">
+	dateAndWeek();
+	function dateAndWeek(){
+		$("#dateAndWeek").html("正在检测...");
+		$.ajax({
+			url:'{$$contextPath$$}/ajax_util_dateAndWeek.action',
+			type: 'post',
+			success:function(data){
+			 $("#dateAndWeek").html(data);
+			}
+		 });
+	 
+	}
+	</script>
+
+	#dateAndWeek为div的id号
+		例：<div class="rq" id="dateAndWeek"></div>
+
+3.年份输出
+
+	常用范围：底部(顶部代码)
+	本脚本会输出年份的字符串 如 2011。比如下方的版权号 2000-2011，使用这个后，无须每年都需要改模板中的尾年号。
+
+	<script type="text/javascript">
+	year();
+	function year(){
+		$("#year").html("正在检测...");
+		$.ajax({
+			url:'{$$contextPath$$}/ajax_util_year.action',
+			type: 'post',
+			success:function(data){
+			 $("#year").html(data);
+			}
+		 });
+	 
+	}
+	</script>
+
+	#year为div的id号
+		例：<div class="year" id="year"></div>
+
+4.自定义数据提取
+
+	常用范围：首页或独立分类频道页
+	模板中如果自定义了数据格式，将按该自定义数据格式进行提取。系统一共提供了三个自定义格式customFormatCode1-3。在模板中的通用设置中可以进行设置
+		自定义格式说明
+		{$$id$$}	--> 文章的id号
+		{$$sn$$}	--> 序号（从1开始）
+		{$$sn0$$}	--> 序号（从0开始）
+		{$$alt$$}	--> 鼠标移到链接区的提示文本，一般是图片或标题被截取后会自动产生。
+		{$$hrefLine$$}	--> 链接的url。如会生成：/thread.acrion?tid=100或静态文件的地址
+		{$$title$$}	--> 显示的文本
+		{$$imageUrl$$}	--> 文章的缩略图地址，如无，则取文章的主图片地址。
+		{$$member$$}	--> 文章发布的会员名
+		{$$views$$}	--> 文章的被浏览次数
+
+		特殊说明，如果我们的自定义格式为
+		<li><a href="hrefLine">title</a></li>
+		通常输出为
+		<li><a href="hrefLine">title</a></li><li><a href="hrefLine">title</a></li><li><a href="hrefLine">title</a></li><li><a href="hrefLine">title</a></li>...
+		但在一些javascript中我们可能用输出下面的一种格式：
+		new Array(title,url,imgurl),new Array(title,url,imgurl),new Array(title,url,imgurl),new Array(title,url,imgurl)
+		注意上面的格式，如果我们自定义格式为new Array(title,url,imgurl), ，最后将多出一个,（即多出一个逗号）
+		解决方法：将自定义格式用{$$和$$}来包含就行了。如{$$new Array(title,url,imgurl)$$}，中间的,将自动生成，但头尾将不包含,
+
+	
+
+	<script language ="javascript" type="text/javascript"> 
+	imageAjax();
+	function imageAjax(){
+		$("#teach_li ul").html("正在提取...");
+		$.ajax({
+			url:'{$$contextPath$$}/ajax_style_siteCustom.action?n=9&mod=0&gid=44&nt=false&stateMode=1&l=5&soul=0&mod=1&fmod=1',
+			type: 'post',
+			
+			success:function(data){
+			
+			$("#teach_li ul").html(data);
+			
+			}
+		 });
+	 
+	    }
+	</script>
+
+	参数说明
+		n		--> 提取数量
+		l		--> 标题截取长充
+		mod		--> 0 按最新 1 按浏览数 2 按平均浏览数 
+		gid		--> 栏目频道的id号。0则代表全部
+		nt		--> 选择文章时选择是否同时发布公告的文章 true 文章且为公告的才提取 false禁用
+		stateMode	--> 1 显示已审文章 0 显示全部文章 2 显示未审文章 注：常用1
+		soul		--> 是否精华或推荐
+		fmod		--> 使用的自定义格式号 系统支持三个，即1、2、3
+	
+	#teach_li ul 为div的id号为teach_li中的ul区域
+		例：<div class="teach_li" id="teach_li"><ul><ul></div>
+
+5.网站统计
+
+	适用范围：所有，
+	本代码将会生成网站统计代码，代码格式在通用设置的statCode标签中进行设置
+
+	function siteStat(){
+		
+		$.ajax({
+			url:'{$$contextPath$$}/ajax_site_stat.action',
+			type: 'post',
+			async:false,
+			success:function(data){
+			var tmp=data;
+			statCode=tmp;
+			//$("#usersArticlesNum ul").html(data);
+			}
+		 });
+ 
+	}
+
+	#teach_li ul 为div的id号为usersArticlesNum中的ul区域。
+
+	statCode标签示例：
+		<li><strong>文章</strong> 已审：{$$articlesPassed$$} 待审：{$$articlesNoPassed$$}</li>
+		<li><strong>会员</strong> 已审：{$$usersPassed$$} 待审：{$$usersNoPassed$$}</li>
+		<li><strong>会员发布排行</strong></li>
+
+6.会员发布统计
+	
+	适用范围：所有，
+	本代码将会生成会员发布统计情况
+
+	function usersArticlesNum(){
+		//$("#usersArticlesNum ul").html("正在提取...");
+		$.ajax({
+			url:'{$$contextPath$$}/ajax_users_articlesNumList.action?page=1&pageSize=10&smod=0&umode=0',
+			type: 'post',
+			async:false,
+			success:function(data){
+			var tmp=data;
+			articlesStatCode=tmp;
+			//$("#usersArticlesNum ul").html(data);
+			}
+		 });
+ 
+	 }
+
+	 参数说明：
+		gid		--> 用户组id号。为空或为0则提取所有
+		page		--> 当前页数，一般设为1
+		pageSize	--> 每页提取个数
+		smod		--> 排列顺序 0 按已通过审核的文章总数排序 1 按发表的文章总数
+		umode		--> 0 显示用户名 1 显示真实姓名(无则显示用户名)
+
+7.文章提取
+
+	适用范围：所有，在文章页中可用{$$groupId$$}自动提取当前页的所属文章组
+
+	<script type="text/javascript"> 
+	hotArticle();
+	function hotArticle(){
+		$("#hotArticle ul").html("正在检测...");
+		$.ajax({
+			url:'{$$contextPath$$}/ajax_threads_list.action?n=10&mod=2&gid={$$groupId$$}&nt=false&stateMode=1&l=16',
+			type: 'post',
+			success:function(data){
+			 $("#hotArticle ul").html(data);
+			}
+		 });
+	 
+	}
+	</script>
+
+	本脚本参数说明
+		n		--> 提取数量
+		l		--> 标题截取长充
+		mod		--> 0 按最新 1 按浏览数 2 按平均浏览数 
+		gid		--> 栏目频道的id号。0则代表全部
+		nt		--> 选择文章时选择是否同时发布公告的文章 true 文章且为公告的才提取 false禁用
+		stateMode	--> 1 显示已审文章 0 显示全部文章 2 显示未审文章 注：常用1
+		soul		--> 是否精华或推荐
+			
+8.检查用户名是否已注册
+	
+	适用范围：注册页
+
+	<SCRIPT LANGUAGE=javascript>
+	<!--
+	var ok=" <img src=http://www.lerx.com/templates/default/images/ok.gif />";
+	var fail=" <img src=http://www.lerx.com/templates/default/images/err.gif />";
+
+	function checkName(){
+		$("#testname").html("正在检测...");
+		$.ajax({
+			url: '{$$contextPath$$}/ajax_user_findByName.action?username='+$('#username').val(),
+			type: 'post',
+			success:function(data){
+			data=data.replace("{$$okIcoUrl$$}", ok);
+			data=data.replace("{$$failIcoUrl$$}", fail);
+			 $("#testname").html(data);
+			}
+		 });
+
+	}
+
+	-->
+	</script>
+
+	{$$okIcoUrl$$}为成功的图片url
+	{$$failIcoUrl$$}为失败的图片url
+	下同
+
+
+9.检查Email是否可用
+
+	适用范围：注册页
+
+	<SCRIPT LANGUAGE=javascript>
+	<!--
+	var ok=" <img src=http://www.lerx.com/templates/default/images/ok.gif />";
+	var fail=" <img src=http://www.lerx.com/templates/default/images/err.gif />";
+
+	function checkEmail(){
+		$("#testemail").html("正在检测...");
+		$.ajax({
+			url: '{$$contextPath$$}/ajax_user_findByEmail.action?email='+$('#email').val(),
+			type: 'post',
+			success:function(data){
+			data=data.replace("{$$okIcoUrl$$}", ok);
+			data=data.replace("{$$failIcoUrl$$}", fail);
+			 $("#testemail").html(data);
+			}
+		 });
+
+	}
+
+	-->
+	</script>
+
+10.文章实时数据
+
+	适用范围：文章页
+	说明：在静态方式中，实时数据必须用此方式
+
+	function realTime(){
+	$("#realTime").html("正在提取...");
+	$.ajax({
+		url:'{$$contextPath$$}/ajax_thread_someInf.action?tid={$$articleID$$}',
+		type: 'post',
+		success:function(data){
+		 $("#realTime").html(data);
+		}
+	 });
+ 
+}
+
+11.提取评论
+
+	function comment(page,pageSize){
+		$("#commentbox").html("正在提取...");
+		$.ajax({
+			url:'{$$contextPath$$}/ajax_comment_writeAreaCode.action?tid={$$articleID$$}&page='+page+'&pageSize='+pageSize,
+			type: 'post',
+			success:function(data){
+			 $("#commentbox").html(data);
+			}
+		 });
+	 
+	}
+
+12.评论提交
+
+	function commentPost(){
+		var formData=$("#comment").serializeArray(); 
+		$.ajax({
+			url:'{$$contextPath$$}/ajax_comment_add.action?tid={$$articleID$$}',
+			type: 'post',
+			data:formData,
+			success:function(data){
+			 $("#commentbox").html(data);
+			}
+		 });
+	}
+
+13.删除评论
+
+	function delComment(cid,page){
+		$.ajax({
+			url:'{$$contextPath$$}/ajax_comment_del.action?tid={$$articleID$$}&cid='+cid+'&page='+page,
+			type: 'post',
+			success:function(data){
+			 $("#commentbox").html(data);
+			}
+		 });
+	}
+
+14.切换评论状态
+	说明：评论分两种状态，一是隐藏，除有管理权限的将看不到，二是正常状态
+	function changeCommentState(cid,page){
+		$.ajax({
+			url:'{$$contextPath$$}/ajax_comment_changeState.action?tid={$$articleID$$}&cid='+cid+'&page='+page,
+			type: 'post',
+			success:function(data){
+			 $("#commentbox").html(data);
+			}
+		 });
+	}
+
+15.关闭文章评论
+	
+	说明：关闭后将不能对文章进行评论。但已评论的内容可正常显示
+
+	function changeArticleCommentState(tid,page){
+		$.ajax({
+			url:'{$$contextPath$$}/ajax_comment_changeArticleState.action?tid={$$articleID$$}&page='+page,
+			type: 'post',
+			success:function(data){
+			 $("#commentbox").html(data);
+			}
+		 });
+	}
+
+16.流媒体url隐藏
+
+	适用范围：流媒体代码脚本，在模板中的通用模块中的mediaCode1-3中均可设置
+	说明，通过同步ajax结合令牌技术。可以在代码中隐藏流媒体url。
+	技术实现方法：
+	当打开文章页时，将生成一个64位的随机码。取完流媒体url后，该随机码将被删除。
+	
+	示例代码：
+
+	<script type='text/javascript' src='http://www.lerx.com/templates/default/js/jwplayer.js'></script>
+	 <div id='mediaspace'>This text will be replaced</div> 
+	<script type='text/javascript'> 
+	var purl,encryptedParmStr;
+	encryptedParmStr();
+	mediaUrl();
+	function encryptedParmStr(){
+		$.ajax({
+			url:'{$$contextPath$$}/encryptedParmStr.action?tid={$$articleID$$}',
+			type: 'post',
+			async:false,
+			success:function(data){
+			var response = data;
+			encryptedParmStr=response;
+			}
+		 });
+	 
+	}
+	function mediaUrl(){
+		$.ajax({
+			url:'{$$contextPath$$}/mediaUrl.action?tid={$$articleID$$}&encryptedParmStr='+encryptedParmStr,
+			type: 'post',
+			async:false,
+			success:function(data){
+			var response = data;
+			purl=response;
+			}
+		 });
+	 
+	}
+
+	jwplayer('mediaspace').setup({'flashplayer': 'http://www.lerx.com/templates/default/swf/player.swf','file': purl,'image': 'http://www.lerx.com/templates/default/images/lerx_flash_bg.jpg','controlbar': 'bottom','width': '620','height': '465'});
+	</script></div>
+
+17.文章列表页
+	list.action
+	可以用http://www.yourdomain.com/list.action来显示文章列表
+	参数：
+	gid		--> 文章组id 0是所有文章
+	stateMode	--> 文章状态 默认为0，按当前用户权权显示所有文章 1 已审文章 2 未审文章（如果用户权限不够则变为1）
+	notice		--> 是否为公告
+	soul		--> 是否为精华或推荐
+
+18.验证码
+	也可以用，熟悉的可以自行写脚本。
+	参数说明：
+	mode	--> 2 将取字母加数字。 其它只取数字。
+	本验证码去除了i o l三个字符，以防难以辨别

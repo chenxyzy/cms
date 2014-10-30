@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+
+
+	<!-- 文章组 -->
+	
+	<package name="article-group" extends="struts-default">
+		<action name="admin_article_group_*" method="{1}"
+
+			class="com.lerx.article.service.ArticleGroupAction">
+			<result name="success">/${getText("lerx.default.admin.folder")}/admin_article_group_list.jsp</result>
+		</action>
+		<action name="admin_article_group_add" method="add"
+
+			class="com.lerx.article.service.ArticleGroupAction">
+			<result name="success">/${getText("lerx.default.admin.folder")}/admin_article_group_list.jsp</result>
+			<!--  
+			<result name="invalid.token">/${getText("lerx.default.admin.folder")}/admin_token_err.jsp
+			</result>
+
+			<interceptor-ref name="token"></interceptor-ref>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			-->
+		</action>		
+		<action name="admin_article_group_findAllByParent" method="findAllByParent"
+
+			class="com.lerx.article.service.ArticleGroupAction">
+			<result name="success">/${getText("lerx.default.admin.folder")}/admin_article_group_order.jsp</result>
+		</action>
+		
+		
+		<action name="admin_article_group_findById" method="findById"
+
+			class="com.lerx.article.service.ArticleGroupAction">
+			<result name="success">/${getText("lerx.default.admin.folder")}/admin_article_group_edit.jsp</result>
+		</action>
+		
+		<action name="admin_article_group_swap" method="swap"
+			class="com.lerx.article.service.ArticleGroupAction">
+			<result name="success">/${getText("lerx.default.admin.folder")}/admin_article_group_order.jsp?parentGroupID=${parentGroupID}</result>
+		</action>
+		<action name="admin_article_group_move" method="move"
+
+			class="com.lerx.article.service.ArticleGroupAction">
+			<result name="success">/${getText("lerx.default.admin.folder")}/admin_success.jsp</result>
+			<result name="error">/${getText("lerx.default.admin.folder")}/admin_fail.jsp</result>
+		</action>
+	</package>
+
+</struts>

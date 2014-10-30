@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.lerx.album.vo">
+	<class name="Album" table="album" dynamic-update="true">
+		<id name="id" type="long" column="id">
+			<generator class="native" />
+		</id>
+		<property name="subTitle" type="string" column="name" length="50"  />
+		<property name="author" type="string" length="50"  />
+		<property name="authorEmail" type="string" length="50"  />
+		
+		<property name="introduction" type="text"  />
+		<property name="conclusion" type="text"  />
+		<property name="createTime" />
+		<property name="lastEditTime" />
+		<property name="lastViewIp" length="64" />
+		<property name="lastViewTime" />
+		<property name="salt" type="string" length="6"  />
+		<property name="password" type="string" length="64" />
+		<property name="locking" />
+		<property name="views" />
+		<property name="investigationTitle" />
+		<property name="agrees" />
+		<property name="opposes" />
+		<property name="htmlCreated" />
+		<property name="htmlUrlPath" />
+		<property name="htmlURLFile" />
+		<property name="encryptedParmStr" length="64" />
+		<property name="state" />
+		<property name="def" />
+		<many-to-one name="leader" column="leaderID" outer-join="true"
+			class="com.lerx.user.vo.User" />
+		<many-to-one name="passer" column="passerID" outer-join="true"
+			class="com.lerx.user.vo.User" />
+	</class>
+</hibernate-mapping>

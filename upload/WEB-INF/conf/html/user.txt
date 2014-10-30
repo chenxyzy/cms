@@ -1,0 +1,7 @@
+﻿<div class="title">用户名：{$$username$$}</div>
+<div class="title">呢称：{$$petName$$}</div>
+<div class="title">头像：{$$avatarFile$$}</div>
+<div class="title">论坛积分：{$$scoreValue$$}</div>
+<div class="title">用户组：{$$scoreGroup$$}</div>
+
+<div class="title">总积分：{$$allScore$$}</div>

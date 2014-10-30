@@ -1,0 +1,1075 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<java version="1.6.0_10-rc2" class="java.beans.XMLDecoder"> 
+ <object class="com.lerx.style.bbs.vo.BbsStyle"> 
+  <void property="addThemeButtomCode"> 
+   <string>&lt;a href=&quot;{$$contextPath$$}/post.action?fid={$$fid$$}&quot;&gt;&lt;img src=&quot;{$$icoFolderUrl$$}/act/addNew.jpg&quot;&gt;&lt;/a&gt;</string> 
+  </void> 
+  <void property="afterReplyShowCode"> 
+   <string>您所看的内容需要回复后才可见！</string> 
+  </void> 
+  <void property="author"> 
+   <string></string> 
+  </void> 
+  <void property="customFormatCode2"> 
+   <string>&lt;li&gt;[{$$username$$}] &lt;a target=&quot;_blank&quot; href=&quot;thread.action?tid={$$tid$$}&quot;&gt;{$$title$$}&lt;/a&gt;&lt;/li&gt;</string> 
+  </void> 
+  <void property="def"> 
+   <boolean>true</boolean> 
+  </void> 
+  <void property="description"> 
+   <string></string> 
+  </void> 
+  <void property="editThreadStyle"> 
+   <object class="com.lerx.style.bbs.vo.BbsStyleSubElementInCommon"> 
+    <void property="htmlCode"> 
+     <string>&lt;script type=&quot;text/javascript&quot; src=&quot;{$$contextPath$$}/js/ajaxupload.3.6.js&quot;&gt;&lt;/script&gt;&#13;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;{$$contextPath$$}/kindeditor-4.1.1/themes/default/default.css&quot; /&gt;&#13;
+	&lt;link rel=&quot;stylesheet&quot; href=&quot;{$$contextPath$$}/kindeditor-4.1.1/plugins/code/prettify.css&quot; /&gt;&#13;
+	&lt;script charset=&quot;utf-8&quot; src=&quot;{$$contextPath$$}/kindeditor-4.1.1/kindeditor.js&quot;&gt;&lt;/script&gt;&#13;
+	&lt;script charset=&quot;utf-8&quot; src=&quot;{$$contextPath$$}/kindeditor-4.1.1/lang/zh_CN.js&quot;&gt;&lt;/script&gt;&#13;
+	&lt;script charset=&quot;utf-8&quot; src=&quot;{$$contextPath$$}/kindeditor-4.1.1/plugins/code/prettify.js&quot;&gt;&lt;/script&gt;&#13;
+&lt;script&gt;&#13;
+var editor1;&#13;
+		KindEditor.ready(function(K) {&#13;
+			editor1 = K.create(&apos;textarea[name=&quot;theme.body&quot;]&apos;, {&#13;
+				cssPath : &apos;{$$contextPath$$}/kindeditor-4.1.1/plugins/code/prettify.css&apos;,&#13;
+				uploadJson : &apos;{$$contextPath$$}/uploadForKE.action&apos;,&#13;
+				fileManagerJson : &apos;{$$contextPath$$}/kindeditor-4.1.1/jsp/file_manager_json.jsp&apos;,&#13;
+				allowFileManager : true,&#13;
+				afterCreate : function() {&#13;
+					var self = this;&#13;
+					K.ctrl(document, 13, function() {&#13;
+						self.sync();&#13;
+						document.forms[&apos;example&apos;].submit();&#13;
+					});&#13;
+					K.ctrl(self.edit.doc, 13, function() {&#13;
+						self.sync();&#13;
+						document.forms[&apos;example&apos;].submit();&#13;
+					});&#13;
+				}&#13;
+			});&#13;
+			prettyPrint();&#13;
+		});&#13;
+&#13;
+&lt;/script&gt;&#13;
+{$$top$$}&#13;
+ &lt;div class=&quot;con&quot;&gt;&#13;
+  &lt;div class=&quot;position&quot;&gt;&#13;
+   &lt;div class=&quot;pos_left&quot;&gt;当前位置--&lt;a href=&quot;./bindex.action&quot;&gt;{$$bbsName$$}&lt;/a&gt;--&lt;a href=&quot;./forum.action?fid={$$fid$$}&quot;&gt;{$$forumName$$}&lt;/a&gt;--发贴&lt;/div&gt;&#13;
+   &lt;div class=&quot;pos_rig&quot;&gt;{$$ChineseDateFormatStr$$}&lt;/div&gt;&#13;
+   &lt;div class=&quot;cle&quot;&gt;&lt;/div&gt;&#13;
+  &lt;/div&gt;&#13;
+  &#13;
+  &lt;div class=&quot;main&quot;&gt;&#13;
+&lt;form method=&quot;POST&quot; action=&quot;{$$contextPath$$}/theme_post.action?fid={$$fid$$}&amp;theme.id={$$otid$$}&amp;tid={$$tid$$}&amp;secStr={$$secStr$$}&amp;randKey={$$randKey$$}&amp;page={$$page$$}&amp;pageSize={$$pageSize$$}&amp;scrollPos={$$scrollPos$$}&quot;&gt;&#13;
+   &lt;table width=&quot;100%&quot; border=&quot;0&quot; cellspacing=&quot;0&quot; cellpadding=&quot;0&quot; style=&quot; margin-top:10px;&quot;&gt;&#13;
+&#13;
+  &lt;tr&gt;&#13;
+    &lt;td class=&quot;pub_left&quot;&gt;帖子标题:&lt;/td&gt;&#13;
+    &lt;td class=&quot;pub_rig&quot;&gt;&lt;input name=&quot;theme.title&quot; size=&quot;80&quot; type=&quot;text&quot; value=&quot;{$$title$$}&quot; {$$disabled$$} /&gt;&lt;/td&gt;&#13;
+  &lt;/tr&gt;&#13;
+  &lt;tr&gt;&#13;
+    &lt;td class=&quot;pub_left&quot;&gt;帖子内容:&lt;/td&gt;&#13;
+    &lt;td class=&quot;pub_rig&quot;&gt;&lt;textarea name=&quot;theme.body&quot; id=&quot;threadBody&quot; cols=&quot;100&quot; rows=&quot;15&quot;&gt;{$$body$$}&lt;/textarea&gt;&lt;br/&gt; {$$replyMustTxt$$} &lt;/td&gt;&#13;
+  &lt;/tr&gt;&#13;
+&#13;
+  &lt;tr&gt;&#13;
+    &lt;td colspan=&quot;2&quot; class=&quot;pub_down&quot;&gt;&lt;input name=&quot;&quot; type=&quot;submit&quot; value=&quot;提交&quot; /&gt;&lt;/td&gt;&#13;
+    &lt;/tr&gt;&#13;
+&lt;/table&gt;&#13;
+&lt;/form&gt;&#13;
+  &lt;/div&gt;&#13;
+ &lt;/div&gt;&#13;
+&#13;
+{$$footer$$}</string> 
+    </void> 
+    <void property="id"> 
+     <int>4</int> 
+    </void> 
+    <void property="specialCode1"> 
+     <string>/*--------发表新帖页面css---------*/&#13;
+.pub_left{ width:15%; background:#eaf8f5; padding:5px 20px; border-bottom:1px solid #baeae0;}&#13;
+.pub_rig{width:85%; padding:5px 20px;border-bottom:1px solid #eee;}&#13;
+.pub_down{ text-align:center;}&#13;
+</string> 
+    </void> 
+   </object> 
+  </void> 
+  <void property="forumStyle"> 
+   <object class="com.lerx.style.bbs.vo.BbsStyleSubElementInCommon"> 
+    <void property="footerCode"> 
+     <string></string> 
+    </void> 
+    <void property="htmlCode"> 
+     <string>{$$top$$}&#13;
+&lt;div class=&quot;con&quot;&gt;&#13;
+	{$$publicCode1$$}&#13;
+	&lt;div class=&quot;main&quot;&gt;&#13;
+		{$$titleOfSubForumsLoops$$}&#13;
+		{$$forumsLoop$$}&#13;
+		{$$editThemeButtomCode$$}&#13;
+		&#13;
+	&lt;/div&gt;&#13;
+	&lt;div class=&quot;cle&quot;&gt;&lt;/div&gt;&#13;
+	&lt;div class=&quot;cl_down&quot;&gt;&#13;
+		&lt;div class=&quot;down_hl&quot;&gt;版块主题 ( 版主：{$$bms$$} )&lt;/div&gt;&#13;
+		&lt;div class=&quot;down_list&quot;&gt;&#13;
+			&lt;table width=&quot;100%&quot; border=&quot;0&quot; cellspacing=&quot;0&quot; cellpadding=&quot;0&quot;&gt;&#13;
+				{$$titleOfThreadsLoops$$}  &#13;
+				{$$threadsLoop$$}&#13;
+			&lt;/table&gt;&#13;
+			&lt;div class=&quot;showpage&quot;&gt;{$$pageShowStr$$}&lt;/div&gt;&#13;
+		&lt;/div&gt;&#13;
+	&lt;/div&gt;&#13;
+&#13;
+&lt;/div&gt;&#13;
+{$$publicCode2$$}&#13;
+{$$footer$$}</string> 
+    </void> 
+    <void property="id"> 
+     <int>3</int> 
+    </void> 
+    <void property="majorLoopCodeInLump"> 
+     <string>&lt;tr&gt;&#13;
+&lt;td class=&quot;li_0&quot;&gt;{$$editCode$$}&lt;/td&gt;&#13;
+    &lt;td class=&quot;li_1&quot;&gt;&lt;img src=&quot;{$$icoUrl$$}&quot;&gt;&lt;/td&gt;&#13;
+    &lt;td class=&quot;li_2&quot;&gt;&lt;a href=thread.action?tid={$$tid$$}&gt;{$$title$$}&lt;/a&gt;&lt;/td&gt;&#13;
+    &lt;td class=&quot;li_3&quot;&gt;&lt;cite&gt;&lt;a href=&apos;javascript:popupDiv({$$uid$$});&apos;&gt;{$$member$$}&lt;/a&gt;&lt;/cite&gt;&lt;em&gt;{$$addTime$$}&lt;/em&gt;&lt;/td&gt;&#13;
+    &lt;td class=&quot;li_4&quot;&gt;{$$replies$$} / {$$views$$}&lt;/td&gt;&#13;
+    &lt;td class=&quot;li_5&quot;&gt;&lt;cite&gt;&lt;a href=&apos;javascript:popupDiv({$$lastReplierUid$$});&apos;&gt;{$$lastReplier$$}&lt;/a&gt;&lt;/cite&gt;&lt;em&gt;{$$lastReplierTimesAgo$$}&lt;/em&gt;&lt;/td&gt;&#13;
+  &lt;/tr&gt;</string> 
+    </void> 
+    <void property="minorLoopCodeInLump"> 
+     <string>&lt;!--小分类循环开始--&gt;&#13;
+     &lt;div class=&quot;li_left&quot;&gt;&#13;
+      &lt;div class=&quot;li_hl&quot;&gt;&lt;span class=&quot;bbs_hl&quot;&gt;&lt;a href=&quot;{$$contextPath$$}/forum.action?fid={$$fid$$}&quot;&gt;{$$title$$}&lt;/a&gt;&lt;/span&gt;&lt;span class=&quot;today&quot;&gt;（今日：0）&lt;/span&gt;&lt;span class=&quot;bbs_bm&quot;&gt;版主：&lt;/div&gt;&#13;
+      &lt;div class=&quot;li_num&quot;&gt;主题: {$$threadsCount$$}, 帖数: {$$themesCount$$} &lt;/div&gt;&#13;
+      &lt;div class=&quot;li_end&quot;&gt;&lt;/div&gt;&#13;
+     &lt;/div&gt;&#13;
+&lt;!--小分类循环结束--&gt;</string> 
+    </void> 
+    <void property="specialCode1"> 
+     <string>.main{}&#13;
+.main_con{ padding-top:10px;}&#13;
+.main_hl{ font-weight:bold; font-size:14px; height:18px; margin:5px auto; border-bottom:3px #f3f3f3 solid; padding:4px 10px; width:900px;}&#13;
+.main_li{ line-height:150%;}&#13;
+.down_hl{height:24px; padding:10px 0 0 20px;background:#eaf8f5; margin-top:10px; border-bottom:1px solid #ccc;}&#13;
+.down_list{}&#13;
+em,cite{ font-style:normal;display:block;}&#13;
+em {clear:both;text-align:center;font-size:10px;color:#999;}&#13;
+&#13;
+.li_left{ float:left; padding:10px 0 10px 60px; background:url(/bbstemplates/default/images/affiche_bg.jpg) no-repeat 25px 18px; width:400px;}&#13;
+.li_hl{}&#13;
+.bbs_hl{font-weight:bold;}&#13;
+.bbs_bm{}&#13;
+.li_num{}&#13;
+.li_end{}&#13;
+.li_5,.li_3,.li_4,.li_2,.li_1{ border-bottom:1px dotted #ddd; height:35px;}&#13;
+.class_dl .li_t_0,.class_dl .li_t_1,.class_dl .li_t_2,.class_dl .li_t_3,.class_dl .li_t_4,.class_dl .li_t_5{ height:30px; background:#eaf8f5;border-bottom:1px solid #ccc;}&#13;
+&#13;
+.li_t_0{ width:5px;}&#13;
+.li_t_1{ width:50px; text-align:center;}&#13;
+.li_t_2{ width:450px; text-align:center;}&#13;
+.li_t_3{ width:240px; text-align:center;}&#13;
+.li_t_4{ width:60px; text-align:center;}&#13;
+.li_t_5{ width:135px; padding-right:10px; text-align:center;}&#13;
+&#13;
+.li_0{ width:5px;}&#13;
+.li_1{ width:50px; text-align:center;}&#13;
+.li_2{ width:450px; text-align:left;}&#13;
+.li_3{ width:240px; text-align:center;}&#13;
+.li_4{ width:60px; text-align:center;}&#13;
+.li_5{ width:135px; padding-right:10px; text-align:center;}&#13;
+.showpage {padding-right:10px; text-align:right;}&#13;
+</string> 
+    </void> 
+    <void property="titleOfMajorLoopCodeInLump"> 
+     <string>&lt;tr class=&quot;class_dl&quot;&gt;&#13;
+    &lt;td class=&quot;li_t_0&quot;&gt;　&lt;/td&gt;&#13;
+    &lt;td class=&quot;li_t_1&quot;&gt;　&lt;/td&gt;&#13;
+    &lt;td class=&quot;li_t_2&quot;&gt;标题&lt;/td&gt;&#13;
+    &lt;td class=&quot;li_t_3&quot;&gt;作者/发布时间&lt;/td&gt;&#13;
+    &lt;td class=&quot;li_t_4&quot;&gt;回复/查看&lt;/td&gt;&#13;
+    &lt;td class=&quot;li_t_5&quot;&gt;最后回复&lt;/td&gt;&#13;
+&lt;/tr&gt;</string> 
+    </void> 
+    <void property="titleOfMinorLoopCodeInLump"> 
+     <string>&lt;div class=&quot;cl_down&quot;&gt;&#13;
+&lt;div class=&quot;down_hl&quot;&gt;子分类&lt;/div&gt;&#13;
+&lt;/div&gt;</string> 
+    </void> 
+   </object> 
+  </void> 
+  <void property="genericStyle"> 
+   <object class="com.lerx.style.bbs.vo.BbsStyleSubElementInCommon"> 
+    <void property="htmlCode"> 
+     <string>{$$top$$}&#13;
+&lt;div class=&quot;con&quot;&gt;&#13;
+   {$$publicCode1$$}&#13;
+  &lt;div class=&quot;main&quot;&gt;&#13;
+&lt;div class=&quot;cl_down&quot;&gt;&#13;
+    &lt;div class=&quot;down_hl&quot;&gt;子分类&lt;/div&gt;&#13;
+&#13;
+&lt;/div&gt;&#13;
+&#13;
+   &lt;table width=&quot;100%&quot; border=&quot;0&quot; cellspacing=&quot;0&quot; cellpadding=&quot;0&quot;&gt;&#13;
+  &lt;tr class=&quot;class_dl&quot;&gt;&#13;
+    &lt;td class=&quot;li_0&quot;&gt;a&lt;/td&gt;&#13;
+    &lt;td class=&quot;li_1&quot;&gt;b&lt;/td&gt;&#13;
+    &lt;td class=&quot;li_2&quot;&gt;标题&lt;/td&gt;&#13;
+    &lt;td class=&quot;li_3&quot;&gt;作者&lt;/td&gt;&#13;
+    &lt;td class=&quot;li_4&quot;&gt;回复/查看&lt;/td&gt;&#13;
+    &lt;td class=&quot;li_5&quot;&gt;最后回复&lt;/td&gt;&#13;
+  &lt;/tr&gt;&#13;
+  &#13;
+ &#13;
+&lt;/table&gt;&#13;
+ &lt;div class=&quot;cl_top&quot;&gt;&#13;
+    &lt;div class=&quot;top_hl&quot;&gt;&lt;/div&gt;&#13;
+    &lt;div class=&quot;top_list&quot;&gt;&#13;
+    &#13;
+ &#13;
+    &lt;/div&gt;&#13;
+   &lt;/div&gt;&#13;
+&lt;/div&gt;&#13;
+&#13;
+&lt;div class=&quot;cle&quot;&gt;&lt;/div&gt;&#13;
+&#13;
+&lt;div class=&quot;cl_down&quot;&gt;&#13;
+    &lt;div class=&quot;down_hl&quot;&gt;版块主题&lt;/div&gt;&#13;
+    &lt;div class=&quot;down_list&quot;&gt;&#13;
+&#13;
+{$$titleOfLoopBasicLevelNavInLump$$}&#13;
+&lt;table width=&quot;100%&quot; border=&quot;0&quot; cellspacing=&quot;0&quot; cellpadding=&quot;0&quot;&gt;&#13;
+{$$titleOfLoopBracketCodeInLump$$}&#13;
+{$$threadsLoop$$}&#13;
+&lt;/table&gt;&#13;
+&lt;div class=&quot;showpage&quot;&gt;{$$pageShowStr$$}&#13;
+   &lt;/div&gt;&#13;
+&lt;/div&gt;&#13;
+ &lt;/div&gt;&#13;
+&lt;/div&gt;&#13;
+ &lt;/div&gt;&#13;
+{$$footer$$}</string> 
+    </void> 
+    <void property="id"> 
+     <int>7</int> 
+    </void> 
+    <void property="majorLoopCodeInLump"> 
+     <string>&lt;tr&gt;&#13;
+&lt;td class=&quot;li_0&quot;&gt;{$$editCode$$}&lt;/td&gt;&#13;
+    &lt;td class=&quot;li_1&quot;&gt;&lt;img src=&quot;{$$icoUrl$$}&quot;&gt;&lt;/td&gt;&#13;
+    &lt;td class=&quot;li_2&quot;&gt;&lt;a href=thread.action?tid={$$tid$$}&gt;{$$title$$}&lt;/a&gt;&lt;/td&gt;&#13;
+    &lt;td class=&quot;li_3&quot;&gt;&lt;span&gt;&lt;a href=&quot;{$$contextPath$$}/space.action?uid={$$uid$$}&quot;&gt;{$$member$$}&lt;/a&gt;&lt;/span&gt; &lt;span class=&quot;start_time&quot;&gt;{$$addTime$$}&lt;/span&gt;&lt;/td&gt;&#13;
+    &lt;td class=&quot;li_4&quot;&gt;{$$replies$$} / {$$views$$}&lt;/td&gt;&#13;
+    &lt;td class=&quot;li_5&quot;&gt;&lt;span&gt;&lt;a href=&quot;./space.jsp?uid={$$lastReplierUid$$}&quot;&gt;{$$lastReplier$$}&lt;/a&gt;&lt;/span&gt;&lt;span class=&quot;last_time&quot;&gt;{$$lastReplierTimesAgo$$}&lt;/span&gt;&lt;/td&gt;&#13;
+  &lt;/tr&gt;</string> 
+    </void> 
+   </object> 
+  </void> 
+  <void property="hrefLineFormatStrOverAll"> 
+   <string>&lt;li&gt;&lt;a target=&quot;_blank&quot; href=&quot;thread.action?tid={$$tid$$}&quot;&gt;{$$title$$}&lt;/a&gt;&lt;/li&gt;</string> 
+  </void> 
+  <void property="icoFolderUrl"> 
+   <string>{$$contextPath$$}/templates/bbs/default/images</string> 
+  </void> 
+  <void property="id"> 
+   <int>1</int> 
+  </void> 
+  <void property="indexStyle"> 
+   <object class="com.lerx.style.bbs.vo.BbsStyleSubElementInCommon"> 
+    <void property="bmDataFormat"> 
+     <string></string> 
+    </void> 
+    <void property="cssCode"> 
+     <string></string> 
+    </void> 
+    <void property="htmlCode"> 
+     <string>{$$top$$}&#13;
+&lt;div class=&quot;con&quot;&gt;&#13;
+	{$$publicCode1$$}  &#13;
+	&lt;div class=&quot;main&quot;&gt;&#13;
+		{$$rootClassesLoop$$}&#13;
+	 &lt;/div&gt;&#13;
+&lt;/div&gt;&#13;
+&#13;
+{$$publicCode2$$}&#13;
+{$$footer$$}</string> 
+    </void> 
+    <void property="id"> 
+     <int>2</int> 
+    </void> 
+    <void property="majorLoopCodeInLump"> 
+     <string>&lt;!--小分类循环开始--&gt;&#13;
+     &lt;div class=&quot;li_left&quot;&gt;&#13;
+      &lt;div class=&quot;li_hl&quot;&gt;&lt;span class=&quot;bbs_hl&quot;&gt;&lt;a href=&quot;{$$contextPath$$}/forum.action?fid={$$fid$$}&quot;&gt;{$$forumIcoImage$$} &lt;/a&gt;&lt;/span&gt; &lt;span class=&quot;bbs_bm&quot;&gt;&lt;a href=&quot;{$$contextPath$$}/forum.action?fid={$$fid$$}&quot;&gt;&lt;strong&gt;{$$title$$}&lt;/strong&gt;&lt;/a&gt;&lt;br /&gt;版主：{$$bms$$}&lt;/span&gt;&lt;/div&gt;&#13;
+      &lt;div class=&quot;li_num&quot;&gt;主题: {$$threadsCount$$}, 帖数: {$$themesCount$$} &lt;span class=&quot;today&quot;&gt;（今日：{$$theradsCountOfToday$$}/{$$themesCountOfToday$$}）&lt;/span&gt;&lt;/div&gt;&#13;
+      &lt;div class=&quot;li_end&quot;&gt;&lt;/div&gt;&#13;
+     &lt;/div&gt;&#13;
+&lt;!--小分类循环结束--&gt;</string> 
+    </void> 
+    <void property="minorLoopCodeInLump"> 
+     <string>&lt;!--大分类循环开始 --&gt;&#13;
+   &lt;div class=&quot;main_con&quot;&gt;&#13;
+    &lt;div class=&quot;main_hl&quot;&gt;&lt;a href=&quot;{$$contextPath$$}/forum.action?fid={$$fid$$}&quot;&gt;{$$title$$}&lt;/a&gt; 总版主：{$$bms$$}&lt;/div&gt;&#13;
+    &lt;div class=&quot;main_li&quot;&gt;&#13;
+{$$forumsLoop$$}&#13;
+&lt;div class=&quot;cle&quot;&gt;&lt;/div&gt;&#13;
+    &lt;/div&gt;&#13;
+   &lt;/div&gt;&#13;
+  &lt;!--大分类循环结束 --&gt;</string> 
+    </void> 
+    <void property="specialCode1"> 
+     <string>.main{}&#13;
+.main_con{ padding-top:10px;}&#13;
+.main_hl{ font-weight:bold; font-size:14px; height:18px; margin:5px auto; border-bottom:3px #f3f3f3 solid; padding:4px 10px; width:900px;}&#13;
+.main_li{ line-height:150%;}&#13;
+.li_left{ float:left; padding:10px 0 10px 60px; background:url({$$contextPath$$}/templates/bbs/default/images/sta/affiche_bg.jpg) no-repeat 25px 18px; width:400px;}&#13;
+.li_hl{margin-bottom:-3px;}&#13;
+.li_hl img { vertical-align: middle }&#13;
+&#13;
+.bbs_hl{font-weight:bold;margin-bottom:8px;}&#13;
+.bbs_bm{}&#13;
+.li_num{}&#13;
+.li_end{}</string> 
+    </void> 
+   </object> 
+  </void> 
+  <void property="lastEditorShowFormat"> 
+   <string>&lt;div class=&quot;lastEditor&quot;&gt;本帖最后由 {$$username$$} 于 {$$dateTime$$} 编辑&lt;/div&gt;</string> 
+  </void> 
+  <void property="publicCode1"> 
+   <string> &lt;div class=&quot;position&quot;&gt;&#13;
+   &lt;div class=&quot;pos_left&quot;&gt;当前位置：&lt;a href=&quot;{$$bbsUrl$$}&quot;&gt;{$$bbsName$$}&lt;/a&gt;{$$locationSplitStr$$}{$$location$$}&lt;/div&gt;&#13;
+   &lt;div class=&quot;pos_rig&quot; id=&quot;dateAndWeek&quot;&gt;&lt;/div&gt;&#13;
+ &lt;script type=&quot;text/javascript&quot;&gt; &#13;
+dateAndWeek();&#13;
+function dateAndWeek(){&#13;
+	$(&quot;#dateAndWeek&quot;).html(&quot;正在检测...&quot;);&#13;
+	$.ajax({&#13;
+		url:&apos;/lerx/ajax_util_dateAndWeek.action&apos;,&#13;
+		type: &apos;post&apos;,&#13;
+		success:function(data){&#13;
+		 $(&quot;#dateAndWeek&quot;).html(data);&#13;
+		}&#13;
+	 });&#13;
+ &#13;
+}&#13;
+&lt;/script&gt;&#13;
+&#13;
+   &lt;div class=&quot;cle&quot;&gt;&lt;/div&gt;&#13;
+  &lt;/div&gt;</string> 
+  </void> 
+  <void property="publicCode2"> 
+   <string>&lt;div id=&quot;pop-div&quot; class=&quot;mydiv&quot; style=&quot;display:none;&quot;&gt;&#13;
+	&lt;div class=&quot;mydiv_top&quot;&gt;&#13;
+		&lt;div class=&quot;mydiv_top_left&quot;&gt;会员信息&lt;/div&gt;&#13;
+		&lt;div class=&quot;mydiv_top_rig&quot;&gt;&lt;a href=&quot;javascript:hideDiv();&quot;&gt;关闭&lt;/a&gt;&lt;/div&gt;&#13;
+	&lt;/div&gt;&#13;
+	&lt;div class=&quot;pop-box-body&quot; id=&quot;user-box-body&quot;&gt;&#13;
+	&lt;p&gt;正在读取会员数据...&lt;/p&gt; &#13;
+	&lt;/div&gt;&#13;
+&lt;/div&gt;&#13;
+&#13;
+&#13;
+&lt;script language=&quot;javascript&quot; type=&quot;text/javascript&quot;&gt;&#13;
+function popupDiv(uid){&#13;
+	$.ajax({&#13;
+		url:&apos;{$$contextPath$$}/ajax_user_find.action?user.id=&apos;+uid,&#13;
+		type: &apos;post&apos;,&#13;
+		success:function(data){&#13;
+		 $(&quot;#user-box-body&quot;).html(data);&#13;
+		}&#13;
+	 });&#13;
+	document.getElementById(&apos;pop-div&apos;).style.display=&apos;block&apos;;&#13;
+}&#13;
+function hideDiv(){&#13;
+	document.getElementById(&apos;pop-div&apos;).style.display=&apos;none&apos;;&#13;
+	$(&quot;#user-box-body&quot;).html(&quot;&quot;);&#13;
+}&#13;
+&lt;/script&gt;</string> 
+  </void> 
+  <void property="publicStyle"> 
+   <object class="com.lerx.style.bbs.vo.BbsStyleSubElementInCommon"> 
+    <void property="bmDataFormat"> 
+     <string>&lt;span&gt;&lt;a href=&apos;javascript:popupDiv({$$uid$$});&apos;&gt;{$$username$$}&lt;/a&gt; &lt;/span&gt;</string> 
+    </void> 
+    <void property="cssCode"> 
+     <string>&lt;style type=&quot;text/css&quot;&gt;&#13;
+body,ul,ol,li,p,form,table,td,img,div,dl,dt,dd{margin:0;padding:0;border:0;}&#13;
+body{color:#666; background:#363636;font-size:12px;font-family: Arial, Helvetica,&quot;宋体&quot;;}&#13;
+ul,ol,li{list-style-type:none;}&#13;
+li{list-style-type:none;background:url({$$contextPath$$}/templates/bbs/default/images/libg.gif) no-repeat;line-height:1.5em; padding-left:1em; color:#aaa;}&#13;
+a:link{text-decoration : none ;color : #333 ;} &#13;
+a:visited{text-decoration : none ;color : #333 ;} &#13;
+a:hover{text-decoration:underline;color : #f00 ;} &#13;
+a:active{text-decoration : none ;color : #333 ;}&#13;
+.cle{ clear:both; font-size:0px;}&#13;
+&#13;
+.top{ height:120px; width:960px; margin:0 auto;}&#13;
+.con{ width:940px; border:5px solid #d7d7d7;background:#fff; margin:0 auto; padding:5px;}&#13;
+&#13;
+.flink{ font-size:14px; font-weight:bold;height:60px;text-align: center;}&#13;
+&#13;
+.logo{ float:left; width:198px; height:79px; margin:31px 0 0 20px; display:inline;}&#13;
+.login{ float:right; padding:10px 20px 0 0 ; text-align:right;}&#13;
+.login a:link{text-decoration : none ;color : #FC0 ;} &#13;
+.login a:visited{text-decoration : none ;color : #FC0 ;} &#13;
+.login a:hover{text-decoration : none ;color : #fc6 ;} &#13;
+.login a:active{text-decoration : none ;color : #FC0 ;}&#13;
+.login_top{color:#ccc; text-align:right; padding-right:10px;}&#13;
+.login_top a:link{text-decoration : none ;color:#ccc ;} &#13;
+.login_top a:visited{text-decoration : none ;color:#ccc ;} &#13;
+.login_top a:hover{text-decoration:underline;color:#ccc ;} &#13;
+.login_top a:active{text-decoration : none ;color:#ccc ;}&#13;
+.login_bottom{ padding-top:75px; font-weight:bold;}&#13;
+&#13;
+&#13;
+.position{ height:18px; padding:8px 20px 0 40px; border-bottom:3px #f6f6f6 double;background:url({$$contextPath$$}/templates/bbs/default/images/position_bg.jpg) no-repeat 10px 8px;}&#13;
+.pos_left{ float:left;}&#13;
+.pos_rig{ float:right;}&#13;
+&#13;
+{$$specialCode1$$}&#13;
+&#13;
+.footer{ font-family:Arial, Helvetica, sans-serif; text-align: center; color:#999; margin-top:10px;}&#13;
+.footer a:link{text-decoration : none ;color : #C8A866 ;} &#13;
+.footer a:visited{text-decoration : none ;color : #C8A866 ;} &#13;
+.footer a:hover{text-decoration:underline;color : #C8A866 ;} &#13;
+.footer a:active{text-decoration : none ;color : #C8A866 ;}&#13;
+&#13;
+&#13;
+.mydiv {&#13;
+background: #fff;border: 2px solid #666;text-align: center;z-index:999;width: 600px;height: 300px;left:50%;top:40%;border-left:2px solid #eee;border-top:2px solid #eee;&#13;
+margin-left:-300px!important;/*FF IE7 该值为本身宽的一半 */&#13;
+margin-top:-150px!important;/*FF IE7 该值为本身高的一半*/&#13;
+margin-top:0px;&#13;
+position:fixed!important;/* FF IE7*/&#13;
+position:absolute;/*IE6*/&#13;
+_top:       expression(eval(document.compatMode &amp;&amp;&#13;
+            document.compatMode==&apos;CSS1Compat&apos;) ?&#13;
+            documentElement.scrollTop + (document.documentElement.clientHeight-this.offsetHeight)/2 :/*IE6*/&#13;
+            document.body.scrollTop + (document.body.clientHeight - this.clientHeight)/2);/*IE5 IE5.5*/&#13;
+}&#13;
+&#13;
+.bg,.popIframe {&#13;
+background-color: #666; display:none;width: 100%;height: 100%;left:0;top:0;/*FF IE7*/&#13;
+filter:alpha(opacity=50);/*IE*/&#13;
+opacity:0.5;/*FF*/&#13;
+z-index:1;&#13;
+position:fixed!important;/*FF IE7*/&#13;
+position:absolute;/*IE6*/&#13;
+_top:       expression(eval(document.compatMode &amp;&amp;&#13;
+            document.compatMode==&apos;CSS1Compat&apos;) ?&#13;
+            documentElement.scrollTop + (document.documentElement.clientHeight-this.offsetHeight)/2 :/*IE6*/&#13;
+            document.body.scrollTop + (document.body.clientHeight - this.clientHeight)/2);/* www.codefans.net IE5 IE5.5*/&#13;
+}&#13;
+.popIframe {&#13;
+filter:alpha(opacity=0);/*IE*/&#13;
+opacity:0;/*FF*/&#13;
+}&#13;
+.mydiv_top{ background:#3CC; height:30px;}&#13;
+.mydiv_top_left{ float:left; padding:7px 0 0 20px;}&#13;
+.mydiv_top_rig{ float:right; padding:7px 10px 0 0;}&#13;
+.mydiv_input{ width:200px; padding-top:40px;}&#13;
+.input_name input,.input_pw input,.input_cookie input{ width:120px; height:15px;}&#13;
+.input_num input{ width:50px; height:18px;}&#13;
+.input_name{ text-align:left; margin-bottom:10px;}&#13;
+.input_cookie{ text-align:left; margin-bottom:10px;}&#13;
+.input_pw{ text-align:left; margin-bottom:10px;}&#13;
+.input_num{ text-align:left; margin-bottom:10px;}&#13;
+.input_but{}&#13;
+&#13;
+&lt;/style&gt;</string> 
+    </void> 
+    <void property="footerCode"> 
+     <string>&lt;div class=&quot;footer&quot;&gt;&#13;
+© Copyright 2007-{$$year$$} &lt;a href=&quot;http://www.lerx.com&quot; style=&quot;font-weight:bold; color: #C8A866&quot;&gt;lerx网络科技&lt;/a&gt; 版权所有 All Rights Reserved&lt;br/&gt;&#13;
+IE7.0以上 1024*768 Powered by &lt;a href=&quot;http://www.lerx.com&quot; style=&quot;font-weight:bold; color: #C8A866&quot;&gt;Lerx&lt;/a&gt; v2.6&lt;br /&gt;&#13;
+苏ICP备08018501-2号 页面执行时间：约{$$executeTime$$}毫秒&#13;
+&lt;/div&gt;</string> 
+    </void> 
+    <void property="htmlTemplate"> 
+     <string>&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot; &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&gt;&#13;
+&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;&#13;
+&lt;head&gt;&#13;
+&lt;title&gt;{$$siteTitle$$}&lt;/title&gt;&#13;
+&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=UTF-8&quot;/&gt;&#13;
+&lt;meta name=&quot;keywords&quot; content=&quot;{$$keyWord$$}&quot;/&gt;&#13;
+&lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=EmulateIE7&quot; /&gt;&#13;
+&lt;meta name=&quot;Description&quot; content=&quot;{$$description$$}&quot;/&gt;&#13;
+&lt;meta expire=&quot;-1&quot; /&gt;&#13;
+{$$cssStyle$$}&#13;
+&lt;script type=&quot;text/javascript&quot; src=&quot;{$$contextPath$$}/js/jquery/1.7.2/jquery-1.7.2.min.js&quot;&gt;&lt;/script&gt;&#13;
+&lt;/head&gt;&#13;
+&lt;body&gt;&#13;
+{$$htmlBody$$}&#13;
+&lt;/body&gt;&#13;
+&lt;/html&gt;&#13;
+</string> 
+    </void> 
+    <void property="id"> 
+     <int>1</int> 
+    </void> 
+    <void property="memberPanelCodeForLogIn"> 
+     <string>&lt;div class=&quot;login&quot;&gt;&#13;
+   &lt;div class=&quot;login_top&quot;&gt;&lt;a href=&quot;{$$contextPath$$}/thview.action?mod=4&quot;&gt;我的主题&lt;/a&gt;　&lt;a href=&quot;{$$contextPath$$}/thview.action?mod=5&quot;&gt;我的参与&lt;/a&gt;　&lt;a href=&quot;{$$contextPath$$}/thsearch.action&quot;&gt;搜索&lt;/a&gt;　&lt;a href=&quot;{$$contextPath$$}/ucenter.action&quot;&gt;设定&lt;/a&gt;　&lt;a href=&quot;{$$contextPath$$}/user_logout.action&quot;&gt;退出&lt;/a&gt;&lt;/div&gt;&#13;
+&lt;div class=&quot;login_bottom&quot;&gt; &lt;a href=&quot;{$$contextPath$$}/thview.action?mod=0&quot;&gt;查看新贴&lt;/a&gt;　&lt;a href=&quot;{$$contextPath$$}/thview.action?mod=3&quot;&gt;最新回复&lt;/a&gt;　&lt;a href=&quot;{$$contextPath$$}/thview.action?mod=1&quot;&gt;最新热点&lt;/a&gt;&lt;/div&gt;&#13;
+&lt;/div&gt;</string> 
+    </void> 
+    <void property="memberPanelCodeForLogOut"> 
+     <string>&lt;div class=&quot;login&quot;&gt;&#13;
+   &lt;div class=&quot;login_top&quot;&gt;&lt;a href=&quot;javascript:showDiv()&quot;&gt;登录&lt;/a&gt;　&lt;a href=&quot;{$$contextPath$$}/reg.action&quot;&gt;注册&lt;/a&gt;&lt;/div&gt;&#13;
+   &lt;div class=&quot;login_bottom&quot;&gt;&lt;/div&gt;&#13;
+&lt;/div&gt;&#13;
+&#13;
+&lt;div id=&quot;popDiv&quot; class=&quot;mydiv&quot; style=&quot;display:none;&quot;&gt;&#13;
+	&lt;div class=&quot;mydiv_top&quot;&gt;&#13;
+		&lt;div class=&quot;mydiv_top_left&quot;&gt;{$$bbsName$$}欢迎你！&lt;/div&gt;&#13;
+		&lt;div class=&quot;mydiv_top_rig&quot;&gt;&lt;a href=&quot;javascript:closeDiv()&quot;&gt;关闭&lt;/a&gt;&lt;/div&gt;&#13;
+	&lt;/div&gt;&#13;
+	&lt;div class=&quot;mydiv_input&quot;&gt;&#13;
+		&lt;form name=&quot;login&quot; method=&quot;post&quot; action=&quot;user_login.action&quot;&gt;&#13;
+			&lt;div class=&quot;input_name&quot;&gt;用户名：&lt;input id=&quot;username&quot; type=&quot;text&quot; name=&quot;user.userName&quot; size=&quot;25&quot; maxlength=&quot;25&quot;&gt; &lt;a href=&quot;{$$contextPath$$}/qq_send.action&quot;&gt;&lt;img alt=&quot;用QQ帐号登录&quot; src=&quot;http://qzonestyle.gtimg.cn/qzone/vas/opensns/res/img/bt_blue_76X24.png&quot; /&gt;&lt;/a&gt;&lt;/div&gt;&#13;
+			&lt;div class=&quot;input_pw&quot;&gt;密　码：&lt;input id=&quot;password&quot; type=&quot;password&quot; name=&quot;user.password&quot; size=&quot;25&quot; maxlength=&quot;25&quot;&gt;&lt;/div&gt;&#13;
+&#13;
+				&lt;script type=&quot;text/javascript&quot;&gt;&#13;
+				$(&quot;#password&quot;).width($(&quot;#username&quot;).width());&#13;
+				&lt;/script&gt;&#13;
+&#13;
+			&lt;div class=&quot;input_num&quot;&gt;验证码：&lt;input onfocus=&quot;showLoginChooseDiv()&quot; name=&quot;verifyCode&quot; size=&quot;10&quot;&gt; &lt;img width=&quot;60&quot; height=&quot;18&quot; name=&quot;imgLoginValid&quot; id=&quot;imgLoginValid&quot; style=&quot;visibility: hidden; cursor: pointer;&quot;	onclick=&quot;javascript:changeLoginChooseDiv();&quot; /&gt;&lt;/div&gt;&#13;
+			&lt;div class=&quot;input_cookie&quot;&gt;Cookie选项： &lt;select name=cookietime&gt;&lt;option selected value=&quot;0&quot;&gt;不保存&lt;/option&gt;&lt;option value=&quot;1&quot;&gt;保存一个小时&lt;/option&gt;&lt;option value=&quot;2&quot;&gt;保存一天&lt;/option&gt;&#13;
+			&lt;option value=&quot;3&quot;&gt;保存一个星期&lt;/option&gt;&#13;
+			&lt;option value=&quot;4&quot;&gt;保存一个月&lt;/option&gt;&#13;
+			&lt;option value=&quot;5&quot;&gt;保存一年&lt;/option&gt;&#13;
+			&lt;/select&gt;&#13;
+			&lt;/div&gt;&#13;
+			&lt;div class=&quot;input_but&quot;&gt;&lt;input type=&quot;submit&quot; value=&quot;登录&quot; /&gt;&lt;/div&gt;&#13;
+		&lt;/form&gt;&#13;
+	&lt;/div&gt;&#13;
+&lt;/div&gt;&#13;
+&lt;div id=&quot;bg&quot; class=&quot;bg&quot; style=&quot;display:none;&quot;&gt;&lt;/div&gt;&#13;
+&lt;iframe id=&apos;popIframe&apos; class=&apos;popIframe&apos; frameborder=&apos;0&apos; &gt;&lt;/iframe&gt;&#13;
+&lt;script type=&quot;text/javascript&quot;&gt;&#13;
+	function showLoginChooseDiv() {&#13;
+		var objimg = document.getElementById(&quot;imgLoginValid&quot;);&#13;
+		if (objimg.style.visibility != &quot;visible&quot;) {&#13;
+			var timeNow = new Date().getTime();&#13;
+			objimg.src = &quot;randomNum.action?time=&quot; + timeNow + &quot;&amp;from=user&quot;;&#13;
+			objimg.style.visibility = &quot;visible&quot;;&#13;
+		}&#13;
+	}&#13;
+	function changeLoginChooseDiv() {&#13;
+		var obj = document.getElementById(&quot;imgLoginValid&quot;);&#13;
+		var timeNow = new Date().getTime();&#13;
+		obj.src = &quot;randomNum.action?time=&quot; + timeNow + &quot;&amp;from=user&quot;;&#13;
+		document.login.verifyCode.focus();&#13;
+	}&#13;
+&#13;
+function showDiv(){&#13;
+document.getElementById(&apos;popDiv&apos;).style.display=&apos;block&apos;;&#13;
+document.getElementById(&apos;popIframe&apos;).style.display=&apos;block&apos;;&#13;
+document.getElementById(&apos;bg&apos;).style.display=&apos;block&apos;;&#13;
+}&#13;
+function closeDiv(){&#13;
+document.getElementById(&apos;popDiv&apos;).style.display=&apos;none&apos;;&#13;
+document.getElementById(&apos;bg&apos;).style.display=&apos;none&apos;;&#13;
+document.getElementById(&apos;popIframe&apos;).style.display=&apos;none&apos;;&#13;
+&#13;
+}&#13;
+&#13;
+&lt;/script&gt;</string> 
+    </void> 
+    <void property="searchAreaCode"> 
+     <string>&lt;div class=&quot;searchForm&quot;&gt;&#13;
+&lt;form method=&quot;post&quot; action=&quot;{$$contextPath$$}/thsearch.action&quot;&gt;&#13;
+搜索：&lt;input type=&quot;text&quot; name=&quot;key&quot; value=&quot;{$$key$$}&quot; /&gt;&lt;input type=&quot;submit&quot; value=&quot;提交&quot; name=&quot;B1&quot;&gt;&#13;
+&lt;/form&gt;&#13;
+&lt;/div&gt;</string> 
+    </void> 
+    <void property="titleFormat"> 
+     <string>{$$app$$}-{$$bbsName$$}</string> 
+    </void> 
+    <void property="topCode"> 
+     <string>&lt;div class=&quot;top&quot;&gt;&#13;
+  &lt;div class=&quot;logo&quot;&gt;&lt;a href=&quot;{$$contextPath$$}/bindex.action&quot;&gt;&lt;img border=&quot;0&quot; src=&quot;{$$contextPath$$}/templates/bbs/default/images/logo.jpg&quot; width=&quot;198&quot; height=&quot;79&quot; /&gt;&lt;/a&gt;&lt;/div&gt;&#13;
+  {$$memberPanel$$} &lt;/div&gt;</string> 
+    </void> 
+   </object> 
+  </void> 
+  <void property="quoteAreaCode"> 
+   <string>&lt;div class@lerx=&quot;quote&quot;&gt;&#13;
+&lt;blockquote&gt;{$$quoteText$$}&lt;br /&gt;&#13;
+&lt;font color=&quot;#999999&quot; size=&quot;2&quot;&gt;{$$user$$} 发表于 {$$time$$}&lt;/font&gt;  &lt;/blockquote&gt;&#13;
+&lt;/div&gt;&#13;
+&lt;p&gt; &lt;/p&gt;&#13;
+</string> 
+  </void> 
+  <void property="quoteButtomCode"> 
+   <string>&lt;a href=&quot;javascript:quote({$$tid$$})&quot;&gt; &lt;img src=&quot;{$$icoFolderUrl$$}/act/quote.gif&quot; /&gt; 引用&lt;/a&gt;</string> 
+  </void> 
+  <void property="replieThreadAreaCode"> 
+   <string>&lt;script type=&quot;text/javascript&quot; src=&quot;{$$contextPath$$}/js/ajaxupload.3.6.js&quot;&gt;&lt;/script&gt;&#13;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;{$$contextPath$$}/kindeditor-4.1.1/themes/default/default.css&quot; /&gt;&#13;
+	&lt;link rel=&quot;stylesheet&quot; href=&quot;{$$contextPath$$}/kindeditor-4.1.1/plugins/code/prettify.css&quot; /&gt;&#13;
+	&lt;script charset=&quot;utf-8&quot; src=&quot;{$$contextPath$$}/kindeditor-4.1.1/kindeditor.js&quot;&gt;&lt;/script&gt;&#13;
+	&lt;script charset=&quot;utf-8&quot; src=&quot;{$$contextPath$$}/kindeditor-4.1.1/lang/zh_CN.js&quot;&gt;&lt;/script&gt;&#13;
+	&lt;script charset=&quot;utf-8&quot; src=&quot;{$$contextPath$$}/kindeditor-4.1.1/plugins/code/prettify.js&quot;&gt;&lt;/script&gt;&#13;
+&lt;script&gt;&#13;
+var editor1;&#13;
+		KindEditor.ready(function(K) {&#13;
+			editor1 = K.create(&apos;textarea[name=&quot;theme.body&quot;]&apos;, {&#13;
+				cssPath : &apos;{$$contextPath$$}/kindeditor-4.1.1/plugins/code/prettify.css&apos;,&#13;
+				uploadJson : &apos;{$$contextPath$$}/uploadForKE.action&apos;,&#13;
+				fileManagerJson : &apos;{$$contextPath$$}/kindeditor-4.1.1/jsp/file_manager_json.jsp&apos;,&#13;
+				allowFileManager : true,&#13;
+				&#13;
+				afterCreate : function() {&#13;
+					var self = this;&#13;
+					K.ctrl(document, 13, function() {&#13;
+						self.sync();&#13;
+						document.forms[&apos;example&apos;].submit();&#13;
+					});&#13;
+					K.ctrl(self.edit.doc, 13, function() {&#13;
+						self.sync();&#13;
+						document.forms[&apos;example&apos;].submit();&#13;
+					});&#13;
+				}&#13;
+			});&#13;
+			prettyPrint();&#13;
+		});&#13;
+&#13;
+&lt;/script&gt;&#13;
+&#13;
+&lt;form method=&quot;POST&quot; action=&quot;{$$contextPath$$}/theme_post.action?fid={$$fid$$}&amp;tid={$$tid$$}&amp;secStr={$$secStr$$}&amp;randKey={$$randKey$$}&quot;&gt;&#13;
+&lt;div class=&quot;list_reply&quot;&gt;&#13;
+    &lt;table width=&quot;100%&quot; border=&quot;0&quot; cellspacing=&quot;0&quot; cellpadding=&quot;0&quot;&gt;&#13;
+     &lt;tr&gt;&#13;
+     &lt;td class=&quot;list_left&quot; valign=&quot;top&quot; style=&quot;border-right:1px solid  #baeae0;&quot;&gt;&#13;
+    &lt;div class=&quot;list_name&quot;&gt;{$$username$$}&lt;/div&gt;&#13;
+    &lt;div class=&quot;list_img&quot;&gt;&lt;img src=&quot;{$$avatarFile$$}&quot; width=&quot;120&quot; height=&quot;120&quot; /&gt;&lt;/div&gt;&#13;
+    &lt;div class=&quot;list_rank&quot;&gt;用户组：{$$scoreGroup$$}&lt;/div&gt;&#13;
+    &lt;div class=&quot;list_points&quot;&gt;积分：{$$scoreValue$$}&lt;/div&gt;&#13;
+    &lt;/td&gt;&#13;
+     &lt;td valign=&quot;top&quot; style=&quot;padding-left:10px;&quot;&gt;&#13;
+     &lt;textarea id=&quot;replieBody&quot; name=&quot;theme.body&quot; cols=&quot;&quot; rows=&quot;&quot;&gt;&lt;/textarea&gt;&#13;
+    &lt;input name=&quot;&quot; type=&quot;submit&quot; value=&quot;发表回复&quot; /&gt;&#13;
+&#13;
+     &lt;/td&gt;&#13;
+     &lt;/tr&gt;&#13;
+    &lt;/table&gt;&#13;
+    &#13;
+   &lt;/div&gt;&#13;
+&lt;/form&gt;</string> 
+  </void> 
+  <void property="resultPageCode"> 
+   <string>&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot; &quot;http://www.w3.org/TR/html4/loose.dtd&quot;&gt;&#13;
+&lt;html&gt;&#13;
+&lt;head&gt;&#13;
+&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=UTF-8&quot;&gt;&#13;
+&lt;meta http-equiv=refresh content={$$waitingTime$$};url={$$returnUrl$$} &gt;&#13;
+&lt;style type=&quot;text/css&quot;&gt;&#13;
+body{ background:#ccc; font-size:14px; font-family:Arial, Helvetica, sans-serif;}&#13;
+.con{ border:5px solid #aaa; width:560px; height:80px; margin:50px auto; padding:20px 10px; background:#eee;}&#13;
+a:link{text-decoration:none;color:#C30;} &#13;
+a:visited{text-decoration:none;color:#C30;} &#13;
+a:hover{text-decoration:none;color:#f00;} &#13;
+a:active{text-decoration:none;color:#C30;}&#13;
+&lt;/style&gt;&#13;
+&lt;title&gt;操作提示&lt;/title&gt;&#13;
+&lt;/head&gt;&#13;
+&lt;body&gt;&#13;
+&lt;div id=&quot;con&quot; class=&quot;con&quot;&gt;&#13;
+&lt;div id=&quot;msg&quot;&gt;{$$resultMsg$$} &lt;/div&gt;&#13;
+&lt;div id=&quot;cond&quot;&gt;{$$waitingTime$$}秒后将返回，如果没有响应，请这里进行&lt;a href=&quot;{$$returnUrl$$}&quot;&gt;手动返回&lt;/a&gt;。&#13;
+&lt;/div&gt;&#13;
+&lt;/div&gt;&#13;
+&lt;/body&gt;&#13;
+&lt;/html&gt;&#13;
+</string> 
+  </void> 
+  <void property="searchStyle"> 
+   <object class="com.lerx.style.bbs.vo.BbsStyleSubElementInCommon"> 
+    <void property="htmlCode"> 
+     <string>{$$top$$}&#13;
+&lt;div class=&quot;con&quot;&gt;&#13;
+   {$$publicCode1$$}&#13;
+  &lt;div class=&quot;main&quot;&gt;&#13;
+&#13;
+ {$$searchAreaCode$$}&#13;
+   &lt;table width=&quot;100%&quot; border=&quot;0&quot; cellspacing=&quot;0&quot; cellpadding=&quot;0&quot;&gt;&#13;
+  &lt;tr class=&quot;class_dl&quot;&gt;&#13;
+    &lt;td class=&quot;li_0&quot;&gt;a&lt;/td&gt;&#13;
+    &lt;td class=&quot;li_1&quot;&gt;b&lt;/td&gt;&#13;
+    &lt;td class=&quot;li_2&quot;&gt;标题&lt;/td&gt;&#13;
+    &lt;td class=&quot;li_3&quot;&gt;作者&lt;/td&gt;&#13;
+    &lt;td class=&quot;li_4&quot;&gt;回复/查看&lt;/td&gt;&#13;
+    &lt;td class=&quot;li_5&quot;&gt;最后回复&lt;/td&gt;&#13;
+  &lt;/tr&gt;&#13;
+  &#13;
+ &#13;
+&lt;/table&gt;&#13;
+ &lt;div class=&quot;cl_top&quot;&gt;&#13;
+    &lt;div class=&quot;top_hl&quot;&gt;&lt;/div&gt;&#13;
+    &lt;div class=&quot;top_list&quot;&gt;&#13;
+    &#13;
+&#13;
+&lt;div class=&quot;searchMain&quot;&gt;&#13;
+{$$threadsLoop$$}&#13;
+&lt;/div&gt;&#13;
+&#13;
+&lt;div class=&quot;showpage&quot;&gt;{$$pageShowStr$$}&#13;
+   &lt;/div&gt;&#13;
+    &lt;/div&gt;&#13;
+   &lt;/div&gt;&#13;
+&lt;/div&gt;&#13;
+&#13;
+&lt;div class=&quot;cle&quot;&gt;&lt;/div&gt;&#13;
+&#13;
+&#13;
+&lt;/div&gt;&#13;
+ &lt;/div&gt;&#13;
+{$$footer$$}</string> 
+    </void> 
+    <void property="id"> 
+     <int>6</int> 
+    </void> 
+    <void property="majorLoopCodeInLump"> 
+     <string>&lt;tr&gt;&#13;
+&lt;td class=&quot;li_0&quot;&gt;{$$editCode$$}&lt;/td&gt;&#13;
+    &lt;td class=&quot;li_1&quot;&gt;&lt;img src=&quot;{$$icoUrl$$}&quot;&gt;&lt;/td&gt;&#13;
+    &lt;td class=&quot;li_2&quot;&gt;&lt;a href=thread.action?tid={$$tid$$}&gt;{$$title$$}&lt;/a&gt;&lt;/td&gt;&#13;
+    &lt;td class=&quot;li_3&quot;&gt;&lt;span&gt;&lt;a href=&quot;{$$contextPath$$}/space.action?uid={$$uid$$}&quot;&gt;{$$member$$}&lt;/a&gt;&lt;/span&gt; &lt;span class=&quot;start_time&quot;&gt;{$$addTime$$}&lt;/span&gt;&lt;/td&gt;&#13;
+    &lt;td class=&quot;li_4&quot;&gt;{$$replies$$} / {$$views$$}&lt;/td&gt;&#13;
+    &lt;td class=&quot;li_5&quot;&gt;&lt;span&gt;&lt;a href=&quot;./space.jsp?uid={$$lastReplierUid$$}&quot;&gt;{$$lastReplier$$}&lt;/a&gt;&lt;/span&gt;&lt;span class=&quot;last_time&quot;&gt;{$$lastReplierTimesAgo$$}&lt;/span&gt;&lt;/td&gt;&#13;
+  &lt;/tr&gt;</string> 
+    </void> 
+   </object> 
+  </void> 
+  <void property="shieldedShowCode"> 
+   <string>您所看的内容已经被屏蔽！！！</string> 
+  </void> 
+  <void property="state"> 
+   <boolean>true</boolean> 
+  </void> 
+  <void property="styleName"> 
+   <string>新导入的论坛风格模板_2014_02_22_08_39_00</string> 
+  </void> 
+  <void property="themeStyle"> 
+   <object class="com.lerx.style.bbs.vo.BbsStyleSubElementInCommon"> 
+    <void property="editAreaCode"> 
+     <string>&lt;a href=&quot;post.action?tid={$$otid$$}&amp;page={$$page$$}&amp;pageSize={$$pageSize$$}&amp;scrollPos={$$floorNum$$}&quot;&gt;&lt;img src=&quot;{$$icoEdit$$}&quot; /&gt; 修改&lt;/a&gt;</string> 
+    </void> 
+    <void property="functionAreaCode"> 
+     <string>{$$topActCode$$} &lt;a href=&quot;theme_shield.action?state={$$shieldAct$$}&amp;otid={$$otid$$}&amp;tid={$$tid$$}&amp;page={$$page$$}&amp;pageSize={$$pageSize$$}&amp;scrollPos={$$floorNum$$}&quot; onclick=&quot;{if(confirm(&apos;确定{$$shieldActTxt$$}吗?&apos;)){return true;}return false;}&quot;&gt;&lt;img src=&quot;{$$icoShield$$}&quot; /&gt; {$$shieldActTxt$$}&lt;/a&gt; &lt;a href=&quot;theme_del.action?otid={$$otid$$}&amp;tid={$$tid$$}&amp;page={$$page$$}&amp;pageSize={$$pageSize$$}&amp;scrollPos={$$floorNum-1$$}&quot; onclick=&quot;{if(confirm(&apos;确定删除吗?该删除将不可撤消！&apos;)){return true;}return false;}&quot;&gt; &lt;img src=&quot;{$$icoDel$$}&quot; /&gt; 删除&lt;/a&gt;</string> 
+    </void> 
+    <void property="htmlCode"> 
+     <string>&lt;script type=&quot;text/javascript&quot; src=&quot;{$$contextPath$$}/js/jquery/scrollTo/jquery.scrollToTop.js&quot;&gt;&lt;/script&gt;&#13;
+&lt;script language=&quot;javascript&quot; type=&quot;text/javascript&quot;&gt;&#13;
+function showzdDiv(StickActive){&#13;
+&#13;
+&#13;
+document.getElementById(&apos;zdpopDiv&apos;).style.display=&apos;block&apos;;&#13;
+document.getElementById(&apos;zdpopIframe&apos;).style.display=&apos;block&apos;;&#13;
+document.getElementById(&apos;zdbg&apos;).style.display=&apos;block&apos;;&#13;
+&#13;
+var r0=document.getElementById(&quot;stick0&quot;);&#13;
+var r1=document.getElementById(&quot;stick1&quot;);&#13;
+var r3=document.getElementById(&quot;stick3&quot;);&#13;
+if (StickActive==0)&#13;
+{&#13;
+ r0.checked=true;&#13;
+ r1.checked=false;&#13;
+ r3.checked=false;&#13;
+}&#13;
+if (StickActive==1)&#13;
+{&#13;
+ r0.checked=false;&#13;
+ r1.checked=true;&#13;
+ r3.checked=false;&#13;
+}&#13;
+&#13;
+&#13;
+}&#13;
+function closezdDiv(){&#13;
+document.getElementById(&apos;zdpopDiv&apos;).style.display=&apos;none&apos;;&#13;
+document.getElementById(&apos;zdbg&apos;).style.display=&apos;none&apos;;&#13;
+document.getElementById(&apos;zdpopIframe&apos;).style.display=&apos;none&apos;;&#13;
+&#13;
+}&#13;
+&lt;/script&gt;&#13;
+&lt;script type=&quot;text/javascript&quot;&gt;&#13;
+function scrollItem(){ &#13;
+         //alert(document.body.scrollTop); &#13;
+         if(navigator.userAgent.indexOf(&quot;Chrome&quot;)&gt;0){ &#13;
+             document.getElementById(&quot;replieBody&quot;).style.top=document.body.scrollTop+(document.documentElement.clientHeight-document.getElementById(&quot;replieBody&quot;).offsetHeight)/2+&quot;px&quot;; &#13;
+             //alert(document.getElementById(&quot;winpop&quot;).style.top);document.getElementById(&quot;winpop&quot;).style.left=document.body.scrollLeft+(document.documentElement.clientWidth-document.getElementById(&quot;winpop&quot;).offsetWidth)/2+&quot;px&quot;; &#13;
+         } &#13;
+         else{ &#13;
+             document.getElementById(&quot;replieBody&quot;).style.top=document.documentElement.scrollTop+(document.documentElement.clientHeight-document.getElementById(&quot;replieBody&quot;).offsetHeight)/2+&quot;px&quot;; &#13;
+             //alert(document.getElementById(&quot;winpop&quot;).style.top);document.getElementById(&quot;winpop&quot;).style.left=document.documentElement.scrollLeft+(document.documentElement.clientWidth-document.getElementById(&quot;winpop&quot;).offsetWidth)/2+&quot;px&quot;; &#13;
+         } &#13;
+     } &#13;
+function editor_scroll() {&#13;
+//$.scrollTo(&apos;#replieBody&apos;,500); &#13;
+ $(&quot;#replieBody&quot;).scrollToTop();&#13;
+&#13;
+//var scroll_offset = $(&quot;#replieBody&quot;).offset();  //得到pos这个div层的offset，包含两个值，top和left&#13;
+//$(&quot;body,html&quot;).animate({&#13;
+//scrollTop:scroll_offset.top  //让body的scrollTop等于pos的top，就实现了滚动&#13;
+//},0); &#13;
+} &#13;
+/* Google Analytics */&#13;
+      var _gaq = _gaq || [];&#13;
+      _gaq.push([&apos;_setAccount&apos;, &apos;UA-35325435-1&apos;]);&#13;
+      _gaq.push([&apos;_trackPageview&apos;]);&#13;
+&#13;
+      (function() {&#13;
+      var ga = document.createElement(&apos;script&apos;); ga.type = &apos;text/javascript&apos;; ga.async = true;&#13;
+      ga.src = (&apos;https:&apos; == document.location.protocol ? &apos;https://ssl&apos; : &apos;http://www&apos;) + &apos;.google-analytics.com/ga.js&apos;;&#13;
+      var s = document.getElementsByTagName(&apos;script&apos;)[0]; s.parentNode.insertBefore(ga, s);&#13;
+      })();&#13;
+&lt;/script&gt;&#13;
+&#13;
+{$$top$$}&#13;
+&lt;div class=&quot;con&quot;&gt;&#13;
+ {$$publicCode1$$}&#13;
+&#13;
+&lt;div class=&quot;main&quot;&gt;&#13;
+   &lt;div class=&quot;list_con&quot;&gt;&#13;
+   &#13;
+ &lt;table width=&quot;100%&quot; border=&quot;0&quot; cellspacing=&quot;0&quot; cellpadding=&quot;0&quot; style=&quot;margin-top:10px;&quot;&gt;&#13;
+ {$$themesLoop$$}&#13;
+&lt;/table&gt;&#13;
+&lt;div class=&quot;showpage&quot;&gt;{$$pageShowStr$$}&#13;
+   &lt;/div&gt;&#13;
+   &lt;/div&gt;&#13;
+   {$$replieThreadAreaCode$$}&#13;
+   &#13;
+  &lt;/div&gt;&#13;
+&#13;
+&lt;/div&gt;&#13;
+&lt;script type=&quot;text/javascript&quot;&gt;&#13;
+var toEnd={$$toEnd$$};&#13;
+var scrollPos={$$scrollPos$$};&#13;
+&#13;
+function scroll(){&#13;
+	if (scrollPos&gt;0){&#13;
+		//var scroll_offset = $(&quot;#ThemesBody_{$$scrollPos$$}&quot;).offset();&#13;
+		//scrollTop:scroll_offset.top;&#13;
+		$(&quot;html,body&quot;).animate({scrollTop: $(&quot;#ThemesBody_{$$scrollPos$$}&quot;).offset().top-20}, 50); &#13;
+		&#13;
+	}else if (toEnd){&#13;
+		$(&apos;html, body, .content&apos;).animate({scrollTop: $(document).height()}, 0);&#13;
+	}&#13;
+}&#13;
+&#13;
+function quote(id)&#13;
+{&#13;
+&#13;
+	$.ajax({&#13;
+		url:&apos;{$$contextPath$$}/ajax_bbs_themeQuote.action?tid=&apos;+id,&#13;
+		type: &apos;post&apos;,&#13;
+		success:function(data){&#13;
+		//editor1.insertHtml(data);&#13;
+		editor1.appendHtml(data);&#13;
+		&#13;
+		editor1.sync();&#13;
+		editor1.focus();&#13;
+		scrollItem();&#13;
+		//editor_scroll();&#13;
+		}&#13;
+	 });&#13;
+}&#13;
+&#13;
+scroll();&#13;
+&#13;
+function pollChg(tid,st){&#13;
+	$.ajax({&#13;
+		url:&apos;{$$contextPath$$}/ajax_bbs_poll_chg.action?tid=&apos;+tid+&apos;&amp;st=&apos;+st,&#13;
+		type: &apos;post&apos;,&#13;
+		success:function(data){&#13;
+		&#13;
+			var re=data;&#13;
+			if (re==&apos;success&apos;){&#13;
+				&#13;
+				pollWrite(tid);&#13;
+			}&#13;
+			&#13;
+		}&#13;
+	 });&#13;
+}&#13;
+&#13;
+function poll(tid,sp){&#13;
+	&#13;
+	$.ajax({&#13;
+		url:&apos;{$$contextPath$$}/ajax_bbs_poll_v.action?tid=&apos;+tid+&apos;&amp;sp=&apos;+sp,&#13;
+		type: &apos;post&apos;,&#13;
+		success:function(data){&#13;
+		&#13;
+			var re=data;&#13;
+			if (re==&apos;success&apos;){&#13;
+				&#13;
+				pollWrite(tid);&#13;
+			}else if (re==&apos;exists_true&apos;){&#13;
+				alert(&apos;你忘了你称赞过他了？&apos;);&#13;
+			}else if (re==&apos;exists_false&apos;){&#13;
+				alert(&apos;你上次把他扔得满脸蛋汤，别再折磨他了！&apos;);&#13;
+			}else if (re==&apos;exists_neu&apos;){&#13;
+				alert(&apos;酱油店没关门呢！&apos;);&#13;
+			}else if (re==&apos;noLogin&apos;){&#13;
+				alert(&apos;您需要登录才能进行操作！&apos;);&#13;
+			}else if (re==&apos;timeOut&apos;){&#13;
+				alert(&apos;过时了，下次再来吧！&apos;);&#13;
+			}else{&#13;
+				alert(&apos;系统或参数错误！&apos;);&#13;
+			}&#13;
+			&#13;
+		}&#13;
+	 });&#13;
+ &#13;
+}&#13;
+&#13;
+function pollWrite(tid){&#13;
+	$(&quot;#poll_&quot;+tid).html(&quot;正在提取...&quot;);&#13;
+	$.ajax({&#13;
+		url:&apos;{$$contextPath$$}/ajax_bbs_poll_w.action?tid=&apos;+tid,&#13;
+		type: &apos;post&apos;,&#13;
+		success:function(data){&#13;
+&#13;
+		 $(&quot;#poll_&quot;+tid).html(data);&#13;
+		}&#13;
+	 });&#13;
+}&#13;
+&#13;
+&lt;/script&gt;&#13;
+&#13;
+ &#13;
+{$$publicCode2$$}&#13;
+&#13;
+{$$footer$$}</string> 
+    </void> 
+    <void property="id"> 
+     <int>5</int> 
+    </void> 
+    <void property="majorLoopCodeInLump"> 
+     <string>&#13;
+	&lt;tr&gt;&#13;
+	    &lt;td class=&quot;list_left&quot; valign=&quot;top&quot;&gt;&#13;
+		&lt;div class=&quot;list_name&quot;&gt;&lt;a href=&apos;javascript:popupDiv({$$uid$$});&apos; style=&apos;margin-left: 20px; font-weight: 800&apos;&gt;{$$username$$}&lt;/a&gt;&lt;/div&gt;&#13;
+		&lt;div class=&quot;list_img&quot;&gt;&lt;a href=&apos;javascript:popupDiv({$$uid$$});&apos;&gt;&lt;img src=&quot;{$$avatarFile$$}&quot; border=&quot;0&quot; /&gt;&lt;/a&gt;&lt;/a&gt;&lt;/div&gt;&#13;
+		&lt;div class=&quot;list_rank&quot;&gt;用户组：{$$scoreGroup$$}&lt;/div&gt;&#13;
+		&lt;div class=&quot;list_points&quot;&gt;积分：{$$scoreValue$$}&lt;/div&gt;&#13;
+	    &lt;/td&gt;&#13;
+	    &lt;td class=&quot;list_rig&quot; valign=&quot;top&quot;&gt;&#13;
+		&lt;div class=&quot;list_main_top&quot;&gt;&#13;
+			&lt;div class=&quot;list_main_hl&quot;&gt;{$$title$$}&lt;/div&gt;&#13;
+		&lt;/div&gt;&#13;
+		&lt;div class=&quot;list_main_mid&quot;&gt;&#13;
+			&lt;div class=&quot;pub_time&quot;&gt;{$$editAreaCode$$} {$$functionAreaCode$$} {$$quoteButtom$$}　　&lt;span id=&quot;ThemesAddTime{$$loopStep$$}&quot;&gt;发表于：{$$addTime$$}&lt;/span&gt;　　&lt;span class=&quot;floor&quot;&gt;{$$floorNum$$}#&lt;/span&gt;&lt;/div&gt;  &#13;
+			&lt;div class=&quot;list_main_li&quot;&gt;&#13;
+				&lt;div id=&quot;{$$posId$$}&quot;&gt;&lt;/div&gt;&#13;
+				&lt;div id=&quot;ThemesBody_{$$floorNum$$}&quot;&gt;{$$lastEdit$$}&lt;div class=&quot;themeBody&quot;&gt;{$$body$$}&lt;/div&gt;&#13;
+			&lt;/div&gt;&#13;
+		&lt;/div&gt;&#13;
+		&lt;div class=&quot;list_main_down&quot;&gt;&lt;/div&gt;&#13;
+		&lt;div class=&quot;poll&quot; id=&quot;poll_{$$otid$$}&quot;&gt;{$$pollArea$$}&lt;/div&gt;&#13;
+	    &lt;/td&gt;&#13;
+	  &lt;/tr&gt;&#13;
+</string> 
+    </void> 
+    <void property="minorLoopCodeInLump"> 
+     <string></string> 
+    </void> 
+    <void property="specialCode1"> 
+     <string>.main{}&#13;
+.main_con{ padding-top:10px;}&#13;
+.main_hl{ font-weight:bold; font-size:14px; height:18px; margin:5px auto; border-bottom:3px #f3f3f3 solid; padding:4px 10px; width:900px;}&#13;
+.main_li{ line-height:150%;}&#13;
+.li_left{ float:left; padding:10px 0 10px 60px; background:url(/bbstemplates/default/images/affiche_bg.jpg) no-repeat 25px 18px; width:400px;}&#13;
+.li_hl{}&#13;
+.bbs_hl{font-weight:bold;}&#13;
+.bbs_bm{}&#13;
+.li_num{}&#13;
+.li_end{}&#13;
+.list_con{}&#13;
+.showpage{ text-align:right; margin:10px 0;}&#13;
+.list_left{ width:20%;background:#eaf8f5; border-bottom:3px solid  #baeae0;border-top:1px solid  #baeae0;border-left:1px solid  #baeae0;}&#13;
+.list_name{ height:24px; padding:10px 0 0 40px;}&#13;
+.list_img{ text-align:center;}&#13;
+.list_img img{ width:120px;}&#13;
+.list_rank{height:15px; padding:6px 0 0 40px;}&#13;
+.list_points{height:20px; padding:6px 0 0 40px;}&#13;
+&#13;
+.list_rig{ width:80%;border-bottom:3px solid  #eee;border-top:1px solid  #eee;border-right:1px solid  #eee;position:relative;}&#13;
+.list_main_top{ height:24px;padding:10px 20px 0 10px; }&#13;
+.floor{ color:#f00;}&#13;
+&#13;
+.list_main_mid{ font-size:12px; padding:10px; }&#13;
+.pub_time{ text-align:right;border-bottom:1px dashed #eee; padding-bottom:5px;}&#13;
+.lastEditor{ margin-top:5px;}&#13;
+.list_main_hl{font-weight:bold; font-size:14px;padding-bottom:10px;margin-bottom:8px;border-bottom:1px dashed #E6E7E1;}&#13;
+.list_main_hl a{font-weight:400;color:#444;}&#13;
+&#13;
+.list_main_li{}&#13;
+.list_main_li p{ margin:10px 0; text-indent:2em; line-height:150%;}&#13;
+&#13;
+.list_main_down{height:20px;}&#13;
+.list_reply{}&#13;
+.list_reply textarea{ border:1px #baeae0 solid; width:680px;height:200px;}&#13;
+.quote{ background:#F4FAF4;width:600px;}&#13;
+.quote_name{ color:#999; font-size:12px; margin-top:10px;}&#13;
+.list_main_li blockquote{padding:10px 0; }&#13;
+&lt;!--&#13;
+.zddiv {&#13;
+background: #fff;border: 2px solid #666;text-align: center;z-index:999;width: 300px;height: 120px;left:50%;top:40%;border-left:2px solid #eee;border-top:2px solid #eee;&#13;
+margin-left:-150px!important;/*FF IE7 该值为本身宽的一半 */&#13;
+margin-top:-60px!important;/*FF IE7 该值为本身高的一半*/&#13;
+margin-top:0px;&#13;
+position:fixed!important;/* FF IE7*/&#13;
+position:absolute;/*IE6*/&#13;
+_top:       expression(eval(document.compatMode &amp;&amp;&#13;
+            document.compatMode==&apos;CSS1Compat&apos;) ?&#13;
+            documentElement.scrollTop + (document.documentElement.clientHeight-this.offsetHeight)/2 :/*IE6*/&#13;
+            document.body.scrollTop + (document.body.clientHeight - this.clientHeight)/2);/*IE5 IE5.5*/&#13;
+}&#13;
+&#13;
+.zdbg,.zdpopIframe {&#13;
+background-color: #000; display:none;width: 100%;height: 100%;left:0;top:0;/*FF IE7*/&#13;
+filter:alpha(opacity=50);/*IE*/&#13;
+opacity:0.5;/*FF*/&#13;
+z-index:1;&#13;
+position:fixed!important;/*FF IE7*/&#13;
+position:absolute;/*IE6*/&#13;
+_top:       expression(eval(document.compatMode &amp;&amp;&#13;
+            document.compatMode==&apos;CSS1Compat&apos;) ?&#13;
+            documentElement.scrollTop + (document.documentElement.clientHeight-this.offsetHeight)/2 :/*IE6*/&#13;
+            document.body.scrollTop + (document.body.clientHeight - this.clientHeight)/2);/* www.codefans.net IE5 IE5.5*/&#13;
+}&#13;
+.zdpopIframe {&#13;
+filter:alpha(opacity=0);/*IE*/&#13;
+opacity:0;/*FF*/&#13;
+}&#13;
+.zddiv_top{ background:#3CC; height:30px; margin:1px;}&#13;
+.zddiv_top_left{ float:left; padding:7px 0 0 20px;}&#13;
+.zddiv_top_rig{ float:right; padding:7px 10px 0 0;}&#13;
+.zddiv_input{ width:200px; padding-top:40px; margin:0 auto;}&#13;
+.zd_input{ padding-top:30px;}&#13;
+.pstatus {display:block;height:32px;text-align:center;font-style:normal;color:#999;font-size:12px;}&#13;
+.pstatus  a{line-height:32px !important;color:#999;}&#13;
+&#13;
+.quote,.blockcode{margin:10px 0;padding:10px 10px 10px 65px;}&#13;
+.quote{padding-bottom:5px;background:#F9F9F9 url({$$contextPath$$}/templates/bbs/default/images/icon_quote_s.gif) no-repeat 20px 6px;}&#13;
+.quote blockquote{margin:0;padding:0 65px 5px 0;background:url({$$contextPath$$}/templates/bbs/default/images/icon_quote_e.gif) no-repeat 100% 100%;line-height:1.6em;}&#13;
+.themeBody{text-indent: 2em; }&#13;
+.lastEditor {display:block;height:32px;text-align:center;font-style:normal;color:#999;font-size:12px;}&#13;
+.poll {margin-top:10px;position:absolute;right:5px;bottom:5px;vertical-align:middle;}&#13;
+.poll img{ vertical-align:middle;}&#13;
+.themeBody img{text-align:center; margin:0; padding:0; max-width:500px; width:expression(this.width&gt;500 ? 500 : true);}</string> 
+    </void> 
+   </object> 
+  </void> 
+  <void property="topActCode"> 
+   <string>&lt;a href=&quot;theme_top.action?tid={$$tid$$}&amp;state={$$topAct$$}&quot;&gt; &lt;img src=&quot;{$$icoTopAct$$}&quot; /&gt; {$$topActText$$} &lt;/a&gt;  &lt;a href=&quot;theme_sink.action?state={$$sinkAct$$}&amp;tid={$$tid$$}&quot; onclick=&quot;{if(confirm(&apos;确定{$$sinkActTxt$$}吗?&apos;)){return true;}return false;}&quot;&gt;&lt;img src=&quot;{$$icoSink$$}&quot; /&gt; {$$sinkActTxt$$}&lt;/a&gt;</string> 
+  </void> 
+ </object> 
+</java> 

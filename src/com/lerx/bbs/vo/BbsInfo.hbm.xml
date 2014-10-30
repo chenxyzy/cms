@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.lerx.bbs.vo">
+	<class name="BbsInfo" table="bbs_info" dynamic-update="true">
+		<id name="id" type="int" column="id">
+		</id>
+		<property name="name" length="50"  />
+		
+		<property name="state" />
+		<property name="postMustInGroup" />
+		
+		
+		<property name="closeAnnounce" />
+		
+		<property name="url" />
+		<property name="pageSizeOfTitle" />
+		<property name="pageSizeOfTheme" />
+		<property name="timesOfLockTheme" />
+		
+	</class>
+</hibernate-mapping>

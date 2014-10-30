@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.lerx.style.site.vo">
+	<class name="SiteStyle" table="site_style" dynamic-update="true">
+	<!--  
+		<cache usage="read-write"/>
+		-->
+		<id name="id" column="id">
+			<generator class="native" />
+		</id>
+
+		<property name="styleName" length="50" />
+		<property name="author" length="50" />
+		<property name="description" />
+		<property name="state" />
+		<property name="def" />
+		<property name="rootResFolder" />
+		
+		<property name="locationSplitStr" length="10" />
+		<property name="hrefLineFormatStrOverAll" type="text" />
+		<property name="hrefLineFormatWithSnStrOverAll" type="text" />
+		
+		<property name="mediaPlayCode1" type="text" />
+		<property name="mediaPlayCode2" type="text" />
+		<property name="mediaPlayCode3" type="text" />
+		<property name="mediaPlayOuterLayerCodeForArtPage" type="text" />
+		<property name="mediaPlayOuterLayerCodeForAttaPage" type="text" />
+		<property name="attachmentLineShowForImg" type="text" />
+		<property name="attachmentLineShowForDownload" type="text" />
+		<property name="attachmentLineShowForPlay" type="text" />
+		<property name="lineBlockFormat" />
+		<property name="columnBlockFormat" />
+		<property name="publicCode1" type="text" />
+		<property name="publicCode2" type="text" />
+		<property name="publicCode3" type="text" />
+		<property name="publicCode4" type="text" />
+		<property name="customFormatCode1" type="text" />
+		<property name="customFormatCode2" type="text" />
+		<property name="customFormatCode3" type="text" />
+		<property name="customFormatCode4" type="text" />
+		<property name="customFormatCode5" type="text" />
+		<property name="customFormatCode6" type="text" />
+		<property name="customFormatCode7" type="text" />
+		<property name="customFormatCode8" type="text" />
+		<property name="ajaxStrFormat" />
+		<property name="resultPageCode" type="text" />
+		<property name="lastArticleForwardCode" />
+		<property name="nextArticleForwardCode" />
+		<property name="eyeCatchingCode" />
+		<property name="passedStr" type="text" />
+		<property name="noPassedStr" type="text" />
+		<property name="noPassedAltStr" />
+		<property name="threadAjaxShowStr" type="text" />
+		<property name="ajaxOfArticlePrice" type="text" />
+		<property name="ajaxOfBeforeView" type="text" />
+		<property name="ajaxOfArtPoll" type="text" />
+		
+		<property name="statCode"  type="text" />
+		
+		<!--  
+		<component name="commentStyle" class="CommentStyle">
+			<property name="commentAreaCode" type="text"></property>
+			<property name="commentLinecode" type="text"></property>
+			<property name="commentEditCode" type="text"></property>
+			<property name="commentFormCode" type="text"></property>
+		</component>
+		-->
+		<many-to-one name="publicStyle" outer-join="true" cascade="all"
+			column="pid" class="SiteStyleSubElementInCommon" />
+			
+		<many-to-one name="indexStyle" outer-join="true" cascade="all"
+			column="iid" class="SiteStyleSubElementInCommon" />
+			
+		<many-to-one name="classStyle" outer-join="true" cascade="all"
+			column="cid" class="SiteStyleSubElementInCommon" />
+			
+		<many-to-one name="threadStyle" outer-join="true" cascade="all"
+			column="tid" class="SiteStyleSubElementInCommon" />
+			
+		<many-to-one name="regStyle" outer-join="true" cascade="all"
+			column="rid" class="SiteStyleSubElementInCommon" />
+			
+		<many-to-one name="loginStyle" outer-join="true" cascade="all"
+			column="lid" class="SiteStyleSubElementInCommon" />
+			
+		<many-to-one name="articleAddStyle" outer-join="true"
+			cascade="all" column="aid" class="SiteStyleSubElementInCommon" />
+			
+		<many-to-one name="articleEditStyle" outer-join="true"
+			cascade="all" column="eid" class="SiteStyleSubElementInCommon" />
+			
+		<many-to-one name="searchStyle" outer-join="true"
+			cascade="all" column="sid" class="SiteStyleSubElementInCommon" />
+			
+		<many-to-one name="genericStyle" outer-join="true"
+			cascade="all" column="gid" class="SiteStyleSubElementInCommon" />
+			
+		<many-to-one name="userCenterStyle" outer-join="true"
+			cascade="all" column="uid" class="SiteStyleSubElementInCommon" />
+		
+		<many-to-one name="commentStyle" outer-join="true"
+			cascade="all" column="mid" class="SiteStyleSubElementInCommon" />
+	</class>
+
+
+
+</hibernate-mapping>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.lerx.style.space.vo">
+	<class name="SpaceStyleSubElementInCommon" table="space_style_element" dynamic-update="true">
+		<!--  
+		<cache usage="read-write"/>
+		-->
+		<id name="id" column="id">
+			<generator class="native" />
+		</id>
+		<property name="htmlTemplate" type="text"></property>
+		<property name="cssCode" type="text"></property>
+		<property name="htmlCode" type="text"></property>
+		<property name="topCode" type="text"></property>
+		<property name="footerCode" type="text"></property>
+		<property name="titleFormat"></property>
+		<property name="hrefLineFormat" type="text"></property>
+		<property name="memberPanelCodeForLogIn" type="text"></property>
+		<property name="memberPanelCodeForLogOut" type="text"></property>
+		<property name="majorLoopCodeInLump" type="text"></property>
+		<property name="minorLoopCodeInLump" type="text"></property>
+		<property name="editAreaCode" type="text"></property>
+		<property name="searchAreaCode" type="text"></property>
+		<property name="specialCode1" type="text"></property>
+		<property name="specialCode2" type="text"></property>
+		<property name="specialCode3" type="text"></property>
+		<property name="specialCode4" type="text"></property>
+		<property name="formTemplate" type="text"></property>
+		
+	</class>
+</hibernate-mapping>

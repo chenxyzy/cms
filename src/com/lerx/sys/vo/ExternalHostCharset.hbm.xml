@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.lerx.sys.vo">
+	<class name="ExternalHostCharset" table="external_host_charset" dynamic-update="true">
+		<id name="id" column="id">
+			<generator class="native" />
+		</id>
+
+		<property name="host" length="30" />
+		<property name="port" />
+		<property name="type" length="6" />
+		<property name="charset" length="20" />
+		
+	</class>
+</hibernate-mapping>

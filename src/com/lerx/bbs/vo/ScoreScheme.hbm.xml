@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.lerx.bbs.vo">
+	<class name="ScoreScheme" table="bbs_scoreschemes" dynamic-update="true">
+		<id name="id" type="int" column="gid">
+			<generator class="native" />
+		</id>
+		<property name="schemeName" length="20" not-null="true" />
+		<property name="author"  />
+		<property name="state"  />
+		<property name="description"  />
+		<property name="valueOfNewTheme"  />
+		<property name="valueOfReply"  />
+		<property name="valueOfSoul"  />
+		<property name="valueOfUpload"  />
+		<property name="valueOfDownload"  />
+		<property name="valueOfMin"  />
+	</class>
+</hibernate-mapping>

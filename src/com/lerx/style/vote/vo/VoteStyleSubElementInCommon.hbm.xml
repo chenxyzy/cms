@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.lerx.style.vote.vo">
+	<class name="VoteStyleSubElementInCommon" table="vote_style_element" dynamic-update="true">
+		<id name="id" column="id">
+			<generator class="native" />
+		</id>
+
+		<property name="htmlTemplate" type="text" />
+		<property name="cssCode" type="text" />
+		<property name="htmlCode" type="text" />
+		<property name="topCode" type="text" />
+		<property name="footerCode" type="text" />
+		<property name="memberPanelCodeForLogIn" type="text" />
+		<property name="memberPanelCodeForLogOut" type="text" />
+		
+		<property name="itemsLoopFormat" type="text" />
+		<property name="lineCodeFormat" type="text" />
+		
+		<property name="titleFormat"></property>
+		<property name="hrefLineFormat" type="text"></property>
+		
+		
+		<property name="specialCode1" type="text"></property>
+		<property name="specialCode2" type="text"></property>
+		<property name="specialCode3" type="text"></property>
+		<property name="specialCode4" type="text"></property>
+	</class>
+
+
+
+</hibernate-mapping>

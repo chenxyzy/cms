@@ -1,0 +1,1 @@
+﻿<a href="javascript:poll({$$tid$$},1)"> <img src="{$$contextPath$$}/templates/site/default/images/praise.jpg" width="24" /> 赞一个</a>({$$proponents$$})

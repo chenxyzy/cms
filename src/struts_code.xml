@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+
+
+	<!-- 动态代码 -->
+	<package name="custom-code-admin" extends="struts-default">
+
+		<action name="admin_custom_code_category_findById" method="findById"
+			class="com.lerx.code.service.CodeCategoryAction">
+			<result name="success">/${getText("lerx.default.admin.folder")}/admin_custom_code_category_edit.jsp
+			</result>
+			<result name="input">/${getText("lerx.default.admin.folder")}/admin_custom_code_category.jsp
+			</result>
+		</action>
+		<action name="admin_custom_code_findById" method="findById"
+			class="com.lerx.code.service.CustomCodeAction">
+			<result name="success">/${getText("lerx.default.admin.folder")}/admin_custom_code_edit.jsp
+			</result>
+			<result name="input">/${getText("lerx.default.admin.folder")}/admin_custom_code_list.jsp?gid=${gid}
+			</result>
+		</action>
+		<!-- <action name="admin_qa_nav_*" method="{1}" class="com.lerx.qa.service.QaNavAction"> 
+			<result name="success">/${getText("lerx.default.admin.folder")}/admin_qa_nav_list.jsp</result> 
+			<result name="input">/${getText("lerx.default.admin.folder")}/admin_qa_nav_list.jsp</result> 
+			</action> <action name="admin_qa_nav_swap" method="swap" class="com.lerx.qa.service.QaNavAction"> 
+			<result name="success">/${getText("lerx.default.admin.folder")}/admin_qa_nav_order.jsp?parentID=${parentID}</result> 
+			</action> -->
+	</package>
+
+	<!-- 动态代码管理 -->
+	<package name="custom_code" extends="struts-default">
+		
+		<action name="admin_custom_code_category_*" method="{1}"
+			class="com.lerx.code.service.CodeCategoryAction">
+			<result name="success">/${getText("lerx.default.admin.folder")}/admin_custom_code_category.jsp
+			</result>
+			<result name="input">/${getText("lerx.default.admin.folder")}/admin_custom_code_category.jsp
+			</result>
+		</action>
+		
+		<action name="admin_custom_code_category_add" method="add"
+			class="com.lerx.code.service.CodeCategoryAction">
+			<result name="success">/${getText("lerx.default.admin.folder")}/admin_custom_code_category.jsp
+			</result>
+			<result name="input">/${getText("lerx.default.admin.folder")}/admin_custom_code_category.jsp
+			</result>
+			<result name="invalid.token">/${getText("lerx.default.admin.folder")}/admin_token_err.jsp
+			</result>
+
+			<interceptor-ref name="token"></interceptor-ref>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>
+		
+		
+		
+		<action name="admin_custom_code_*" method="{1}"
+			class="com.lerx.code.service.CustomCodeAction">
+			<result name="success">/${getText("lerx.default.admin.folder")}/admin_custom_code_list.jsp?gid=${gid}
+			</result>
+			<result name="input">/${getText("lerx.default.admin.folder")}/admin_custom_code_list.jsp?gid=${gid}
+			</result>
+		</action>
+		
+		<action name="admin_custom_code_add" method="add"
+			class="com.lerx.code.service.CustomCodeAction">
+			<result name="success">/${getText("lerx.default.admin.folder")}/admin_custom_code_list.jsp?gid=${gid}
+			</result>
+			<result name="input">/${getText("lerx.default.admin.folder")}/admin_custom_code_list.jsp?gid=${gid}
+			</result>
+			<result name="invalid.token">/${getText("lerx.default.admin.folder")}/admin_token_err.jsp
+			</result>
+			<interceptor-ref name="token"></interceptor-ref>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>
+	</package>
+
+</struts>

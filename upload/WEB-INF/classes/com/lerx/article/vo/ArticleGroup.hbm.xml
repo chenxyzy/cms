@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.lerx.article.vo">
+	<class name="ArticleGroup" table="site_article_group" dynamic-update="true">
+		<id name="id" type="int" column="id">
+			<generator class="native" />
+		</id>
+		<property name="groupName" length="50"  />
+		<property name="displayOrder" length="255"  />
+		<property name="footerLeft"  />
+		<property name="footerRight"  />
+		<property name="share"  />
+		<property name="changed"  />
+		<property name="asClass"  />
+		<property name="state" />
+		<property name="pollFmt" length="3" />
+		<property name="showAll"  />
+		<property name="price"  />
+		<property name="iconUrl"  />
+		<property name="hostsAllow"  />
+		<property name="jumpUrl"  />
+		<property name="staticHtmlFolder"  />
+		<property name="refuseStaticHtml"  />
+		<property name="showOnIndex"  />
+		<property name="lengthShowOnIndex"  />
+		<property name="numberShowOnIndex"  />
+		<property name="soulOnIndex"  />
+		<property name="formatOnIndex"  type="text" />
+		<property name="showOnParent"  />
+		<property name="lengthShowOnParent"  />
+		<property name="numberShowOnParent"  />
+		<property name="soulOnParent"  />
+		<property name="formatOnParent"  type="text" />
+		<property name="compulsionDocStyle"  />
+		<property name="articlePassMode"  />
+		<property name="numberAppearRestrict"  />
+		<property name="numberList"  />
+		<property name="commentMode"  />
+		<property name="privateHtml" type="text" />
+		<property name="views"  />
+		
+		<many-to-one name="parentGroup" column="parentGroupID"   lazy="false"
+			outer-join="true" class="ArticleGroup" />
+		<many-to-one name="style" column="styleID" 
+			outer-join="true" class="com.lerx.style.site.vo.SiteStyle" />
+
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+
+	<!-- 投票 -->
+	<package name="admin-vote" extends="struts-default">
+
+		<action name="admin_vote_subject_findAll" method="findAll"
+			class="com.lerx.vote.service.VoteSubjectAction">
+			<result name="success">/${getText("lerx.default.admin.folder")}/admin_vote_sub_list.jsp
+			</result>
+			<result name="input">/${getText("lerx.default.admin.folder")}/admin_vote_sub_list.jsp
+			</result>
+		</action>
+
+		<action name="admin_vote_subject_add" method="add"
+			class="com.lerx.vote.service.VoteSubjectAction">
+			<result name="success">/${getText("lerx.default.admin.folder")}/admin_vote_sub_list.jsp
+			</result>
+			<result name="input">/${getText("lerx.default.admin.folder")}/admin_vote_sub_list.jsp
+			</result>
+		</action>
+		
+		<action name="admin_vote_subject_del" method="del"
+			class="com.lerx.vote.service.VoteSubjectAction">
+			<result name="success">/${getText("lerx.default.admin.folder")}/admin_vote_sub_list.jsp
+			</result>
+			<result name="input">/${getText("lerx.default.admin.folder")}/admin_vote_sub_list.jsp
+			</result>
+		</action>
+		<action name="admin_vote_subject_clear" method="clear"
+			class="com.lerx.vote.service.VoteSubjectAction">
+			<result name="success"  type="redirect">/${getText("lerx.default.admin.folder")}/admin_vote_sub_list.jsp
+			</result>
+			<result name="input">/${getText("lerx.default.admin.folder")}/admin_vote_sub_list.jsp
+			</result>
+		</action>
+		<action name="admin_vote_subject_copy" method="copy"
+			class="com.lerx.vote.service.VoteSubjectAction">
+			<result name="success"  type="redirect">/${getText("lerx.default.admin.folder")}/admin_vote_sub_list.jsp
+			</result>
+			<result name="input">/${getText("lerx.default.admin.folder")}/admin_vote_sub_list.jsp
+			</result>
+		</action>
+		<action name="admin_vote_subject_findById" method="findById"
+			class="com.lerx.vote.service.VoteSubjectAction">
+			<result name="success">/${getText("lerx.default.admin.folder")}/admin_vote_sub_edit.jsp
+			</result>
+
+		</action>
+		<action name="admin_vote_subject_findSubById" method="findSubById"
+			class="com.lerx.vote.service.VoteSubjectAction">
+		</action>
+		<action name="admin_vote_subject_modify" method="modify"
+			class="com.lerx.vote.service.VoteSubjectAction">
+			<result name="success">/${getText("lerx.default.admin.folder")}/admin_vote_sub_list.jsp
+			</result>
+			<result name="input">/${getText("lerx.default.admin.folder")}/admin_vote_sub_list.jsp?vs.id=${vs.id}
+			</result>
+		</action>
+
+	</package>
+
+	<package name="admin-vote-item" extends="struts-default">
+
+		<action name="admin_vote_item_add" method="add"
+			class="com.lerx.vote.service.VoteItemAction">
+			<result name="success">/${getText("lerx.default.admin.folder")}/admin_vote_items_list.jsp?subId=${subId}
+			</result>
+			<result name="input">/${getText("lerx.default.admin.folder")}/admin_vote_items_list.jsp?subId=${subId}
+			</result>
+		</action>
+		<action name="admin_vote_item_delById" method="delById"
+			class="com.lerx.vote.service.VoteItemAction">
+			<result name="success">/${getText("lerx.default.admin.folder")}/admin_vote_items_list.jsp?subId=${subId}
+			</result>
+			<result name="input">/${getText("lerx.default.admin.folder")}/admin_vote_items_list.jsp?subId=${subId}
+			</result>
+		</action>
+		<action name="admin_vote_item_changeState" method="changeState"
+			class="com.lerx.vote.service.VoteItemAction">
+			<result name="success">/${getText("lerx.default.admin.folder")}/admin_vote_items_list.jsp?subId=${subId}
+			</result>
+			<result name="input">/${getText("lerx.default.admin.folder")}/admin_vote_items_list.jsp?subId=${subId}
+			</result>
+		</action>
+		<action name="admin_vote_item_findAll" method="findAll"
+			class="com.lerx.vote.service.VoteItemAction">
+			<result name="success">/${getText("lerx.default.admin.folder")}/admin_vote_items_list.jsp?subId=${subId}
+			</result>
+			<result name="input">/${getText("lerx.default.admin.folder")}/admin_vote_items_list.jsp?subId=${subId}
+			</result>
+		</action>
+
+		<action name="admin_vote_item_modify" method="modify"
+			class="com.lerx.vote.service.VoteItemAction">
+			<result name="success">/${getText("lerx.default.admin.folder")}/admin_vote_items_list.jsp?subId=${subId}
+			</result>
+			<result name="input">/${getText("lerx.default.admin.folder")}/admin_vote_items_list.jsp?subId=${subId}
+			</result>
+		</action>
+		
+		
+
+		<action name="admin_vote_item_findById" method="findById"
+			class="com.lerx.vote.service.VoteItemAction">
+			<result name="success">/${getText("lerx.default.admin.folder")}/admin_vote_item_edit.jsp?subId=${subId}
+			</result>
+			<result name="input">/${getText("lerx.default.admin.folder")}/admin_vote_item_edit.jsp?subId=${subId}
+			</result>
+		</action>
+
+	</package>
+
+
+	<package name="vote-item" extends="struts-default">
+		<action name="vote_item_sign" method="sign"
+			class="com.lerx.vote.service.VoteItemAction">
+			<result name="success">/show.jsp</result>
+			<result name="input">/show.jsp</result>
+		</action>
+		<action name="vote_post" method="post"
+			class="com.lerx.vote.service.VoteItemAction">
+			<result name="success">/show.jsp</result>
+			<result name="input">/show.jsp</result>
+		</action>
+		
+		
+	</package>
+	
+	<package name="vote-rec" extends="struts-default">
+		<action name="vote_passRecMes" method="passMes"
+			class="com.lerx.vote.service.VoteRecAction">
+			<result name="success">/show.jsp</result>
+			<result name="input">/show.jsp</result>
+		</action>
+		<action name="voteRec" method="query"
+
+			class="com.lerx.vote.service.VoteRecAction">
+			<result name="success" type="redirect">/vote_rec.jsp
+			</result>
+		</action>
+	</package>
+
+</struts>

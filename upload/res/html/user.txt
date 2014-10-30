@@ -1,0 +1,40 @@
+﻿<div class="itemtitle s_clear">
+<h1>{$$username$$}</h1>
+<ul>
+<li>(UID: {$$uid$$})</li>
+</ul>
+</div>
+
+<table cellpadding="0" cellpadding="0" class="formtable" style="table-layout:fixed">
+<tr>
+<th width="70">性别:</th>
+<td>男 女 保密</td>
+</tr>
+
+<tr>
+<th>自我介绍:</th>
+<td style="word-break:all">			</td>
+</tr>
+</table>
+<table width="100%" cellpadding="0" cellpadding="0" class="formtable" style="table-layout:fixed">
+<tr>
+<td width="50%">
+<ul class="commonlist left" style="width: 50%">
+<li>用户名：{$$username$$}</li>
+<li>呢称：{$$petName$$}</li>
+<li>论坛积分：{$$scoreValue$$}</li>
+<li>论坛级别：{$$scoreGroup$$}</li>
+<li>管理组：{$$isBm$$}</li>
+</ul>
+</td>
+<td width="50%">
+<ul class="commonlist right" style="width: 50%">
+<li>注册日期: {$$regDate$$}</li>
+<li>上次访问: {$$lastLoginTime$$}</li>
+<li>最后发表: {$$lastPostTime$$}</li>
+<li>注册 IP: {$$regIP$$}</li>
+<li>上次访问 IP: {$$lastIP$$}</li>
+</ul>
+</td>
+</tr>
+</table>

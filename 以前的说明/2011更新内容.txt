@@ -1,0 +1,378 @@
+原文地址：
+http://www.lerx.com/list.jsp?id=211
+
+
+■-------------------------------- 2011-11-28 --------------------------------
+
+修正了版本更新后，在分类页中不能显示编辑区块导致无法批处理审核的问题。
+发布20111128版本。
+
+
+
+■-------------------------------- 2011-11-25 --------------------------------
+
+cookie信息进行加密处理。
+
+以前版本，cookie采用明码记录，加密后，cookie将采用与站点密钥互动后生成加密信息进行存取。
+
+[resourcesApplication_zh_CN.properties]
+
+lerx.hostSecFile=curLerxHost.jsp
+
+若要改变密钥，到WEB-INF目录下将上面说明的文件删除后，在后台重新确认站点信息即可。
+
+ 
+
+■-------------------------------- 2011-11-24 --------------------------------
+
+增加资源文件resourcesUploadFileSize_zh_CN.properties，用于控制文件上传中各种类型文件的尺寸限制
+
+[resourcesUploadFileSize_zh_CN.properties]
+
+lerx.uploadMaxKbSize.default=10000
+
+lerx.uploadMaxKbSize.jpg=200
+
+lerx.uploadMaxKbSize.gif=200
+
+lerx.uploadMaxKbSize.png=200
+
+如果在该资源文件中存在相应类型（以文件后缀判别），则按该类型的限制进行控制，如果不存在，则按lerx.uploadMaxKbSize.default的值进行限制。为0代表不限制。
+
+说明：单位为KB(1000字节)
+
+同步修改了在线编辑器(kindeditor)的upload_json.jsp，并修复不能上传的bug，解决与struts2的冲突问题。
+
+ 
+
+发布20111124版本。
+
+ 
+
+■-------------------------------- 2011-11-21 --------------------------------
+
+1.增加页面强制跳转显示输出控制
+
+[resourcesApplication_zh_CN.properties]
+
+lerx.pageJumpMode=1  //取值范围：0-1，0 提取内容时将直接取其跳转url，影响：该文章将不计访问记录及访问数; 1 取内置文章页，在文章页中自动跳转，将计数。
+
+2.在数据行格式中使用日期标签时增加自定义格式。
+
+{$$addTime$$}或{$$editTime$$}将按配置文件中的格式输出。
+
+{$$addTime@yyyy-MM-dd HH:mm:ss$$} 将按@后的格式进行输出。@后为空或空格将不输出日期。说明：@后的日期格式可以自定义，如：MM/dd或 mm-dd HH:mm。
+
+
+
+■-------------------------------- 2011-11-8 --------------------------------
+
+在ajax_style_siteCustom.action使用中增加字符串类型栏目组id标识。
+
+示例1:
+
+如下面的代码将取栏目组号为8的文章。
+
+$.ajax({
+
+  url:'{$$contextPath$$}/ajax_style_siteCustom.action?gid=8&fmod=1',
+
+  type: 'post',
+
+  async:false,
+
+  success:function(data){
+
+   $("#demo1").html(data);
+
+  }
+
+  });
+
+示例2(省去其它代码，只取gid):
+
+gid=0
+
+取所有栏目的文章。
+
+示例3:
+
+用gidStr取代gid
+
+gidStr=1_2_3
+
+将取栏目号为1、2、3的所有文章。
+
+示例4:
+
+gidStr=0
+
+取所有栏目的文章。
+
+优先说明：gid和gidstr同时出现时，将优先取gidStr，gid值将被忽略。
+
+ 
+
+■-------------------------------- 2011-11-4 --------------------------------
+
+对网站和门户的栏目IP等限制策略增加父级概念。子级将继承父级限制。
+
+如又下栏目设置
+
+├─新闻中心
+
+    ├─外部新闻
+
+    ├─内部新闻
+
+        ├─绝密新闻1
+
+        ├─绝密新闻2
+
+├─产品资料
+
+ 以上结构若想对绝密新闻1和绝密新闻2进行限制，只要在内部新闻中设置不公开或IP限制即可，无需在子栏目绝密新闻1和绝密新闻2中进行设置。
+
+说明：多层结构，将取所有父栏目（从当前层到根层）的限制进行累计判别。即所有父层可又分别采用不同的限制。举例：
+
+├─新闻中心(192.168.0.1-192.168.0.254)
+
+    ├─外部新闻
+
+    ├─内部新闻(192.168.0.100-192.168.0.200)
+
+        ├─绝密新闻1(192.168.0.150-192.168.0.160)
+
+        ├─绝密新闻2
+
+├─产品资料
+
+以上结构，192.168.0.150-192.168.0.160的ip才可又访问“绝密新闻1”，而192.168.0.100-192.168.0.200中不在192.168.0.150-192.168.0.160范围内的主机将不可访问“绝密新闻1”，而只可访问“绝密新闻2”，192.168.0.1-192.168.0.254中主机又此类推产生规则。
+
+特别提示：本限制并不对文章列表的提取采生影响，限制动作仅为打开栏目页及其下所有文章页。
+
+ 
+
+■-------------------------------- 2011-11-2 --------------------------------
+
+1.日志主内容进行了分行输出。
+
+2.模板导出默认文件名加入导入时间，格式由资源文件提供。资源文件进行了增加。
+
+[applicationResources_zh_CN.properties]
+
+lerx.defaultDateFormatOnFileName=yyyy_MM_dd_HH_mm_ss
+
+3.资源文件重新用首字母小写方法命名，并统一首单词，方便配置。
+
+ApplicationResources_zh_CN.properties  修改为 resourcesApplication_zh_CN.properties
+
+MessageResources_zh_CN.properties 修改为 resourcesMessage_zh_CN.properties
+
+StyleResources_zh_CN.properties 修改为 resourcesStyle_zh_CN.properties
+
+ 
+
+■-------------------------------- 2011-10-25 --------------------------------
+
+修正了设定了用户发文自动审核时，用户的已审核文章数不能更新的问题。
+
+ 
+
+■-------------------------------- 2011-10-24 --------------------------------
+
+为适应论坛、空间等模块，资源文件增加以下键值。
+
+[ApplicationResources_zh_CN.properties]
+
+lerx.articleViewPageFileName=artshow.action    //门户网站文章页处理文件
+
+lerx.articleGroupPageFileName=nav.action    //门户文章分类处理文件
+
+lerx.bbsThreadPageFileName=thread.action    //论坛单帖页处理文件
+
+lerx.bbsForumPageFileName=forum.action    //论坛分类处理文件
+
+增加以下键值后，系统会根据以下键值在需要生成文件名的地方进行自动生成(静态方式除外)。如要改为其它名称，需要在struts.xml中的前台界面层进行相应的设置。
+
+如在< action class="com.lerx.web.service.ShowPageAction" method="{1}" name="*" >之前需增加：
+
+< action class="com.lerx.web.service.ShowPageAction" method="article" name="您需要的文件名，不包括.action" >
+   < result name="success" >/show.jsp
+  < /action >
+
+ 本次修改后，门户网站默认显示的文件名由thread.action更改为artshow.action
+
+特别说明：也可以用jsp文件来命名。
+
+ 
+
+■-------------------------------- 2011-10-22 --------------------------------
+
+1.修正了文章强制跳转无效的问题
+
+2.针对外部文章数据导入数据库后会产生的异常进行了相应的处理。
+
+3.修正了用户发文统计中未通过审核用户也可能出现在名单内的问题.
+
+ 
+
+■-------------------------------- 2011-10-21 --------------------------------
+
+对后台进行了一些调整，修正了一些功能不是太完善的地方。
+
+发布20111021版本。
+
+ 
+
+■-------------------------------- 2011-10-19 --------------------------------
+
+1.网站模板增加customFormatCode4-8，至此共有8个自定义格式。
+
+2.对浏览器标题栏的标签值重新定义
+可以在模板中用{$$webPageTitle$$}或{$$siteTitle$$}来设置浏览器标题，如：
+
+ 
+
+
+< html >
+
+< head >
+
+< title>{$$webPageTitle$$}< / title >
+
+< / head >
+< body >
+
+...
+
+< / body >
+
+< / html >
+或
+
+
+< html >
+
+< head >
+
+< title >{$$siteTitle$$}< / title >
+
+< / head >
+< body >
+
+...
+
+< / body >
+
+< / html >
+
+ 
+
+风格模板中的titleFormat就是代表上述值。其中可使用的值如下：
+{$$app$$} 根据配置自动生成的当前应用标题，如：首页、分类名、文章名等等。
+{$$siteName$$}                网站名称
+{$$fullSiteName$$}            网站全称
+{$$shortSiteName$$}         网站简称
+{$$mainTitle$$}                 自适应网站或论坛或空间名称 建议使用该值
+{$$welcomeStr$$}             网站欢迎词
+推荐使用以下设置
+在public模块中使用{$$app$$}-{$$mainTitle$$}
+其它根据进行修改，比如：index模板使用{$$mainTitle$$}-{$$welcomeStr$$}，可以达到如“搜狐-中国最大的门户网站”的效果。注，也可以使用 {$$mainTitle$$}-中国最大的门户网站 这种方式写死。
+
+3.资源文件增加siteNameDefaultByShort键值，系统在取网站名时可以根据该配置进行读取。
+ yes为取简称，其它取全称。在模板中可以使用{$$siteName$$}标签。
+[ApplicationResources_zh_CN.properties]
+lerx.siteNameDefaultByShort=yes
+
+ 
+
+■-------------------------------- 2011-10-17 --------------------------------
+
+1.首页代码中增加{$$customFormatIndex,gid,fid$$}标签。该标签将按文章栏目的id号和自定义格式代码id号自动生成代码。
+
+gid为文章所属栏目id，fid为自定义格式顺序号（可以有四个，从1-3），对应模板的通用设置中有customFormatCode1-3。
+
+本功能与栏目属性中的@首页中的列表格式等同。但加入这一个标签，可以直接在模板中直接进行使用，避免了导入导入模板中而该模板并不带有栏目自定义格式的问题，同时也解决了在不同模板中切换而模板相应的栏目列表格式并不相同的问题。
+
+2.修正了修改文章发布时间不稳定的问题。资源文件增加时区值。
+
+[ApplicationResources_zh_CN.properties]
+
+lerx.dateParsePosition=8
+
+
+ 
+
+■-------------------------------- 2011-10-14 --------------------------------
+
+1.完成论坛版块设计
+
+2.针对在一些linux环境中取网卡Mac会发生错误，修改hostSecFile的生成方式为UUID方式（UUID本身包含了机器Mac信息）。
+
+ 
+
+■-------------------------------- 2011-10-11 --------------------------------
+
+一、完成论坛模板后台管理
+
+二、资源文件增加：
+
+[ApplicationResources_zh_CN.properties]
+
+lerx.threadSynopsisLength=200
+lerx.threadSynopsisHtmlFilter=yes
+
+lerx.changeArticleAddTimeMustBeAdmin=true
+
+说明：1.threadSynopsisLength、threadSynopsisHtmlFilter定义了文章简介的长度和是否进行html过滤。如果简介为空，则按此长度取文章内容。
+
+2.lerx.changeArticleAddTimeMustBeAdmin定义了修改文章的发布时间是否需要网站管理员权限。为否则拥有文章所属栏目管理权的用户即可修改发布时间。
+
+[StyleResources_zh_CN.properties]
+
+lerx.charOfEllipsis
+
+定义省略号，如果为空则为...
+
+ 
+
+■-------------------------------- 2011-09-26 --------------------------------
+
+修改com.lerx.style.site.vo.StyleSubElementInCommon为com.lerx.style.site.vo.SiteStyleSubElementInCommon。以与开发中的论坛和空间模块进行区分。beta1模板导入以后版本的模板，只需用记事本将上述对象进行替换。
+
+ 
+
+■-------------------------------- 2011-09-20 --------------------------------
+
+增加站点认证，采用服务器端和客户端分别加密，建立信任通道。分析了国内一些大型论坛的漏洞或弱点，V2系统在服务器端采用了服务器网卡MAC地址及主机信息加密生成密钥，客户端采用随机码与密钥方式以及令牌方式。防止注册机和机器人恶意注册。这一技术将用于后续开发的论坛模块。
+
+注：升级
+
+Ⅰ.需要在配置文件中加入lerx.hostSecFile=curLerxHost.jsp并覆盖WEB-INF/classes/com以下的文件。由于大多数用户使用tomcat都是进行了整合，建议lerx.hostSecFile用.jsp或.action起名，或对WEB-INF目录在IIS、Nginx、Apache中进行限制访问措施。
+
+Ⅱ.模板中的reg模块中的表单需加入randKey和secStr，如：
+
+form name="f" id="f" method="post" action="{$$contextPath$$}/user_reg.action?randKey={$$randKey$$}&secStr={$$secStr$$}" 
+
+说明：当同一客户ip在同一天出现相同的randKey和secStr时，系统会认为为非法注册。
+
+发布新版本为2011-09-20。
+
+
+■-------------------------------- 2011-09-18 --------------------------------
+
+1.修改模板中的模块myArticlesStyle为searchStyle。原因是searchStyle需求一个搜索表单区域，而myArticlesStyle为searchStyle与其它一些通用模板并不需要特定表单。
+
+2.修改元素标签href和hrefLine定义。href为元素网址，hrefLine为元素完整链接代码。
+
+2.对KindEditor的上传模块进行了修改，加入身份认证，并对上传的目录及文件名与V2系统进行了统一。
+
+更新时需对数据库模板进行调整。并将hrefLineFormat中的a href="{$$hrefLine$$}"修改为 a href="{$$href$$}"
+
+发布新版本为2011-09-18。
+
+ 
+
+■-------------------------------- 开发日志从2011-09-18开始更新发布 ----------
+

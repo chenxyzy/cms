@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+
+	<!-- 网站管理员Action -->
+	
+	<package name="admin_integral_rule" extends="struts-default">
+
+		<action name="admin_integral_rule_*" method="{1}"
+			class="com.lerx.integral.rule.service.IntegralRuleService">
+			<result name="success">/${getText("lerx.default.admin.folder")}/admin_integral_rule.jsp?localPostion=${localPostion}</result>
+			<result name="input">/${getText("lerx.default.admin.folder")}/admin_integral_rule.jsp?localPostion=${localPostion}</result>
+		</action>
+		<action name="admin_integral_rule_findById" method="findById"
+			class="com.lerx.integral.rule.service.IntegralRuleService">
+			<result name="success">/${getText("lerx.default.admin.folder")}/admin_integral_rule_edit.jsp?localPostion=${localPostion}</result>
+			<result name="input">/${getText("lerx.default.admin.folder")}/admin_integral_rule.jsp?localPostion=${localPostion}</result>
+		</action>
+	</package>
+	
+</struts>

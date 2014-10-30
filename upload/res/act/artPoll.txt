@@ -1,0 +1,1 @@
+﻿<a href="javascript:pollChg({$$tid$$},'{$$st$$}')">{$$title$$}赞功能</a>

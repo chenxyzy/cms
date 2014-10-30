@@ -1,0 +1,678 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<java version="1.6.0_10-rc2" class="java.beans.XMLDecoder"> 
+ <object class="com.lerx.style.vote.vo.VoteStyle"> 
+  <void property="author"> 
+   <string></string> 
+  </void> 
+  <void property="barMaxValue"> 
+   <string>600</string> 
+  </void> 
+  <void property="description"> 
+   <string></string> 
+  </void> 
+  <void property="id"> 
+   <int>3</int> 
+  </void> 
+  <void property="itemStyle"> 
+   <object class="com.lerx.style.vote.vo.VoteStyleSubElementInCommon"> 
+    <void property="id"> 
+     <int>13</int> 
+    </void> 
+   </object> 
+  </void> 
+  <void property="joinStyle"> 
+   <object class="com.lerx.style.vote.vo.VoteStyleSubElementInCommon"> 
+    <void property="cssCode"> 
+     <string>&lt;style type=&quot;text/css&quot;&gt;&#13;
+body{font-size:14px;color:#000;background: #FFF;margin:0;}/*全局设置*/&#13;
+img{ border:0; margin:0; padding:0;}&#13;
+a:link{text-decoration : none ;color : #000 ;} /*链接*/&#13;
+a:visited {text-decoration : none ;color : #000 ;} /*已访问链接*/&#13;
+a:hover {text-decoration : none ;color : #f00 ;} /*鼠标经过链接*/&#13;
+a:active {text-decoration : none ;color : #000 ;}  /*鼠标按下链接*/&#13;
+&#13;
+.w{ margin:0 auto; width:960px;}&#13;
+.top{ height:200px; background:url(http://www.jysedu.com/templates/vote/2009blog/images/blogbmtop.jpg)}&#13;
+.list_w{ margin-top:10px;}&#13;
+.topline{border-top:1px solid #666;}&#13;
+tr{ padding:10px 0;}&#13;
+.list_1{ width:20%; padding-left:20px;border-left:1px solid #666; border-bottom:1px solid #666;border-right:1px solid #666;background:#5DC3EA;}&#13;
+.list_2{ width:80%;border-bottom:1px solid #666;border-right:1px solid #666;background:#eee;padding-left:10px;}&#13;
+.list_3{ width:30%; padding-left:10px;}&#13;
+.list_4{ width:70%; padding-left:10px;}&#13;
+.list_5{ width:70%;padding-left:20px;}&#13;
+.list_6{ padding:0; width:80%;border-bottom:1px solid #666;border-right:1px solid #666;background:#eee;}&#13;
+&#13;
+.tijiao{height:90px;border-left:1px solid #666; border-bottom:1px solid #666;border-right:1px solid #666;background:#eee; text-align:center; padding-top:15px;}&#13;
+.downline{height:5px;background:#ccc;font-size:0px;margin-top:10px;}&#13;
+.down{text-align:center; margin-top:5px;background:#ccc; padding:10px;font-size:12px;}&#13;
+.tijiao a{color:#f00; font-weight: bold;}&#13;
+&lt;/style&gt;</string> 
+    </void> 
+    <void property="htmlCode"> 
+     <string>{$$top$$}&#13;
+&#13;
+&lt;link rel=&quot;stylesheet&quot; media=&quot;all&quot; type=&quot;text/css&quot; href=&quot;{$$contextPath$$}/js/jquery/ui/1.8.21/themes/ui-lightness/jquery-ui.css&quot; /&gt;&#13;
+&lt;link rel=&quot;stylesheet&quot; media=&quot;all&quot; type=&quot;text/css&quot; href=&quot;{$$contextPath$$}/js/jquery/timepicker/jquery-ui-timepicker-addon.css&quot; /&gt;&#13;
+&lt;script type=&quot;text/javascript&quot; src=&quot;{$$contextPath$$}/js/jquery/ui/1.8.21/jquery-ui.min.js&quot;&gt;&lt;/script&gt;&#13;
+&lt;script type=&quot;text/javascript&quot; src=&quot;{$$contextPath$$}/js/jquery/timepicker/jquery-ui-timepicker-addon.js&quot;&gt;&lt;/script&gt;&#13;
+&lt;script type=&quot;text/javascript&quot; src=&quot;{$$contextPath$$}/js/jquery/examples/timepicker/jquery-ui-sliderAccess.js&quot;&gt;&lt;/script&gt;&#13;
+ &#13;
+ &lt;div class=&quot;list_w&quot;&gt;&#13;
+&lt;form id=form1 method=&quot;POST&quot; onsubmit=&quot;return checkform(this)&quot; action=&quot;{$$contextPath$$}/vote_item_sign.action?subId={$$subId$$}&quot;&gt;&#13;
+报名时间：{$$signStartTime$$}至{$$signEndTime$$}，目前已报名参赛选手数：{$$allSign$$}，审核通过数：{$$allSingPassed$$} --&gt;&lt;a href=&quot;./vote.jsp?id=2&quot;&gt;进入投票页面查看审核通过情况&lt;/a&gt;&#13;
+ &lt;table class=&quot;topline&quot; width=&quot;100%&quot; border=&quot;0&quot; cellspacing=&quot;0&quot; cellpadding=&quot;0&quot;&gt;&#13;
+&#13;
+  &lt;tr&gt;&#13;
+    &lt;td class=&quot;list_1&quot;&gt;用户名&lt;/td&gt;&#13;
+    &lt;td class=&quot;list_2&quot;&gt;&lt;input type=&quot;text&quot; id=&quot;username&quot; name=&quot;vi.title&quot;  size=&quot;30&quot;&gt;&lt;/td&gt;&#13;
+  &lt;/tr&gt;&#13;
+  &lt;tr&gt;&#13;
+    &lt;td class=&quot;list_1&quot;&gt;真实姓名&lt;/td&gt;&#13;
+    &lt;td class=&quot;list_2&quot;&gt;&lt;input type=&quot;text&quot; id=&quot;truename&quot; name=&quot;vi.item2&quot; size=&quot;30&quot;&gt;&lt;/td&gt;&#13;
+  &lt;/tr&gt;&#13;
+  &lt;tr&gt;&#13;
+    &lt;td class=&quot;list_1&quot;&gt;性别&lt;/td&gt;&#13;
+    &lt;td class=&quot;list_2&quot;&gt;&lt;input type=&quot;radio&quot; checked value=&quot;男&quot;  name=&quot;vi.item3&quot;&gt;男 &lt;input type=&quot;radio&quot; name=&quot;vi.item3&quot; value=&quot;女&quot;&gt;女&lt;/td&gt;&#13;
+  &lt;/tr&gt;&#13;
+  &lt;tr&gt;&#13;
+    &lt;td class=&quot;list_1&quot;&gt;出生年月&lt;/td&gt;&#13;
+    &lt;td class=&quot;list_2&quot;&gt;&#13;
+&#13;
+&#13;
+&#13;
+&#13;
+&lt;input id=&quot;birthday&quot; type=&quot;text&quot; name=&quot;vi.item4&quot; size=&quot;30&quot;&gt;&lt;/td&gt;&#13;
+  &lt;/tr&gt;&#13;
+  &lt;tr&gt;&#13;
+    &lt;td class=&quot;list_1&quot;&gt;工作单位&lt;/td&gt;&#13;
+    &lt;td class=&quot;list_2&quot;&gt;&lt;input type=&quot;text&quot; id=&quot;dept&quot; name=&quot;vi.item5&quot; size=&quot;30&quot;&gt;&lt;/td&gt;&#13;
+  &lt;/tr&gt;&#13;
+  &lt;tr&gt;&#13;
+    &lt;td class=&quot;list_1&quot;&gt;博客空间名称&lt;/td&gt;&#13;
+    &lt;td class=&quot;list_2&quot;&gt;&lt;input type=&quot;text&quot; id=&quot;blogname&quot; name=&quot;vi.item1&quot; size=&quot;30&quot;&gt;&lt;/td&gt;&#13;
+  &lt;/tr&gt;&#13;
+  &lt;tr&gt;&#13;
+    &lt;td class=&quot;list_1&quot;&gt;博客地址&lt;/td&gt;&#13;
+    &lt;td class=&quot;list_2&quot;&gt;&lt;input type=&quot;text&quot; id=&quot;blogurl&quot; name=&quot;vi.item6&quot; size=&quot;60&quot;&gt;&lt;/td&gt;&#13;
+  &lt;/tr&gt;&#13;
+  &lt;tr&gt;&#13;
+    &lt;td class=&quot;list_1&quot;&gt;申报类别&lt;/td&gt;&#13;
+    &lt;td class=&quot;list_2&quot;&gt;&lt;input type=&quot;radio&quot; value=&quot;小幼组&quot; checked name=&quot;vi.item7&quot;&gt;小幼组 &lt;input type=&quot;radio&quot; name=&quot;vi.item7&quot; value=&quot;中学组&quot;&gt;中学组&lt;/td&gt;&#13;
+  &lt;/tr&gt;&#13;
+  &lt;tr&gt;&#13;
+    &lt;td class=&quot;list_1&quot;&gt;申报博文&lt;/td&gt;&#13;
+    &lt;td class=&quot;list_6&quot;&gt;&lt;table width=&quot;100%&quot; border=&quot;0&quot; cellspacing=&quot;0&quot; cellpadding=&quot;0&quot;&gt;&lt;tr&gt;&#13;
+        &lt;td class=&quot;list_3&quot;&gt;　　文章标题&lt;/td&gt;&#13;
+        &lt;td class=&quot;list_5&quot;&gt;文章地址&lt;/td&gt;&#13;
+      &lt;/tr&gt;&#13;
+      &lt;tr&gt;&#13;
+        &lt;td class=&quot;list_3&quot;&gt;1　&lt;input type=&quot;text&quot; id=&quot;article1title&quot; name=&quot;vi.item8&quot; size=&quot;25&quot;&gt;&lt;/td&gt;&#13;
+        &lt;td class=&quot;list_4&quot;&gt;&lt;input type=&quot;text&quot; id=&quot;article1url&quot; name=&quot;vi.item9&quot; size=&quot;60&quot;&gt;&lt;/td&gt;&#13;
+      &lt;/tr&gt;&#13;
+      &lt;tr&gt;&#13;
+        &lt;td class=&quot;list_3&quot;&gt;2　&lt;input type=&quot;text&quot; id=&quot;article2title&quot; name=&quot;vi.item10&quot; size=&quot;25&quot;&gt;&lt;/td&gt;&#13;
+        &lt;td class=&quot;list_4&quot;&gt;&lt;input type=&quot;text&quot; id=&quot;article2url&quot; name=&quot;vi.item11&quot; size=&quot;60&quot;&gt;&lt;/td&gt;&#13;
+      &lt;/tr&gt;&#13;
+      &lt;tr&gt;&#13;
+        &lt;td class=&quot;list_3&quot;&gt;3　&lt;input type=&quot;text&quot; id=&quot;article3title&quot; name=&quot;vi.item12&quot; size=&quot;25&quot;&gt;&lt;/td&gt;&#13;
+        &lt;td class=&quot;list_4&quot;&gt;&lt;input type=&quot;text&quot; id=&quot;article3url&quot; name=&quot;vi.item13&quot; size=&quot;60&quot;&gt;&lt;/td&gt;&#13;
+      &lt;/tr&gt;&#13;
+     &lt;/table&gt;&#13;
+&lt;/td&gt;&#13;
+&lt;/tr&gt;&#13;
+  &lt;tr&gt;&#13;
+    &lt;td class=&quot;list_1&quot;&gt;参赛宣言&lt;/td&gt;&#13;
+    &lt;td class=&quot;list_2&quot;&gt;&lt;textarea rows=&quot;10&quot; id=&quot;VoteItemsBody&quot; name=&quot;vi.body&quot; cols=&quot;60&quot;&gt;&lt;/textarea&gt;&lt;/td&gt;&#13;
+  &lt;/tr&gt;&#13;
+&lt;/table&gt;&#13;
+&lt;div class=&quot;tijiao&quot;&gt;友情提醒：当前系统要求登录尚可报名，请您 &lt;a href=/login.jsp?CurrentURL=/vote_sign.jsp@id~2&gt;点击此处&lt;/a&gt; 进行登录。&lt;br&gt;&lt;br&gt;注意：请认真填写，提交后将不可修改！&lt;a href=&quot;http://bbs.jysedu.com/forumdisplay.php?fid=24&amp;page=1&quot;  target=&quot;_blank&quot;&gt;进入教育论坛交流讨论区&lt;/a&gt;&lt;br&gt;&lt;br&gt;&#13;
+{$$loginNeedMessage$$}&#13;
+&lt;input type=&quot;submit&quot;   {$$submitDisabled$$}  value=&quot;提  交&quot; name=&quot;B1&quot;&gt; &#13;
+&#13;
+ &lt;/div&gt;&#13;
+&lt;/form&gt;&#13;
+&lt;/div&gt;&#13;
+&lt;script&gt;&#13;
+  &#13;
+  $.datepicker.regional[&apos;ru&apos;] = {&#13;
+		  		&#13;
+			dateFormat: &apos;yy-mm-dd&apos;,&#13;
+			monthNames: [&apos;元月&apos;,&apos;二月&apos;,&apos;三月&apos;,&apos;四月&apos;,&apos;五月&apos;,&#13;
+			         	&apos;六月&apos;,&apos;七月&apos;,&apos;八月&apos;,&apos;九月&apos;,&apos;十月&apos;,&apos;十一月&apos;,&apos;十二月&apos;],&#13;
+			monthNamesShort: [&apos;一月&apos;,&apos;二月&apos;,&apos;三月&apos;,&apos;四月&apos;,&apos;五月&apos;,&apos;六月&apos;,&#13;
+			         	&apos;七月&apos;,&apos;八月&apos;,&apos;九月&apos;,&apos;十月&apos;,&apos;十一月&apos;,&apos;十二月&apos;],&#13;
+			dayNamesMin: [&apos;日&apos;,&apos;一&apos;,&apos;二&apos;,&apos;三&apos;,&apos;四&apos;,&apos;五&apos;,&apos;六&apos;],&#13;
+			weekHeader: &apos;星期&apos;,&#13;
+			changeMonth: true,&#13;
+			changeYear: true,&#13;
+			yearRange:&quot;-80:+1&quot;,&#13;
+&#13;
+			closeText: &apos;关闭&apos;&#13;
+		};&#13;
+&#13;
+  $.datepicker.setDefaults($.datepicker.regional[&apos;ru&apos;]);&#13;
+  &#13;
+ &#13;
+  $(&apos;#birthday&apos;).datepicker();&#13;
+&#13;
+  &#13;
+  $(&apos;#birthday&apos;).datepicker(&apos;setDate&apos;, $(&apos;#birthday&apos;).val());&#13;
+ &#13;
+  &#13;
+&#13;
+&#13;
+&#13;
+// 中文检测&#13;
+function isChinese(temp) &#13;
+{ &#13;
+	var re=/[^u4e00-u9fa5]/; &#13;
+	if(re.test(temp)) return true; &#13;
+	return false; &#13;
+} &#13;
+&#13;
+&#13;
+function   isDate2(str)&#13;
+{   &#13;
+  if(!str.match(/^d{4}-dd?-dd?$/)){return   false;}   &#13;
+  var   ar=str.replace(/-0/g,&quot;-&quot;).split(&quot;-&quot;);   &#13;
+  ar=new   Array(parseInt(ar[0]),parseInt(ar[1])-1,parseInt(ar[2]));   &#13;
+  var   d=new   Date(ar[0],ar[1],ar[2]);   &#13;
+  return   d.getFullYear()==ar[0]   &amp;&amp;   d.getMonth()==ar[1]   &amp;&amp;   d.getDate()==ar[2];   &#13;
+}   &#13;
+&#13;
+// 去掉字符串的头空格（左空格）&#13;
+    function LTrim(str){ &#13;
+        var i;&#13;
+        for(i=0;i&lt;str.length; i++) {&#13;
+            if(str.charAt(i)!=&quot; &quot;) break;&#13;
+        }&#13;
+        str = str.substring(i,str.length);&#13;
+        return str;&#13;
+    }&#13;
+    &#13;
+// 去掉字符串的尾空格（右空格）&#13;
+    function RTrim(str){&#13;
+        var i;&#13;
+        for(i=str.length-1;i&gt;=0;i--){&#13;
+            if(str.charAt(i)!=&quot; &quot;) break;&#13;
+        }&#13;
+        str = str.substring(0,i+1);&#13;
+        return str;&#13;
+    }&#13;
+    &#13;
+// 去掉字符串的头尾空格（左右空格）&#13;
+    function Trim(str){&#13;
+        return LTrim(RTrim(str));&#13;
+    }&#13;
+&#13;
+&#13;
+function checkform(theForm)   &#13;
+{ &#13;
+&#13;
+	&#13;
+	if (Trim(theForm.username.value)==&quot;&quot;)&#13;
+	{&#13;
+		alert(&quot;用户名不能为空！&quot;);   &#13;
+		theForm.username.focus(); &#13;
+		return   false; 	&#13;
+	}&#13;
+&#13;
+	if (Trim(theForm.truename.value)==&quot;&quot;)&#13;
+	{&#13;
+		alert(&quot;姓名不能为空！&quot;);   &#13;
+		theForm.truename.focus(); &#13;
+		return   false; 	&#13;
+	}&#13;
+&#13;
+&#13;
+	if (!(isChinese(theForm.truename.value)))&#13;
+	{&#13;
+		alert(&quot;姓名输入不合法&quot;);   &#13;
+		theForm.truename.focus(); &#13;
+		return   false; &#13;
+	} &#13;
+	&#13;
+&#13;
+	if (Trim(theForm.dept.value)==&quot;&quot;)&#13;
+	{&#13;
+		alert(&quot;工作单位不能为空！&quot;);   &#13;
+		theForm.dept.focus(); &#13;
+		return   false; 	&#13;
+	}&#13;
+	&#13;
+	if (Trim(theForm.blogname.value)==&quot;&quot;)&#13;
+	{&#13;
+		alert(&quot;博客空间名称不能为空！&quot;);   &#13;
+		theForm.blogname.focus(); &#13;
+		return   false; 	&#13;
+	}&#13;
+	&#13;
+	if (Trim(theForm.blogurl.value)==&quot;&quot;)&#13;
+	{&#13;
+		alert(&quot;博客地址不能为空！&quot;);   &#13;
+		theForm.blogurl.focus(); &#13;
+		return   false; 	&#13;
+	}&#13;
+	&#13;
+	if ((Trim(theForm.article1title.value)==&quot;&quot;) || (Trim(theForm.article2title.value)==&quot;&quot;) || (Trim(theForm.article3title.value)==&quot;&quot;) || (Trim(theForm.article1url.value)==&quot;&quot;)  || (Trim(theForm.article2url.value)==&quot;&quot;)  || (Trim(theForm.article3url.value)==&quot;&quot;))&#13;
+	{&#13;
+		alert(&quot;您提供的博文信息不对，至少三篇且请在相应的位置输入文章名称和地址！&quot;);   &#13;
+		theForm.blogurl.focus(); &#13;
+		return   false; 	&#13;
+	}&#13;
+	&#13;
+&#13;
+	if (confirm(&apos;你确定填写无误吗?一旦提交将无法进行修改！&apos;))&#13;
+  	{&#13;
+		return true;&#13;
+		form.submit(); &#13;
+	}&#13;
+	else&#13;
+	{&#13;
+		return false;&#13;
+	}&#13;
+}&#13;
+&#13;
+&#13;
+  &#13;
+  	&lt;/script&gt;&#13;
+{$$footer$$}</string> 
+    </void> 
+    <void property="id"> 
+     <int>15</int> 
+    </void> 
+    <void property="itemsLoopFormat"> 
+     <string></string> 
+    </void> 
+   </object> 
+  </void> 
+  <void property="publicStyle"> 
+   <object class="com.lerx.style.vote.vo.VoteStyleSubElementInCommon"> 
+    <void property="footerCode"> 
+     <string>&lt;div class=&quot;footer&quot;&gt;&#13;
+&lt;p&gt;Copyright 2010-2012 &lt;a href=&quot;http://www.jysedu.com/&quot;&gt;姜堰教育网&lt;/a&gt; 版权所有  All Rights Reserved&lt;/p&gt;&#13;
+&lt;p&gt;地址：姜堰市上海路88号 联系电话：0523-88088550 邮编：225500&lt;/p&gt;&#13;
+&lt;p&gt;IE7.0以上 1024*768 Powered by &lt;a href=&quot;http://www.lerx.com&quot; target=&quot;_blank&quot; Title=&quot;(基于Java「SSH2」技术)&quot;&gt;lerx&lt;/a&gt; V2&lt;/p&gt;&#13;
+&lt;/div&gt;</string> 
+    </void> 
+    <void property="htmlTemplate"> 
+     <string>&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot; &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&gt;&#13;
+&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;&#13;
+&lt;head&gt;&#13;
+&lt;title&gt;{$$siteTitle$$}&lt;/title&gt;&#13;
+&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=UTF-8&quot;/&gt;&#13;
+&lt;meta name=&quot;keywords&quot; content=&quot;{$$keyWord$$}&quot;/&gt;&#13;
+&lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=EmulateIE7&quot; /&gt;&#13;
+&lt;meta name=&quot;Description&quot; content=&quot;{$$description$$}&quot;/&gt;&#13;
+&lt;meta expire=&quot;-1&quot; /&gt;&#13;
+{$$cssStyle$$}&#13;
+&lt;script type=&quot;text/javascript&quot; src=&quot;http://portalfiles.jysedu.com/js/jquery/1.7.2/jquery-1.7.2.min.js&quot;&gt;&lt;/script&gt;&#13;
+&lt;/head&gt;&#13;
+&lt;body&gt;&#13;
+&lt;div class=&quot;w&quot;&gt;&#13;
+{$$htmlBody$$}&#13;
+&lt;/div&gt;&#13;
+&lt;/body&gt;&#13;
+&lt;/html&gt;&#13;
+</string> 
+    </void> 
+    <void property="id"> 
+     <int>11</int> 
+    </void> 
+    <void property="titleFormat"> 
+     <string>{$$app$$}-{$$voteSubject$$}-{$$shortSiteName$$}</string> 
+    </void> 
+    <void property="topCode"> 
+     <string>&lt;div class=&quot;top&quot;&gt;&lt;img src=&quot;http://portalfiles.jysedu.com/templates/vote/2012news/images/2012newsbanner.jpg&quot; width=&quot;980&quot; height=&quot;226&quot; /&gt;&lt;/div&gt;</string> 
+    </void> 
+   </object> 
+  </void> 
+  <void property="resultPageCode"> 
+   <string>&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot; &quot;http://www.w3.org/TR/html4/loose.dtd&quot;&gt;&#13;
+&lt;html&gt;&#13;
+&lt;head&gt;&#13;
+&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=UTF-8&quot;&gt;&#13;
+&lt;meta http-equiv=refresh content={$$waitingTime$$};url={$$returnUrl$$} &gt;&#13;
+&lt;style type=&quot;text/css&quot;&gt;&#13;
+body{ background:#ccc; font-size:14px; font-family:Arial, Helvetica, sans-serif;}&#13;
+.con{ border:5px solid #aaa; width:560px; height:80px; margin:50px auto; padding:20px 10px; background:#eee;}&#13;
+a:link{text-decoration:none;color:#C30;} &#13;
+a:visited{text-decoration:none;color:#C30;} &#13;
+a:hover{text-decoration:none;color:#f00;} &#13;
+a:active{text-decoration:none;color:#C30;}&#13;
+&lt;/style&gt;&#13;
+&lt;title&gt;操作提示&lt;/title&gt;&#13;
+&lt;/head&gt;&#13;
+&lt;body&gt;&#13;
+&lt;div id=&quot;con&quot; class=&quot;con&quot;&gt;&#13;
+&lt;div id=&quot;msg&quot;&gt;{$$resultMsg$$} &lt;/div&gt;&#13;
+&lt;div id=&quot;cond&quot;&gt;{$$waitingTime$$}秒后将返回，如果没有响应，请这里进行&lt;a href=&quot;{$$returnUrl$$}&quot;&gt;手动返回&lt;/a&gt;。&#13;
+&lt;/div&gt;&#13;
+&lt;/div&gt;&#13;
+&lt;/body&gt;&#13;
+&lt;/html&gt;&#13;
+</string> 
+  </void> 
+  <void property="resultStyle"> 
+   <object class="com.lerx.style.vote.vo.VoteStyleSubElementInCommon"> 
+    <void property="cssCode"> 
+     <string>&lt;style type=&quot;text/css&quot;&gt;&#13;
+body{font-size:12px;color:#000;background: #FFF;margin:0; font-family: Arial, &quot;宋体&quot;; background: #F3F3F3;}/*全局设置*/&#13;
+img{ border:0; margin:0; padding:0;}&#13;
+a:link{text-decoration : none ;color : #000 ;} /*链接*/&#13;
+a:visited {text-decoration : none ;color : #000 ;} /*已访问链接*/&#13;
+a:hover {text-decoration : none ;color : #f00 ;} /*鼠标经过链接*/&#13;
+a:active {text-decoration : none ;color : #000 ;}  /*鼠标按下链接*/&#13;
+&#13;
+&#13;
+.w{ margin:0 auto; width:980px;}&#13;
+.top{ background:url(ckjg.jpg)}&#13;
+.listtopbox{ margin-top:5px; padding:10px; background:#666;color:#FFF; font-weight:bold; text-align:center;font-size:14px;}&#13;
+.listbox{ border:1px #999 solid;}&#13;
+.list_1,.list_2,.list_3,.list_4{ padding:10px;} &#13;
+.list_1{width:6%; text-align:center;}&#13;
+.list_2{width:26%;}&#13;
+.list_3{width:58%;}&#13;
+.list_4{width:10%; text-align:center;}&#13;
+&#13;
+&#13;
+.downline{height:5px;background:#ccc;font-size:0px;margin-top:10px;}&#13;
+.down{text-align:center; margin-top:5px;background: #C0C0C0; padding:10px;font-size:12px; font-family: Arial, Helvetica, sans-serif;}&#13;
+.footer{text-align:center; }&#13;
+&#13;
+&lt;/style&gt;</string> 
+    </void> 
+    <void property="htmlCode"> 
+     <string>{$$top$$}&#13;
+&lt;div  class=&quot;w&quot;&gt;&#13;
+ &lt;div class=&quot;listtopbox&quot;&gt;2012年姜堰教育十大新闻投票结果&lt;/div&gt;&#13;
+ &lt;div class=&quot;listbox&quot;&gt;&#13;
+ &lt;table width=&quot;100%&quot; border=&quot;0&quot; cellspacing=&quot;0&quot; cellpadding=&quot;0&quot;&gt;{$$allItems$$}&#13;
+&lt;/table&gt;&#13;
+ &lt;/div&gt;&#13;
+ &#13;
+ &#13;
+ {$$footer$$} &#13;
+&lt;/div&gt;&#13;
+</string> 
+    </void> 
+    <void property="id"> 
+     <int>14</int> 
+    </void> 
+    <void property="itemsLoopFormat"> 
+     <string> &lt;tr&gt;&#13;
+    &lt;td class=&quot;list_1&quot;&gt;{$$sn$$}&lt;/td&gt;&#13;
+    &lt;td class=&quot;list_2&quot;&gt;{$$title$$}&lt;/td&gt;&#13;
+	&#13;
+    &lt;td class=&quot;list_3&quot;&gt;&#13;
+	&lt;img src=&quot;http://portalfiles.jysedu.com/templates/vote/2012news/images/lineleft.gif&quot; width=&quot;5&quot; height=&quot;15&quot; /&gt;&lt;img src=&quot;http://portalfiles.jysedu.com/templates/vote/2012news/images/linemid.gif&quot; width=&quot;{$$barWidth$$}&quot; height=&quot;15&quot; /&gt;&lt;!--改变width值让进度条产生变化--&gt;&lt;img src=&quot;http://portalfiles.jysedu.com/templates/vote/2012news/images/lineright.gif&quot; width=&quot;6&quot; height=&quot;15&quot; /&gt;&#13;
+	&lt;/td&gt;&#13;
+	&#13;
+    &lt;td class=&quot;list_4&quot;&gt;{$$rec$$}&lt;/td&gt;&#13;
+  &lt;/tr&gt;</string> 
+    </void> 
+    <void property="topCode"> 
+     <string>&lt;div class=&quot;top&quot;&gt;&lt;img src=&quot;http://portalfiles.jysedu.com/templates/vote/2012news/images/2012newsbanner.jpg&quot; width=&quot;980&quot; height=&quot;226&quot; /&gt;&lt;/div&gt;</string> 
+    </void> 
+   </object> 
+  </void> 
+  <void property="title"> 
+   <string>新导入的投票系统风格模板_2014_01_05_08_35_24</string> 
+  </void> 
+  <void property="voteStyle"> 
+   <object class="com.lerx.style.vote.vo.VoteStyleSubElementInCommon"> 
+    <void property="cssCode"> 
+     <string>&lt;style  type=&quot;text/css&quot;&gt;&#13;
+body,ul,ol,li,p,form,table,td,img,div,dl,dt,dd{margin:0;padding:0;border:0;}&#13;
+body{background:#fff;color:#333;font-size:12px;font-family:&quot;宋体&quot;; line-height:1.8em;}&#13;
+a:link{text-decoration : none ;color : #000 ;} /*链接*/&#13;
+a:visited {text-decoration : none ;color : #000 ;} /*已访问链接*/&#13;
+a:hover {text-decoration : none ;color : #f00 ;} /*鼠标经过链接*/&#13;
+a:active {text-decoration : none ;color : #000 ;}  /*鼠标按下链接*/&#13;
+&#13;
+ul,ol,li{list-style-type:none;}&#13;
+.cle{ clear:both; font-size:0px;}&#13;
+p{ text-indent:2em;}&#13;
+&#13;
+.top{ width:980px; margin:0 auto;}&#13;
+.top_text{ width:932px; margin:0 auto; border:#529ce7 solid 4px; border-bottom:2px; padding:10px 20px;}&#13;
+.main_con{ width:976px; margin:0 auto; border:#529ce7 solid 2px;}&#13;
+.tab2{border:#529ce7 solid 4px; border-top:2px;}&#13;
+.tab1{border:#529ce7 solid 0px; border-top:2px;}&#13;
+.float_con{ width:484px;border:#529ce7 solid 2px; float:left; height:310px;}&#13;
+.text{ padding:15px;}&#13;
+.text img{ margin:10px;}&#13;
+.title{ padding-left:20px;font-size:24px;color :#529ce7 ;font-weight:bold;}&#13;
+.footer{ width:980px; margin:10px auto;float:center;text-align:center; }&#13;
+.footer p{float:center;}&#13;
+&#13;
+&lt;/style&gt;</string> 
+    </void> 
+    <void property="htmlCode"> 
+     <string>{$$top$$}&#13;
+&lt;form id=&quot;form1&quot; method=&quot;POST&quot; &gt;&#13;
+&#13;
+&lt;div class=&quot;top_text&quot;&gt;&lt;p align=&quot;center&quot; style=&quot;color: #4B4B4B&quot;&gt;&#13;
+&#13;
+&lt;p&gt;&#13;
+每一天，都经历着不平凡的故事；每一段故事，都蕴藏着难忘的汗水和笑容。2012，带给我们太多的留恋与回味、自豪与感动。欢迎参加由市教育局主办的2012年姜堰教育十大新闻评选活动，请您从20条备选新闻中遴选出十大教育新闻并将结果反馈给我们。&#13;
+&lt;/p&gt;&#13;
+&lt;p&gt;&#13;
+1、请您在备选项前的框内打勾，必须填满{$$maxSelect$$}项(不足或超过{$$maxSelect$$}项均无效)。 &#13;
+&lt;/p&gt;&#13;
+&lt;p&gt;&#13;
+2、投票起止时间：{$$voteStartTime$$}至{$$voteEndTime$$}。&#13;
+&lt;/p&gt;&#13;
+&lt;p&gt;&#13;
+3、每个用户只能投票一次，多投无效。 &#13;
+&lt;/p&gt;&#13;
+&lt;p&gt;&#13;
+4、当前已有{$$currentRec$$}人参与投票，我们将从所有参与投票的读者和网友中，随机抽取10名幸运读者、10名幸运网友，并发给价值200元的纪念品。 &#13;
+&lt;/p&gt;&#13;
+&lt;/div&gt;&#13;
+&lt;div class=&quot;main_con&quot;&gt;&#13;
+&#13;
+        {$$allItems$$}&#13;
+&#13;
+        &lt;div class=&quot;cle&quot;&gt;&lt;/div&gt;&#13;
+&#13;
+&lt;/div&gt;	&#13;
+&#13;
+        &lt;table width=&quot;980&quot; border=&quot;0&quot; align=&quot;center&quot; class=&quot;tab2&quot;&gt;&#13;
+			&lt;tr height=&quot;40&quot;&gt;&#13;
+				&lt;td width=&quot;415&quot; align=&quot;right&quot;&gt;姓名(*)：&lt;/td&gt;&#13;
+				&lt;td width=&quot;547&quot; align=&quot;left&quot;&gt;&lt;input type=&quot;text&quot; id=&quot;iname&quot; name=&quot;vr.name&quot; size=&quot;20&quot;&gt;&lt;input id=&quot;jsBuildKey&quot; type=&quot;hidden&quot; name=&quot;jsBuildKey&quot; size=&quot;20&quot; maxlength=&quot;15&quot;&gt;&lt;/td&gt;&#13;
+			&lt;/tr&gt;&#13;
+			&lt;tr height=&quot;30&quot;&gt;&#13;
+				&lt;td align=&quot;right&quot;&gt;单位或联系信息(*)：&lt;/td&gt;&#13;
+				&lt;td align=&quot;left&quot;&gt;&lt;input type=&quot;text&quot; id=&quot;icharacter&quot; name=&quot;vr.occ&quot; size=&quot;20&quot;&gt;&lt;/td&gt;&#13;
+			&lt;/tr&gt;&#13;
+			&lt;tr height=&quot;30&quot;&gt;&#13;
+				&lt;td align=&quot;right&quot;&gt;联系电话或手机(*)：&lt;/td&gt;&#13;
+				&lt;td align=&quot;left&quot;&gt;&lt;input id=&quot;iphone&quot; type=&quot;text&quot; name=&quot;vr.phone&quot; size=&quot;20&quot; maxlength=&quot;15&quot;&gt;&lt;/td&gt;&#13;
+			&lt;/tr&gt;&#13;
+&lt;tr height=&quot;30&quot;&gt;&#13;
+				&lt;td align=&quot;right&quot;&gt;验证码(*)：&lt;/td&gt;&#13;
+				&lt;td align=&quot;left&quot;&gt;&lt;input onfocus=&quot;showVoteChooseDiv()&quot; id=&quot;verifycode&quot; name=&quot;verifyCode&quot; size=&quot;10&quot; maxlength=&quot;4&quot;&gt; &lt;img width=&quot;60&quot; height=&quot;18&quot; id=&quot;imgVoteValid&quot; name=&quot;imgVoteValid&quot; style=&quot;visibility:hidden;cursor:pointer;&quot; onclick=&quot;javascript:changeVoteChooseDiv();&quot;&gt;&lt;/td&gt;&#13;
+			&lt;/tr&gt;&#13;
+			&lt;tr height=&quot;30&quot;&gt;&#13;
+				&lt;td colspan=&quot;2&quot; align=&quot;center&quot;&gt;&lt;input name=&quot;&quot; type=&quot;button&quot; onclick=&quot;javascript:checkform();&quot;  value=&quot;提交&quot; {$$submitDisabled$$} /&gt; &lt;a href=&quot;{$$contextPath$$}/voteRank.action?gid={$$subId$$}&quot;&gt;查看结果&lt;/a&gt;&lt;/td&gt;&#13;
+			&lt;/tr&gt;&#13;
+&#13;
+		&lt;/table&gt;&#13;
+&#13;
+&lt;/form&gt;&#13;
+&#13;
+&lt;script type=&quot;text/javascript&quot;&gt;&#13;
+function pollCheck(o,checkMax)&#13;
+{&#13;
+	var checkNum = 0;&#13;
+	var f = o.form;&#13;
+	for(var i=0; i&lt;f.elements.length; i++)&#13;
+	{&#13;
+		var c = f.elements[i];&#13;
+		if (c.name.substring(0,4)==o.name.substring(0,4) &amp;&amp; c.checked)&#13;
+		{&#13;
+			checkNum++;&#13;
+		}&#13;
+	}&#13;
+	if (checkNum&gt;checkMax){&#13;
+		alert(&quot;最多选择&quot;+ checkMax +&quot;项!&quot;);&#13;
+		o.checked = false;&#13;
+	}&#13;
+}&#13;
+&#13;
+function isChinese(temp) &#13;
+{ &#13;
+	var re=/[^u4e00-u9fa5]/; &#13;
+	if(re.test(temp)) return true; &#13;
+	return false; &#13;
+} &#13;
+&#13;
+function isTel(str){&#13;
+       var reg=/^([0-9]|[-])+$/g ;&#13;
+       if(str.length&lt;7 || str.length&gt;18){&#13;
+        return false;&#13;
+       }&#13;
+       else{&#13;
+         return reg.exec(str);&#13;
+       }&#13;
+}&#13;
+&#13;
+function isNum(temp) &#13;
+{ &#13;
+	if(!isNaN(temp))&#13;
+	{ &#13;
+		return true; &#13;
+	}&#13;
+	else&#13;
+	{&#13;
+		return false; &#13;
+	} &#13;
+}&#13;
+&#13;
+function checkAll(){&#13;
+	&#13;
+	var checkNum = $(&apos;input:checkbox:checked&apos;).length; &#13;
+	&#13;
+	&#13;
+	if (checkNum!={$$maxSelect$$}){&#13;
+		alert(&quot;你必须选中{$$maxSelect$$}项!你已选中&quot;+checkNum+&quot;项。&quot;);&#13;
+		return false;&#13;
+	}else{&#13;
+		return true;&#13;
+	}&#13;
+&#13;
+}&#13;
+&#13;
+//var pw1=$.trim($(&apos;#pw1&apos;).val());&#13;
+function checkform(){&#13;
+	var con=true;&#13;
+	if(con &amp;&amp; ($(&quot;#verifycode&quot;).val()==null || $.trim($(&quot;#verifycode&quot;).val())==&quot;&quot;)){&#13;
+		alert(&quot;请输入验证码&quot;);   &#13;
+		con=false;&#13;
+		$(&quot;#verifycode&quot;).focus(); &#13;
+		 &#13;
+	} &#13;
+	if(con &amp;&amp; ($(&quot;#iphone&quot;).val()==null || $.trim($(&quot;#iphone&quot;).val())==&quot;&quot; || !isTel($(&quot;#iphone&quot;).val()))){&#13;
+		alert(&quot;手机或电话号码输入不合法&quot;);  &#13;
+		con=false;&#13;
+		$(&quot;#iphone&quot;).focus(); &#13;
+		&#13;
+	} &#13;
+	if(con &amp;&amp; ($(&quot;#icharacter&quot;).val()==null || $.trim($(&quot;#icharacter&quot;).val())==&quot;&quot; )){&#13;
+		alert(&quot;请输入您的单位或联系信息&quot;); &#13;
+		con=false;&#13;
+		$(&quot;#icharacter&quot;).focus(); &#13;
+		&#13;
+	}&#13;
+	if(con &amp;&amp; ($(&quot;#iname&quot;).val()==null || $.trim($(&quot;#iname&quot;).val())==&quot;&quot; || !isChinese($(&quot;#iname&quot;).val()))){   &#13;
+		alert(&quot;姓名输入不合法&quot;);   &#13;
+		con=false;&#13;
+		$(&quot;#iname&quot;).focus();&#13;
+		&#13;
+	}&#13;
+	&#13;
+	if (con &amp;&amp; checkAll()){&#13;
+		if (confirm(&quot;你确定选择无误吗?一旦提交将无法进行修改！&quot;)){&#13;
+		secSet();&#13;
+		&#13;
+		&#13;
+		}&#13;
+	}&#13;
+	&#13;
+	&#13;
+	&#13;
+	&#13;
+	&#13;
+} &#13;
+&#13;
+var cols;&#13;
+&#13;
+function secGet(){&#13;
+	$.ajax({&#13;
+		url:&apos;{$$contextPath$$}/ajax_sec_send.action&apos;,&#13;
+		type: &apos;post&apos;,&#13;
+		async:false,&#13;
+		success:function(data){&#13;
+		cols=data;&#13;
+		//return tmp;&#13;
+		&#13;
+		}&#13;
+	 });&#13;
+&#13;
+}&#13;
+function secSet(){&#13;
+	&#13;
+	secGet();&#13;
+	var sArray = cols.split(&quot;,&quot;);&#13;
+	randKey=sArray[0];&#13;
+	secStr=sArray[1];&#13;
+	var url=&quot;{$$contextPath$$}/vote_post.action?subId={$$subId$$}&amp;randKey=&quot;+randKey+&quot;&amp;secStr=&quot;+secStr+&quot;&amp;key={$$postKey$$}&quot;;&#13;
+	//document.form1.action=url;&#13;
+	$(&apos;#form1&apos;).attr(&apos;action&apos;, url);&#13;
+	//$(&quot;#form1&quot;).action=url;&#13;
+	$(&quot;#form1&quot;).submit(); &#13;
+&#13;
+}&#13;
+&#13;
+	function showVoteChooseDiv() {&#13;
+		var objimg = document.getElementById(&quot;imgVoteValid&quot;);&#13;
+		if (objimg.style.visibility != &quot;visible&quot;) {&#13;
+			var timeNow = new Date().getTime();&#13;
+			objimg.src = &quot;{$$contextPath$$}/randomNum.action?time=&quot; + timeNow + &quot;&amp;from=vote&quot;;&#13;
+			objimg.style.visibility = &quot;visible&quot;;&#13;
+		}&#13;
+	}&#13;
+	function changeVoteChooseDiv() {&#13;
+		var obj = document.getElementById(&quot;imgVoteValid&quot;);&#13;
+		var timeNow = new Date().getTime();&#13;
+		obj.src = &quot;{$$contextPath$$}/randomNum.action?time=&quot; + timeNow + &quot;&amp;from=vote&quot;;&#13;
+		document.login.verifyCode.focus();&#13;
+	}&#13;
+&#13;
+&#13;
+&#13;
+&lt;/script&gt;&#13;
+&#13;
+{$$footer$$}</string> 
+    </void> 
+    <void property="id"> 
+     <int>12</int> 
+    </void> 
+    <void property="itemsLoopFormat"> 
+     <string>&lt;div class=&quot;float_con&quot;&gt;&#13;
+	&lt;div class=&quot;title&quot;&gt; &lt;input id=&quot;ck_{$$id$$}&quot; type=&quot;checkbox&quot; onclick=&quot;pollCheck(this,{$$maxSelect$$})&quot;  name=&quot;ck&quot; value=&quot;{$$id$$}&quot;&gt; &lt;img src=&quot;http://portalfiles.jysedu.com/templates/vote/2012news/images/n{$$sn$$}.gif&quot;&gt;{$$title$$}&lt;/div&gt;&#13;
+	&lt;div class=&quot;text&quot;&gt;&lt;img src=&quot;{$$item1$$}&quot;  border=&quot;0&quot; align=&quot;left&quot;&gt;&#13;
+		&lt;p&gt;{$$body$$} &lt;/p&gt;&#13;
+	&lt;/div&gt;&#13;
+&lt;/div&gt;</string> 
+    </void> 
+    <void property="topCode"> 
+     <string>&lt;div class=&quot;top&quot;&gt;&lt;img src=&quot;http://portalfiles.jysedu.com/templates/vote/2012news/images/2012newsbanner.jpg&quot; width=&quot;980&quot; height=&quot;226&quot; /&gt;&lt;/div&gt;</string> 
+    </void> 
+   </object> 
+  </void> 
+ </object> 
+</java> 

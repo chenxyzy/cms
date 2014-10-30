@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+
+
+	<package name="bbs-theme" extends="struts-default">
+		<action name="theme_*" method="{1}"
+			class="com.lerx.bbs.service.BbsThemeAction">
+			<result name="success">/show.jsp</result>
+		</action>
+	</package>
+	<package name="admin-bbs" extends="struts-default">
+		<action name="admin_bbs_info_*" method="{1}"
+			class="com.lerx.bbs.service.BbsInfoAction">
+			<result name="success">/${getText("lerx.default.admin.folder")}/admin_bbs_inf.jsp
+			</result>
+		</action>
+	</package>
+	<package name="bbs-bm" extends="struts-default">
+		<action name="bbs_bm_*" method="{1}"
+			class="com.lerx.bbs.service.BmAction">
+			
+		</action>
+		<action name="bbs_bm_query" method="query"
+			class="com.lerx.bbs.service.BmAction">
+		</action>
+		<action name="bbs_bm_add" method="add"
+			class="com.lerx.bbs.service.BmAction">
+			<result name="success">/${getText("lerx.default.admin.folder")}/admin_bbs_bm_list.jsp?fid=${fid}
+		</result>
+		</action>
+		
+		<action name="bbs_bm_del" method="del"
+			class="com.lerx.bbs.service.BmAction">
+			<result name="success">/${getText("lerx.default.admin.folder")}/admin_bbs_bm_list.jsp?fid=${fid}
+			</result>
+		</action>
+	</package>
+</struts>

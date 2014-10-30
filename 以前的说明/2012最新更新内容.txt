@@ -1,0 +1,215 @@
+
+以后的更新内容请直接到以下网址查阅，本文件不再更新。
+
+http://www.lerx.com/html/2012/01/11/152311399.html
+
+
+
+
+■-------------------------------- 2012-05-08 --------------------------------
+
+1.后台增加导入数据工具。目前只做了从access数据库导入文章功能。
+
+2.上传文件命名方式由原来的 “时间+用户名” 改为 “时间+"_"+用户uid”。
+
+改名的目的是防止在某些系统环境下不能识为中文文件名和路径的问题。
+
+3.修正在线编辑器上传图片的服务器故障现象。
+
+4.解决升级后不能发布评论的问题。
+
+发布新版本。
+
+ 
+
+■-------------------------------- 2012-04-26 --------------------------------
+
+1.解决利用自定义格式不能按设定截取标题长度的问题。
+
+2.解决用户注册自动审核时如果注册名为中文，系统自动发送的邮件中的认证地址有时不能被正确处理的问题（即新用户审核失败）。
+
+ 
+
+■-------------------------------- 2012-04-19 --------------------------------
+
+资源文件[resourcesApplication_zh_CN.properties]增加lerx.viewsUpdateByIp属性。
+
+取值：true或false
+
+true：文章查看次数将判断ip与上次是否相同，false将不判断直接计数。
+
+说明：此前版本均按ip判断。
+
+ 
+
+■-------------------------------- 2012-04-18 --------------------------------
+
+资源文件[resourcesApplication_zh_CN.properties]增加lerx.verifyOnFront属性。
+
+取值：true或false
+
+true：前台将使用验证码;false：不用验证码。
+
+说明：请在模板中进行相应的代码设置。如果为false，即使用了验证码也不会产生效果，因此如果为false应删除验证码。
+
+ 
+
+■-------------------------------- 2012-04-10 --------------------------------
+
+1.站点属性增加commentsOpen属性，在后台“用户注册及登录设置”中进行设置。
+
+开放将完全开放评论，否则将只有发布者和管理员可见。
+
+2.Comment（评论）增加phone属性。
+
+3.后台栏目列表页显示栏目的一些重要信息。
+
+ 
+
+升级时数据库中site_inf中需增加commentsOpen字段，boolean型
+
+comment中增加phone 。类型：varchar
+
+ 
+
+发布新版本 20120410。
+
+ 
+
+■-------------------------------- 2012-04-06 --------------------------------
+
+ajax_style_siteCustom.action接口增加img变量，取值为true或false。
+
+true将提取有图片（主图片或缩略图）的数据。
+
+false将忽略该参数。
+
+如：
+
+http://localhost:8080/lerx/ajax_style_siteCustom.action?gid=0&fmod=2&n=1&l=16&img=true
+
+或
+
+http://localhost:8080/lerx/ajax_style_siteCustom.action?gidStr=2_3_4_5&fmod=2&n=1&l=16&img=true
+
+ 
+
+■-------------------------------- 2012-03-24 --------------------------------
+
+ajax_style_siteCustom.action接口增加firstResult变量，该变量指定数据记录的开始值。
+
+如，新闻头条为单个记录，余下开始记录将从第二条开始，可以利用ajax完成。示例如下：
+
+ < script type="text/javascript" >
+
+
+firstNews();
+restNews();
+function firstNews(){
+ 
+ $.ajax({
+  url:'/ajax_style_siteCustom.action?gid=2&fmod=1&n=1&l=15',
+  type: 'post',
+  async:false,
+  success:function(data){
+  
+  $("#first_news ul").html(data);
+ 
+  }
+  });
+ 
+}
+function restNews(){
+ 
+ $.ajax({
+  url:'/ajax_style_siteCustom.action?gid=2&fmod=3&n=7&firstResult=2',
+  type: 'post',
+  async:false,
+  success:function(data){
+  
+  $("#rest_news ul").html(data);
+ 
+  }
+  });
+ 
+}
+< / script >
+
+ 
+
+■-------------------------------- 2012-03-19 --------------------------------
+
+1.解决linux环境下可能出现java.lang.IllegalArgumentException: Illegal pattern character 'l'错误的问题。
+
+2.ajax接口增加extraBody接口。该接口可用于提取文章正文内容。
+
+参数：
+
+tid           文章id号 
+
+l            提取长度
+
+format            自定义格式（可利用customFormatCode1-8进行定义）取值为1-8，不在此范围内将不采用。
+
+htmlFilter            是否过滤html代码
+
+示例：
+
+...
+
+<   div class="main_m_li_text" id="aboutMe">< p >　　我公司是一家综合性的电脑及周边设备经营、生产、维修的公司，成立于1998年，现有员工18人，公司主要品牌有方正电脑、联想商用电脑、复印机、打印机、办公桌椅、财务软件销售和开发、电脑网络开发组建……< / p ><  /div  >
+...
+
+extraBody();
+function extraBody(){
+ $("#aboutMe").html("正在提取...");
+ $.ajax({
+  url:'/ajax_thread_extraBody.action?tid=12&l=92&format=8&htmlFilter=true',
+  type: 'post',
+  success:function(data){
+   $("#aboutMe").html(data);
+  }
+  });
+ 
+}
+
+自定义代码8:
+
+< p >　　{$$body$$}< /p >
+
+ 
+
+■-------------------------------- 2012-03-16 --------------------------------
+
+1.资源文件[resourcesApplication_zh_CN.properties]增加lerx.pwdMD5ToLowerCase，为true时在md5运算用户密码时将进行小写转换，否则将不转换。为false将可以导入1.0的用户数据。v2的运算方式与discuz的用户运算方式相同，可以通过适当的方法导入用户数据。
+
+2.栏目页增加{$$privateHtml$$}标签，此标签可以自定义本栏目的特有html。
+
+ 
+
+■-------------------------------- 2012-02-29 --------------------------------
+
+1.修复了门户发布文章时标题为空仍然能发布的问题（提示正确，但仍然插入记录）。
+
+2.增加文章附件功能。附件数量不限制，可以设定为媒体文件并用播放器播放，可以设定显示序号。
+
+ 
+
+■-------------------------------- 2012-01-17 --------------------------------
+
+修改上传jsp文件，可以同时指定多个文本框或图像的value和src值。
+
+ 
+
+■-------------------------------- 2012-01-11 --------------------------------
+
+修改KindEditor的jsp文件，解决生成静态文件后图片显示路径错误的问题。
+
+upload_json.jsp中约149行：
+
+newFileName = url; 
+
+修改为：
+
+newFileName = request.getContextPath() + "/"
+   + url;

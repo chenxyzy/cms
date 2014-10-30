@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.lerx.article.vo">
+	<class name="ArticleThread" table="site_article_thread" dynamic-update="true">
+		<id name="id" type="long" column="id">
+			<generator class="native" />
+		</id>
+		<property name="title" length="100" />
+		<property name="eyeCatching" />
+		<property name="topOne" />
+		<property name="accessionalTitle" length="100" />
+		<property name="pensileTitle" length="100" />
+		<property name="shortTitle" length="100" />
+		<property name="location" />
+		<property name="state" />
+		<property name="pollAllow" />
+		
+		<property name="proponents" />
+		<property name="opponents" />
+		<property name="neutrals" />
+		<property name="comment" />
+		<property name="soul" />
+		<property name="notice" />
+		<property name="byEditor" />
+		
+		<property name="noticeShowBody" />
+		<property name="views" />
+		<property name="price" />
+		
+		<property name="synopsis" />
+		<property name="author" length="50" />
+		<property name="authorDept" length="100" />
+		<property name="authorEmail" length="50" />
+		<property name="authorUrl" />
+		<property name="addTime" />
+		<property name="addTimeLong" />
+		<property name="lastEditTime" />
+		<property name="lastEditTimeLong" />
+		<property name="lastViewIp" length="64" />
+		<property name="lastViewTime" />
+		<property name="lastViewTimeLong" />
+		<property name="member" length="30" />
+		<property name="passer" length="30" />
+		<property name="passingTime" />
+		<property name="passingTimeLong" />
+		<property name="mainImg" />
+		<property name="thumbnail" />
+		<property name="mainImgExplain" />
+		<property name="journal" length="100" />
+		<property name="linkTitle" />
+		<property name="linkUrl" />
+		<property name="linkJump" />
+		<property name="mentor" length="100" />
+		<property name="body" type="text" />
+		<property name="htmlCreated" />
+		<property name="htmlUrlPath" />
+		<property name="htmlURLFile" />
+		<property name="encryptedParmStr" length="64" />
+		<property name="defaultAttaMediaFormat" />
+		<property name="attaLineOrderFormatStr" />
+		
+		
+		<many-to-one name="articleGroup" column="articleGroupID"
+			outer-join="true" class="com.lerx.article.vo.ArticleGroup" />
+		<many-to-one name="user" column="userID" outer-join="true"
+			class="com.lerx.user.vo.User" />
+
+
+	</class>
+</hibernate-mapping>

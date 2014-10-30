@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.lerx.style.draw.vo">
+	<class name="DrawStyle" table="draw_style" dynamic-update="true">
+		<id name="id" column="id">
+			<generator class="native" />
+		</id>
+
+		<property name="styleName" length="50" />
+		<property name="author" length="50" />
+		<property name="description" />
+		<property name="state" />
+		<property name="htmlTemplate" type="text" />
+		<property name="cssCode" type="text" />
+		<property name="titleFormat" type="text" />
+		<property name="resultLineFormat" type="text" />
+		<property name="htmlCode" type="text" />
+		<property name="startCode" type="text" />
+		<property name="resultCode" type="text" />
+		<property name="clearCode" type="text" />
+		
+		<property name="maskFormat" />
+
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.lerx.attachment.vo">
+	<class name="Attachment" table="attachment" dynamic-update="true">
+		<id name="id" type="long" column="id">
+			<generator class="native" />
+		</id>
+		<property name="hostId" />
+		<property name="hostType" />
+		<property name="title" />
+		<property name="url" />
+		<property name="description" />
+		<property name="fileSize" />
+		<property name="price" />
+		<property name="downloads" />
+		<property name="media" />
+		<property name="mediaType" />
+		<property name="addTime" />
+		<property name="local" />
+		<property name="orderNum" />
+		<property name="encryptedParmStr" length="64" />
+		<many-to-one name="user" column="userID" outer-join="true"
+			class="com.lerx.user.vo.User" />
+		
+
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.lerx.style.vote.vo">
+	<class name="VoteStyle" table="vote_style" dynamic-update="true">
+		<id name="id" column="id">
+			<generator class="native" />
+		</id>
+
+		<property name="title" length="50" />
+		<property name="state"/>
+		<property name="author" length="50" />
+		<property name="description" />
+		<property name="barMaxValue" length="4" />
+		<property name="resultPageCode" type="text" />
+		<property name="publicCode1" type="text" />
+		<property name="publicCode2" type="text" />
+		<property name="publicCode3" type="text" />
+		<property name="publicCode4" type="text" />
+		
+		<many-to-one name="publicStyle" outer-join="true" lazy="false" cascade="all"
+			column="pid" class="VoteStyleSubElementInCommon" />
+		<many-to-one name="voteStyle" outer-join="true" lazy="false" cascade="all"
+			column="vid" class="VoteStyleSubElementInCommon" />
+		<many-to-one name="itemStyle" outer-join="true" lazy="false" cascade="all"
+			column="iid" class="VoteStyleSubElementInCommon" />
+		<many-to-one name="resultStyle" outer-join="true" lazy="false" cascade="all"
+			column="rid" class="VoteStyleSubElementInCommon" />
+		<many-to-one name="joinStyle" outer-join="true" lazy="false" cascade="all"
+			column="jid" class="VoteStyleSubElementInCommon" />
+			
+	</class>
+
+
+
+</hibernate-mapping>

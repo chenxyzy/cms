@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<java version="1.6.0_10-rc2" class="java.beans.XMLDecoder"> 
+ <object class="com.lerx.style.draw.vo.DrawStyle"> 
+  <void property="author"> 
+   <string></string> 
+  </void> 
+  <void property="clearCode"> 
+   <string>&lt;a onclick=&quot;{if(confirm(&apos;确定清除吗?该清除将不可撤消！&apos;)){return true;}return false;}&quot; href=&quot;{$$contextPath$$}/draw_clear.action?gid={$$gid$$}&quot;&gt;清除结果&lt;/a&gt;</string> 
+  </void> 
+  <void property="cssCode"> 
+   <string></string> 
+  </void> 
+  <void property="description"> 
+   <string></string> 
+  </void> 
+  <void property="htmlCode"> 
+   <string>&lt;center&gt;&lt;img src=&quot;{$$contextPath$$}/templates/draw/test/images/top.jpg&quot; /&gt; &lt;/center&gt;&#13;
+{$$drawBody$$}</string> 
+  </void> 
+  <void property="htmlTemplate"> 
+   <string>&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot; &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&gt;&#13;
+&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;&#13;
+&lt;head&gt;&#13;
+&lt;title&gt;{$$siteTitle$$}&lt;/title&gt;&#13;
+&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=UTF-8&quot;/&gt;&#13;
+&lt;meta name=&quot;keywords&quot; content=&quot;{$$keyWord$$}&quot;/&gt;&#13;
+&lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=EmulateIE7&quot; /&gt;&#13;
+&lt;meta name=&quot;Description&quot; content=&quot;{$$description$$}&quot;/&gt;&#13;
+&lt;meta expire=&quot;-1&quot; /&gt;&#13;
+{$$cssStyle$$}&#13;
+&lt;script type=&quot;text/javascript&quot; src=&quot;{$$contextPath$$}/js/jquery/1.7.2/jquery-1.7.2.min.js&quot;&gt;&lt;/script&gt;&#13;
+&lt;/head&gt;&#13;
+&lt;body&gt;&#13;
+{$$htmlBody$$}&#13;
+&lt;/body&gt;&#13;
+&lt;/html&gt;&#13;
+</string> 
+  </void> 
+  <void property="id"> 
+   <int>2</int> 
+  </void> 
+  <void property="resultCode"> 
+   <string>&lt;p&gt;{$$drawTitle$$}{$$app$$}结果页&lt;/p&gt;&#13;
+ {$$results$$}&#13;
+&lt;div&gt;{$$clearCode$$}&lt;/div&gt;</string> 
+  </void> 
+  <void property="resultLineFormat"> 
+   <string>&lt;li&gt;{$$sn$$} -- 姓名:{$$name$$}  职业：{$$occ$$}  电话：{$$phone$$}&lt;/li&gt;</string> 
+  </void> 
+  <void property="startCode"> 
+   <string>{$$drawTitle$$}{$$app$$}页面&#13;
+&lt;div class=&quot;fla&quot; id=&quot;fla&quot; style=&quot;display:none;&quot;&gt;&#13;
+&lt;object classid=&quot;clsid:D27CDB6E-AE6D-11cf-96B8-444553540000&quot; codebase=&quot;http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=7,0,19,0&quot; width=&quot;740&quot; height=&quot;282&quot;&gt;&#13;
+      &lt;param name=&quot;movie&quot; value=&quot;{$$contextPath$$}/templates/draw/test/swf/flash.swf&quot; /&gt;&#13;
+      &lt;param name=&quot;quality&quot; value=&quot;high&quot; /&gt;&#13;
+	  &lt;param name=&quot;wmode&quot; value=&quot;transparent&quot; /&gt;&#13;
+      &lt;embed src=&quot;{$$contextPath$$}/templates/draw/test/swf/flash.swf&quot; quality=&quot;high&quot; pluginspage=&quot;http://www.macromedia.com/go/getflashplayer&quot; type=&quot;application/x-shockwave-flash&quot; width=&quot;740&quot; height=&quot;282&quot;&gt;&lt;/embed&gt;&#13;
+    &lt;/object&gt;&#13;
+&#13;
+&lt;/div&gt;&#13;
+&#13;
+&lt;form id=&quot;f&quot; method=&quot;POST&quot; action=&quot;{$$contextPath$$}/draw_exec.action?gid={$$gid$$}&quot;&gt;&#13;
+	&#13;
+	&lt;div id=&quot;pwsTxt&quot;&gt;&lt;p&gt;请提供抽奖密码：&lt;input type=&quot;password&quot; id=&quot;pws&quot; name=&quot;password&quot; size=&quot;20&quot;&gt;&lt;/p&gt;&lt;/div&gt;&#13;
+	&lt;p&gt;请点这里 &lt;input type=&quot;button&quot; id=&quot;sub&quot; onclick=&quot;javascript:chk();&quot; value=&quot;开 始&quot; name=&quot;B1&quot;&gt;&lt;/p&gt;&#13;
+&lt;/form&gt;&#13;
+{$$actionErrors$$}&#13;
+ &lt;script type=&quot;text/javascript&quot;&gt; &#13;
+function chk()&#13;
+{&#13;
+	var c;&#13;
+	var p=$(&quot;#pws&quot;).val();&#13;
+	c=ajax(p);&#13;
+	if ($(&apos;#sub&apos;).val()==&apos;开 始&apos;){&#13;
+&#13;
+		 &#13;
+		if (c==&apos;true&apos;){&#13;
+			$(&quot;#pwsTxt&quot;).hide();&#13;
+			$(&apos;#sub&apos;).val(&apos;停 止&apos;);&#13;
+			//alert(&apos;成功&apos;);&#13;
+			$(&quot;#fla&quot;).show();&#13;
+&#13;
+		}else{&#13;
+			alert(&apos;密码错误&apos;);&#13;
+		}&#13;
+	}else{&#13;
+		if (c==&apos;true&apos;){&#13;
+			//alert(&apos;成功&apos;);&#13;
+			$(&apos;#f&apos;).submit();&#13;
+&#13;
+		}else{&#13;
+			alert(&apos;密码错误&apos;);&#13;
+		}&#13;
+	}&#13;
+}&#13;
+&#13;
+function ajax(p){&#13;
+var v;&#13;
+	$.ajax({&#13;
+		url:&apos;{$$contextPath$$}/ajax_draw_checkPws?gid={$$gid$$}&amp;password=&apos;+p,&#13;
+		type: &apos;post&apos;,&#13;
+		async:false,&#13;
+		success:function(data){&#13;
+		var tmp=data;&#13;
+		v=tmp;&#13;
+				&#13;
+		// $(&quot;#commentbox&quot;).html(data);&#13;
+		}&#13;
+	 });&#13;
+	 return v;&#13;
+}&#13;
+&#13;
+ &lt;/script&gt;</string> 
+  </void> 
+  <void property="state"> 
+   <boolean>true</boolean> 
+  </void> 
+  <void property="styleName"> 
+   <string>新导入的抽奖系统风格模板_2012_09_21_17_50_39</string> 
+  </void> 
+  <void property="titleFormat"> 
+   <string>{$$app$$}-{$$drawTitle$$}</string> 
+  </void> 
+ </object> 
+</java> 

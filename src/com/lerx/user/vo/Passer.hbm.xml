@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.lerx.user.vo">
+	<class name="Passer" table="sys_passers" dynamic-update="true">
+		<id name="id" column="id">
+			<generator class="native" />
+		</id>
+		<property name="passerInf1"  />
+		<property name="lockPasserInf1"  />
+		<property name="passerInf2"  />
+		<property name="lockPasserInf2"  />
+		<property name="state"  />
+		<property name="question1"  />
+		<property name="question2"  />
+		<property name="answer1"  />
+		<property name="answer2"  />
+		<property name="priTag1" />
+		<property name="questionForPriTag1" />
+		<property name="lockPriTag1" />
+		
+		<property name="priTag2" />
+		<property name="questionForPriTag2" />
+		<property name="lockPriTag2" />
+		
+		
+		<many-to-one name="toUG" column="userGroupID" lazy="false"
+			outer-join="true" class="UserGroup" />
+			
+		<many-to-one name="user" column="userID" lazy="false"
+			outer-join="true" class="User" />
+		
+
+	</class>
+</hibernate-mapping>

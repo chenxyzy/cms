@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.lerx.admin.vo">
+	<class name="Admin" table="sys_admin" dynamic-update="true">
+		<id name="id" type="int" column="id">
+			<generator class="native" />
+		</id>
+		<property name="name" type="string" column="name" length="50"  />
+		<property name="password" type="string" length="50"  />
+		<property name="salt" type="string" length="50"  />
+		<property name="lastLoginIP" type="string" length="15"  />
+		<property name="lastLoginDatetime" length="15"  />
+		<property name="state" length="15"  />
+	</class>
+</hibernate-mapping>

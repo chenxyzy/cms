@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.lerx.bbs.vo">
+	<class name="BbsForum" table="bbs_forum" dynamic-update="true">
+		<id name="id" type="int" column="id">
+			<generator class="native" />
+		</id>
+		<property name="forumName" length="100" />
+		<property name="description" />
+		
+		<property name="displayOrder" />
+		<property name="footerLeft" />
+		<property name="footerRight" />
+		<property name="share" />
+		<property name="asClass" />
+		<property name="state" />
+		<property name="hostsAllow" />
+		<property name="icoUrl" />
+		<property name="pollFmt" length="3" />
+		
+		<many-to-one name="rootForum" column="rootForumID" lazy="false"
+			outer-join="true" class="BbsForum" />
+		
+
+	</class>
+</hibernate-mapping>

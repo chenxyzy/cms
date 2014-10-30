@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+
+	<!-- 网站管理员Action -->
+	
+	<package name="administrator" extends="struts-default">
+
+		<action name="admin_administrator_*" method="{1}"
+			class="com.lerx.admin.service.AdminAction">
+			<result name="success">/${getText("lerx.default.admin.folder")}/admin_site_master.jsp</result>
+			<result name="input">/${getText("lerx.default.admin.folder")}/admin_site_master.jsp</result>
+		</action>
+
+		<action name="admin_administrator_login" method="login"
+			class="com.lerx.admin.service.AdminAction">
+			<result name="success">/${getText("lerx.default.admin.folder")}/main.jsp?admin=[0].name</result>
+			<result name="login">/${getText("lerx.default.admin.folder")}/m_login.jsp</result>
+		</action>
+		
+		<action name="admin_administrator_logout" method="logout"
+			class="com.lerx.admin.service.AdminAction">
+			<result name="success">/${getText("lerx.default.admin.folder")}/m_login.jsp</result>
+		</action>
+
+		<action name="admin_administrator_findByID" method="findByID"
+			class="com.lerx.admin.service.AdminAction">
+			<result name="success">/${getText("lerx.default.admin.folder")}/admin_site_master_edit.jsp</result>
+		</action>
+
+		<action name="admin_administrator_safetyCertification" class="com.lerx.admin.service.AdminSafetyCertification">
+			<result name="login">/${getText("lerx.default.admin.folder")}/m_login.jsp</result>
+		</action>
+
+
+	</package>
+	
+</struts>

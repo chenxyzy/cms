@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.lerx.qa.vo">
+	<class name="QaItem" table="qa_item" dynamic-update="true">
+		<id name="id" column="id">
+			<generator class="native" />
+		</id>
+		<property name="salt" length="10" />
+		<property name="title" length="50" />
+		<property name="author" length="20" />
+		<property name="question" type="text" />
+		<property name="answer" type="text" />
+		<property name="questioner" />
+		<property name="views" />
+		<property name="replier" />
+		<property name="addIp" />
+		<property name="addTime" />
+		<property name="replyTime" />
+		<property name="lastViewIp" length="64" />
+		<property name="lastViewTime" />
+		<property name="email" />
+		<property name="addr" />
+		<property name="qq" />
+		<property name="phone" />
+		<property name="open" />
+		<property name="state" />
+		<property name="password" />
+		<property name="htmlCreated" />
+		<property name="htmlUrlPath" length="255" />
+		<property name="htmlURLFile" length="255" />
+		<property name="extInf1" />
+		<property name="extInf2" />
+		<property name="extInf3" />
+		<property name="extInf4" />
+		<property name="extInf5" />
+		<property name="extInf6" />
+		<many-to-one name="addUser" column="addUserID" outer-join="true"
+			class="com.lerx.user.vo.User" />
+		<many-to-one name="replyUser" column="replyUserID" outer-join="true"
+			class="com.lerx.user.vo.User" lazy="false" />
+		<many-to-one name="qn" column="qnID" outer-join="true"
+			class="com.lerx.qa.vo.QaNav" />
+
+
+	</class>
+
+
+
+</hibernate-mapping>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.lerx.user.vo">
+	<class name="UserGroup" table="sys_usergroups" dynamic-update="true">
+		<id name="id" type="int" column="gid">
+			<generator class="native" />
+		</id>
+		<property name="groupName" length="20" not-null="true" />
+		<property name="powerMask"  type="text" />
+		<property name="siteArticleGroupsSelectCustomStr" type="text" />
+		<property name="state"  />
+		<property name="userCount"  />
+		<property name="numberAppearRestrict"  />
+		<property name="privateHtml"  type="text" />
+	</class>
+</hibernate-mapping>

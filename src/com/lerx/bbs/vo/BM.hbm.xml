@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.lerx.bbs.vo">
+	<class name="BM" table="bbs_bm" dynamic-update="true">
+		<id name="id" type="long" column="id">
+			<generator class="native" />
+		</id>
+		
+		<many-to-one name="bf" column="bf_id"
+			outer-join="true" class="com.lerx.bbs.vo.BbsForum" />
+		<many-to-one name="user" column="user_id" outer-join="true"
+			class="com.lerx.user.vo.User" />
+
+	</class>
+</hibernate-mapping>

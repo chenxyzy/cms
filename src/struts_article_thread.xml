@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+
+
+	<!-- 文章操作 -->
+	
+	<package name="article-thread" extends="struts-default">
+		<action name="article_*" method="{1}" class="com.lerx.article.service.ArticleThreadAction">
+			<result name="success">show.jsp</result>
+			<result name="input">show.jsp</result>
+		</action>
+	</package>
+	<package name="article-reset" extends="struts-default">
+		<action name="art_reset" method="reset" class="com.lerx.article.service.ArticleResetAction">
+			<interceptor-ref name="completeStack" />
+	        <interceptor-ref name="execAndWait">
+	            <param name="delay">1500</param>
+	        </interceptor-ref>
+	        <result name="wait">/doing.jsp</result>
+			<result name="success">/doFinish.jsp</result>
+			<result name="error">/doFail.jsp</result>
+		</action>
+	</package>
+
+</struts>

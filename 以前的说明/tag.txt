@@ -1,0 +1,152 @@
+lerx 2 风格模板使用标签一览表(清注意大小写，本系统对大小写敏感)
+
+系统约定
+	本系统以{$$标签名$$}格式来命名标签，中间不得有空格，如{$$siteName$$}正确 {$$ siteName$$} 及 {$$siteName $$}或中间含有空格或其它字符均为错误格式
+
+说明
+	所有标签的解释并不是强制为所提供的解释，比如Top解释为顶部代码，在特殊需要时可以取消或改变到其它任何位置。本文中只是为了解释方便。
+	所有标签建议参考系统提供的默认模板进行修改。
+
+全局
+
+	siteName		-->网站名
+	cssStyle		-->css代码，可以使用代码或link等形式
+	htmlBody		-->网站主代码，一般指<body></body>中的内容。
+	top			-->顶部代码
+	footer			-->底部代码
+	publicCode1		-->公用代码1
+	publicCode2		-->公用代码2
+	publicCode3		-->公用代码3
+	publicCode4		-->公用代码4
+	siteTitle		-->网站标题
+	fullSiteName		-->网站全称
+	shortSiteName		-->网站简称
+	siteName		-->网站名称（默认为简称）
+	siteUrl			-->门户网址
+	welcomeStr		-->网站欢迎词
+	actionErrors		-->执行错误信息
+	locationSplitStr	-->页面位置间隔符
+	keyWord			-->网站关键字	主要用于head头部信息，下同
+	description		-->网站说明
+	
+	specialCode1		-->模块自定代码1
+	specialCode2		-->模块自定代码2
+	specialCode3		-->模块自定代码3
+	specialCode4		-->模块自定代码4
+
+	contextPath		-->应用目录。如果不是在根目录，可以加此标签，当然也可以输入目录名称
+	charset			-->字符集
+	app			-->应用名称 如 登录页的“登录” 文章页的文章标题
+	location		-->网站当前位置 与 app大致相同
+	pageShowStr		-->分页显示代码
+
+	mainDiv			-->div名称
+
+	searchCode		-->搜索代码
+
+
+
+
+结果页	
+
+	resultMsg		-->结果提示文本
+	waitingTime		-->结果页停留时间
+	returnUrl		-->返回页url
+
+首页
+	StaticAfficheCode	-->公告区域数据
+	navIndexTopList		-->显示在首页的数据行，格式为NavIndexTopList,id号
+
+频道或栏目页
+	
+	classTitle		-->频道名或标题
+	groupId			-->频道或子频道id
+	articleGroupId		-->频道id
+	navIco			-->频道图标的url
+	curClassDataCode	-->当前频道的数据行
+
+	formCodeStart		-->表单头 如<form name=xxx id=xxx type=xxx action=xxx ...>
+	formCodeEnd		-->表单尾 如</form>
+	formSubCode		-->表单提交区的按钮代码
+
+	subGroupThreadList	-->子频道及子频道数据 此项应包含在allSubList中
+
+	allSubList		-->所有显示的子频道及数据块
+
+	navList			-->栏目导航区块 一般如果有下级栏目则显示下级栏目，没有同显示同级栏目
+
+数据行
+
+	id			-->文章id
+	title			-->文章标题
+	hrefLine		-->键接地址（如:http://www.youdomain.com/list.jsp?id=xxx）
+	editCode		-->管理代码 如果没有权限将为空白
+	editFileURL		-->文章编辑url
+	deleteFileURL		-->文章删除url
+	state			-->文章管理中的审核选项
+	alt			-->提示文本，当标题被截取时才会显示此项
+
+	groupTitle		-->子频道标题
+
+
+文章页
+	articleID		-->文章id
+	articleId		-->文章id
+	articleTitle		-->文章标题
+	pensileTitle		-->文章悬挂标题
+	accessionalTitle	-->文章副标题
+	addTime			-->文章录入时间
+	synopsis		-->文章简要说明
+	author			-->文章作者
+	authorDept		-->文章作者单位
+	authorEmail		-->文章作者email
+	authorWithMail		-->文章作者及email代码 一般输出为<a href="mailto:usr@domain.com">author</a>
+	image			-->文章主图像(包含代码)
+	imageExplain		-->文章主图像说明文字
+	smallImage		-->文章缩略图
+	body			-->文章主体
+	mentor			-->指导者
+	journal			-->发表情况
+	linkUrl			-->链接地址
+	linkTitle		-->链接名
+	link			-->链接完整代码
+	member			-->文章发布会员
+	views			-->文章被浏览次数 连接两次相同ip不会记录
+	lastIP			-->上次浏览ip
+	passStr			-->审核者
+	soulStr			-->文章推荐或精华操作字符串
+	soul			-->文章推荐或精华显示字符串
+	lastArticle		-->上一篇文章
+	nextArticle		-->下一篇文章
+	articleGroupId		-->文章所在频道id
+
+文章页
+	myArticlesData		-->数据行
+
+增加、修改文章页 参考文章页
+
+用户资料修改页
+	i			-->当前登录的用户名
+	uid			-->当前登录的用户id号
+	myTrueName		-->当前登录的用户真实姓名
+	myBirthday		-->当前登录的用户出生时间
+	myBirthdayYear		-->当前登录的用户出生时间中的年
+	myBirthdayMonth		-->当前登录的用户出生时间中的月
+	myBirthdayDay		-->当前登录的用户出生时间中的日
+	myEmail			-->当前登录的用户登记的email
+	myHeaderPic		-->当前登录的用户头像
+	myAddress		-->当前登录的用户住址
+	myCountry		-->当前登录的用户的国籍
+	myProvince		-->当前登录的用户所在省
+	myCity			-->当前登录的用户所在城市
+	myQuestion1		-->当前登录的用户忘记密码问题1
+	myQuestion2		-->当前登录的用户忘记密码问题3
+	myAnswer1		-->当前登录的用户忘记密码答案1
+	myAnswer2		-->当前登录的用户忘记密码答案3
+	myDept			-->当前登录的用户的单位
+	myMobile		-->当前登录的用户手机号
+	myPhone			-->当前登录的用户电话号码
+	myQQ			-->当前登录的用户QQ号
+	male			-->性别选项：男士 当前登录的用户的姓名选项标签，如果是本项，则本项选中
+	female			-->性别选项：女士 当前登录的用户的姓名选项标签，如果是本项，则本项选中
+	secret			-->性别选项：秘密 当前登录的用户的姓名选项标签，如果是本项，则本项选中

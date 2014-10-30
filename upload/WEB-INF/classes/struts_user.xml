@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+
+
+	<!-- 用户组及用户Action -->
+	
+	<package name="admin-user" extends="struts-default">
+
+		<!-- 门户用户组Action -->
+		<action name="admin_userGroup_*" method="{1}"
+			class="com.lerx.user.service.UserGroupAction">
+			<result name="success">/${getText("lerx.default.admin.folder")}/admin_user_group.jsp</result>
+			<result name="input">/${getText("lerx.default.admin.folder")}/admin_user_group.jsp</result>
+		</action>
+		<action name="admin_userGroup_findByID" method="findById"
+			class="com.lerx.user.service.UserGroupAction">
+			<result name="success">/${getText("lerx.default.admin.folder")}/admin_user_group_edit.jsp</result>
+		</action>
+		
+		<!-- 论坛积分方案 -->
+		<action name="admin_score_schemes_*" method="{1}"
+			class="com.lerx.bbs.service.ScoreSchemeAction">
+			<result name="success">/${getText("lerx.default.admin.folder")}/admin_bbs_score_schemes.jsp</result>
+			<result name="input">/${getText("lerx.default.admin.folder")}/admin_bbs_score_schemes.jsp</result>
+		</action>
+		
+		<action name="admin_score_groups_*" method="{1}"
+			class="com.lerx.bbs.service.ScoreGroupAction">
+			<result name="success">/${getText("lerx.default.admin.folder")}/admin_bbs_score_groups_edit.jsp?id=${sid}</result>
+			<result name="input">/${getText("lerx.default.admin.folder")}/admin_bbs_score_groups_edit.jsp?id=${sid}</result>
+		</action>
+		
+
+		<!-- 用户Action -->
+		<action name="admin_user_*" method="{1}"
+			class="com.lerx.user.service.UserAction">
+			<result name="success">/${getText("lerx.default.admin.folder")}/admin_user_list.jsp</result>
+			<result name="input">/${getText("lerx.default.admin.folder")}/admin_user_list.jsp</result>
+		</action>
+
+		<action name="qq_login" method="login"
+			class="com.lerx.user.service.UserLoginByQQAction">
+			
+			<result name="error">/show.jsp</result>
+			<result name="input">/iccreate.jsp</result>
+			<result name="success">/show.jsp</result>
+		</action>
+		<action name="qq_send" method="send"
+			class="com.lerx.user.service.UserLoginByQQAction">
+			
+		</action>
+		<action name="qq_chk" method="chk"
+			class="com.lerx.user.service.UserLoginByQQAction">
+			
+		</action>
+		<action name="qq_userAdd" method="add"
+			class="com.lerx.user.service.UserLoginByQQAction">
+			<result name="success">/show.jsp</result>
+		</action>
+		
+		<action name="qq_userBind" method="bind"
+			class="com.lerx.user.service.UserLoginByQQAction">
+			<result name="success">/show.jsp</result>
+			
+		</action>
+		
+		<action name="qq_clear" method="clear"
+			class="com.lerx.user.service.UserLoginByQQAction">
+			<result name="success">/show.jsp</result>
+			<result name="input">/${getText("lerx.default.admin.folder")}/admin_user_list.jsp</result>
+			
+		</action>
+
+		<action name="admin_user_findByID" method="findById"
+			class="com.lerx.user.service.UserAction">
+			<result name="success">/${getText("lerx.default.admin.folder")}/admin_user_edit.jsp</result>
+		</action>
+		<action name="admin_user_findByID" method="findInfById"
+			class="com.lerx.user.service.UserAction">
+			<result name="success">/${getText("lerx.default.admin.folder")}/admin_user_edit.jsp</result>
+			<result name="input">/${getText("lerx.default.admin.folder")}/admin_user_list.jsp</result>
+		</action>
+		
+	</package>
+	
+	<package name="user-client" extends="struts-default">
+		<action name="user_*" method="{1}"
+				class="com.lerx.user.service.UserAction">
+				<result name="success">show.jsp</result>
+				<result name="input">show.jsp</result>
+				<result name="error">show.jsp</result>
+		</action>
+		
+		<action name="user_passManually" method="passManually"
+				class="com.lerx.user.service.UserAction">
+				<result name="success">/pass/passerCenter.jsp?state=${state}&amp;page=${page}&amp;pageSize=${pageSize}</result>
+				
+		</action>
+		
+	</package>
+	
+	<!-- 空间管理员登录 -->
+	<package name="space-admin" extends="struts-default">
+		<action name="space_admin_login" method="login"
+				class="com.lerx.user.service.UserAction">
+				<result name="success">/${getText("lerx.spaceAdminFolder")}/main.jsp?admin=[0].username</result>
+				<result name="input">/${getText("lerx.spaceAdminFolder")}/m_login.jsp</result>
+				<result name="error">/${getText("lerx.spaceAdminFolder")}/m_login.jsp</result>
+		</action>
+	</package>
+
+</struts>

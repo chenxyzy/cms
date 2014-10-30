@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.lerx.vote.vo">
+	<class name="VoteItem" table="vote_items" dynamic-update="true">
+		<id name="id" column="id">
+			<generator class="native" />
+		</id>
+		<property name="title" length="50" not-null="true" />
+		<property name="unicodeOrder" />
+		<property name="body" />
+		<property name="recNum" />
+		<property name="state" />
+		<property name="addTime" />
+		<property name="addIp" length="64" />
+		<property name="item1" />
+		<property name="item2" />
+		<property name="item3" />
+		<property name="item4" />
+		<property name="item5" />
+		<property name="item6" />
+		<property name="item7" />
+		<property name="item8" />
+		<property name="item9" />
+		<property name="item10" />
+		<property name="item11" />
+		<property name="item12" />
+		<property name="item13" />
+		<property name="item14" />
+		<property name="item15" />
+		<property name="item16" />
+		<property name="item17" />
+		<property name="item18" />
+		<property name="item19" />
+		<property name="item20" />
+		
+		<many-to-one name="sub" column="subID" outer-join="true"
+			class="com.lerx.vote.vo.VoteSubject" />
+		<many-to-one name="user" column="userID" outer-join="true"
+			class="com.lerx.user.vo.User" />
+
+	</class>
+</hibernate-mapping>

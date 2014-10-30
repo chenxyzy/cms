@@ -1,0 +1,88 @@
+<!DOCTYPE hibernate-configuration PUBLIC
+	"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+	<session-factory>
+		<property name="show_sql">false</property>
+		<property name="dialect">org.hibernate.dialect.MySQLDialect</property>
+		<!-- 缓存配置 -->
+		<!--  
+		<property name="hibernate,cache.use_query_cache">true</property>
+		<property name="cache.use_second_level_cache">true</property>
+		<property name="cache.provider_class">org.hibernate.cache.EhCacheProvider</property>
+		-->
+		
+		<!-- 一次读的数据库记录数 -->
+		<property name="jdbc.fetch_size">50</property>
+		<!-- 设定对数据库进行批量删除 -->
+		<property name="jdbc.batch_size">30</property> 
+		
+		<!--  <property name="hbm2ddl.auto">create</property> -->
+
+		<!-- 系统 -->
+		<mapping resource="com/lerx/admin/vo/Admin.hbm.xml" />
+		<mapping resource="com/lerx/user/vo/UserGroup.hbm.xml" />
+		<mapping resource="com/lerx/user/vo/User.hbm.xml" />
+		<mapping resource="com/lerx/user/vo/Passer.hbm.xml" />
+		<mapping resource="com/lerx/user/vo/Interconnection.hbm.xml" />
+		<mapping resource="com/lerx/user/vo/UserArtsCount.hbm.xml" />
+		<mapping resource="com/lerx/user/vo/Integral.hbm.xml" />
+		<mapping resource="com/lerx/integral/rule/vo/IntegralRule.hbm.xml" />
+		<mapping resource="com/lerx/attachment/vo/Attachment.hbm.xml" />
+		<mapping resource="com/lerx/unicode/vo/ChineseCharacter.hbm.xml" />
+
+		<!-- 网站 -->
+
+		<mapping resource="com/lerx/site/vo/SiteInfo.hbm.xml" />
+		<!-- <mapping class="com.lerx.style.site.vo.SiteStyle" /> -->
+		<mapping resource="com/lerx/style/site/vo/SiteStyle.hbm.xml" />
+
+		<mapping resource="com/lerx/style/site/vo/SiteStyleSubElementInCommon.hbm.xml" />
+		<mapping resource="com/lerx/article/vo/ArticleGroup.hbm.xml" />
+		<mapping resource="com/lerx/article/vo/ArticleThread.hbm.xml" />
+		<mapping resource="com/lerx/comment/vo/Comment.hbm.xml" />
+
+		<!--问答系统 -->
+		<mapping resource="com/lerx/style/qa/vo/QaStyle.hbm.xml" />
+		<mapping resource="com/lerx/style/qa/vo/QaStyleSubElementInCommon.hbm.xml" />
+		<mapping resource="com/lerx/qa/vo/QaNav.hbm.xml" />
+		<mapping resource="com/lerx/qa/vo/QaItem.hbm.xml" />
+
+		<!-- 论坛 -->
+		<mapping resource="com/lerx/bbs/vo/BbsInfo.hbm.xml" />
+		<mapping resource="com/lerx/bbs/vo/BM.hbm.xml" />
+		<mapping resource="com/lerx/style/bbs/vo/BbsStyle.hbm.xml" />
+		<mapping resource="com/lerx/style/bbs/vo/BbsStyleSubElementInCommon.hbm.xml" />
+		<mapping resource="com/lerx/bbs/vo/BbsForum.hbm.xml" />
+		<mapping resource="com/lerx/bbs/vo/BbsTheme.hbm.xml" />
+		<mapping resource="com/lerx/bbs/vo/ScoreGroup.hbm.xml" />
+		<mapping resource="com/lerx/bbs/vo/ScoreScheme.hbm.xml" />
+		
+		<!-- 专辑 -->
+		<mapping resource="com/lerx/album/vo/Album.hbm.xml" />
+		<mapping resource="com/lerx/album/vo/Actor.hbm.xml" />
+		<mapping resource="com/lerx/album/vo/Process.hbm.xml" />
+		
+		<!-- 投票系统 -->
+		<mapping resource="com/lerx/style/vote/vo/VoteStyle.hbm.xml" />
+		<mapping resource="com/lerx/style/vote/vo/VoteStyleSubElementInCommon.hbm.xml" />
+		<mapping resource="com/lerx/vote/vo/VoteSubject.hbm.xml" />
+		<mapping resource="com/lerx/vote/vo/VoteItem.hbm.xml" />
+		<mapping resource="com/lerx/vote/vo/VoteRec.hbm.xml" />
+
+		<!-- 抽奖系统 -->
+		<mapping resource="com/lerx/style/draw/vo/DrawStyle.hbm.xml" />
+		<mapping resource="com/lerx/draw/vo/Draw.hbm.xml" />
+		
+		<!-- 动态代码库 -->
+		<mapping resource="com/lerx/code/vo/CodeCategory.hbm.xml" />
+		<mapping resource="com/lerx/code/vo/CustomCode.hbm.xml" />
+		
+		<!-- 外部服务器编码库 -->
+		<mapping resource="com/lerx/sys/vo/ExternalHostCharset.hbm.xml" />
+	</session-factory>
+</hibernate-configuration>
+
+
+

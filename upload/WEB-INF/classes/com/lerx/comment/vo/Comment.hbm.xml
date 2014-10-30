@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.lerx.comment.vo">
+	<class name="Comment" table="comment" dynamic-update="true">
+	
+		<id name="id" type="long" column="id">
+			<generator class="native" />
+		</id>
+		
+		<property name="publisher" length="30" />
+		<property name="title" />
+		<property name="body" type="text" />
+		<property name="ip" length="64" />
+		<property name="addTime" />
+		<property name="email" />
+		<property name="phone" length="20" />
+		<property name="publisherFrom" length="30" />
+		<property name="state" />
+
+		<many-to-one name="thread" column="threadId"
+			outer-join="true" class="com.lerx.article.vo.ArticleThread" />
+
+	</class>
+</hibernate-mapping>

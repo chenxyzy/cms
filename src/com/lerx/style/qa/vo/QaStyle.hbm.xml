@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.lerx.style.qa.vo">
+	<class name="QaStyle" table="qa_style" dynamic-update="true">
+		<id name="id" column="id">
+			<generator class="native" />
+		</id>
+
+		<property name="styleName" length="50" />
+		<property name="author" length="50" />
+		<property name="description" />
+		<property name="state" />
+		
+		<property name="addAreaCode"  type="text" />
+		<property name="replyAreaCode"  type="text" />
+		
+		<property name="ajaxRealTimeCode" type="text" />
+		<property name="locationSplitStr" />
+		<property name="publicCode1" type="text" />
+		<property name="publicCode2" type="text" />
+		<property name="publicCode3" type="text" />
+		<property name="publicCode4" type="text" />
+		<property name="processedStr" length="255" />
+		<property name="noProcessedStr" length="255" />
+		<property name="openStr" length="255" />
+		<property name="noOpenStr" length="255" />
+		
+		<many-to-one name="publicStyle" outer-join="true" cascade="all"
+			column="pid" class="QaStyleSubElementInCommon" lazy="false" />
+			
+		<many-to-one name="indexStyle" outer-join="true" cascade="all"
+			column="iid" class="QaStyleSubElementInCommon" lazy="false" />
+			
+		<many-to-one name="navStyle" outer-join="true" cascade="all"
+			column="nid" class="QaStyleSubElementInCommon" lazy="false" />
+			
+		<many-to-one name="itemStyle" outer-join="true" cascade="all"
+			column="qid" class="QaStyleSubElementInCommon" lazy="false" />
+			
+	</class>
+
+
+
+</hibernate-mapping>

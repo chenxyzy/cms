@@ -1,0 +1,13 @@
+﻿<p>您好！</p>
+
+<p>您在{$$site$$}网站的注册的用户我们已经进行了确认！</p>
+
+<p>您需要点击下面的链接进入密码重置页面！</p>
+
+<p><a target="_blank" href="{$$pwsRetakeUrl$$}">{$$pwsRetakeUrl$$}</a></p>
+
+<p> <br><br><br></p>
+
+<p><a href="http://{$$siteUrl$$}">{$$site$$}</p>
+
+<p>http://{$$siteUrl$$}</p>
